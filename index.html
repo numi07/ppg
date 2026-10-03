@@ -55,7 +55,7 @@
     <!-- স্বাগতম স্ক্রিন -->
     <div id="welcome-screen" class="fixed inset-0 z-50 flex flex-col items-center justify-center bg-gradient-to-br from-blue-950 via-indigo-900 to-violet-950 text-white p-4">
         <div class="mb-6 shadow-2xl rounded-full p-4 bg-white/10 backdrop-blur-md border border-white/20">
-            <img src="logo.png" alt="PPG Logo" class="h-28 w-28 md:h-36 md:w-36 object-contain rounded-full drop-shadow-lg" onerror="this.src='https://via.placeholder.com/150?text=PPG+Logo'">
+            <img src="logo.png" alt="PPG Logo" class="h-28 w-28 md:h-36 md:w-36 object-contain rounded-full drop-shadow-lg" onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'150\' height=\'150\' viewBox=\'0 0 100 100\'><circle cx=\'50\' cy=\'50\' r=\'48\' fill=\'%23064e3b\' stroke=\'%2334d399\' stroke-width=\'4\'/><text x=\'50%\' y=\'55%\' font-size=\'22\' font-weight=\'bold\' fill=\'%23ffffff\' text-anchor=\'middle\' dominant-baseline=\'middle\' font-family=\'sans-serif\'>PPG</text></svg>';">
         </div>
         <h1 class="text-2xl md:text-4xl font-bold text-center text-emerald-300 mb-2 tracking-wide drop-shadow">
             "পহরডাঙ্গা পার্টনারশিপ গ্রুপে" আপনাকে স্বাগতম
@@ -72,7 +72,7 @@
             <div class="flex items-center justify-between h-20">
                 <!-- লোগো ও সাজানো টাইটেল-স্লোগান -->
                 <div class="flex items-center gap-3 cursor-pointer py-1" onclick="location.href='#home'">
-                    <img src="logo.png" alt="PPG Logo" class="h-11 w-11 object-contain rounded-full border-2 border-emerald-400 bg-white shrink-0 shadow-sm" onerror="this.src='https://via.placeholder.com/50?text=PPG'">
+                    <img src="logo.png" alt="PPG Logo" class="h-11 w-11 object-contain rounded-full border-2 border-emerald-400 bg-white shrink-0 shadow-sm" onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'50\' height=\'50\' viewBox=\'0 0 100 100\'><circle cx=\'50\' cy=\'50\' r=\'48\' fill=\'%23064e3b\' stroke=\'%2334d399\' stroke-width=\'4\'/><text x=\'50%\' y=\'55%\' font-size=\'24\' font-weight=\'bold\' fill=\'%23ffffff\' text-anchor=\'middle\' dominant-baseline=\'middle\' font-family=\'sans-serif\'>PPG</text></svg>';">
                     <div class="flex flex-col justify-center">
                         <span class="font-bold text-base sm:text-lg md:text-xl text-emerald-400 tracking-tight leading-snug whitespace-nowrap">
                             পহরডাঙ্গা পার্টনারশিপ গ্রুপ
@@ -332,7 +332,7 @@
                         <div class="absolute -inset-1 bg-gradient-to-tr from-amber-400 via-emerald-400 to-teal-300 rounded-full blur-xs opacity-75 group-hover:opacity-100 transition duration-300"></div>
                         <div class="relative w-[70px] h-[70px] rounded-full p-[2px] bg-gradient-to-b from-amber-300 via-emerald-400 to-emerald-800 shadow-2xl flex items-center justify-center">
                             <div class="w-full h-full bg-white rounded-full p-1 flex items-center justify-center overflow-hidden">
-                                <img src="logo.png" alt="PPG Logo" class="w-full h-full object-contain filter drop-shadow scale-110" onerror="this.src='https://via.placeholder.com/50?text=PPG'">
+                                <img src="logo.png" alt="PPG Logo" class="w-full h-full object-contain filter drop-shadow scale-110" onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'50\' height=\'50\' viewBox=\'0 0 100 100\'><circle cx=\'50\' cy=\'50\' r=\'48\' fill=\'%23064e3b\' stroke=\'%2334d399\' stroke-width=\'4\'/><text x=\'50%\' y=\'55%\' font-size=\'24\' font-weight=\'bold\' fill=\'%23ffffff\' text-anchor=\'middle\' dominant-baseline=\'middle\' font-family=\'sans-serif\'>PPG</text></svg>';">
                             </div>
                         </div>
                     </div>
@@ -1282,9 +1282,9 @@
             </div>
         </div>
     </div>
-     <!-- জাভাস্ক্রিপ্ট কোড -->
+      <!-- জাভাস্ক্রিপ্ট কোড -->
     <script>
-        const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwVIcJf8i_ykWKvat8GwgiIfbQ7WqZzrV_JluSOQ-X0r1VHfZpDCRawRo6stSDhLabzNg/exec";
+        const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyVnJ6x8xXcyTlPa9H-vKjZ886wwNxffb9MfcYF2xuyC3W-4e4-7sVIWS1ipDk63YCp8Q/exec";
 
         // সমস্যা ১ ও ২ ফিক্স: সংখ্যা বা কমা-যুক্ত স্ট্রিং আসলেও যাতে '০' না হয়ে নিখুঁত বাংলায় রূপান্তর হয়
         function toBanglaNum(num) {
@@ -1557,7 +1557,7 @@
             } catch (e) {}
         }
 
-        // সমস্যা ১ ফিক্স: সামগ্রিক তহবিল ও স্থিতি নিখুঁত লাইভ হিসাব
+        // সামগ্রিক তহবিল ও স্থিতি নিখুঁত লাইভ হিসাব
         function recalculateAllFinancials() {
             totalSharesGlobal = 0;
             totalMemberFeeGlobal = 0;
@@ -1712,11 +1712,9 @@
             document.getElementById('cardSelectMonth').value = member.startMonth || "সেপ্টেম্বর";
 
             const photoElem = document.getElementById('mp-photo');
-            if (member.photoUrl) {
-                photoElem.src = member.photoUrl;
-            } else {
-                photoElem.src = "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=400";
-            }
+            const defaultAvatar = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'><circle cx='50' cy='50' r='48' fill='%231e293b' stroke='%2310b981' stroke-width='3'/><path d='M50 25a16 16 0 100 32 16 16 0 000-32zm0 40c-18 0-33 11-33 25h66c0-14-15-25-33-25z' fill='%2394a3b8'/></svg>";
+            photoElem.src = member.photoUrl || defaultAvatar;
+            photoElem.onerror = function() { this.onerror = null; this.src = defaultAvatar; };
 
             const statusInfo = getMemberStatusInfo(member);
             const tag = document.getElementById('mp-status-tag');
@@ -1939,7 +1937,7 @@
             }
         }
 
-        // সমস্যা ২ ফিক্স: ডিজিটাল রশিদে লাইভ মাসভিত্তিক পূর্বের স্থিতি, চলতি কিস্তি ও মোট সঞ্চয় সঠিক হিসাব
+        // ডিজিটাল রশিদে লাইভ মাসভিত্তিক পূর্বের স্থিতি, চলতি কিস্তি ও মোট সঞ্চয় সঠিক হিসাব
         function onReceiptMonthChange(val) {
             selectedReceiptMonth = val;
             const targetIdx = normalizeMonthIndex(val);
@@ -2947,276 +2945,347 @@
             return { memberId, name, month, monthBn, amount, paymentMethod, trxId, penalty, proofUrl, timestamp };
         }
 
-        // গুগল শিটের ডেটা সিঙ্ক্রোনাইজেশন
-        async function syncDataFromGoogleSheet() {
-            if (!GOOGLE_SCRIPT_URL) return;
+        // Vercel ও GitHub Pages-এ CORS বাধা ছাড়া ডেটা লোডের জন্য JSONP কলব্যাক ফাংশন
+        function fetchJsonp(url) {
+            return new Promise((resolve, reject) => {
+                const callbackName = 'ppg_jsonp_cb_' + Date.now() + '_' + Math.floor(Math.random() * 10000);
+                const script = document.createElement('script');
+                let timer = setTimeout(() => {
+                    cleanup();
+                    reject(new Error('JSONP Request Timeout'));
+                }, 12000);
 
-            try {
-                const response = await fetch(GOOGLE_SCRIPT_URL);
-                const data = await response.json();
+                function cleanup() {
+                    if (timer) clearTimeout(timer);
+                    delete window[callbackName];
+                    if (script.parentNode) script.parentNode.removeChild(script);
+                }
 
-                if (data) {
-                    const rawMembers = data.members || data.Members || data.member || data.Member || [];
-                    const rawAccounts = data.accounts || data.Accounts || data.account || data.Account || [];
-                    const rawExpenses = data.expenses || data.Expenses || data.expense || data.Expense || [];
-                    const rawDps = data.dps || data.DPS || data.Dps || [];
-                    const rawProofs = data.proofs || data.Proofs || data.proof || data.Proof || [];
-                    const rawSettings = data.settings || data.Settings || [];
+                window[callbackName] = function(data) {
+                    cleanup();
+                    resolve(data);
+                };
 
-                    // ১. মেম্বার লোড
-                    if (rawMembers && rawMembers.length > 0) {
-                        membersData = [];
-                        for (let i = 0; i < rawMembers.length; i++) {
-                            const parsedM = parseMemberRowData(rawMembers[i]);
-                            if (parsedM) {
-                                membersData.push({
-                                    ...parsedM,
-                                    totalDeposit: 0,
-                                    missedCount: 0,
-                                    monthlyRecords: {},
-                                    lastPaymentMethod: "--",
-                                    lastTrxId: "--"
-                                });
-                            }
+                const sep = url.includes('?') ? '&' : '?';
+                script.src = `${url}${sep}callback=${callbackName}&_t=${Date.now()}`;
+                script.onerror = function() {
+                    cleanup();
+                    reject(new Error('JSONP Script Load Failed'));
+                };
+                document.body.appendChild(script);
+            });
+        }
+
+        // গুগল শিট থেকে প্রাপ্ত ডেটা প্রসেসিং লজিক
+        function processSheetData(data) {
+            if (!data) return;
+
+            const rawMembers = data.members || data.Members || data.member || data.Member || [];
+            const rawAccounts = data.accounts || data.Accounts || data.account || data.Account || [];
+            const rawExpenses = data.expenses || data.Expenses || data.expense || data.Expense || [];
+            const rawDps = data.dps || data.DPS || data.Dps || [];
+            const rawProofs = data.proofs || data.Proofs || data.proof || data.Proof || [];
+            const rawSettings = data.settings || data.Settings || [];
+
+            // ১. মেম্বার লোড
+            if (rawMembers && rawMembers.length > 0) {
+                membersData = [];
+                for (let i = 0; i < rawMembers.length; i++) {
+                    const parsedM = parseMemberRowData(rawMembers[i]);
+                    if (parsedM) {
+                        membersData.push({
+                            ...parsedM,
+                            totalDeposit: 0,
+                            missedCount: 0,
+                            monthlyRecords: {},
+                            lastPaymentMethod: "--",
+                            lastTrxId: "--"
+                        });
+                    }
+                }
+            }
+
+            // ২. কিস্তির খতিয়ান লোড
+            if (rawAccounts && rawAccounts.length > 0) {
+                accountsData = [];
+
+                let headerMap = null;
+                if (Array.isArray(rawAccounts[0])) {
+                    const r0 = rawAccounts[0].map(c => (c || '').toString().trim().toLowerCase());
+                    const hasH = r0.some(c => c.includes('id') || c.includes('month') || c.includes('amount') || c.includes('মাস') || c.includes('টাকা'));
+                    if (hasH) {
+                        headerMap = {
+                            memberId: r0.findIndex(c => c.includes('id') || c.includes('আইডি')),
+                            name: r0.findIndex(c => c.includes('name') || c.includes('নাম')),
+                            month: r0.findIndex(c => c.includes('month') || c.includes('মাস')),
+                            monthBn: r0.findIndex(c => c.includes('bn') || c.includes('বাংলা')),
+                            amount: r0.findIndex(c => c.includes('amount') || c.includes('পরিমাণ') || c.includes('টাকা') || c.includes('জমা')),
+                            method: r0.findIndex(c => c.includes('method') || c.includes('মাধ্যম') || c.includes('পদ্ধতি')),
+                            trxId: r0.findIndex(c => c.includes('trx') || c.includes('ভাউচার') || c.includes('ট্রানজেকশন')),
+                            penalty: r0.findIndex(c => c.includes('penalty') || c.includes('জরিমানা'))
+                        };
+                    }
+                }
+
+                const startIdx = headerMap ? 1 : 0;
+                for (let j = startIdx; j < rawAccounts.length; j++) {
+                    const parsedA = parseAccountRowData(rawAccounts[j], headerMap);
+                    if (!parsedA) continue;
+
+                    accountsData.push(parsedA);
+
+                    const normAccId = normalizeMemberId(parsedA.memberId);
+                    const m = membersData.find(x => 
+                        normalizeMemberId(x.id) === normAccId || 
+                        (x.name && parsedA.name && x.name.trim() === parsedA.name.trim()) ||
+                        (x.name && parsedA.memberId && x.name.trim() === parsedA.memberId.trim())
+                    );
+
+                    if (m) {
+                        m.totalDeposit = (m.totalDeposit || 0) + parsedA.amount;
+                        
+                        const mIdx = normalizeMonthIndex(parsedA.month, parsedA.monthBn);
+                        const standardMonthName = mIdx !== -1 ? MONTH_NAMES[mIdx] : parsedA.month;
+
+                        const recObj = {
+                            paid: true,
+                            amount: parsedA.amount,
+                            penalty: parsedA.penalty,
+                            method: parsedA.paymentMethod || '--',
+                            trxId: parsedA.trxId || '--',
+                            proofUrl: parsedA.proofUrl
+                        };
+
+                        if (!m.monthlyRecords) m.monthlyRecords = {};
+                        m.monthlyRecords[standardMonthName] = recObj;
+                        if (mIdx !== -1) {
+                            m.monthlyRecords[mIdx] = recObj;
+                            m.monthlyRecords[String(mIdx)] = recObj;
+                            m.monthlyRecords[MONTH_NAMES[mIdx]] = recObj;
+                            m.monthlyRecords[MONTH_NAMES_BN[mIdx]] = recObj;
                         }
+                        if (parsedA.month) m.monthlyRecords[parsedA.month] = recObj;
+                        if (parsedA.monthBn) m.monthlyRecords[parsedA.monthBn] = recObj;
+
+                        m.lastPaidMonth = standardMonthName;
+                        m.lastPaymentMethod = parsedA.paymentMethod;
+                        m.lastTrxId = parsedA.trxId;
+                    }
+                }
+            }
+
+            // ৩. খরচ লোড
+            if (rawExpenses && rawExpenses.length > 0) {
+                expensesData = [];
+                totalExpenseGlobal = 0;
+                const startE = Array.isArray(rawExpenses[0]) ? 1 : 0;
+                for (let e = startE; e < rawExpenses.length; e++) {
+                    const eRow = rawExpenses[e];
+                    if (!eRow) continue;
+                    let head = "", amount = 0, desc = "", voucher = "", proof = "", timestamp = "";
+
+                    if (Array.isArray(eRow)) {
+                        if ((eRow[0] || '').toString().toLowerCase().includes('head')) continue;
+                        timestamp = eRow[0] || "";
+                        head = (eRow[1] || "").toString().trim();
+                        amount = parseAnyNumber(eRow[2]);
+                        desc = (eRow[3] || "").toString().trim();
+                        voucher = (eRow[4] || "").toString().trim();
+                        proof = eRow[5] ? eRow[5].toString().trim() : "";
+                    } else if (typeof eRow === 'object') {
+                        head = (eRow.head || eRow['খাত'] || "").toString().trim();
+                        amount = parseAnyNumber(eRow.amount || eRow['টাকা']);
+                        desc = (eRow.description || eRow['বিবরণ'] || "").toString().trim();
+                        voucher = (eRow.voucherTrx || eRow['ভাউচার'] || "").toString().trim();
+                        proof = (eRow.proofUrl || "").toString().trim();
+                        timestamp = eRow.timestamp || "";
                     }
 
-                    // ২. কিস্তির খতিয়ান লোড
-                    if (rawAccounts && rawAccounts.length > 0) {
-                        accountsData = [];
-
-                        let headerMap = null;
-                        if (Array.isArray(rawAccounts[0])) {
-                            const r0 = rawAccounts[0].map(c => (c || '').toString().trim().toLowerCase());
-                            const hasH = r0.some(c => c.includes('id') || c.includes('month') || c.includes('amount') || c.includes('মাস') || c.includes('টাকা'));
-                            if (hasH) {
-                                headerMap = {
-                                    memberId: r0.findIndex(c => c.includes('id') || c.includes('আইডি')),
-                                    name: r0.findIndex(c => c.includes('name') || c.includes('নাম')),
-                                    month: r0.findIndex(c => c.includes('month') || c.includes('মাস')),
-                                    monthBn: r0.findIndex(c => c.includes('bn') || c.includes('বাংলা')),
-                                    amount: r0.findIndex(c => c.includes('amount') || c.includes('পরিমাণ') || c.includes('টাকা') || c.includes('জমা')),
-                                    method: r0.findIndex(c => c.includes('method') || c.includes('মাধ্যম') || c.includes('পদ্ধতি')),
-                                    trxId: r0.findIndex(c => c.includes('trx') || c.includes('ভাউচার') || c.includes('ট্রানজেকশন')),
-                                    penalty: r0.findIndex(c => c.includes('penalty') || c.includes('জরিমানা'))
-                                };
-                            }
-                        }
-
-                        const startIdx = headerMap ? 1 : 0;
-                        for (let j = startIdx; j < rawAccounts.length; j++) {
-                            const parsedA = parseAccountRowData(rawAccounts[j], headerMap);
-                            if (!parsedA) continue;
-
-                            accountsData.push(parsedA);
-
-                            const normAccId = normalizeMemberId(parsedA.memberId);
-                            const m = membersData.find(x => 
-                                normalizeMemberId(x.id) === normAccId || 
-                                (x.name && parsedA.name && x.name.trim() === parsedA.name.trim()) ||
-                                (x.name && parsedA.memberId && x.name.trim() === parsedA.memberId.trim())
-                            );
-
-                            if (m) {
-                                m.totalDeposit = (m.totalDeposit || 0) + parsedA.amount;
-                                
-                                const mIdx = normalizeMonthIndex(parsedA.month, parsedA.monthBn);
-                                const standardMonthName = mIdx !== -1 ? MONTH_NAMES[mIdx] : parsedA.month;
-
-                                const recObj = {
-                                    paid: true,
-                                    amount: parsedA.amount,
-                                    penalty: parsedA.penalty,
-                                    method: parsedA.paymentMethod || '--',
-                                    trxId: parsedA.trxId || '--',
-                                    proofUrl: parsedA.proofUrl
-                                };
-
-                                if (!m.monthlyRecords) m.monthlyRecords = {};
-                                m.monthlyRecords[standardMonthName] = recObj;
-                                if (mIdx !== -1) {
-                                    m.monthlyRecords[mIdx] = recObj;
-                                    m.monthlyRecords[String(mIdx)] = recObj;
-                                    m.monthlyRecords[MONTH_NAMES[mIdx]] = recObj;
-                                    m.monthlyRecords[MONTH_NAMES_BN[mIdx]] = recObj;
-                                }
-                                if (parsedA.month) m.monthlyRecords[parsedA.month] = recObj;
-                                if (parsedA.monthBn) m.monthlyRecords[parsedA.monthBn] = recObj;
-
-                                m.lastPaidMonth = standardMonthName;
-                                m.lastPaymentMethod = parsedA.paymentMethod;
-                                m.lastTrxId = parsedA.trxId;
-                            }
-                        }
-                    }
-
-                    // ৩. খরচ লোড
-                    if (rawExpenses && rawExpenses.length > 0) {
-                        expensesData = [];
-                        totalExpenseGlobal = 0;
-                        const startE = Array.isArray(rawExpenses[0]) ? 1 : 0;
-                        for (let e = startE; e < rawExpenses.length; e++) {
-                            const eRow = rawExpenses[e];
-                            if (!eRow) continue;
-                            let head = "", amount = 0, desc = "", voucher = "", proof = "", timestamp = "";
-
-                            if (Array.isArray(eRow)) {
-                                if ((eRow[0] || '').toString().toLowerCase().includes('head')) continue;
-                                timestamp = eRow[0] || "";
-                                head = (eRow[1] || "").toString().trim();
-                                amount = parseAnyNumber(eRow[2]);
-                                desc = (eRow[3] || "").toString().trim();
-                                voucher = (eRow[4] || "").toString().trim();
-                                proof = eRow[5] ? eRow[5].toString().trim() : "";
-                            } else if (typeof eRow === 'object') {
-                                head = (eRow.head || eRow['খাত'] || "").toString().trim();
-                                amount = parseAnyNumber(eRow.amount || eRow['টাকা']);
-                                desc = (eRow.description || eRow['বিবরণ'] || "").toString().trim();
-                                voucher = (eRow.voucherTrx || eRow['ভাউচার'] || "").toString().trim();
-                                proof = (eRow.proofUrl || "").toString().trim();
-                                timestamp = eRow.timestamp || "";
-                            }
-
-                            if (!head && amount === 0) continue;
-                            totalExpenseGlobal += amount;
-                            expensesData.push({
-                                timestamp: timestamp || new Date().toLocaleString('bn-BD'),
-                                head: head,
-                                amount: amount,
-                                description: desc,
-                                voucherTrx: voucher,
-                                proofUrl: proof
-                            });
-                        }
-                    }
-
-                    // ৪. প্রাতিষ্ঠানিক ডিপিএস লোড
-                    if (rawDps && rawDps.length > 0) {
-                        dpsData = [];
-                        totalDpsGlobal = 0;
-                        const startD = Array.isArray(rawDps[0]) ? 1 : 0;
-                        for (let k = startD; k < rawDps.length; k++) {
-                            const dRow = rawDps[k];
-                            if (!dRow) continue;
-                            let month = "", bankDeposit = 0, dpsAmount = 0, remaining = 0, bankName = "", trxId = "", proof = "", timestamp = "";
-
-                            if (Array.isArray(dRow)) {
-                                if ((dRow[1] || '').toString().toLowerCase().includes('month')) continue;
-                                timestamp = dRow[0] || "";
-                                month = (dRow[1] || "").toString().trim();
-                                bankDeposit = parseAnyNumber(dRow[2]);
-                                dpsAmount = parseAnyNumber(dRow[3]);
-                                remaining = parseAnyNumber(dRow[4]);
-                                bankName = (dRow[5] || "").toString().trim();
-                                trxId = (dRow[6] || "").toString().trim();
-                                proof = dRow[7] ? dRow[7].toString().trim() : "";
-                            } else if (typeof dRow === 'object') {
-                                month = (dRow.month || "").toString().trim();
-                                bankDeposit = parseAnyNumber(dRow.bankDeposit);
-                                dpsAmount = parseAnyNumber(dRow.dpsAmount);
-                                remaining = parseAnyNumber(dRow.remainingBank);
-                                bankName = (dRow.bankName || "").toString().trim();
-                                trxId = (dRow.trxId || "").toString().trim();
-                                proof = (dRow.proofUrl || "").toString().trim();
-                                timestamp = dRow.timestamp || "";
-                            }
-
-                            if (dpsAmount === 0 && !month) continue;
-                            totalDpsGlobal += dpsAmount;
-                            totalRemainingBankGlobal = remaining;
-
-                            dpsData.push({
-                                timestamp: timestamp || new Date().toLocaleString('bn-BD'),
-                                month: month,
-                                bankDeposit: bankDeposit,
-                                dpsAmount: dpsAmount,
-                                remainingBank: remaining,
-                                bankName: bankName,
-                                trxId: trxId,
-                                proofUrl: proof
-                            });
-                        }
-                    }
-
-                    // ৫. প্রমাণাদি লোড
-                    if (rawProofs && rawProofs.length > 0) {
-                        proofsData = [];
-                        const startP = Array.isArray(rawProofs[0]) ? 1 : 0;
-                        for (let p = startP; p < rawProofs.length; p++) {
-                            const pRow = rawProofs[p];
-                            if (!pRow) continue;
-                            if (Array.isArray(pRow)) {
-                                proofsData.push({
-                                    timestamp: pRow[0],
-                                    type: pRow[1],
-                                    memberId: pRow[2] ? pRow[2].toString().trim().toUpperCase() : "",
-                                    name: pRow[3],
-                                    month: pRow[4] ? pRow[4].toString() : "",
-                                    trxId: pRow[5] ? pRow[5].toString().trim() : "",
-                                    folderName: pRow[6],
-                                    fileName: pRow[7],
-                                    fileUrl: pRow[8] ? pRow[8].toString().trim() : ""
-                                });
-                            } else if (typeof pRow === 'object') {
-                                proofsData.push({
-                                    memberId: (pRow.memberId || "").toString().trim().toUpperCase(),
-                                    name: pRow.name || "",
-                                    month: pRow.month || "",
-                                    trxId: pRow.trxId || "",
-                                    fileUrl: pRow.fileUrl || pRow.url || ""
-                                });
-                            }
-                        }
-                    }
-
-                    // ৬. পলিসি টেক্সট ও PDF লিঙ্ক
-                    if (rawSettings && rawSettings.length > 0) {
-                        for (let s = 0; s < rawSettings.length; s++) {
-                            const sRow = rawSettings[s];
-                            if (Array.isArray(sRow)) {
-                                if (sRow[0] === "PolicyPdfUrl") {
-                                    globalPolicyPdfUrl = sRow[1];
-                                    const driveBtn = document.getElementById('btn-view-drive-policy');
-                                    if (driveBtn && globalPolicyPdfUrl) {
-                                        driveBtn.href = globalPolicyPdfUrl;
-                                        driveBtn.classList.remove('hidden');
-                                    }
-                                }
-                                if (sRow[0] === "PolicyText") {
-                                    globalPolicyText = sRow[1];
-                                    renderPolicyContent(globalPolicyText);
-                                }
-                            }
-                        }
-                    }
-
-                    // বকেয়া মিস হিসাব (সেপ্টেম্বর ও অক্টোবর)
-                    membersData.forEach(m => {
-                        let missed = 0;
-                        for (let idx = START_MONTH_IDX; idx <= CURRENT_MONTH_IDX; idx++) {
-                            const mKey = MONTH_NAMES[idx];
-                            const bnKey = MONTH_NAMES_BN[idx];
-                            if (!m.monthlyRecords || (!m.monthlyRecords[mKey] && !m.monthlyRecords[idx] && !m.monthlyRecords[bnKey])) {
-                                missed++;
-                            }
-                        }
-                        m.missedCount = missed;
+                    if (!head && amount === 0) continue;
+                    totalExpenseGlobal += amount;
+                    expensesData.push({
+                        timestamp: timestamp || new Date().toLocaleString('bn-BD'),
+                        head: head,
+                        amount: amount,
+                        description: desc,
+                        voucherTrx: voucher,
+                        proofUrl: proof
                     });
+                }
+            }
 
-                    updateAuthUI();
+            // ৪. প্রাতিষ্ঠানিক ডিপিএস লোড
+            if (rawDps && rawDps.length > 0) {
+                dpsData = [];
+                totalDpsGlobal = 0;
+                const startD = Array.isArray(rawDps[0]) ? 1 : 0;
+                for (let k = startD; k < rawDps.length; k++) {
+                    const dRow = rawDps[k];
+                    if (!dRow) continue;
+                    let month = "", bankDeposit = 0, dpsAmount = 0, remaining = 0, bankName = "", trxId = "", proof = "", timestamp = "";
 
-                    if (selectedMember) {
-                        const refreshed = membersData.find(x => x.id === selectedMember.id);
-                        if (refreshed) {
-                            selectedMember = refreshed;
-                            if (document.getElementById('receipt-modal') && !document.getElementById('receipt-modal').classList.contains('hidden')) {
-                                onReceiptMonthChange(selectedReceiptMonth);
+                    if (Array.isArray(dRow)) {
+                        if ((dRow[1] || '').toString().toLowerCase().includes('month')) continue;
+                        timestamp = dRow[0] || "";
+                        month = (dRow[1] || "").toString().trim();
+                        bankDeposit = parseAnyNumber(dRow[2]);
+                        dpsAmount = parseAnyNumber(dRow[3]);
+                        remaining = parseAnyNumber(dRow[4]);
+                        bankName = (dRow[5] || "").toString().trim();
+                        trxId = (dRow[6] || "").toString().trim();
+                        proof = dRow[7] ? dRow[7].toString().trim() : "";
+                    } else if (typeof dRow === 'object') {
+                        month = (dRow.month || "").toString().trim();
+                        bankDeposit = parseAnyNumber(dRow.bankDeposit);
+                        dpsAmount = parseAnyNumber(dRow.dpsAmount);
+                        remaining = parseAnyNumber(dRow.remainingBank);
+                        bankName = (dRow.bankName || "").toString().trim();
+                        trxId = (dRow.trxId || "").toString().trim();
+                        proof = (dRow.proofUrl || "").toString().trim();
+                        timestamp = dRow.timestamp || "";
+                    }
+
+                    if (dpsAmount === 0 && !month) continue;
+                    totalDpsGlobal += dpsAmount;
+                    totalRemainingBankGlobal = remaining;
+
+                    dpsData.push({
+                        timestamp: timestamp || new Date().toLocaleString('bn-BD'),
+                        month: month,
+                        bankDeposit: bankDeposit,
+                        dpsAmount: dpsAmount,
+                        remainingBank: remaining,
+                        bankName: bankName,
+                        trxId: trxId,
+                        proofUrl: proof
+                    });
+                }
+            }
+
+            // ৫. প্রমাণাদি লোড
+            if (rawProofs && rawProofs.length > 0) {
+                proofsData = [];
+                const startP = Array.isArray(rawProofs[0]) ? 1 : 0;
+                for (let p = startP; p < rawProofs.length; p++) {
+                    const pRow = rawProofs[p];
+                    if (!pRow) continue;
+                    if (Array.isArray(pRow)) {
+                        proofsData.push({
+                            timestamp: pRow[0],
+                            type: pRow[1],
+                            memberId: pRow[2] ? pRow[2].toString().trim().toUpperCase() : "",
+                            name: pRow[3],
+                            month: pRow[4] ? pRow[4].toString() : "",
+                            trxId: pRow[5] ? pRow[5].toString().trim() : "",
+                            folderName: pRow[6],
+                            fileName: pRow[7],
+                            fileUrl: pRow[8] ? pRow[8].toString().trim() : ""
+                        });
+                    } else if (typeof pRow === 'object') {
+                        proofsData.push({
+                            memberId: (pRow.memberId || "").toString().trim().toUpperCase(),
+                            name: pRow.name || "",
+                            month: pRow.month || "",
+                            trxId: pRow.trxId || "",
+                            fileUrl: pRow.fileUrl || pRow.url || ""
+                        });
+                    }
+                }
+            }
+
+            // ৬. পলিসি টেক্সট ও PDF লিঙ্ক
+            if (rawSettings && rawSettings.length > 0) {
+                for (let s = 0; s < rawSettings.length; s++) {
+                    const sRow = rawSettings[s];
+                    if (Array.isArray(sRow)) {
+                        if (sRow[0] === "PolicyPdfUrl") {
+                            globalPolicyPdfUrl = sRow[1];
+                            const driveBtn = document.getElementById('btn-view-drive-policy');
+                            if (driveBtn && globalPolicyPdfUrl) {
+                                driveBtn.href = globalPolicyPdfUrl;
+                                driveBtn.classList.remove('hidden');
                             }
+                        }
+                        if (sRow[0] === "PolicyText") {
+                            globalPolicyText = sRow[1];
+                            renderPolicyContent(globalPolicyText);
                         }
                     }
                 }
-            } catch (err) {
-                console.error("Data Sync Error:", err);
+            }
+
+            // বকেয়া মিস হিসাব (সেপ্টেম্বর ও অক্টোবর)
+            membersData.forEach(m => {
+                let missed = 0;
+                for (let idx = START_MONTH_IDX; idx <= CURRENT_MONTH_IDX; idx++) {
+                    const mKey = MONTH_NAMES[idx];
+                    const bnKey = MONTH_NAMES_BN[idx];
+                    if (!m.monthlyRecords || (!m.monthlyRecords[mKey] && !m.monthlyRecords[idx] && !m.monthlyRecords[bnKey])) {
+                        missed++;
+                    }
+                }
+                m.missedCount = missed;
+            });
+
+            updateAuthUI();
+
+            if (selectedMember) {
+                const refreshed = membersData.find(x => x.id === selectedMember.id);
+                if (refreshed) {
+                    selectedMember = refreshed;
+                    if (document.getElementById('receipt-modal') && !document.getElementById('receipt-modal').classList.contains('hidden')) {
+                        onReceiptMonthChange(selectedReceiptMonth);
+                    }
+                }
+            }
+        }
+
+        // Vercel / GitHub Pages-এর জন্য হাইব্রিড সিঙ্ক লজিক (ক্যাশ + Fetch + JSONP অটো ফলব্যাক)
+        async function syncDataFromGoogleSheet() {
+            if (!GOOGLE_SCRIPT_URL) return;
+
+            // ১. পূর্বে সেভ করা ক্যাশ ডেটা সাথে সাথে লোড করা, যাতে সাইটে কখনো ০ বা লোডিং না থাকে
+            try {
+                const cached = localStorage.getItem('ppg_cached_data_v2');
+                if (cached) {
+                    const parsedCache = JSON.parse(cached);
+                    processSheetData(parsedCache);
+                }
+            } catch (e) {}
+
+            let liveData = null;
+
+            // ২. আধুনিক Fetch চেষ্টা করা (৭ সেকেন্ড টাইমআউট)
+            try {
+                const controller = new AbortController();
+                const timeoutId = setTimeout(() => controller.abort(), 7000);
+                const response = await fetch(GOOGLE_SCRIPT_URL + (GOOGLE_SCRIPT_URL.includes('?') ? '&' : '?') + '_t=' + Date.now(), {
+                    method: 'GET',
+                    signal: controller.signal
+                });
+                clearTimeout(timeoutId);
+                if (response.ok) {
+                    liveData = await response.json();
+                }
+            } catch (fetchErr) {
+                console.warn("Fetch failed (CORS or network), trying JSONP fallback:", fetchErr);
+            }
+
+            // ৩. যদি Fetch ব্যর্থ হয়, তবে JSONP দিয়ে ডেটা লোড (Vercel ও GitHub Pages-এ CORS বাধা সম্পূর্ণ বাইপাস করে)
+            if (!liveData || !liveData.members) {
+                try {
+                    liveData = await fetchJsonp(GOOGLE_SCRIPT_URL);
+                } catch (jsonpErr) {
+                    console.error("JSONP Fallback also failed:", jsonpErr);
+                }
+            }
+
+            // ৪. লাইভ ডেটা পাওয়া গেলে তা লোকাল ক্যাশে সংরক্ষণ ও UI আপডেট করা
+            if (liveData && (liveData.members || liveData.accounts)) {
+                try {
+                    localStorage.setItem('ppg_cached_data_v2', JSON.stringify(liveData));
+                } catch (e) {}
+                processSheetData(liveData);
             }
         }
 
