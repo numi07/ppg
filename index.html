@@ -5,15 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>পহরডাঙ্গা পার্টনারশিপ গ্রুপ</title>
     
-    <!-- PWA / App Install Meta Tags (আলাদা manifest.json ছাড়াই সম্পূর্ণ সেলফ-কন্টেইন্ড) -->
+    <!-- PWA / App Install Meta Tags (আলাদা manifest.json ছাড়াই সম্পূর্ণ সেলফ-কন্টেইন্ড ইনলাইন Data URI) -->
     <meta name="theme-color" content="#1e3a8a">
     <link rel="apple-touch-icon" href="images/logo.png">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="application-name" content="পহরডাঙ্গা">
+    <meta name="apple-mobile-web-app-title" content="পহরডাঙ্গা">
+    <meta name="application-name" content="পহরডাঙ্গা পার্টনারশিপ গ্রুপ">
 
-    <!-- ইনলাইন ডাইনামিক PWA ম্যানিফেস্ট লিংক -->
-    <link id="manifest-placeholder" rel="manifest">
+    <!-- ইনলাইন সিনক্রোনাস PWA ম্যানিফেস্ট (মোবাইলে সরাসরি অ্যাপস আকারে ইনস্টল হওয়ার নিশ্চয়তা) -->
+    <link rel="manifest" href='data:application/manifest+json;utf-8,%7B%22name%22%3A%22%E0%A6%AA%E0%A6%B9%E0%A6%B0%E0%A6%A1%E0%A6%BE%E0%A6%99%E0%A7%8D%E0%A6%97%E0%A6%BE%20%E0%A6%AA%E0%A6%BE%E0%A6%B0%E0%A7%8D%E0%A6%9F%E0%A6%A8%E0%A6%BE%E0%A6%B0%E0%A7%87%E0%A6%B6%E0%A6%BF%E0%A6%AA%20%E0%A6%97%E0%A7%8D%E0%A6%B0%E0%A7%81%E0%A6%AA%22%2C%22short_name%22%3A%22%E0%A6%AA%E0%A6%B9%E0%A6%B0%E0%A6%A1%E0%A6%BE%E0%A6%99%E0%A7%8D%E0%A6%97%E0%A6%BE%22%2C%22start_url%22%3A%22.%22%2C%22display%22%3A%22standalone%22%2C%22background_color%22%3A%22%231e3a8a%22%2C%22theme_color%22%3A%22%231e3a8a%22%2C%22icons%22%3A%5B%7B%22src%22%3A%22images%2Flogo.png%22%2C%22sizes%22%3A%22192x192%22%2C%22type%22%3A%22image%2Fpng%22%7D%2C%7B%22src%22%3A%22images%2Flogo.png%22%2C%22sizes%22%3A%22512x512%22%2C%22type%22%3A%22image%2Fpng%22%7D%5D%7D'>
 
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -40,15 +41,17 @@
         #welcome-screen {
             display: none !important;
         }
-        /* প্রিন্ট ও রশিদের নিখুঁত ফরম্যাটিং */
+        /* প্রিন্ট ও রশিদের নিখুঁত স্ট্যান্ডার্ড ফরম্যাটিং */
         .pdf-container, #printable-receipt {
             width: 100%;
-            max-width: 800px;
+            max-width: 680px;
             margin: 0 auto;
             background: #ffffff;
             color: #0f172a;
-            padding: 16px;
+            padding: 24px;
             box-sizing: border-box;
+            border: 2px solid #0f766e;
+            border-radius: 16px;
             font-family: 'Noto Sans Bengali', 'Hind Siliguri', Arial, sans-serif !important;
             overflow: visible !important;
             text-rendering: optimizeLegibility;
@@ -56,6 +59,7 @@
         }
         #printable-receipt * {
             font-family: 'Noto Sans Bengali', 'Hind Siliguri', Arial, sans-serif !important;
+            box-sizing: border-box;
         }
         #printable-receipt .font-digit, #printable-receipt .bn-number {
             font-weight: 600 !important;
@@ -64,7 +68,6 @@
         .card-bn-text {
             font-family: 'Noto Sans Bengali', 'Hind Siliguri', sans-serif !important;
         }
-        /* অটো-ক্লোজ নোটিফিকেশন এনিমেশন */
         @keyframes fadeInOut {
             0% { opacity: 0; transform: scale(0.9); }
             15% { opacity: 1; transform: scale(1); }
@@ -121,7 +124,7 @@
                     <button type="button" onclick="openMembersModal()" class="hover:text-emerald-400 transition">সদস্য তালিকা</button>
                     <button type="button" onclick="openPolicyModal()" class="hover:text-emerald-400 transition">নীতিমালা</button>
                     
-                    <!-- মোবাইল / অ্যাপ ইনস্টল বাটন -->
+                    <!-- অ্যাপ ইনস্টল বাটন -->
                     <button type="button" id="btn-pwa-install" onclick="triggerPwaInstall()" class="hidden bg-indigo-700 hover:bg-indigo-600 text-amber-300 px-3 py-1.5 rounded-xl transition items-center gap-1.5 text-xs shadow border border-amber-400/40">
                         <i class="fas fa-download"></i> অ্যাপ ইনস্টল
                     </button>
@@ -338,7 +341,7 @@
 
     <!-- ================= মোডালসমূহ ================= -->
 
-    <!-- কাস্টম স্বয়ংক্রিয় এলার্ট / টোস্ট মোডাল (বাটনে চাপ ছাড়াই অটোমেটিক চলে যাবে) -->
+    <!-- কাস্টম স্বয়ংক্রিয় এলার্ট / টোস্ট মোডাল -->
     <div id="custom-alert-modal" class="fixed inset-0 bg-slate-900/40 backdrop-blur-xs hidden z-[100] flex items-center justify-center p-4 transition-all duration-300">
         <div id="custom-alert-box" class="bg-white rounded-3xl max-w-xs w-full p-5 text-center shadow-2xl relative border border-emerald-500/20 toast-animate">
             <div class="w-14 h-14 bg-emerald-100 rounded-full flex items-center justify-center mx-auto mb-3 text-emerald-600 text-2xl shadow-inner">
@@ -588,9 +591,10 @@
             </div>
         </div>
     </div>
-    <!-- ৩. ডিজিটাল রশিদ মোডাল -->
+
+    <!-- ৩. ডিজিটাল রশিদ মোডাল (পিডিএফ সুন্দর ও সুবিন্যস্ত করা হয়েছে) -->
     <div id="receipt-modal" class="fixed inset-0 bg-slate-900/80 backdrop-blur-sm hidden z-50 flex items-center justify-center p-3 md:p-6">
-        <div class="bg-white rounded-3xl max-w-md w-full max-h-[92vh] flex flex-col shadow-2xl overflow-hidden border border-slate-200">
+        <div class="bg-white rounded-3xl max-w-lg w-full max-h-[94vh] flex flex-col shadow-2xl overflow-hidden border border-slate-200">
             <div class="p-4 bg-slate-900 text-white flex justify-between items-center">
                 <span class="text-xs font-bold flex items-center gap-1.5"><i class="fas fa-receipt text-emerald-400"></i> ডিজিটাল জমা রশিদ ও প্রমাণাদি</span>
                 <div class="flex items-center gap-2">
@@ -605,101 +609,103 @@
             </div>
             
             <div class="p-4 overflow-y-auto space-y-4">
-                <div id="printable-receipt" class="pdf-container border border-slate-200 rounded-xl space-y-3 bg-white text-slate-900 relative">
+                <!-- PDF রেন্ডারিং ও প্রিন্ট এরিয়া: সম্পূর্ণ মার্জিন ও অ্যালাইনমেন্ট নিখুঁত -->
+                <div id="printable-receipt" class="pdf-container space-y-4 bg-white text-slate-900 relative">
                     
-                    <!-- রশিদের হেডার ও কোণায় সদস্যের ছবি -->
-                    <div style="position: relative; text-align: center; border-bottom: 2px dashed #0f766e; padding-bottom: 12px; margin-bottom: 12px;">
-                        <div style="position: absolute; left: 0; top: 0;">
-                            <img src="images/logo.png" alt="PPG Logo" style="width: 48px; height: 48px; object-fit: contain;">
+                    <!-- রশিদের সুবিন্যস্ত হেডার -->
+                    <div style="display: flex; align-items: center; justify-content: space-between; border-bottom: 2px dashed #0f766e; padding-bottom: 12px; margin-bottom: 12px;">
+                        <div style="width: 60px; text-align: left;">
+                            <img src="images/logo.png" alt="PPG Logo" style="width: 52px; height: 52px; object-fit: contain; border-radius: 50%;" onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'50\' height=\'50\' viewBox=\'0 0 100 100\'><circle cx=\'50\' cy=\'50\' r=\'48\' fill=\'%23064e3b\' stroke=\'%2334d399\' stroke-width=\'4\'/><text x=\'50%\' y=\'55%\' font-size=\'24\' font-weight=\'bold\' fill=\'%23ffffff\' text-anchor=\'middle\' dominant-baseline=\'middle\' font-family=\'sans-serif\'>PPG</text></svg>';">
                         </div>
-                        <div style="display: inline-block;">
-                            <h2 style="font-size: 18px; font-weight: bold; color: #1e3a8a; margin: 0; font-family: 'Noto Sans Bengali', sans-serif;">পহরডাঙ্গা পার্টনারশিপ গ্রুপ</h2>
-                            <p style="font-size: 10px; color: #475569; margin: 2px 0;">"এক সুতোয় বাঁধা তারুণ্য, বাণিজ্যে অনন্য!"</p>
-                            <div style="margin-top: 6px;">
-                                <span style="background-color: #059669; color: white; font-weight: bold; padding: 4px 14px; border-radius: 12px; font-size: 11px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">অফিসিয়াল জমা রশিদ</span>
-                            </div>
+                        <div style="flex-grow: 1; text-align: center; padding: 0 8px;">
+                            <h2 style="font-size: 19px; font-weight: 800; color: #1e3a8a; margin: 0; line-height: 1.2;">পহরডাঙ্গা পার্টনারশিপ গ্রুপ</h2>
+                            <p style="font-size: 11px; color: #475569; margin: 3px 0 6px 0; font-weight: 500;">"এক সুতোয় বাঁধা তারুণ্য, বাণিজ্যে অনন্য!"</p>
+                            <span style="display: inline-block; background-color: #059669; color: white; font-weight: bold; padding: 3px 14px; border-radius: 12px; font-size: 11px; letter-spacing: 0.5px;">অফিসিয়াল জমা রশিদ</span>
                         </div>
-                        <div style="position: absolute; right: 0; top: 0; text-align: center;">
-                            <img id="rcp-member-corner-photo" src="" alt="Photo" style="width: 48px; height: 48px; object-fit: cover; border-radius: 50%; border: 2px solid #10b981; background: #f1f5f9;">
-                            <span style="font-size: 8px; color: #64748b; display: block; margin-top: 2px; font-weight: bold;">সদস্য</span>
+                        <div style="width: 60px; text-align: right;">
+                            <img id="rcp-member-corner-photo" src="" alt="Photo" style="width: 50px; height: 50px; object-fit: cover; border-radius: 50%; border: 2px solid #10b981; background: #f8fafc; display: inline-block;">
+                            <span style="font-size: 9px; color: #64748b; display: block; text-align: center; margin-top: 2px; font-weight: bold;">সদস্য</span>
                         </div>
                     </div>
 
-                    <!-- স্পেশাল রশিদ আইডি ও তথ্যসমূহ -->
-                    <div style="font-size: 11px; line-height: 1.6; margin-top: 6px;">
-                        <div style="display: flex; justify-content: space-between; background-color: #f1f5f9; padding: 3px 6px; border-radius: 4px; margin-bottom: 4px;">
+                    <!-- স্পেশাল রশিদ আইডি ও মেম্বার তথ্য বক্স -->
+                    <div style="border: 1px solid #cbd5e1; border-radius: 8px; overflow: hidden; font-size: 11px; line-height: 1.6;">
+                        <div style="display: flex; justify-content: space-between; background-color: #f1f5f9; padding: 5px 10px; border-bottom: 1px solid #cbd5e1;">
                             <span><strong>রশিদ নং (ID):</strong> <span id="rcp-special-id" style="font-family: monospace; font-weight: bold; color: #1e3a8a;">--</span></span>
                             <span><strong>পরিশোধের তারিখ:</strong> <span id="rcp-payment-date" style="font-weight: bold; color: #0f766e;">--</span></span>
                         </div>
-                        <div style="display: flex; justify-content: space-between;">
-                            <span><strong>সদস্য নাম:</strong> <span id="rcp-name">--</span></span>
-                            <span><strong>আইডি:</strong> <span id="rcp-id">--</span></span>
+                        <div style="padding: 6px 10px;">
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 2px;">
+                                <span><strong>সদস্য নাম:</strong> <span id="rcp-name">--</span></span>
+                                <span><strong>আইডি:</strong> <span id="rcp-id" style="font-weight: bold; color: #1d4ed8;">--</span></span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 2px;">
+                                <span><strong>মোট শেয়ার:</strong> <span id="rcp-shares">--</span></span>
+                                <span><strong>প্রিন্ট তারিখ:</strong> <span id="rcp-date">--</span></span>
+                            </div>
                         </div>
-                        <div style="display: flex; justify-content: space-between;">
-                            <span><strong>মোট শেয়ার:</strong> <span id="rcp-shares">--</span></span>
-                            <span><strong>প্রিন্ট তারিখ:</strong> <span id="rcp-date">--</span></span>
-                        </div>
-                        <div style="display: flex; justify-content: space-between; background-color: #eff6ff; padding: 3px 6px; border-radius: 4px; margin-top: 4px;">
+                        <div style="display: flex; justify-content: space-between; background-color: #eff6ff; padding: 5px 10px; border-top: 1px solid #cbd5e1;">
                             <span><strong>পরিশোধিত মাস:</strong> <span id="rcp-month-display" style="color: #1d4ed8; font-weight: bold;">--</span></span>
                             <span><strong>স্ট্যাটাস:</strong> <span id="rcp-status-badge" style="color: #059669; font-weight: bold;">পরিশোধিত</span></span>
                         </div>
                     </div>
 
-                    <div style="background-color: #f8fafc; padding: 8px 10px; border-radius: 6px; border: 1px solid #e2e8f0; font-size: 11px;">
-                        <div style="display: flex; justify-content: space-between; margin-bottom: 2px;">
+                    <!-- ট্রানজেকশন বক্স -->
+                    <div style="background-color: #f8fafc; padding: 8px 12px; border-radius: 8px; border: 1px solid #e2e8f0; font-size: 11px;">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 3px;">
                             <span style="color: #64748b;">পেমেন্ট মাধ্যম:</span>
                             <strong id="rcp-method">--</strong>
                         </div>
                         <div style="display: flex; justify-content: space-between;">
                             <span style="color: #64748b;">ট্রানজেকশন ID:</span>
-                            <strong id="rcp-trxid" style="color: #4338ca;">--</strong>
+                            <strong id="rcp-trxid" style="color: #4338ca; font-family: monospace;">--</strong>
                         </div>
                     </div>
 
-                    <!-- মাসভিত্তিক পূর্বের স্থিতি, চলতি কিস্তি ও ক্রমযোজিত মোট সঞ্চয় -->
-                    <table style="width: 100%; border-collapse: collapse; font-size: 11px; margin-top: 6px;">
+                    <!-- মাসভিত্তিক আর্থিক হিসাবের স্পষ্ট ছক -->
+                    <table style="width: 100%; border-collapse: collapse; font-size: 11px; margin-top: 4px;">
                         <thead>
                             <tr style="background-color: #f1f5f9; text-align: left;">
-                                <th style="border: 1px solid #cbd5e1; padding: 6px;">খাত ও বিবরণ</th>
-                                <th style="border: 1px solid #cbd5e1; padding: 6px; text-align: right;">পরিমাণ</th>
+                                <th style="border: 1px solid #cbd5e1; padding: 7px 10px;">খাত ও বিবরণ</th>
+                                <th style="border: 1px solid #cbd5e1; padding: 7px 10px; text-align: right; width: 140px;">পরিমাণ</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td style="border: 1px solid #cbd5e1; padding: 6px;">পূর্বের জমা স্থিতি</td>
-                                <td style="border: 1px solid #cbd5e1; padding: 6px; text-align: right; font-weight: bold; color: #475569;" id="rcp-prev-amount">৳ ০</td>
+                                <td style="border: 1px solid #cbd5e1; padding: 6px 10px;">পূর্বের জমা স্থিতি</td>
+                                <td style="border: 1px solid #cbd5e1; padding: 6px 10px; text-align: right; font-weight: bold; color: #475569;" id="rcp-prev-amount">৳ ০</td>
                             </tr>
                             <tr>
-                                <td style="border: 1px solid #cbd5e1; padding: 6px;">চলতি মাসে কিস্তি জমা (<span id="rcp-inst-month">চলতি মাস</span>)</td>
-                                <td style="border: 1px solid #cbd5e1; padding: 6px; text-align: right; font-weight: bold; color: #059669;" id="rcp-last-amount">৳ ০</td>
+                                <td style="border: 1px solid #cbd5e1; padding: 6px 10px;">চলতি মাসে কিস্তি জমা (<span id="rcp-inst-month">চলতি মাস</span>)</td>
+                                <td style="border: 1px solid #cbd5e1; padding: 6px 10px; text-align: right; font-weight: bold; color: #059669;" id="rcp-last-amount">৳ ০</td>
                             </tr>
-                            <!-- জরিমানা রো (যদি থাকে) -->
+                            <!-- জরিমানা রো -->
                             <tr id="rcp-penalty-row" style="display: none; background-color: #fff1f2;">
-                                <td style="border: 1px solid #cbd5e1; padding: 6px; color: #e11d48; font-weight: bold;">বিলম্ব জরিমানা (Penalty)</td>
-                                <td style="border: 1px solid #cbd5e1; padding: 6px; text-align: right; font-weight: bold; color: #e11d48;" id="rcp-penalty-amount">৳ ০</td>
+                                <td style="border: 1px solid #cbd5e1; padding: 6px 10px; color: #e11d48; font-weight: bold;">বিলম্ব জরিমানা (Penalty)</td>
+                                <td style="border: 1px solid #cbd5e1; padding: 6px 10px; text-align: right; font-weight: bold; color: #e11d48;" id="rcp-penalty-amount">৳ ০</td>
                             </tr>
-                            <!-- সর্বমোট চলতি মাসের পেমেন্ট (যদি জরিমানা থাকে) -->
+                            <!-- সর্বমোট চলতি মাসের পেমেন্ট -->
                             <tr id="rcp-current-total-row" style="display: none; background-color: #e0f2fe;">
-                                <td style="border: 1px solid #cbd5e1; padding: 6px; color: #0284c7; font-weight: bold;">মোট পরিশোধিত (কিস্তি + জরিমানা)</td>
-                                <td style="border: 1px solid #cbd5e1; padding: 6px; text-align: right; font-weight: bold; color: #0284c7;" id="rcp-current-total-amount">৳ ০</td>
+                                <td style="border: 1px solid #cbd5e1; padding: 6px 10px; color: #0284c7; font-weight: bold;">মোট পরিশোধিত (কিস্তি + জরিমানা)</td>
+                                <td style="border: 1px solid #cbd5e1; padding: 6px 10px; text-align: right; font-weight: bold; color: #0284c7;" id="rcp-current-total-amount">৳ ০</td>
                             </tr>
                             <tr style="background-color: #f8fafc;">
-                                <td style="border: 1px solid #cbd5e1; padding: 6px; font-weight: bold;">সদস্যের সর্বমোট সঞ্চয় জমা</td>
-                                <td style="border: 1px solid #cbd5e1; padding: 6px; text-align: right; font-weight: bold; color: #1e1b4b;" id="rcp-total">৳ ০</td>
+                                <td style="border: 1px solid #cbd5e1; padding: 7px 10px; font-weight: 800; color: #1e3a8a;">সদস্যের সর্বমোট সঞ্চয় জমা</td>
+                                <td style="border: 1px solid #cbd5e1; padding: 7px 10px; text-align: right; font-weight: 800; color: #1e1b4b; font-size: 12px;" id="rcp-total">৳ ০</td>
                             </tr>
                         </tbody>
                     </table>
 
-                    <!-- ভাউচার ইমেজ সরাসরি PDF-এর ভেতরে -->
-                    <div id="rcp-proof-inside-pdf" style="margin-top: 10px; border: 1px dashed #cbd5e1; border-radius: 8px; padding: 6px; text-align: center;">
-                        <span style="font-size: 10px; font-weight: bold; color: #475569; display: block; margin-bottom: 4px;">সংযুক্ত প্রামাণ্য ভাউচার / স্ক্রিনশট:</span>
-                        <img id="receipt-proof-img" src="" alt="Payment Proof" style="max-height: 150px; max-width: 100%; margin: 0 auto; object-fit: contain; border-radius: 6px; display: none;">
-                        <span id="no-proof-text" style="font-size: 10px; color: #94a3b8; font-style: italic;">এই জমার জন্য আলাদা কোনো ছবি সংযুক্ত নেই</span>
+                    <!-- ভাউচার ইমেজ সরাসরি PDF-এর ভেতরে সুবিন্যস্ত -->
+                    <div id="rcp-proof-inside-pdf" style="margin-top: 12px; border: 1px dashed #cbd5e1; border-radius: 8px; padding: 8px; text-align: center; background: #fafafa;">
+                        <span style="font-size: 10px; font-weight: bold; color: #475569; display: block; margin-bottom: 5px;">সংযুক্ত প্রামাণ্য ভাউচার / পেমেন্ট প্রমাণপত্র:</span>
+                        <img id="receipt-proof-img" src="" alt="Payment Proof" style="max-height: 140px; max-width: 95%; margin: 0 auto; object-fit: contain; border-radius: 6px; border: 1px solid #e2e8f0; display: none;">
+                        <span id="no-proof-text" style="font-size: 10px; color: #94a3b8; font-style: italic;">এই জমার জন্য আলাদা কোনো ভাউচার ছবি সংযুক্ত নেই</span>
                     </div>
 
-                    <!-- ডিজিটাল রশিদ সিগনেচার বিহীন ম্যাসেজ -->
-                    <div style="margin-top: 25px; text-align: center; font-size: 10px; color: #64748b; font-style: italic; border-top: 1px dashed #cbd5e1; padding-top: 10px;">
-                        এটি একটি স্বয়ংক্রিয় ডিজিটাল রশিদ, এর জন্য কোনো ম্যানুয়াল স্বাক্ষরের প্রয়োজন নেই।
+                    <!-- ডিজিটাল সিল ও সিগনেচার বিহীন ম্যাসেজ -->
+                    <div style="margin-top: 18px; text-align: center; font-size: 10px; color: #64748b; font-style: italic; border-top: 1px dashed #cbd5e1; padding-top: 8px;">
+                        ✓ এটি একটি কম্পিউটার জেনারেটেড ডিজিটাল সনদ ও রশিদ, বিধায় ম্যানুয়াল স্বাক্ষরের প্রয়োজন নেই।
                     </div>
                 </div>
             </div>
@@ -990,7 +996,7 @@
         </div>
     </div>
 
-    <!-- ৯. রশিদ এডিট মোডাল -->
+    <!-- ৯. রশিদ এডিট মোডাল (নতুন ফটো আপলোড / আগের ছবি বহাল রাখার সুবিধাসহ) -->
     <div id="receipt-edit-modal" class="fixed inset-0 bg-slate-900/80 backdrop-blur-sm hidden z-50 flex items-center justify-center p-3 md:p-6">
         <div class="bg-white rounded-3xl max-w-md w-full max-h-[92vh] flex flex-col shadow-2xl overflow-hidden border border-slate-200">
             <div class="p-5 bg-gradient-to-r from-amber-600 to-orange-700 text-white flex items-center justify-between">
@@ -1033,6 +1039,14 @@
                     <label class="block font-bold text-slate-700 mb-1">ট্রানজেকশন ID</label>
                     <input type="text" id="edit-rcp-trxid" required class="w-full border p-2.5 rounded-xl font-mono">
                 </div>
+                
+                <!-- নতুন ভাউচার / রসিদের ছবি আপলোড (না দিলে আগেরটিই অপরিবর্তিত থাকবে) -->
+                <div class="bg-amber-50/70 border border-amber-200 p-2.5 rounded-xl">
+                    <label class="block font-bold text-slate-800 mb-1">ভাউচার / রসিদের ছবি পরিবর্তন (ঐচ্ছিক)</label>
+                    <input type="file" id="edit-rcp-proof-file" accept="image/*" class="w-full border p-2 rounded-xl text-xs bg-white text-slate-600">
+                    <p class="text-[10px] text-amber-800 mt-1">* কোনো ছবি নির্বাচন না করলে আগের সংযুক্ত ছবিটিই বহাল থাকবে। নতুন ছবি দিলে পূর্বের ছবি রিপ্লেস হবে।</p>
+                </div>
+
                 <div class="pt-2 flex gap-2">
                     <button type="submit" id="btn-save-edit-receipt" class="flex-1 bg-amber-600 hover:bg-amber-700 text-white font-bold py-2.5 rounded-xl shadow">
                         <i class="fas fa-save mr-1"></i> আপডেট সংরক্ষণ
@@ -1042,7 +1056,6 @@
             </form>
         </div>
     </div>
-
     <!-- ১০. অফিসিয়াল খরচ এন্ট্রি মোডাল -->
     <div id="expense-modal" class="fixed inset-0 bg-slate-900/80 backdrop-blur-sm hidden z-50 flex items-center justify-center p-3 md:p-6">
         <div class="bg-white rounded-3xl max-w-md w-full max-h-[92vh] flex flex-col shadow-2xl overflow-hidden border border-slate-200">
@@ -1364,39 +1377,12 @@
 
     <!-- জাভাস্ক্রিপ্ট কোড -->
     <script>
-        const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbz3Z3QuHdINLYYvbYQmm73t9tmFcwVjmpp4PbRA1ILTnLGTEvjTmVhYRi_fDDIARcjbLg/exec";
+        const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxMFRmMZ6fBIA2CzYAE9kgoRE-wP3hjO3t1aXHIr1j2eS8xV0ohMr0XdWiwbYQSTfRK/exec";
 
         // ডিফল্ট ভেক্টর এসভিজি অবতার
         const DEFAULT_AVATAR_SVG = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'><circle cx='50' cy='50' r='48' fill='%231e293b' stroke='%2310b981' stroke-width='3'/><path d='M50 25a16 16 0 100 32 16 16 0 000-32zm0 40c-18 0-33 11-33 25h66c0-14-15-25-33-25z' fill='%2394a3b8'/></svg>";
 
-        // PWA App Install - ইনলাইন ম্যানিফেস্ট ও সার্ভিস ওয়ার্কার জেনারেশন (আলাদা manifest.json ছাড়াই স্বয়ংক্রিয়)
-        (function setupInlinePwa() {
-            const pwaManifest = {
-                name: "পহরডাঙ্গা পার্টনারশিপ গ্রুপ",
-                short_name: "পহরডাঙ্গা",
-                start_url: window.location.href.split('#')[0],
-                display: "standalone",
-                background_color: "#1e3a8a",
-                theme_color: "#1e3a8a",
-                icons: [
-                    { src: "images/logo.png", sizes: "192x192", type: "image/png" },
-                    { src: "images/logo.png", sizes: "512x512", type: "image/png" }
-                ]
-            };
-            const manifestBlob = new Blob([JSON.stringify(pwaManifest)], { type: 'application/json' });
-            const manifestUrl = URL.createObjectURL(manifestBlob);
-            const mLink = document.getElementById('manifest-placeholder');
-            if (mLink) mLink.href = manifestUrl;
-
-            if ('serviceWorker' in navigator) {
-                const swCode = `self.addEventListener('fetch', function(e) {});`;
-                const swBlob = new Blob([swCode], { type: 'application/javascript' });
-                const swUrl = URL.createObjectURL(swBlob);
-                navigator.serviceWorker.register(swUrl).catch(err => console.log("SW Reg failed: ", err));
-            }
-        })();
-
-        // PWA Install Prompt Listener
+        // PWA App Install - সার্ভিস ওয়ার্কার ও ইনস্টল লিসেনার
         let deferredPrompt = null;
         window.addEventListener('beforeinstallprompt', (e) => {
             e.preventDefault();
@@ -1418,19 +1404,31 @@
                     if (btnMobile) btnMobile.classList.add('hidden');
                 });
             } else {
-                alert("আপনার ব্রাউজারের মেন্যু থেকে 'Install App' বা 'Add to Home screen' নির্বাচন করুন।");
+                alert("মোবাইলে অ্যাপ আকারে যুক্ত করতে ব্রাউজারের ৩-ডট মেন্যু থেকে 'Install App' বা 'Add to Home screen' বাটনে চাপ দিন।");
             }
         }
 
-        // WhatsApp Phone Formatter (88 যুক্ত করা)
+        // কম্পিউটার ও মোবাইল উভয় প্লাটফর্মেই নির্ভরযোগ্য WhatsApp লিংক ওপেনার
         function formatWhatsAppLink(phone, message) {
-            let p = (phone || '').replace(/[^0-9]/g, '');
+            let p = (phone || '').toString().replace(/[^0-9]/g, '');
             if (p.startsWith('01') && p.length === 11) {
                 p = '88' + p;
             } else if (p.startsWith('1') && p.length === 10) {
                 p = '880' + p;
             }
-            return `https://api.whatsapp.com/send?phone=${p}&text=${message}`;
+            const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+            if (isMobile) {
+                return `https://api.whatsapp.com/send?phone=${p}&text=${message}`;
+            } else {
+                return `https://web.whatsapp.com/send?phone=${p}&text=${message}`;
+            }
+        }
+
+        function openWhatsAppUrl(url) {
+            const win = window.open(url, '_blank');
+            if (!win || win.closed || typeof win.closed === 'undefined') {
+                window.location.href = url;
+            }
         }
 
         // কাস্টম এলার্ট মেসেজ (বাটনে চাপ ছাড়াই অটোমেটিক দেড় সেকেন্ডে বন্ধ হয়ে যাবে)
@@ -1453,7 +1451,6 @@
             return num.toString().replace(/[0-9]/g, x => banglaDigits[x]);
         }
 
-        // বাংলা বা ইংরেজি সংখ্যার টেক্সটকে ফ্লোট/ইন্টিজারে রূপান্তর
         function parseAnyNumber(val) {
             if (val === undefined || val === null || val === '') return 0;
             if (typeof val === 'number') return isNaN(val) ? 0 : val;
@@ -1466,7 +1463,6 @@
             return isNaN(num) ? 0 : num;
         }
 
-        // বাংলা কারেন্সি ও কমা ফরম্যাটার
         function formatBnCurrency(amount) {
             const val = Math.round(parseAnyNumber(amount));
             return toBanglaNum(val.toLocaleString('en-US'));
@@ -1496,7 +1492,6 @@
             return s;
         }
 
-        // সঠিক বাংলা তারিখ রূপান্তর (গুগল শীট থেকে প্রাপ্ত Timestamp রূপান্তর)
         function formatBanglaDate(dateStr) {
             if (!dateStr || dateStr === '--') return '--';
             let str = dateStr.toString().trim();
@@ -1504,7 +1499,6 @@
             const bnDigits = {'০':'0', '১':'1', '২':'2', '৩':'3', '৪':'4', '৫':'5', '৬':'6', '৭':'7', '৮':'8', '৯':'9'};
             let enStr = str.replace(/[০-৯]/g, d => bnDigits[d]);
 
-            // yyyy-MM-dd HH:mm:ss অথবা yyyy-MM-dd
             let matchISO = enStr.match(/(\d{4})[-/](\d{1,2})[-/](\d{1,2})/);
             if (matchISO) {
                 const year = matchISO[1];
@@ -1513,7 +1507,6 @@
                 return `${toBanglaNum(day)}.${toBanglaNum(month)}.${toBanglaNum(year)}`;
             }
 
-            // dd-MM-yyyy অথবা dd/MM/yyyy
             let matchDMY = enStr.match(/(\d{1,2})[-/\.](\d{1,2})[-/\.](\d{4})/);
             if (matchDMY) {
                 const day = matchDMY[1].padStart(2, '0');
@@ -1579,7 +1572,7 @@
         let selectedMember = null;
         let selectedReceiptMonth = "10. October";
 
-        // ৫ মিনিট নিষ্ক্রিয় থাকলে অটো লগআউট
+        // ৫ মিনিট নিষ্ক্রিয়তায় অটো লগআউট
         let inactivityTime = function () {
             let time;
             window.onload = resetTimer;
@@ -1616,7 +1609,6 @@
 
         function normalizeMonthIndex(str, strBn) {
             const combined = ((str || '') + ' ' + (strBn || '')).toString().toLowerCase().trim();
-            
             if (combined.includes("সেপ্টেম্বর") || combined.includes("september") || combined.includes("sept") || combined.includes("sep")) return 8;
             if (combined.includes("অক্টোবর") || combined.includes("october") || combined.includes("oct")) return 9;
             if (combined.includes("নভেম্বর") || combined.includes("november") || combined.includes("nov")) return 10;
@@ -1634,7 +1626,6 @@
             if (/\b10\b|[-/. ]10[-/. ]|১০/.test(combined)) return 9;
             if (/\b11\b|[-/. ]11[-/. ]|১১/.test(combined)) return 10;
             if (/\b12\b|[-/. ]12[-/. ]|১২/.test(combined)) return 11;
-
             return -1;
         }
 
@@ -2108,7 +2099,6 @@
             }
         }
 
-        // ডিজিটাল রশিদে লাইভ মাসভিত্তিক হিসাব ও সঠিক গুগল শীটের তারিখ প্রদর্শন
         function onReceiptMonthChange(val) {
             selectedReceiptMonth = val;
             const targetIdx = normalizeMonthIndex(val);
@@ -2153,11 +2143,9 @@
                 }
 
                 const isPaid = rec && rec.paid && parseAnyNumber(rec.amount) > 0;
-                
                 const specialRcpId = generateSpecialReceiptId(selectedMember.id, val, rec ? rec.trxId : "");
                 document.getElementById('rcp-special-id').innerText = isPaid ? specialRcpId : "N/A";
 
-                // পরিশোধের তারিখ: গুগল শীটের আসল Timestamp থাকলে সেটিই দেখাবে
                 let paymentDateFormatted = "বকেয়া";
                 if (isPaid) {
                     if (rec && rec.timestamp && rec.timestamp.toString().trim() !== "") {
@@ -2180,7 +2168,6 @@
                 const instAmount = isPaid ? (parseAnyNumber(rec.amount) || 0) : 0;
                 document.getElementById('rcp-last-amount').innerText = `৳ ${formatBnCurrency(instAmount)}`;
 
-                // জরিমানার হিসাব ও প্রদর্শন
                 const penaltyAmount = isPaid ? (parseAnyNumber(rec.penalty) || 0) : 0;
                 const penaltyRow = document.getElementById('rcp-penalty-row');
                 const penaltyAmountText = document.getElementById('rcp-penalty-amount');
@@ -2301,14 +2288,14 @@
             document.getElementById('receipt-modal').classList.remove('hidden');
         }
 
-        // PDF ডাউনলোড
+        // PDF ডাউনলোড (মার্জিন ও বিন্যাস শতভাগ অক্ষুণ্ণ রেখে)
         function downloadReceiptPDF() {
             const element = document.getElementById('printable-receipt');
             const opt = {
-                margin:       [10, 5, 10, 5], 
+                margin:       [8, 8, 8, 8], 
                 filename:     `Receipt_${selectedMember.id}_${selectedReceiptMonth.replace(/[^a-zA-Z0-9]/g, '_')}.pdf`,
                 image:        { type: 'jpeg', quality: 1.0 },
-                html2canvas:  { scale: 2, useCORS: true, scrollY: 0, scrollX: 0, windowWidth: 800 },
+                html2canvas:  { scale: 2, useCORS: true, logging: false, scrollY: 0, scrollX: 0, windowWidth: 700 },
                 jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' } 
             };
             html2pdf().set(opt).from(element).save();
@@ -2411,7 +2398,7 @@
             reader.readAsDataURL(fileInput.files[0]);
         }
 
-        // WhatsApp এ রশিদ পাঠানো
+        // WhatsApp এ রশিদ পাঠানো (কম্পিউটার ও মোবাইল উভয় থেকেই ১০০% কার্যকর)
         function shareWhatsApp() {
             if (currentUserRole !== 'admin' || !selectedMember) return;
             const idx = normalizeMonthIndex(selectedReceiptMonth);
@@ -2436,11 +2423,11 @@
                 `💵 *পরিশোধের পরিমাণ:* ৳ ${formatBnCurrency(selectedMember.lastPaymentAmount || (selectedMember.shares * 1000))}\n` +
                 `💰 *সর্বমোট সঞ্চয় জমা:* ৳ ${formatBnCurrency(selectedMember.totalDeposit)}\n` +
                 `------------------------------------\n` +
-                `🌐 *লগইন ছাড়াই সরাসরি ডিজিটাল রশিদ দেখতে লিংকে ক্লিক করুন:*\n${directReceiptUrl}\n\n` +
+                `🌐 *ডিজিটাল রশিদ দেখতে লিংকে ক্লিক করুন:*\n${directReceiptUrl}\n\n` +
                 `_ধন্যবাদ সাথে থাকার জন্য!_`
             );
             
-            window.open(formatWhatsAppLink(selectedMember.phone, message), '_blank');
+            openWhatsAppUrl(formatWhatsAppLink(selectedMember.phone, message));
         }
 
         function sendSuccessPaymentSMS(member = selectedMember) {
@@ -2468,10 +2455,10 @@
                 `💵 *পরিশোধের পরিমাণ:* ৳ ${formatBnCurrency(paidThisMonth)}\n` +
                 `💰 *সর্বমোট সঞ্চয় জমা:* ৳ ${formatBnCurrency(member.totalDeposit || 0)}\n` +
                 `------------------------------------\n` +
-                `🌐 *ডিজিটাল রশিদ দেখতে নিচের লিংকে ক্লিক করুন (লগইন প্রয়োজন নেই):*\n${directReceiptUrl}`
+                `🌐 *ডিজিটাল রশিদ দেখতে লিংকে ক্লিক করুন:*\n${directReceiptUrl}`
             );
 
-            window.open(formatWhatsAppLink(member.phone, msg), '_blank');
+            openWhatsAppUrl(formatWhatsAppLink(member.phone, msg));
         }
 
         function calculatePenalty(dayOfMonth) {
@@ -2538,7 +2525,7 @@
                 `_পরিচালনা পর্ষদ_`
             );
 
-            window.open(formatWhatsAppLink(m.phone, msg), '_blank');
+            openWhatsAppUrl(formatWhatsAppLink(m.phone, msg));
         }
 
         function sendDueSmsToAllQueue() {
@@ -2570,7 +2557,7 @@
                             `${body}\n\n` +
                             `_শুভেচ্ছান্তে: পরিচালনা পর্ষদ_`
                         );
-                        window.open(formatWhatsAppLink(m.phone, msg), '_blank');
+                        openWhatsAppUrl(formatWhatsAppLink(m.phone, msg));
                     }, idx * 1200);
                 });
             }
@@ -2882,10 +2869,12 @@
             document.getElementById('edit-rcp-penalty').value = rec && rec.penalty > 0 ? rec.penalty : ''; 
             document.getElementById('edit-rcp-method').value = rec ? rec.method : "বিকাশ (bKash)";
             document.getElementById('edit-rcp-trxid').value = rec ? rec.trxId : "";
+            document.getElementById('edit-rcp-proof-file').value = "";
 
             document.getElementById('receipt-edit-modal').classList.remove('hidden');
         }
 
+        // রশিদ তথ্য ও ফটো সম্পাদনা সাবমিট
         async function handleReceiptEditSubmit(e) {
             if (e) e.preventDefault();
             if (currentUserRole !== 'admin') return;
@@ -2898,6 +2887,7 @@
             const newPenalty = parseFloat(document.getElementById('edit-rcp-penalty').value) || 0;
             const newMethod = document.getElementById('edit-rcp-method').value;
             const newTrx = document.getElementById('edit-rcp-trxid').value.trim();
+            const proofFileInput = document.getElementById('edit-rcp-proof-file');
 
             const member = membersData.find(m => m.id === memberId);
             if (!member) return;
@@ -2905,13 +2895,22 @@
             const oldRec = member.monthlyRecords ? member.monthlyRecords[oldMonth] : null;
             const newIsoDate = newDate ? new Date(newDate + "T12:00:00").toISOString() : (oldRec ? oldRec.timestamp : new Date().toISOString());
 
+            let newImageBase64 = "";
+            let updatedProofUrl = oldRec ? oldRec.proofUrl : "";
+
+            if (proofFileInput.files && proofFileInput.files[0]) {
+                const file = proofFileInput.files[0];
+                updatedProofUrl = URL.createObjectURL(file);
+                newImageBase64 = await compressImage(file);
+            }
+
             const newRec = {
                 paid: true,
                 amount: newAmount,
                 penalty: newPenalty,
                 method: newMethod,
                 trxId: newTrx,
-                proofUrl: oldRec ? oldRec.proofUrl : "",
+                proofUrl: updatedProofUrl,
                 timestamp: newIsoDate
             };
 
@@ -2941,6 +2940,7 @@
                 accountsData[accIdx].paymentMethod = newMethod;
                 accountsData[accIdx].trxId = newTrx;
                 accountsData[accIdx].timestamp = newIsoDate;
+                if (updatedProofUrl) accountsData[accIdx].proofUrl = updatedProofUrl;
             }
 
             const btn = document.getElementById('btn-save-edit-receipt');
@@ -2953,6 +2953,9 @@
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
                     actionType: "edit_receipt",
+                    folderName: newMonth,
+                    fileName: `MEM_${memberId}_${newMonth.replace(/[^a-zA-Z0-9]/g, '_')}_edit.jpg`,
+                    imageBase64: newImageBase64,
                     receiptData: {
                         memberId: memberId,
                         oldMonth: oldMonth,
@@ -2966,7 +2969,7 @@
                 })
             });
 
-            alert("রশিদ সফলভাবে এডিট করা হয়েছে!");
+            alert("রশিদ ও ভাউচারের তথ্য সফলভাবে এডিট করা হয়েছে!");
             btn.disabled = false;
             btn.innerHTML = `<i class="fas fa-save mr-1"></i> আপডেট সংরক্ষণ`;
             closeModal('receipt-edit-modal');
@@ -3140,7 +3143,7 @@
             return { id, name, phone, shares, joinDate, joinMonth, membershipFee, password, status, fatherName, startMonth, nomineeName, nomineeRelation, photoUrl };
         }
 
-        // স্মার্ট হেডার ও ডেটা পার্সিং (কলাম স্থানচ্যুতির নিখুঁত সমাধান)
+        // স্মার্ট হেডার ও ডেটা পার্সিং (কলাম স্থানচ্যুতির নির্ভুল সমাধান)
         function parseAccountRowData(row, headerMap) {
             if (!row) return null;
             let memberId = "", name = "", month = "", monthBn = "", amount = 0, penalty = 0, paymentMethod = "", trxId = "", proofUrl = "", timestamp = "";
@@ -3159,7 +3162,6 @@
                     monthBn = headerMap.monthBn !== -1 ? (row[headerMap.monthBn] || "").toString().trim() : (row[4] || "").toString().trim();
                     amount = headerMap.amount !== -1 ? parseAnyNumber(row[headerMap.amount]) : parseAnyNumber(row[5]);
                     
-                    // হেডার শিফট প্রতিরোধ: যদি Col 6 জরিমানা এবং Col 7 পেমেন্ট মাধ্যম হয়
                     if (headerMap.isOldShifted) {
                         penalty = parseAnyNumber(row[6]);
                         paymentMethod = (row[7] || "").toString().trim();
@@ -3205,7 +3207,6 @@
             return { memberId, name, month, monthBn, amount, penalty, paymentMethod, trxId, proofUrl, timestamp };
         }
 
-        // JSONP কলব্যাক
         function fetchJsonp(url) {
             return new Promise((resolve, reject) => {
                 const callbackName = 'ppg_jsonp_cb_' + Date.now() + '_' + Math.floor(Math.random() * 10000);
@@ -3236,7 +3237,6 @@
             });
         }
 
-        // গুগল শীটের ডেটা প্রক্রিয়াকরণ
         function processSheetData(data) {
             if (!data) return;
 
@@ -3247,7 +3247,6 @@
             const rawProofs = data.proofs || data.Proofs || data.proof || data.Proof || [];
             const rawSettings = data.settings || data.Settings || [];
 
-            // ১. মেম্বার লোড
             if (rawMembers && rawMembers.length > 0) {
                 membersData = [];
                 for (let i = 0; i < rawMembers.length; i++) {
@@ -3266,7 +3265,6 @@
                 }
             }
 
-            // ২. কিস্তির খতিয়ান লোড
             if (rawAccounts && rawAccounts.length > 0) {
                 accountsData = [];
 
@@ -3275,7 +3273,6 @@
                     const r0 = rawAccounts[0].map(c => (c || '').toString().trim().toLowerCase());
                     const hasH = r0.some(c => c.includes('id') || c.includes('month') || c.includes('amount') || c.includes('মাস') || c.includes('টাকা') || c.includes('time'));
                     if (hasH) {
-                        // স্ক্রিনশটের মতো হেডার শিফট হয়েছে কিনা ডিটেক্ট করা
                         const isOldShifted = r0.includes('totaldpsafter') || (r0[6] === 'paymentmethod' && r0[7] === 'trxid');
 
                         headerMap = {
@@ -3345,7 +3342,6 @@
                 }
             }
 
-            // ৩. খরচ লোড
             if (rawExpenses && rawExpenses.length > 0) {
                 expensesData = [];
                 totalExpenseGlobal = 0;
@@ -3385,7 +3381,6 @@
                 }
             }
 
-            // ৪. প্রাতিষ্ঠানিক ডিপিএস লোড
             if (rawDps && rawDps.length > 0) {
                 dpsData = [];
                 totalDpsGlobal = 0;
@@ -3433,7 +3428,6 @@
                 }
             }
 
-            // ৫. প্রমাণাদি লোড
             if (rawProofs && rawProofs.length > 0) {
                 proofsData = [];
                 const startP = Array.isArray(rawProofs[0]) ? 1 : 0;
@@ -3464,7 +3458,6 @@
                 }
             }
 
-            // ৬. সেটিংস ও প্রাতিষ্ঠানিক নীতিমালা লোড
             if (rawSettings && rawSettings.length > 0) {
                 for (let s = 0; s < rawSettings.length; s++) {
                     const sRow = rawSettings[s];
@@ -3485,7 +3478,6 @@
                 }
             }
 
-            // বকেয়া কিস্তির হিসাব
             membersData.forEach(m => {
                 let missed = 0;
                 for (let idx = START_MONTH_IDX; idx <= CURRENT_MONTH_IDX; idx++) {
