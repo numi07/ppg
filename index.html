@@ -4,6 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>পহরডাঙ্গা পার্টনারশিপ গ্রুপ</title>
+    
+    <!-- PWA / App Install Meta Tags -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#1e3a8a">
+    <link rel="apple-touch-icon" href="images/logo.png">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Font Awesome Icons -->
@@ -32,12 +40,14 @@
         /* প্রিন্ট ও রশিদের নিখুঁত ফরম্যাটিং */
         .pdf-container, #printable-receipt {
             width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
             background: #ffffff;
             color: #0f172a;
             padding: 16px;
             box-sizing: border-box;
             font-family: 'Noto Sans Bengali', 'Hind Siliguri', Arial, sans-serif !important;
-            overflow: visible;
+            overflow: hidden;
             text-rendering: optimizeLegibility;
             -webkit-font-smoothing: antialiased;
         }
@@ -59,7 +69,7 @@
     <!-- স্বাগতম স্ক্রিন -->
     <div id="welcome-screen" class="fixed inset-0 z-50 flex flex-col items-center justify-center bg-gradient-to-br from-blue-950 via-indigo-900 to-violet-950 text-white p-4">
         <div class="mb-6 shadow-2xl rounded-full p-4 bg-white/10 backdrop-blur-md border border-white/20">
-            <img src="logo.png" alt="PPG Logo" class="h-28 w-28 md:h-36 md:w-36 object-contain rounded-full drop-shadow-lg" onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'150\' height=\'150\' viewBox=\'0 0 100 100\'><circle cx=\'50\' cy=\'50\' r=\'48\' fill=\'%23064e3b\' stroke=\'%2334d399\' stroke-width=\'4\'/><text x=\'50%\' y=\'55%\' font-size=\'22\' font-weight=\'bold\' fill=\'%23ffffff\' text-anchor=\'middle\' dominant-baseline=\'middle\' font-family=\'sans-serif\'>PPG</text></svg>';">
+            <img src="images/logo.png" alt="PPG Logo" class="h-28 w-28 md:h-36 md:w-36 object-contain rounded-full drop-shadow-lg" onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'150\' height=\'150\' viewBox=\'0 0 100 100\'><circle cx=\'50\' cy=\'50\' r=\'48\' fill=\'%23064e3b\' stroke=\'%2334d399\' stroke-width=\'4\'/><text x=\'50%\' y=\'55%\' font-size=\'22\' font-weight=\'bold\' fill=\'%23ffffff\' text-anchor=\'middle\' dominant-baseline=\'middle\' font-family=\'sans-serif\'>PPG</text></svg>';">
         </div>
         <h1 class="text-2xl md:text-4xl font-bold text-center text-emerald-300 mb-2 tracking-wide drop-shadow">
             "পহরডাঙ্গা পার্টনারশিপ গ্রুপে" আপনাকে স্বাগতম
@@ -76,7 +86,7 @@
             <div class="flex items-center justify-between h-20">
                 <!-- লোগো ও টাইটেল -->
                 <div class="flex items-center gap-3 cursor-pointer py-1" onclick="location.href='#home'">
-                    <img src="logo.png" alt="PPG Logo" class="h-11 w-11 object-contain rounded-full border-2 border-emerald-400 bg-white shrink-0 shadow-sm" onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'50\' height=\'50\' viewBox=\'0 0 100 100\'><circle cx=\'50\' cy=\'50\' r=\'48\' fill=\'%23064e3b\' stroke=\'%2334d399\' stroke-width=\'4\'/><text x=\'50%\' y=\'55%\' font-size=\'24\' font-weight=\'bold\' fill=\'%23ffffff\' text-anchor=\'middle\' dominant-baseline=\'middle\' font-family=\'sans-serif\'>PPG</text></svg>';">
+                    <img src="images/logo.png" alt="PPG Logo" class="h-11 w-11 object-contain rounded-full border-2 border-emerald-400 bg-white shrink-0 shadow-sm" onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'50\' height=\'50\' viewBox=\'0 0 100 100\'><circle cx=\'50\' cy=\'50\' r=\'48\' fill=\'%23064e3b\' stroke=\'%2334d399\' stroke-width=\'4\'/><text x=\'50%\' y=\'55%\' font-size=\'24\' font-weight=\'bold\' fill=\'%23ffffff\' text-anchor=\'middle\' dominant-baseline=\'middle\' font-family=\'sans-serif\'>PPG</text></svg>';">
                     <div class="flex flex-col justify-center">
                         <span class="font-bold text-base sm:text-lg md:text-xl text-emerald-400 tracking-tight leading-snug whitespace-nowrap">
                             পহরডাঙ্গা পার্টনারশিপ গ্রুপ
@@ -319,7 +329,7 @@
                 <div class="flex items-center justify-center space-x-4 relative z-10">
                     <div class="relative w-[65px] h-[65px] rounded-full p-[2px] bg-gradient-to-b from-amber-300 via-emerald-400 to-emerald-800 shadow-2xl flex items-center justify-center shrink-0">
                         <div class="w-full h-full bg-white rounded-full p-1 flex items-center justify-center overflow-hidden">
-                            <img src="logo.png" alt="PPG Logo" class="w-full h-full object-contain filter drop-shadow scale-110" onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'50\' height=\'50\' viewBox=\'0 0 100 100\'><circle cx=\'50\' cy=\'50\' r=\'48\' fill=\'%23064e3b\' stroke=\'%2334d399\' stroke-width=\'4\'/><text x=\'50%\' y=\'55%\' font-size=\'24\' font-weight=\'bold\' fill=\'%23ffffff\' text-anchor=\'middle\' dominant-baseline=\'middle\' font-family=\'sans-serif\'>PPG</text></svg>';">
+                            <img src="images/logo.png" alt="PPG Logo" class="w-full h-full object-contain filter drop-shadow scale-110" onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'50\' height=\'50\' viewBox=\'0 0 100 100\'><circle cx=\'50\' cy=\'50\' r=\'48\' fill=\'%23064e3b\' stroke=\'%2334d399\' stroke-width=\'4\'/><text x=\'50%\' y=\'55%\' font-size=\'24\' font-weight=\'bold\' fill=\'%23ffffff\' text-anchor=\'middle\' dominant-baseline=\'middle\' font-family=\'sans-serif\'>PPG</text></svg>';">
                         </div>
                     </div>
 
@@ -349,7 +359,7 @@
                             <div class="absolute inset-0 rounded-full border-4 border-emerald-500 shadow-xl overflow-hidden bg-slate-800">
                                 <img id="mp-photo" src="" alt="সদস্যের ছবি" class="w-full h-full object-cover">
                             </div>
-                            <label for="mp-direct-photo-file" class="admin-only hidden absolute bottom-0 right-0 bg-emerald-600 hover:bg-emerald-500 text-white p-2 rounded-full shadow-lg cursor-pointer border border-white/40" title="সদস্যের ছবি পরিবর্তন">
+                            <label for="mp-direct-photo-file" class="admin-only hidden absolute bottom-0 right-0 bg-emerald-600 hover:bg-emerald-50 text-white p-2 rounded-full shadow-lg cursor-pointer border border-white/40" title="সদস্যের ছবি পরিবর্তন">
                                 <i class="fas fa-camera text-xs"></i>
                                 <input type="file" id="mp-direct-photo-file" accept="image/*" class="hidden" onchange="handleDirectPhotoUpload(event)">
                             </label>
@@ -557,6 +567,7 @@
                 <div class="flex items-center gap-2">
                     <select id="receipt-month-selector" onchange="onReceiptMonthChange(this.value)" class="text-slate-800 text-[11px] py-1 px-2 rounded-lg font-bold border-none outline-none bg-white">
                     </select>
+                    <!-- Header Edit Button -->
                     <button type="button" onclick="openEditReceiptModal()" class="admin-only hidden text-xs bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold px-2.5 py-1 rounded-lg shadow">
                         <i class="fas fa-edit mr-1"></i>এডিট
                     </button>
@@ -570,7 +581,7 @@
                     <!-- রশিদের হেডার ও কোণায় সদস্যের ছবি -->
                     <div style="position: relative; text-align: center; border-bottom: 2px dashed #0f766e; padding-bottom: 12px; margin-bottom: 12px;">
                         <div style="position: absolute; left: 0; top: 0;">
-                            <img src="logo.png" alt="PPG Logo" style="width: 48px; height: 48px; object-fit: contain;">
+                            <img src="images/logo.png" alt="PPG Logo" style="width: 48px; height: 48px; object-fit: contain;">
                         </div>
                         <div style="display: inline-block;">
                             <h2 style="font-size: 18px; font-weight: bold; color: #1e3a8a; margin: 0; font-family: 'Noto Sans Bengali', sans-serif;">পহরডাঙ্গা পার্টনারশিপ গ্রুপ</h2>
@@ -633,8 +644,8 @@
                                 <td style="border: 1px solid #cbd5e1; padding: 6px;">চলতি মাসে কিস্তি জমা (<span id="rcp-inst-month">চলতি মাস</span>)</td>
                                 <td style="border: 1px solid #cbd5e1; padding: 6px; text-align: right; font-weight: bold; color: #059669;" id="rcp-last-amount">৳ ০</td>
                             </tr>
-                            <!-- জরিমানা রো (যদি থাকে) -->
-                            <tr id="rcp-penalty-row" style="display: none; background-color: #fef2f2;">
+                            <!-- জরিমানা রো (স্থায়ীভাবে দৃশ্যমান) -->
+                            <tr id="rcp-penalty-row" style="background-color: #fef2f2;">
                                 <td style="border: 1px solid #cbd5e1; padding: 6px; color: #dc2626; font-weight: bold;">বিলম্ব জরিমানা</td>
                                 <td style="border: 1px solid #cbd5e1; padding: 6px; text-align: right; font-weight: bold; color: #dc2626;" id="rcp-penalty-amount">৳ ০</td>
                             </tr>
@@ -665,6 +676,9 @@
                 </button>
                 <button type="button" onclick="sendSuccessPaymentSMS()" class="admin-only hidden flex-1 bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-2 rounded-xl text-xs flex items-center justify-center gap-1 shadow">
                     <i class="fab fa-whatsapp"></i> WhatsApp এ পাঠান
+                </button>
+                <button type="button" onclick="openEditReceiptModal()" class="admin-only hidden flex-1 bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold py-2 rounded-xl text-xs flex items-center justify-center gap-1 shadow">
+                    <i class="fas fa-edit"></i> রশিদ এডিট
                 </button>
                 <button type="button" onclick="closeModal('receipt-modal')" class="px-3 bg-slate-200 text-slate-700 font-bold rounded-xl text-xs">বন্ধ</button>
             </div>
@@ -752,11 +766,11 @@
                 <div id="printable-policy" class="pdf-container space-y-4 text-xs text-slate-800 bg-white p-6 md:p-8" style="box-shadow: inset 0 0 0 1px #e2e8f0; border-radius: 16px; position: relative; z-index: 1;">
                     <!-- Watermark -->
                     <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); opacity: 0.03; z-index: -1; pointer-events: none;">
-                        <img src="logo.png" style="width: 300px; height: auto;">
+                        <img src="images/logo.png" style="width: 300px; height: auto;">
                     </div>
                     
                     <div style="text-align: center; border-bottom: 3px double #3b82f6; padding-bottom: 12px; margin-bottom: 16px;">
-                        <img src="logo.png" alt="Logo" style="height: 50px; margin: 0 auto 8px auto;" onerror="this.style.display='none'">
+                        <img src="images/logo.png" alt="Logo" style="height: 50px; margin: 0 auto 8px auto;" onerror="this.style.display='none'">
                         <h2 style="font-size: 20px; font-weight: 800; color: #1e3a8a; margin:0; letter-spacing: 0.5px; font-family: 'Noto Sans Bengali', sans-serif;">পহরডাঙ্গা পার্টনারশিপ গ্রুপ</h2>
                         <p style="font-size: 11px; color: #475569; font-weight: 600; margin-top: 4px;">অফিসিয়াল পরিচালন নীতিমালা ও শর্তাবলী</p>
                         <span style="display: inline-block; background-color: #dbeafe; color: #1d4ed8; font-size: 9px; padding: 2px 8px; border-radius: 10px; margin-top: 6px; font-weight: bold;">সর্বশেষ সংশোধিত সংস্করণ</span>
@@ -1311,6 +1325,25 @@
 
         // ডিফল্ট ভেক্টর এসভিজি অবতার
         const DEFAULT_AVATAR_SVG = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'><circle cx='50' cy='50' r='48' fill='%231e293b' stroke='%2310b981' stroke-width='3'/><path d='M50 25a16 16 0 100 32 16 16 0 000-32zm0 40c-18 0-33 11-33 25h66c0-14-15-25-33-25z' fill='%2394a3b8'/></svg>";
+
+        // PWA App Install - Service Worker Registration
+        if ('serviceWorker' in navigator) {
+            const swCode = `self.addEventListener('fetch', function(event) {});`;
+            const blob = new Blob([swCode], {type: 'application/javascript'});
+            const swUrl = URL.createObjectURL(blob);
+            navigator.serviceWorker.register(swUrl).catch(err => console.log("PWA SW Register failed: ", err));
+        }
+
+        // WhatsApp Phone Formatter (88 যুক্ত করা)
+        function formatWhatsAppLink(phone, message) {
+            let p = (phone || '').replace(/[^0-9]/g, '');
+            if (p.startsWith('01') && p.length === 11) {
+                p = '88' + p;
+            } else if (p.startsWith('1') && p.length === 10) {
+                p = '880' + p;
+            }
+            return `https://api.whatsapp.com/send?phone=${p}&text=${message}`;
+        }
 
         // বাংলা সংখ্যা রূপান্তর
         function toBanglaNum(num) {
@@ -2016,7 +2049,7 @@
                 const instAmount = isPaid ? (parseAnyNumber(rec.amount) || 0) : 0;
                 document.getElementById('rcp-last-amount').innerText = `৳ ${formatBnCurrency(instAmount)}`;
 
-                // জরিমানার হিসাব ও প্রদর্শন (শর্ত ৫)
+                // জরিমানার হিসাব ও প্রদর্শন (শর্ত ৬)
                 const penaltyAmount = isPaid ? (parseAnyNumber(rec.penalty) || 0) : 0;
                 const penaltyRow = document.getElementById('rcp-penalty-row');
                 const penaltyAmountText = document.getElementById('rcp-penalty-amount');
@@ -2053,7 +2086,6 @@
                     }
                 }
 
-                // মোট জমার সাথে জরিমানা যুক্ত করা হলো না, কারণ এটি সঞ্চয় নয়। তবে কেউ চাইলে যোগ করতে পারে। এখানে সঞ্চয়ের সাথে শুধুমাত্র মূল কিস্তি যোগ করা হলো।
                 const totalUpToMonth = priorDeposit + instAmount;
 
                 document.getElementById('rcp-prev-amount').innerText = `৳ ${formatBnCurrency(priorDeposit)}`;
@@ -2132,16 +2164,15 @@
             document.getElementById('receipt-modal').classList.remove('hidden');
         }
 
-        // PDF ডাউনলোড যাতে প্রমানাদি কেটে না যায় (শর্ত ৮)
+        // PDF ডাউনলোড যাতে প্রমানাদি কেটে না যায় (শর্ত ৩)
         function downloadReceiptPDF() {
             const element = document.getElementById('printable-receipt');
             const opt = {
-                margin:       [10, 10, 10, 10], // Margin increased
+                margin:       [10, 5, 10, 5], 
                 filename:     `Receipt_${selectedMember.id}_${selectedReceiptMonth.replace(/[^a-zA-Z0-9]/g, '_')}.pdf`,
                 image:        { type: 'jpeg', quality: 1.0 },
                 html2canvas:  { scale: 2, useCORS: true, scrollY: 0, scrollX: 0, windowWidth: 800 },
-                jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }, // Format A4
-                pagebreak:    { mode: ['avoid-all', 'css', 'legacy'] }
+                jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' } 
             };
             html2pdf().set(opt).from(element).save();
         }
@@ -2153,8 +2184,7 @@
                 filename:     `PPG_Policy.pdf`,
                 image:        { type: 'jpeg', quality: 0.98 },
                 html2canvas:  { scale: 2, useCORS: true },
-                jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' },
-                pagebreak:    { mode: 'avoid-all' }
+                jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
             };
             html2pdf().set(opt).from(element).save();
         }
@@ -2244,6 +2274,7 @@
             reader.readAsDataURL(fileInput.files[0]);
         }
 
+        // WhatsApp এ রশিদ পাঠানো (শর্ত ৫)
         function shareWhatsApp() {
             if (currentUserRole !== 'admin' || !selectedMember) return;
             const idx = normalizeMonthIndex(selectedReceiptMonth);
@@ -2272,7 +2303,7 @@
                 `_ধন্যবাদ সাথে থাকার জন্য!_`
             );
             
-            window.open(`https://wa.me/${(selectedMember.phone || '').replace(/[^0-9]/g, '')}?text=${message}`, '_blank');
+            window.open(formatWhatsAppLink(selectedMember.phone, message), '_blank');
         }
 
         function sendSuccessPaymentSMS(member = selectedMember) {
@@ -2303,7 +2334,7 @@
                 `🌐 *ডিজিটাল রশিদ দেখতে নিচের লিংকে ক্লিক করুন (লগইন প্রয়োজন নেই):*\n${directReceiptUrl}`
             );
 
-            window.open(`https://wa.me/${(member.phone || '').replace(/[^0-9]/g, '')}?text=${msg}`, '_blank');
+            window.open(formatWhatsAppLink(member.phone, msg), '_blank');
         }
 
         function calculatePenalty(dayOfMonth) {
@@ -2370,7 +2401,7 @@
                 `_পরিচালনা পর্ষদ_`
             );
 
-            window.open(`https://wa.me/${(m.phone || '').replace(/[^0-9]/g, '')}?text=${msg}`, '_blank');
+            window.open(formatWhatsAppLink(m.phone, msg), '_blank');
         }
 
         function sendDueSmsToAllQueue() {
@@ -2402,7 +2433,7 @@
                             `${body}\n\n` +
                             `_শুভেচ্ছান্তে: পরিচালনা পর্ষদ_`
                         );
-                        window.open(`https://wa.me/${(m.phone || '').replace(/[^0-9]/g, '')}?text=${msg}`, '_blank');
+                        window.open(formatWhatsAppLink(m.phone, msg), '_blank');
                     }, idx * 1200);
                 });
             }
@@ -2530,7 +2561,7 @@
             const idx = normalizeMonthIndex(monthVal);
             const monthBn = idx !== -1 ? MONTH_NAMES_BN[idx] : monthVal;
             const amount = parseFloat(document.getElementById('entry-amount').value) || 0;
-            const penalty = parseFloat(document.getElementById('entry-penalty').value) || 0; // জরিমানা যুক্ত করা হয়েছে
+            const penalty = parseFloat(document.getElementById('entry-penalty').value) || 0;
             const method = document.getElementById('entry-method').value;
             const trxId = document.getElementById('entry-trxid').value.trim();
             const nowIso = new Date().toISOString();
@@ -2575,7 +2606,7 @@
                 month: monthVal,
                 monthBn: monthBn,
                 amount: amount,
-                penalty: penalty, // জরিমানা
+                penalty: penalty,
                 paymentMethod: method,
                 trxId: trxId,
                 proofUrl: localPreviewUrl
@@ -2605,7 +2636,7 @@
                         month: monthVal,
                         monthBn: monthBn,
                         amount: amount,
-                        penalty: penalty, // জরিমানা যুক্ত
+                        penalty: penalty,
                         paymentMethod: method,
                         trxId: trxId
                     }
@@ -2684,7 +2715,7 @@
             alert("প্রাতিষ্ঠানিক ডিপিএস ফান্ডে সফলভাবে সেভ হয়েছে!");
         }
 
-        // এডিট রসিদ মোডাল খোলার ফাংশন (শর্ত ৪: এডমিন জরিমানা সহ এডিট করতে পারবে)
+        // এডিট রসিদ মোডাল খোলার ফাংশন (শর্ত ১)
         function openEditReceiptModal() {
             if (currentUserRole !== 'admin' || !selectedMember) return;
             const rec = selectedMember.monthlyRecords ? (selectedMember.monthlyRecords[selectedReceiptMonth] || selectedMember.monthlyRecords[normalizeMonthIndex(selectedReceiptMonth)]) : null;
@@ -2694,7 +2725,7 @@
             document.getElementById('edit-rcp-old-month').value = selectedReceiptMonth;
             document.getElementById('edit-rcp-month').value = selectedReceiptMonth;
             document.getElementById('edit-rcp-amount').value = rec ? rec.amount : (selectedMember.shares * 1000);
-            document.getElementById('edit-rcp-penalty').value = rec && rec.penalty > 0 ? rec.penalty : ''; // জরিমানা ফিল্ড
+            document.getElementById('edit-rcp-penalty').value = rec && rec.penalty > 0 ? rec.penalty : ''; 
             document.getElementById('edit-rcp-method').value = rec ? rec.method : "বিকাশ (bKash)";
             document.getElementById('edit-rcp-trxid').value = rec ? rec.trxId : "";
 
@@ -2744,7 +2775,6 @@
             }
             member.totalDeposit = sumDep;
 
-            // Update Accounts Data locally
             const accIdx = accountsData.findIndex(a => normalizeMemberId(a.memberId) === normalizeMemberId(memberId) && (a.month === oldMonth || a.monthBn === oldMonth));
             if(accIdx !== -1) {
                 accountsData[accIdx].month = newMonth;
@@ -3018,7 +3048,7 @@
             return { memberId, name, month, monthBn, amount, penalty, paymentMethod, trxId, proofUrl, timestamp };
         }
 
-        // Vercel ও GitHub Pages-এর জন্য JSONP কলব্যাক
+        // JSONP কলব্যাক
         function fetchJsonp(url) {
             return new Promise((resolve, reject) => {
                 const callbackName = 'ppg_jsonp_cb_' + Date.now() + '_' + Math.floor(Math.random() * 10000);
@@ -3123,7 +3153,7 @@
                         const recObj = {
                             paid: true,
                             amount: parsedA.amount,
-                            penalty: parsedA.penalty || 0, // জরিমানা
+                            penalty: parsedA.penalty || 0,
                             method: parsedA.paymentMethod || '--',
                             trxId: parsedA.trxId || '--',
                             proofUrl: parsedA.proofUrl,
@@ -3314,7 +3344,6 @@
             }
         }
 
-        // লিংকে ক্লিক করলে তাৎক্ষণিক (০.০০১ সেকেন্ড) রসিদ খোলার লজিক (শর্ত ২ ও ৩)
         function checkAndOpenReceiptFromUrl() {
             const urlParams = new URLSearchParams(window.location.search);
             const viewMemberId = urlParams.get('view_member');
@@ -3335,7 +3364,6 @@
             }
         }
 
-        // Vercel ও GitHub Pages-এর জন্য হাইব্রিড ডেটা সিঙ্ক লজিক
         async function syncDataFromGoogleSheet() {
             if (!GOOGLE_SCRIPT_URL) return;
 
@@ -3369,7 +3397,7 @@
                     localStorage.setItem('ppg_cached_data_v2', JSON.stringify(liveData));
                 } catch (e) {}
                 processSheetData(liveData);
-                checkAndOpenReceiptFromUrl(); // লাইভ ডেটা আসার পরও আবার চেক করবে
+                checkAndOpenReceiptFromUrl();
             }
         }
 
@@ -3633,12 +3661,10 @@
         }
         function closeModal(id) { document.getElementById(id).classList.add('hidden'); }
 
-        // উইন্ডো লোড হওয়ার সময় ক্যাশ ডেটা রিড ও URL পার্সিং (শর্ত ২: লগইন ছাড়া ০.০০১ সেকেন্ডে রশিদে প্রবেশ)
         window.onload = function() {
             enterSite();
             restoreSession();
             
-            // ক্যাশ ডেটা থেকে তাৎক্ষণিক লোড (Super fast load)
             try {
                 const cached = localStorage.getItem('ppg_cached_data_v2');
                 if (cached) {
