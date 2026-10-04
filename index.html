@@ -5,18 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>পহরডাঙ্গা পার্টনারশিপ গ্রুপ</title>
     
-    <!-- PWA / App Install Meta Tags -->
-    <link rel="manifest" href="manifest.json">
+    <!-- PWA / App Install Meta Tags (আলাদা manifest.json ছাড়াই সম্পূর্ণ সেলফ-কন্টেইন্ড) -->
     <meta name="theme-color" content="#1e3a8a">
     <link rel="apple-touch-icon" href="images/logo.png">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="application-name" content="পহরডাঙ্গা">
+
+    <!-- ইনলাইন ডাইনামিক PWA ম্যানিফেস্ট লিংক -->
+    <link id="manifest-placeholder" rel="manifest">
 
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts for Bengali (Noto Sans Bengali যুক্ত যাতে ১ ও ৯ স্পষ্টভাবে রেন্ডার হয়) -->
+    <!-- Google Fonts for Bengali -->
     <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Noto+Sans+Bengali:wght@400;500;600;700&family=Noto+Serif+Bengali:wght@400;600;700;800&family=Tiro+Bangla&display=swap" rel="stylesheet">
     <!-- html2pdf.js for generating PDF -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
@@ -47,7 +50,7 @@
             padding: 16px;
             box-sizing: border-box;
             font-family: 'Noto Sans Bengali', 'Hind Siliguri', Arial, sans-serif !important;
-            overflow: visible !important; /* PDF কাটার সমস্যা সমাধানে পরিবর্তন */
+            overflow: visible !important;
             text-rendering: optimizeLegibility;
             -webkit-font-smoothing: antialiased;
         }
@@ -58,9 +61,18 @@
             font-weight: 600 !important;
             letter-spacing: 0.3px;
         }
-        /* প্রোফাইল কার্ড ও হেডারের স্পষ্ট ফন্ট */
         .card-bn-text {
             font-family: 'Noto Sans Bengali', 'Hind Siliguri', sans-serif !important;
+        }
+        /* অটো-ক্লোজ নোটিফিকেশন এনিমেশন */
+        @keyframes fadeInOut {
+            0% { opacity: 0; transform: scale(0.9); }
+            15% { opacity: 1; transform: scale(1); }
+            85% { opacity: 1; transform: scale(1); }
+            100% { opacity: 0; transform: scale(0.9); }
+        }
+        .toast-animate {
+            animation: fadeInOut 1.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
     </style>
 </head>
@@ -109,6 +121,11 @@
                     <button type="button" onclick="openMembersModal()" class="hover:text-emerald-400 transition">সদস্য তালিকা</button>
                     <button type="button" onclick="openPolicyModal()" class="hover:text-emerald-400 transition">নীতিমালা</button>
                     
+                    <!-- মোবাইল / অ্যাপ ইনস্টল বাটন -->
+                    <button type="button" id="btn-pwa-install" onclick="triggerPwaInstall()" class="hidden bg-indigo-700 hover:bg-indigo-600 text-amber-300 px-3 py-1.5 rounded-xl transition items-center gap-1.5 text-xs shadow border border-amber-400/40">
+                        <i class="fas fa-download"></i> অ্যাপ ইনস্টল
+                    </button>
+
                     <div id="auth-nav-btn">
                         <button type="button" onclick="openLoginModal()" class="bg-emerald-500 hover:bg-emerald-400 text-slate-950 px-4 py-2 rounded-xl transition flex items-center gap-2 shadow font-bold">
                             <i class="fas fa-lock"></i> লগইন
@@ -116,7 +133,10 @@
                     </div>
                 </div>
 
-                <div class="md:hidden flex items-center">
+                <div class="md:hidden flex items-center gap-2">
+                    <button type="button" id="btn-pwa-install-mobile" onclick="triggerPwaInstall()" class="hidden bg-indigo-800 text-amber-300 text-xs px-2.5 py-1.5 rounded-lg border border-amber-400/30 flex items-center gap-1 font-bold">
+                        <i class="fas fa-download"></i> ইনস্টল
+                    </button>
                     <button type="button" onclick="toggleMobileMenu()" class="text-white text-2xl focus:outline-none p-2">
                         <i class="fas fa-bars"></i>
                     </button>
@@ -318,14 +338,14 @@
 
     <!-- ================= মোডালসমূহ ================= -->
 
-    <!-- কাস্টম এলার্ট মোডাল -->
-    <div id="custom-alert-modal" class="fixed inset-0 bg-slate-900/80 backdrop-blur-sm hidden z-[100] flex items-center justify-center p-4">
-        <div class="bg-white rounded-3xl max-w-sm w-full p-6 text-center shadow-2xl relative">
-            <div class="w-16 h-16 bg-emerald-100 rounded-full flex items-center justify-center mx-auto mb-4 text-emerald-600 text-3xl">
+    <!-- কাস্টম স্বয়ংক্রিয় এলার্ট / টোস্ট মোডাল (বাটনে চাপ ছাড়াই অটোমেটিক চলে যাবে) -->
+    <div id="custom-alert-modal" class="fixed inset-0 bg-slate-900/40 backdrop-blur-xs hidden z-[100] flex items-center justify-center p-4 transition-all duration-300">
+        <div id="custom-alert-box" class="bg-white rounded-3xl max-w-xs w-full p-5 text-center shadow-2xl relative border border-emerald-500/20 toast-animate">
+            <div class="w-14 h-14 bg-emerald-100 rounded-full flex items-center justify-center mx-auto mb-3 text-emerald-600 text-2xl shadow-inner">
                 <i class="fas fa-check-circle"></i>
             </div>
-            <h3 id="custom-alert-message" class="text-lg font-bold text-slate-800 mb-4">লগিন সম্পন্ন</h3>
-            <button type="button" onclick="closeModal('custom-alert-modal')" class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-2.5 px-6 rounded-xl shadow w-full">ওকে</button>
+            <h3 id="custom-alert-message" class="text-base font-bold text-slate-800">লগিন সম্পন্ন</h3>
+            <p class="text-[11px] text-slate-500 mt-1">স্বাগতম প্যানেলে!</p>
         </div>
     </div>
 
@@ -568,7 +588,6 @@
             </div>
         </div>
     </div>
-
     <!-- ৩. ডিজিটাল রশিদ মোডাল -->
     <div id="receipt-modal" class="fixed inset-0 bg-slate-900/80 backdrop-blur-sm hidden z-50 flex items-center justify-center p-3 md:p-6">
         <div class="bg-white rounded-3xl max-w-md w-full max-h-[92vh] flex flex-col shadow-2xl overflow-hidden border border-slate-200">
@@ -779,7 +798,6 @@
 
                 <!-- প্রফেশনাল পলিসি ডিজাইন -->
                 <div id="printable-policy" class="pdf-container space-y-4 text-xs text-slate-800 bg-white p-6 md:p-8" style="box-shadow: inset 0 0 0 1px #e2e8f0; border-radius: 16px; position: relative; z-index: 1;">
-                    <!-- Watermark -->
                     <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); opacity: 0.03; z-index: -1; pointer-events: none;">
                         <img src="images/logo.png" style="width: 300px; height: auto;">
                     </div>
@@ -792,7 +810,6 @@
                     </div>
                     
                     <div id="policy-content-display" class="space-y-4 leading-loose text-justify font-medium" style="font-size: 13px;">
-                        <!-- গুগল শীট থেকে ডায়নামিক পলিসি লোড হবে -->
                         <p class="text-center text-slate-400 py-4"><i class="fas fa-spinner fa-spin mr-2"></i>নীতিমালা লোড হচ্ছে...</p>
                     </div>
 
@@ -1025,6 +1042,7 @@
             </form>
         </div>
     </div>
+
     <!-- ১০. অফিসিয়াল খরচ এন্ট্রি মোডাল -->
     <div id="expense-modal" class="fixed inset-0 bg-slate-900/80 backdrop-blur-sm hidden z-50 flex items-center justify-center p-3 md:p-6">
         <div class="bg-white rounded-3xl max-w-md w-full max-h-[92vh] flex flex-col shadow-2xl overflow-hidden border border-slate-200">
@@ -1343,19 +1361,65 @@
             </div>
         </div>
     </div>
+
     <!-- জাভাস্ক্রিপ্ট কোড -->
     <script>
-        const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwsCus709XMDRoRFwTJweUbEJbu9VE06dNz8EqkC9O3nq4p7SbYFxoNfTpiKvFzcnCzBw/exec";
+        const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbz3Z3QuHdINLYYvbYQmm73t9tmFcwVjmpp4PbRA1ILTnLGTEvjTmVhYRi_fDDIARcjbLg/exec";
 
         // ডিফল্ট ভেক্টর এসভিজি অবতার
         const DEFAULT_AVATAR_SVG = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'><circle cx='50' cy='50' r='48' fill='%231e293b' stroke='%2310b981' stroke-width='3'/><path d='M50 25a16 16 0 100 32 16 16 0 000-32zm0 40c-18 0-33 11-33 25h66c0-14-15-25-33-25z' fill='%2394a3b8'/></svg>";
 
-        // PWA App Install - Service Worker Registration
-        if ('serviceWorker' in navigator) {
-            const swCode = `self.addEventListener('fetch', function(event) {});`;
-            const blob = new Blob([swCode], {type: 'application/javascript'});
-            const swUrl = URL.createObjectURL(blob);
-            navigator.serviceWorker.register(swUrl).catch(err => console.log("PWA SW Register failed: ", err));
+        // PWA App Install - ইনলাইন ম্যানিফেস্ট ও সার্ভিস ওয়ার্কার জেনারেশন (আলাদা manifest.json ছাড়াই স্বয়ংক্রিয়)
+        (function setupInlinePwa() {
+            const pwaManifest = {
+                name: "পহরডাঙ্গা পার্টনারশিপ গ্রুপ",
+                short_name: "পহরডাঙ্গা",
+                start_url: window.location.href.split('#')[0],
+                display: "standalone",
+                background_color: "#1e3a8a",
+                theme_color: "#1e3a8a",
+                icons: [
+                    { src: "images/logo.png", sizes: "192x192", type: "image/png" },
+                    { src: "images/logo.png", sizes: "512x512", type: "image/png" }
+                ]
+            };
+            const manifestBlob = new Blob([JSON.stringify(pwaManifest)], { type: 'application/json' });
+            const manifestUrl = URL.createObjectURL(manifestBlob);
+            const mLink = document.getElementById('manifest-placeholder');
+            if (mLink) mLink.href = manifestUrl;
+
+            if ('serviceWorker' in navigator) {
+                const swCode = `self.addEventListener('fetch', function(e) {});`;
+                const swBlob = new Blob([swCode], { type: 'application/javascript' });
+                const swUrl = URL.createObjectURL(swBlob);
+                navigator.serviceWorker.register(swUrl).catch(err => console.log("SW Reg failed: ", err));
+            }
+        })();
+
+        // PWA Install Prompt Listener
+        let deferredPrompt = null;
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+            const btnDesktop = document.getElementById('btn-pwa-install');
+            const btnMobile = document.getElementById('btn-pwa-install-mobile');
+            if (btnDesktop) { btnDesktop.classList.remove('hidden'); btnDesktop.classList.add('flex'); }
+            if (btnMobile) { btnMobile.classList.remove('hidden'); btnMobile.classList.add('flex'); }
+        });
+
+        function triggerPwaInstall() {
+            if (deferredPrompt) {
+                deferredPrompt.prompt();
+                deferredPrompt.userChoice.then(() => {
+                    deferredPrompt = null;
+                    const btnDesktop = document.getElementById('btn-pwa-install');
+                    const btnMobile = document.getElementById('btn-pwa-install-mobile');
+                    if (btnDesktop) btnDesktop.classList.add('hidden');
+                    if (btnMobile) btnMobile.classList.add('hidden');
+                });
+            } else {
+                alert("আপনার ব্রাউজারের মেন্যু থেকে 'Install App' বা 'Add to Home screen' নির্বাচন করুন।");
+            }
         }
 
         // WhatsApp Phone Formatter (88 যুক্ত করা)
@@ -1369,10 +1433,17 @@
             return `https://api.whatsapp.com/send?phone=${p}&text=${message}`;
         }
 
-        // কাস্টম এলার্ট মেসেজ
+        // কাস্টম এলার্ট মেসেজ (বাটনে চাপ ছাড়াই অটোমেটিক দেড় সেকেন্ডে বন্ধ হয়ে যাবে)
         function showCustomAlert(msg) {
-            document.getElementById('custom-alert-message').innerText = msg;
-            document.getElementById('custom-alert-modal').classList.remove('hidden');
+            const modal = document.getElementById('custom-alert-modal');
+            const msgEl = document.getElementById('custom-alert-message');
+            if (msgEl) msgEl.innerText = msg;
+            if (modal) {
+                modal.classList.remove('hidden');
+                setTimeout(() => {
+                    modal.classList.add('hidden');
+                }, 1500);
+            }
         }
 
         // বাংলা সংখ্যা রূপান্তর
@@ -1425,42 +1496,40 @@
             return s;
         }
 
-        // তারিখ ফরম্যাটার
+        // সঠিক বাংলা তারিখ রূপান্তর (গুগল শীট থেকে প্রাপ্ত Timestamp রূপান্তর)
         function formatBanglaDate(dateStr) {
             if (!dateStr || dateStr === '--') return '--';
             let str = dateStr.toString().trim();
-            
-            if (str.includes('T') || str.includes('-')) {
-                const d = new Date(str.replace(/-/g, '/'));
-                if (!isNaN(d.getTime())) {
-                    const day = String(d.getDate()).padStart(2, '0');
-                    const month = String(d.getMonth() + 1).padStart(2, '0');
-                    const year = d.getFullYear();
-                    return `${toBanglaNum(day)}.${toBanglaNum(month)}.${toBanglaNum(year)}`;
-                }
-            }
 
             const bnDigits = {'০':'0', '১':'1', '২':'2', '৩':'3', '৪':'4', '৫':'5', '৬':'6', '৭':'7', '৮':'8', '৯':'9'};
             let enStr = str.replace(/[০-৯]/g, d => bnDigits[d]);
 
-            let match = enStr.match(/(\d{1,2})[\/\.-](\d{1,2})[\/\.-](\d{4})/);
-            if (match) {
-                const day = match[1].padStart(2, '0');
-                const month = match[2].padStart(2, '0');
-                const year = match[3];
+            // yyyy-MM-dd HH:mm:ss অথবা yyyy-MM-dd
+            let matchISO = enStr.match(/(\d{4})[-/](\d{1,2})[-/](\d{1,2})/);
+            if (matchISO) {
+                const year = matchISO[1];
+                const month = matchISO[2].padStart(2, '0');
+                const day = matchISO[3].padStart(2, '0');
                 return `${toBanglaNum(day)}.${toBanglaNum(month)}.${toBanglaNum(year)}`;
             }
 
-            let matchY = enStr.match(/(\d{4})[\/\.-](\d{1,2})[\/\.-](\d{1,2})/);
-            if (matchY) {
-                const year = matchY[1];
-                const month = matchY[2].padStart(2, '0');
-                const day = matchY[3].padStart(2, '0');
+            // dd-MM-yyyy অথবা dd/MM/yyyy
+            let matchDMY = enStr.match(/(\d{1,2})[-/\.](\d{1,2})[-/\.](\d{4})/);
+            if (matchDMY) {
+                const day = matchDMY[1].padStart(2, '0');
+                const month = matchDMY[2].padStart(2, '0');
+                const year = matchDMY[3];
                 return `${toBanglaNum(day)}.${toBanglaNum(month)}.${toBanglaNum(year)}`;
             }
 
-            str = str.replace(/\(.*?\)/g, '').replace(/\[.*?\]/g, '').trim();
-            if (!str || str.length < 4) return '--';
+            const d = new Date(enStr.replace(/-/g, '/'));
+            if (!isNaN(d.getTime())) {
+                const day = String(d.getDate()).padStart(2, '0');
+                const month = String(d.getMonth() + 1).padStart(2, '0');
+                const year = d.getFullYear();
+                return `${toBanglaNum(day)}.${toBanglaNum(month)}.${toBanglaNum(year)}`;
+            }
+
             return toBanglaNum(str.replace(/\//g, '.'));
         }
 
@@ -1527,7 +1596,7 @@
             }
             function resetTimer() {
                 clearTimeout(time);
-                time = setTimeout(doLogout, 300000); // 300000 ms = 5 minutes
+                time = setTimeout(doLogout, 300000);
             }
         };
         inactivityTime();
@@ -1625,8 +1694,8 @@
                 currentUserRole = "admin";
                 loggedInMemberId = null;
                 sessionStorage.setItem('ppg_auth', JSON.stringify({ role: 'admin', id: 'admin' }));
-                showCustomAlert('লগিন সম্পন্ন');
                 closeModal('login-modal');
+                showCustomAlert('লগিন সম্পন্ন');
                 updateAuthUI();
             } else {
                 const foundMember = membersData.find(m => m.id.toLowerCase() === idInput.toLowerCase() && m.password === passInput);
@@ -1635,8 +1704,8 @@
                     currentUserRole = "member";
                     loggedInMemberId = foundMember.id;
                     sessionStorage.setItem('ppg_auth', JSON.stringify({ role: 'member', id: foundMember.id }));
-                    showCustomAlert('লগিন সম্পন্ন');
                     closeModal('login-modal');
+                    showCustomAlert('লগিন সম্পন্ন');
                     updateAuthUI();
                     openMemberProfileModal(foundMember.id);
                 } else {
@@ -2039,7 +2108,7 @@
             }
         }
 
-        // ডিজিটাল রশিদে লাইভ মাসভিত্তিক হিসাব ও জরিমানা
+        // ডিজিটাল রশিদে লাইভ মাসভিত্তিক হিসাব ও সঠিক গুগল শীটের তারিখ প্রদর্শন
         function onReceiptMonthChange(val) {
             selectedReceiptMonth = val;
             const targetIdx = normalizeMonthIndex(val);
@@ -2088,7 +2157,17 @@
                 const specialRcpId = generateSpecialReceiptId(selectedMember.id, val, rec ? rec.trxId : "");
                 document.getElementById('rcp-special-id').innerText = isPaid ? specialRcpId : "N/A";
 
-                const paymentDateFormatted = (rec && rec.timestamp) ? formatBanglaDate(rec.timestamp) : (isPaid ? formatBanglaDate(new Date().toISOString()) : "বকেয়া");
+                // পরিশোধের তারিখ: গুগল শীটের আসল Timestamp থাকলে সেটিই দেখাবে
+                let paymentDateFormatted = "বকেয়া";
+                if (isPaid) {
+                    if (rec && rec.timestamp && rec.timestamp.toString().trim() !== "") {
+                        paymentDateFormatted = formatBanglaDate(rec.timestamp);
+                    } else if (selectedMember.lastPaymentTimestamp) {
+                        paymentDateFormatted = formatBanglaDate(selectedMember.lastPaymentTimestamp);
+                    } else {
+                        paymentDateFormatted = formatBanglaDate(new Date().toISOString());
+                    }
+                }
                 document.getElementById('rcp-payment-date').innerText = paymentDateFormatted;
 
                 const cornerPhoto = document.getElementById('rcp-member-corner-photo');
@@ -2526,9 +2605,7 @@
             const form = document.getElementById('admin-payment-form');
             if (form) form.reset();
             
-            // পরিশোধের তারিখের ডিফল্ট ভ্যালু আজ
             document.getElementById('entry-payment-date').value = new Date().toISOString().split('T')[0];
-            
             document.getElementById('entry-trxid').value = '';
             document.getElementById('entry-proof-file').value = '';
             document.getElementById('entry-penalty').value = '';
@@ -2621,7 +2698,6 @@
             const memberId = document.getElementById('entry-member-id').value;
             const monthVal = document.getElementById('entry-month').value;
             
-            // কাস্টম ডেট নেওয়া হচ্ছে 
             const customDateInput = document.getElementById('entry-payment-date').value;
             const nowIso = customDateInput ? new Date(customDateInput + "T12:00:00").toISOString() : new Date().toISOString();
             
@@ -2664,6 +2740,7 @@
             member.lastPaidMonth = monthVal;
             member.lastPaymentMethod = method;
             member.lastTrxId = trxId;
+            member.lastPaymentTimestamp = nowIso;
 
             accountsData.push({
                 timestamp: nowIso,
@@ -2792,7 +2869,7 @@
             document.getElementById('edit-rcp-old-month').value = selectedReceiptMonth;
             
             if (rec && rec.timestamp) {
-                let d = new Date(rec.timestamp);
+                let d = new Date(rec.timestamp.replace(/-/g, '/'));
                 if (!isNaN(d)) {
                     document.getElementById('edit-rcp-date').value = d.toISOString().split('T')[0];
                 }
@@ -2854,6 +2931,7 @@
                 if (r && r.paid) sumDep += parseAnyNumber(r.amount);
             }
             member.totalDeposit = sumDep;
+            member.lastPaymentTimestamp = newIsoDate;
 
             const accIdx = accountsData.findIndex(a => normalizeMemberId(a.memberId) === normalizeMemberId(memberId) && (a.month === oldMonth || a.monthBn === oldMonth));
             if(accIdx !== -1) {
@@ -3062,6 +3140,7 @@
             return { id, name, phone, shares, joinDate, joinMonth, membershipFee, password, status, fatherName, startMonth, nomineeName, nomineeRelation, photoUrl };
         }
 
+        // স্মার্ট হেডার ও ডেটা পার্সিং (কলাম স্থানচ্যুতির নিখুঁত সমাধান)
         function parseAccountRowData(row, headerMap) {
             if (!row) return null;
             let memberId = "", name = "", month = "", monthBn = "", amount = 0, penalty = 0, paymentMethod = "", trxId = "", proofUrl = "", timestamp = "";
@@ -3073,37 +3152,33 @@
                 }
 
                 if (headerMap) {
-                    memberId = (row[headerMap.memberId] || "").toString().trim();
-                    name = headerMap.name !== -1 ? (row[headerMap.name] || "").toString().trim() : "";
-                    month = headerMap.month !== -1 ? (row[headerMap.month] || "").toString().trim() : "";
-                    monthBn = headerMap.monthBn !== -1 ? (row[headerMap.monthBn] || "").toString().trim() : "";
-                    amount = headerMap.amount !== -1 ? parseAnyNumber(row[headerMap.amount]) : 0;
-                    penalty = headerMap.penalty !== -1 ? parseAnyNumber(row[headerMap.penalty]) : 0;
-                    paymentMethod = headerMap.method !== -1 ? (row[headerMap.method] || "").toString().trim() : "";
-                    trxId = headerMap.trxId !== -1 ? (row[headerMap.trxId] || "").toString().trim() : "";
-                } else {
-                    let mIdIdx = 1;
-                    if (/ppg/i.test(row[0])) mIdIdx = 0;
-                    memberId = (row[mIdIdx] || "").toString().trim();
-
-                    if (mIdIdx === 1) {
-                        timestamp = row[0] || "";
-                        name = (row[2] || "").toString().trim();
-                        month = (row[3] || "").toString().trim();
-                        monthBn = (row[4] || "").toString().trim();
-                        amount = parseAnyNumber(row[5]);
-                        penalty = parseAnyNumber(row[6] || 0);
+                    timestamp = headerMap.timestamp !== -1 ? (row[headerMap.timestamp] || "") : (row[0] || "");
+                    memberId = headerMap.memberId !== -1 ? (row[headerMap.memberId] || "").toString().trim() : (row[1] || "").toString().trim();
+                    name = headerMap.name !== -1 ? (row[headerMap.name] || "").toString().trim() : (row[2] || "").toString().trim();
+                    month = headerMap.month !== -1 ? (row[headerMap.month] || "").toString().trim() : (row[3] || "").toString().trim();
+                    monthBn = headerMap.monthBn !== -1 ? (row[headerMap.monthBn] || "").toString().trim() : (row[4] || "").toString().trim();
+                    amount = headerMap.amount !== -1 ? parseAnyNumber(row[headerMap.amount]) : parseAnyNumber(row[5]);
+                    
+                    // হেডার শিফট প্রতিরোধ: যদি Col 6 জরিমানা এবং Col 7 পেমেন্ট মাধ্যম হয়
+                    if (headerMap.isOldShifted) {
+                        penalty = parseAnyNumber(row[6]);
                         paymentMethod = (row[7] || "").toString().trim();
                         trxId = (row[8] || "").toString().trim();
                     } else {
-                        name = (row[1] || "").toString().trim();
-                        month = (row[2] || "").toString().trim();
-                        monthBn = (row[3] || "").toString().trim();
-                        amount = parseAnyNumber(row[4]);
-                        penalty = parseAnyNumber(row[5] || 0);
-                        paymentMethod = (row[6] || "").toString().trim();
-                        trxId = (row[7] || "").toString().trim();
+                        penalty = headerMap.penalty !== -1 ? parseAnyNumber(row[headerMap.penalty]) : 0;
+                        paymentMethod = headerMap.method !== -1 ? (row[headerMap.method] || "").toString().trim() : "";
+                        trxId = headerMap.trxId !== -1 ? (row[headerMap.trxId] || "").toString().trim() : "";
                     }
+                } else {
+                    timestamp = row[0] || "";
+                    memberId = (row[1] || "").toString().trim();
+                    name = (row[2] || "").toString().trim();
+                    month = (row[3] || "").toString().trim();
+                    monthBn = (row[4] || "").toString().trim();
+                    amount = parseAnyNumber(row[5]);
+                    penalty = parseAnyNumber(row[6] || 0);
+                    paymentMethod = (row[7] || "").toString().trim();
+                    trxId = (row[8] || "").toString().trim();
                 }
 
                 for (let c = 0; c < row.length; c++) {
@@ -3114,16 +3189,16 @@
                     }
                 }
             } else if (typeof row === 'object') {
+                timestamp = (row.timestamp || row['Timestamp'] || row['তারিখ'] || "").toString().trim();
                 memberId = (row.memberId || row['Member ID'] || row['member_id'] || row.id || row['আইডি'] || "").toString().trim();
                 name = (row.memberName || row.name || row['Name'] || row['নাম'] || "").toString().trim();
                 month = (row.month || row['Month'] || row['মাস'] || "").toString().trim();
                 monthBn = (row.monthBn || row['Month Bn'] || row['বাংলা মাস'] || "").toString().trim();
                 amount = parseAnyNumber(row.amount || row['Amount'] || row['পরিমাণ'] || row['টাকা']);
                 penalty = parseAnyNumber(row.penalty || row['Penalty'] || row['জরিমানা'] || 0);
-                paymentMethod = (row.paymentMethod || row.method || row['Payment Method'] || row['মাধ্যম'] || "").toString().trim();
+                paymentMethod = (row.paymentMethod || row.method || row['Payment Method'] || row['PaymentMethod'] || row['মাধ্যম'] || "").toString().trim();
                 trxId = (row.trxId || row['TrxID'] || row['trx_id'] || row['ট্রানজেকশন'] || "").toString().trim();
                 proofUrl = (row.proofUrl || row.fileUrl || row.imageUrl || row['রশিদ'] || "").toString().trim();
-                timestamp = (row.timestamp || row['Timestamp'] || "").toString().trim();
             }
 
             if (!memberId && !name) return null;
@@ -3184,7 +3259,8 @@
                             missedCount: 0,
                             monthlyRecords: {},
                             lastPaymentMethod: "--",
-                            lastTrxId: "--"
+                            lastTrxId: "--",
+                            lastPaymentTimestamp: ""
                         });
                     }
                 }
@@ -3197,18 +3273,26 @@
                 let headerMap = null;
                 if (Array.isArray(rawAccounts[0])) {
                     const r0 = rawAccounts[0].map(c => (c || '').toString().trim().toLowerCase());
-                    const hasH = r0.some(c => c.includes('id') || c.includes('month') || c.includes('amount') || c.includes('মাস') || c.includes('টাকা'));
+                    const hasH = r0.some(c => c.includes('id') || c.includes('month') || c.includes('amount') || c.includes('মাস') || c.includes('টাকা') || c.includes('time'));
                     if (hasH) {
+                        // স্ক্রিনশটের মতো হেডার শিফট হয়েছে কিনা ডিটেক্ট করা
+                        const isOldShifted = r0.includes('totaldpsafter') || (r0[6] === 'paymentmethod' && r0[7] === 'trxid');
+
                         headerMap = {
-                            memberId: r0.findIndex(c => c.includes('id') || c.includes('আইডি')),
+                            isOldShifted: isOldShifted,
+                            timestamp: r0.findIndex(c => c.includes('time') || c.includes('তারিখ') || c.includes('timestamp')),
+                            memberId: r0.findIndex(c => c.includes('memberid') || c.includes('member id') || c.includes('আইডি')),
                             name: r0.findIndex(c => c.includes('name') || c.includes('নাম')),
-                            month: r0.findIndex(c => c.includes('month') || c.includes('মাস')),
+                            month: r0.findIndex(c => c.includes('month') && !c.includes('bn')),
                             monthBn: r0.findIndex(c => c.includes('bn') || c.includes('বাংলা')),
                             amount: r0.findIndex(c => c.includes('amount') || c.includes('পরিমাণ') || c.includes('টাকা') || c.includes('জমা')),
                             penalty: r0.findIndex(c => c.includes('penalty') || c.includes('জরিমানা')),
                             method: r0.findIndex(c => c.includes('method') || c.includes('মাধ্যম') || c.includes('পদ্ধতি')),
                             trxId: r0.findIndex(c => c.includes('trx') || c.includes('ভাউচার') || c.includes('ট্রানজেকশন'))
                         };
+
+                        if (headerMap.timestamp === -1) headerMap.timestamp = 0;
+                        if (headerMap.memberId === -1) headerMap.memberId = 1;
                     }
                 }
 
@@ -3256,6 +3340,7 @@
                         m.lastPaidMonth = standardMonthName;
                         m.lastPaymentMethod = parsedA.paymentMethod;
                         m.lastTrxId = parsedA.trxId;
+                        if (parsedA.timestamp) m.lastPaymentTimestamp = parsedA.timestamp;
                     }
                 }
             }
@@ -3741,7 +3826,10 @@
             renderDueList();
             document.getElementById('broadcast-modal').classList.remove('hidden');
         }
-        function closeModal(id) { document.getElementById(id).classList.add('hidden'); }
+        function closeModal(id) { 
+            const el = document.getElementById(id);
+            if (el) el.classList.add('hidden'); 
+        }
 
         window.onload = function() {
             enterSite();
