@@ -80,7 +80,7 @@
         </button>
     </div>
 
-    <!-- হেডার নেভিগেশন (ব্র্যান্ডিং ও স্লোগান নিখুঁত বিন্যাস) -->
+    <!-- হেডার নেভিগেশন -->
     <header class="sticky top-0 z-40 bg-gradient-to-r from-blue-900 via-indigo-900 to-violet-900 text-white shadow-xl border-b border-indigo-700/50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-20">
@@ -302,7 +302,6 @@
                 </h3>
             </div>
             <div id="media-gallery-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                <!-- ছবি ও ভিডিও গুগল ড্রাইভ ও শিট থেকে লোড হবে -->
                 <div class="col-span-full py-8 text-center text-slate-400 bg-white rounded-2xl border border-dashed border-slate-300">
                     <i class="fas fa-images text-3xl mb-2 text-slate-300 block"></i>
                     <span>প্রতিষ্ঠানের নতুন কার্যক্রমের ছবি ও ভিডিও শিগগিরই যুক্ত হবে</span>
@@ -318,6 +317,17 @@
     </footer>
 
     <!-- ================= মোডালসমূহ ================= -->
+
+    <!-- কাস্টম এলার্ট মোডাল -->
+    <div id="custom-alert-modal" class="fixed inset-0 bg-slate-900/80 backdrop-blur-sm hidden z-[100] flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-sm w-full p-6 text-center shadow-2xl relative">
+            <div class="w-16 h-16 bg-emerald-100 rounded-full flex items-center justify-center mx-auto mb-4 text-emerald-600 text-3xl">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            <h3 id="custom-alert-message" class="text-lg font-bold text-slate-800 mb-4">লগিন সম্পন্ন</h3>
+            <button type="button" onclick="closeModal('custom-alert-modal')" class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-2.5 px-6 rounded-xl shadow w-full">ওকে</button>
+        </div>
+    </div>
 
     <!-- ১. প্রিমিয়াম মেম্বার প্রোফাইল কার্ড মোডাল -->
     <div id="member-profile-modal" class="fixed inset-0 bg-slate-950/85 backdrop-blur-md hidden z-50 flex items-center justify-center p-3 md:p-6 overflow-y-auto">
@@ -559,7 +569,7 @@
         </div>
     </div>
 
-    <!-- ৩. ডিজিটাল রশিদ মোডাল (কোণায় সদস্যের ছবি, স্পেশাল আইডি ও পরিশোধের তারিখ যুক্ত) -->
+    <!-- ৩. ডিজিটাল রশিদ মোডাল -->
     <div id="receipt-modal" class="fixed inset-0 bg-slate-900/80 backdrop-blur-sm hidden z-50 flex items-center justify-center p-3 md:p-6">
         <div class="bg-white rounded-3xl max-w-md w-full max-h-[92vh] flex flex-col shadow-2xl overflow-hidden border border-slate-200">
             <div class="p-4 bg-slate-900 text-white flex justify-between items-center">
@@ -645,9 +655,14 @@
                                 <td style="border: 1px solid #cbd5e1; padding: 6px; text-align: right; font-weight: bold; color: #059669;" id="rcp-last-amount">৳ ০</td>
                             </tr>
                             <!-- জরিমানা রো (যদি থাকে) -->
-                            <tr id="rcp-penalty-row" style="display: none; background-color: #fef2f2;">
-                                <td style="border: 1px solid #cbd5e1; padding: 6px; color: #dc2626; font-weight: bold;">বিলম্ব জরিমানা</td>
-                                <td style="border: 1px solid #cbd5e1; padding: 6px; text-align: right; font-weight: bold; color: #dc2626;" id="rcp-penalty-amount">৳ ০</td>
+                            <tr id="rcp-penalty-row" style="display: none; background-color: #fff1f2;">
+                                <td style="border: 1px solid #cbd5e1; padding: 6px; color: #e11d48; font-weight: bold;">বিলম্ব জরিমানা (Penalty)</td>
+                                <td style="border: 1px solid #cbd5e1; padding: 6px; text-align: right; font-weight: bold; color: #e11d48;" id="rcp-penalty-amount">৳ ০</td>
+                            </tr>
+                            <!-- সর্বমোট চলতি মাসের পেমেন্ট (যদি জরিমানা থাকে) -->
+                            <tr id="rcp-current-total-row" style="display: none; background-color: #e0f2fe;">
+                                <td style="border: 1px solid #cbd5e1; padding: 6px; color: #0284c7; font-weight: bold;">মোট পরিশোধিত (কিস্তি + জরিমানা)</td>
+                                <td style="border: 1px solid #cbd5e1; padding: 6px; text-align: right; font-weight: bold; color: #0284c7;" id="rcp-current-total-amount">৳ ০</td>
                             </tr>
                             <tr style="background-color: #f8fafc;">
                                 <td style="border: 1px solid #cbd5e1; padding: 6px; font-weight: bold;">সদস্যের সর্বমোট সঞ্চয় জমা</td>
@@ -726,7 +741,7 @@
         </div>
     </div>
 
-    <!-- ৫. কাস্টম নীতিমালা মোডাল (উন্নত ও প্রফেশনাল ডিজাইন) -->
+    <!-- ৫. কাস্টম নীতিমালা মোডাল -->
     <div id="policy-modal" class="fixed inset-0 bg-slate-900/80 backdrop-blur-sm hidden z-50 flex items-center justify-center p-3 md:p-6">
         <div class="bg-white rounded-3xl max-w-2xl w-full max-h-[92vh] flex flex-col shadow-2xl overflow-hidden border border-slate-200">
             <div class="p-5 bg-gradient-to-r from-blue-900 to-indigo-900 text-white flex items-center justify-between">
@@ -801,7 +816,7 @@
         </div>
     </div>
 
-    <!-- ৬. লগইন মোডাল (এডমিন পাসওয়ার্ডের সাজেস্ট টেক্সট সম্পূর্ণ হাইড) -->
+    <!-- ৬. লগইন মোডাল -->
     <div id="login-modal" class="fixed inset-0 bg-slate-900/80 backdrop-blur-sm hidden z-50 flex items-center justify-center p-4">
         <div class="bg-white rounded-3xl max-w-sm w-full p-6 space-y-4 shadow-2xl relative">
             <button type="button" onclick="closeModal('login-modal')" class="absolute top-4 right-4 text-gray-400">✕</button>
@@ -841,6 +856,12 @@
                         </select>
                     </div>
 
+                    <!-- পরিশোধের তারিখ সিলেক্ট করার অপশন -->
+                    <div>
+                        <label class="block font-bold text-slate-700 mb-1">পরিশোধের তারিখ</label>
+                        <input type="date" id="entry-payment-date" class="w-full border p-2.5 rounded-xl focus:ring-2 focus:ring-emerald-500 font-bold bg-white text-emerald-800">
+                    </div>
+
                     <div class="grid grid-cols-2 gap-3">
                         <div>
                             <label class="block font-bold text-slate-700 mb-1">পরিশোধের মাস</label>
@@ -868,7 +889,7 @@
                             <option value="ব্যাংক ট্রান্সফার (Bank)">ব্যাংক ট্রান্সফার (Bank)</option>
                             <option value="বিকাশ (bKash)">বিকাশ (bKash)</option>
                             <option value="নগদ (Nagad)">নগদ (Nagad)</option>
-                            <option value="ন নগদ ক্যাশ (Cash)">নগদ ক্যাশ (Cash)</option>
+                            <option value="নগদ ক্যাশ (Cash)">নগদ ক্যাশ (Cash)</option>
                         </select>
                     </div>
                     <div>
@@ -966,6 +987,10 @@
                 <input type="hidden" id="edit-rcp-member-id">
                 <input type="hidden" id="edit-rcp-old-month">
                 <div>
+                    <label class="block font-bold text-slate-700 mb-1">পরিশোধের তারিখ</label>
+                    <input type="date" id="edit-rcp-date" class="w-full border p-2.5 rounded-xl font-bold bg-white text-emerald-800">
+                </div>
+                <div>
                     <label class="block font-bold text-slate-700 mb-1">পরিশোধের মাস</label>
                     <select id="edit-rcp-month" class="w-full border p-2.5 rounded-xl font-bold bg-white">
                     </select>
@@ -1000,7 +1025,6 @@
             </form>
         </div>
     </div>
-
     <!-- ১০. অফিসিয়াল খরচ এন্ট্রি মোডাল -->
     <div id="expense-modal" class="fixed inset-0 bg-slate-900/80 backdrop-blur-sm hidden z-50 flex items-center justify-center p-3 md:p-6">
         <div class="bg-white rounded-3xl max-w-md w-full max-h-[92vh] flex flex-col shadow-2xl overflow-hidden border border-slate-200">
@@ -1321,7 +1345,7 @@
     </div>
     <!-- জাভাস্ক্রিপ্ট কোড -->
     <script>
-        const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyMlzrCOvnAwqgmn9Vk9PNcpp36N4BiP3sOvW_UC8X2KvyWIIotfuCrwW9TJAuabkD-jA/exec";
+        const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwsCus709XMDRoRFwTJweUbEJbu9VE06dNz8EqkC9O3nq4p7SbYFxoNfTpiKvFzcnCzBw/exec";
 
         // ডিফল্ট ভেক্টর এসভিজি অবতার
         const DEFAULT_AVATAR_SVG = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'><circle cx='50' cy='50' r='48' fill='%231e293b' stroke='%2310b981' stroke-width='3'/><path d='M50 25a16 16 0 100 32 16 16 0 000-32zm0 40c-18 0-33 11-33 25h66c0-14-15-25-33-25z' fill='%2394a3b8'/></svg>";
@@ -1343,6 +1367,12 @@
                 p = '880' + p;
             }
             return `https://api.whatsapp.com/send?phone=${p}&text=${message}`;
+        }
+
+        // কাস্টম এলার্ট মেসেজ
+        function showCustomAlert(msg) {
+            document.getElementById('custom-alert-message').innerText = msg;
+            document.getElementById('custom-alert-modal').classList.remove('hidden');
         }
 
         // বাংলা সংখ্যা রূপান্তর
@@ -1480,6 +1510,28 @@
         let selectedMember = null;
         let selectedReceiptMonth = "10. October";
 
+        // ৫ মিনিট নিষ্ক্রিয় থাকলে অটো লগআউট
+        let inactivityTime = function () {
+            let time;
+            window.onload = resetTimer;
+            document.onmousemove = resetTimer;
+            document.onkeypress = resetTimer;
+            document.ontouchstart = resetTimer;
+            document.onscroll = resetTimer;
+
+            function doLogout() {
+                if (isLoggedIn) {
+                    logout();
+                    showCustomAlert('দীর্ঘক্ষণ নিষ্ক্রিয় থাকার কারণে অটো লগ-আউট করা হয়েছে।');
+                }
+            }
+            function resetTimer() {
+                clearTimeout(time);
+                time = setTimeout(doLogout, 300000); // 300000 ms = 5 minutes
+            }
+        };
+        inactivityTime();
+
         function enterSite() {
             const welcome = document.getElementById('welcome-screen');
             if (welcome) {
@@ -1573,7 +1625,7 @@
                 currentUserRole = "admin";
                 loggedInMemberId = null;
                 sessionStorage.setItem('ppg_auth', JSON.stringify({ role: 'admin', id: 'admin' }));
-                alert('এডমিন হিসেবে সফলভাবে লগইন হয়েছে!');
+                showCustomAlert('লগিন সম্পন্ন');
                 closeModal('login-modal');
                 updateAuthUI();
             } else {
@@ -1583,7 +1635,7 @@
                     currentUserRole = "member";
                     loggedInMemberId = foundMember.id;
                     sessionStorage.setItem('ppg_auth', JSON.stringify({ role: 'member', id: foundMember.id }));
-                    alert(`স্বাগতম ${foundMember.name}!`);
+                    showCustomAlert('লগিন সম্পন্ন');
                     closeModal('login-modal');
                     updateAuthUI();
                     openMemberProfileModal(foundMember.id);
@@ -2049,15 +2101,21 @@
                 const instAmount = isPaid ? (parseAnyNumber(rec.amount) || 0) : 0;
                 document.getElementById('rcp-last-amount').innerText = `৳ ${formatBnCurrency(instAmount)}`;
 
-                // জরিমানার হিসাব ও প্রদর্শন (শর্ত ৬)
+                // জরিমানার হিসাব ও প্রদর্শন
                 const penaltyAmount = isPaid ? (parseAnyNumber(rec.penalty) || 0) : 0;
                 const penaltyRow = document.getElementById('rcp-penalty-row');
                 const penaltyAmountText = document.getElementById('rcp-penalty-amount');
+                const currentTotalRow = document.getElementById('rcp-current-total-row');
+                const currentTotalAmountText = document.getElementById('rcp-current-total-amount');
+
                 if (penaltyAmount > 0) {
                     penaltyRow.style.display = 'table-row';
                     penaltyAmountText.innerText = `৳ ${formatBnCurrency(penaltyAmount)}`;
+                    currentTotalRow.style.display = 'table-row';
+                    currentTotalAmountText.innerText = `৳ ${formatBnCurrency(instAmount + penaltyAmount)}`;
                 } else {
                     penaltyRow.style.display = 'none';
+                    currentTotalRow.style.display = 'none';
                 }
 
                 let priorDeposit = 0;
@@ -2164,7 +2222,7 @@
             document.getElementById('receipt-modal').classList.remove('hidden');
         }
 
-        // PDF ডাউনলোড যাতে প্রমানাদি কেটে না যায় (শর্ত ৩)
+        // PDF ডাউনলোড
         function downloadReceiptPDF() {
             const element = document.getElementById('printable-receipt');
             const opt = {
@@ -2274,7 +2332,7 @@
             reader.readAsDataURL(fileInput.files[0]);
         }
 
-        // WhatsApp এ রশিদ পাঠানো (শর্ত ৫)
+        // WhatsApp এ রশিদ পাঠানো
         function shareWhatsApp() {
             if (currentUserRole !== 'admin' || !selectedMember) return;
             const idx = normalizeMonthIndex(selectedReceiptMonth);
@@ -2467,6 +2525,10 @@
 
             const form = document.getElementById('admin-payment-form');
             if (form) form.reset();
+            
+            // পরিশোধের তারিখের ডিফল্ট ভ্যালু আজ
+            document.getElementById('entry-payment-date').value = new Date().toISOString().split('T')[0];
+            
             document.getElementById('entry-trxid').value = '';
             document.getElementById('entry-proof-file').value = '';
             document.getElementById('entry-penalty').value = '';
@@ -2558,13 +2620,17 @@
 
             const memberId = document.getElementById('entry-member-id').value;
             const monthVal = document.getElementById('entry-month').value;
+            
+            // কাস্টম ডেট নেওয়া হচ্ছে 
+            const customDateInput = document.getElementById('entry-payment-date').value;
+            const nowIso = customDateInput ? new Date(customDateInput + "T12:00:00").toISOString() : new Date().toISOString();
+            
             const idx = normalizeMonthIndex(monthVal);
             const monthBn = idx !== -1 ? MONTH_NAMES_BN[idx] : monthVal;
             const amount = parseFloat(document.getElementById('entry-amount').value) || 0;
             const penalty = parseFloat(document.getElementById('entry-penalty').value) || 0;
             const method = document.getElementById('entry-method').value;
             const trxId = document.getElementById('entry-trxid').value.trim();
-            const nowIso = new Date().toISOString();
 
             const member = membersData.find(m => m.id === memberId);
             if (!member) return;
@@ -2638,7 +2704,8 @@
                         amount: amount,
                         penalty: penalty,
                         paymentMethod: method,
-                        trxId: trxId
+                        trxId: trxId,
+                        customTimestamp: customDateInput ? customDateInput + " 12:00:00" : ""
                     }
                 })
             });
@@ -2715,7 +2782,7 @@
             alert("প্রাতিষ্ঠানিক ডিপিএস ফান্ডে সফলভাবে সেভ হয়েছে!");
         }
 
-        // এডিট রসিদ মোডাল খোলার ফাংশন (শর্ত ১)
+        // এডিট রসিদ মোডাল খোলার ফাংশন
         function openEditReceiptModal() {
             if (currentUserRole !== 'admin' || !selectedMember) return;
             const rec = selectedMember.monthlyRecords ? (selectedMember.monthlyRecords[selectedReceiptMonth] || selectedMember.monthlyRecords[normalizeMonthIndex(selectedReceiptMonth)]) : null;
@@ -2723,6 +2790,16 @@
             document.getElementById('edit-rcp-member-title').innerText = `${selectedMember.name} (${selectedMember.id})`;
             document.getElementById('edit-rcp-member-id').value = selectedMember.id;
             document.getElementById('edit-rcp-old-month').value = selectedReceiptMonth;
+            
+            if (rec && rec.timestamp) {
+                let d = new Date(rec.timestamp);
+                if (!isNaN(d)) {
+                    document.getElementById('edit-rcp-date').value = d.toISOString().split('T')[0];
+                }
+            } else {
+                document.getElementById('edit-rcp-date').value = new Date().toISOString().split('T')[0];
+            }
+
             document.getElementById('edit-rcp-month').value = selectedReceiptMonth;
             document.getElementById('edit-rcp-amount').value = rec ? rec.amount : (selectedMember.shares * 1000);
             document.getElementById('edit-rcp-penalty').value = rec && rec.penalty > 0 ? rec.penalty : ''; 
@@ -2738,6 +2815,7 @@
 
             const memberId = document.getElementById('edit-rcp-member-id').value;
             const oldMonth = document.getElementById('edit-rcp-old-month').value;
+            const newDate = document.getElementById('edit-rcp-date').value;
             const newMonth = document.getElementById('edit-rcp-month').value;
             const newAmount = parseFloat(document.getElementById('edit-rcp-amount').value) || 0;
             const newPenalty = parseFloat(document.getElementById('edit-rcp-penalty').value) || 0;
@@ -2748,6 +2826,8 @@
             if (!member) return;
 
             const oldRec = member.monthlyRecords ? member.monthlyRecords[oldMonth] : null;
+            const newIsoDate = newDate ? new Date(newDate + "T12:00:00").toISOString() : (oldRec ? oldRec.timestamp : new Date().toISOString());
+
             const newRec = {
                 paid: true,
                 amount: newAmount,
@@ -2755,7 +2835,7 @@
                 method: newMethod,
                 trxId: newTrx,
                 proofUrl: oldRec ? oldRec.proofUrl : "",
-                timestamp: oldRec ? oldRec.timestamp : new Date().toISOString()
+                timestamp: newIsoDate
             };
 
             delete member.monthlyRecords[oldMonth];
@@ -2782,6 +2862,7 @@
                 accountsData[accIdx].penalty = newPenalty;
                 accountsData[accIdx].paymentMethod = newMethod;
                 accountsData[accIdx].trxId = newTrx;
+                accountsData[accIdx].timestamp = newIsoDate;
             }
 
             const btn = document.getElementById('btn-save-edit-receipt');
@@ -2801,7 +2882,8 @@
                         amount: newAmount,
                         penalty: newPenalty,
                         paymentMethod: newMethod,
-                        trxId: newTrx
+                        trxId: newTrx,
+                        newTimestamp: newDate ? newDate + " 12:00:00" : ""
                     }
                 })
             });
