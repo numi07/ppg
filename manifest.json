@@ -1,0 +1,22 @@
+json
+{
+  "name": "পহরডাঙ্গা পার্টনারশিপ গ্রুপ",
+  "short_name": "PPG Account",
+  "description": "পহরডাঙ্গা পার্টনারশিপ গ্রুপের সামগ্রিক হিসাব ও ডিজিটাল রশিদ প্যানেল",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "background_color": "#1e3a8a",
+  "theme_color": "#1e3a8a",
+  "icons": [
+    {
+      "src": "images/logo.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "images/logo.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
