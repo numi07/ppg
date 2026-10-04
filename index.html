@@ -266,7 +266,7 @@
                     <h4 class="font-bold text-slate-800 text-sm flex items-center gap-2">
                         <i class="fas fa-file-invoice-dollar text-rose-600"></i> অফিসিয়াল খরচের পূর্ণাঙ্গ বিবরণী
                     </h4>
-                    <span class="text-[11px] text-slate-500 font-normal">সকল সদস্যের জন্য উন্মুক্ত</span>
+                    <span class="text-[11px] text-slate-500 font-normal">সকল অংশীদারের হিসাব স্বচ্ছতা</span>
                 </div>
                 <div class="overflow-x-auto">
                     <table class="w-full text-left text-xs">
@@ -1377,7 +1377,7 @@
 
     <!-- জাভাস্ক্রিপ্ট কোড -->
     <script>
-        const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxMFRmMZ6fBIA2CzYAE9kgoRE-wP3hjO3t1aXHIr1j2eS8xV0ohMr0XdWiwbYQSTfRK/exec";
+        const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyvoEi0hAev_p1E1b6q_-HSk4qqNuwQuDajMkxifPdUVzexW70oxYJFDd1muQiY-7Ln2g/exec";
 
         // ডিফল্ট ভেক্টর এসভিজি অবতার
         const DEFAULT_AVATAR_SVG = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'><circle cx='50' cy='50' r='48' fill='%231e293b' stroke='%2310b981' stroke-width='3'/><path d='M50 25a16 16 0 100 32 16 16 0 000-32zm0 40c-18 0-33 11-33 25h66c0-14-15-25-33-25z' fill='%2394a3b8'/></svg>";
@@ -1779,6 +1779,7 @@
             };
         }
 
+        // সাধারণ ভিজিটরদের জন্য সম্পূর্ণ হিসাব লুকানো ও সদস্য/এডমিন লগইন হলে হিসাব প্রদর্শন করার লজিক
         function updateAuthUI() {
             const authElements = document.querySelectorAll('.auth-only');
             const adminElements = document.querySelectorAll('.admin-only');
@@ -1787,23 +1788,60 @@
 
             const fin = recalculateAllFinancials();
 
+            // মোট বিক্রিত শেয়ার সর্বদাই দেখা যাবে
             document.getElementById('total-shares-count').innerText = `${toBanglaNum(fin.totalShares)} টি`;
-            document.getElementById('total-fund-amount').innerText = `৳ ${formatBnCurrency(fin.totalFund)}`;
-            
-            const subFundElem = document.getElementById('total-fund-sub');
-            if (subFundElem) {
-                let subText = `(সঞ্চয়: ৳${formatBnCurrency(fin.totalInstallments)} + ভর্তি ফি: ৳${formatBnCurrency(fin.totalMemberFee)}`;
-                if (fin.totalPenalty > 0) {
-                    subText += ` + জরিমানা: ৳${formatBnCurrency(fin.totalPenalty)}`;
-                }
-                subText += `)`;
-                subFundElem.innerText = subText;
-            }
 
-            document.getElementById('total-expense-amount').innerText = `৳ ${formatBnCurrency(fin.totalExpense)}`;
-            document.getElementById('total-net-balance').innerText = `৳ ${formatBnCurrency(fin.netBalance)}`;
-            document.getElementById('total-dps-amount').innerText = `৳ ${formatBnCurrency(fin.totalDps)}`;
-            document.getElementById('total-bank-remaining-sub').innerText = `(ডিপিএস বাদে ব্যাংকে অবশিষ্ট: ৳ ${formatBnCurrency(fin.remainingBank)})`;
+            // লগইন করা থাকলে (সদস্য বা এডমিন) সম্পূর্ণ হিসাব দেখানো হবে, অন্যথায় ভিজিটরদের জন্য লক থাকবে
+            if (isLoggedIn) {
+                document.getElementById('total-fund-amount').innerText = `৳ ${formatBnCurrency(fin.totalFund)}`;
+                
+                const subFundElem = document.getElementById('total-fund-sub');
+                if (subFundElem) {
+                    let subText = `(সঞ্চয়: ৳${formatBnCurrency(fin.totalInstallments)} + ভর্তি ফি: ৳${formatBnCurrency(fin.totalMemberFee)}`;
+                    if (fin.totalPenalty > 0) {
+                        subText += ` + জরিমানা: ৳${formatBnCurrency(fin.totalPenalty)}`;
+                    }
+                    subText += `)`;
+                    subFundElem.innerText = subText;
+                }
+
+                document.getElementById('total-expense-amount').innerText = `৳ ${formatBnCurrency(fin.totalExpense)}`;
+                document.getElementById('total-net-balance').innerText = `৳ ${formatBnCurrency(fin.netBalance)}`;
+                document.getElementById('total-dps-amount').innerText = `৳ ${formatBnCurrency(fin.totalDps)}`;
+                document.getElementById('total-bank-remaining-sub').innerText = `(ডিপিএস বাদে ব্যাংকে অবশিষ্ট: ৳ ${formatBnCurrency(fin.remainingBank)})`;
+                
+                const dpsSub = document.getElementById('total-dps-sub');
+                if (dpsSub) dpsSub.innerText = `(ব্যাংক থেকে স্থানান্তরিত সঞ্চয়)`;
+
+                renderDpsHistory();
+                renderExpenses();
+            } else {
+                // সাধারণ ভিজিটরদের জন্য হিসাব লক ও প্রটেক্টেড
+                document.getElementById('total-fund-amount').innerHTML = `<span class="text-sm text-emerald-200 cursor-pointer hover:underline" onclick="openLoginModal()"><i class="fas fa-lock mr-1.5"></i>লগইন প্রয়োজন</span>`;
+                const subFundElem = document.getElementById('total-fund-sub');
+                if (subFundElem) subFundElem.innerText = "(হিসাব দেখতে সদস্য বা এডমিন লগইন করুন)";
+
+                document.getElementById('total-expense-amount').innerHTML = `<span class="text-sm text-rose-200 cursor-pointer hover:underline" onclick="openLoginModal()"><i class="fas fa-lock mr-1.5"></i>লগইন প্রয়োজন</span>`;
+                
+                document.getElementById('total-net-balance').innerHTML = `<span class="text-sm text-teal-200 cursor-pointer hover:underline" onclick="openLoginModal()"><i class="fas fa-lock mr-1.5"></i>লগইন প্রয়োজন</span>`;
+                document.getElementById('total-bank-remaining-sub').innerText = "(হিসাব দেখতে সদস্য বা এডমিন লগইন করুন)";
+
+                document.getElementById('total-dps-amount').innerHTML = `<span class="text-sm text-amber-200 cursor-pointer hover:underline" onclick="openLoginModal()"><i class="fas fa-lock mr-1.5"></i>লগইন প্রয়োজন</span>`;
+                const dpsSub = document.getElementById('total-dps-sub');
+                if (dpsSub) dpsSub.innerText = "(হিসাব দেখতে সদস্য বা এডমিন লগইন করুন)";
+
+                // খরচের টেবিল সাধারণ ভিজিটরের জন্য গোপন
+                const expTbody = document.getElementById('expenses-table-tbody');
+                if (expTbody) {
+                    expTbody.innerHTML = `<tr><td colspan="6" class="p-6 text-center text-slate-500 font-bold bg-slate-50/50"><i class="fas fa-lock text-amber-500 mr-2"></i>প্রতিষ্ঠানের অফিসিয়াল খরচের পূর্ণাঙ্গ বিবরণী দেখতে <button type="button" onclick="openLoginModal()" class="text-indigo-600 underline font-bold ml-1 hover:text-indigo-800">লগইন করুন</button>।</td></tr>`;
+                }
+
+                // ডিপিএস টেবিল সাধারণ ভিজিটরের জন্য গোপন
+                const dpsTbody = document.getElementById('dps-history-tbody');
+                if (dpsTbody) {
+                    dpsTbody.innerHTML = `<tr><td colspan="6" class="p-6 text-center text-slate-500 font-bold bg-slate-50/50"><i class="fas fa-lock text-amber-500 mr-2"></i>প্রাতিষ্ঠানিক ডিপিএস ও ব্যাংক বিবরণী দেখতে <button type="button" onclick="openLoginModal()" class="text-indigo-600 underline font-bold ml-1 hover:text-indigo-800">লগইন করুন</button>।</td></tr>`;
+                }
+            }
 
             if (isLoggedIn) {
                 authElements.forEach(el => el.classList.remove('hidden'));
@@ -1826,10 +1864,7 @@
             renderMembers();
             initMonthSelectors();
             renderDueList();
-            renderDpsHistory();
-            renderExpenses();
         }
-
         function openMemberProfileModal(memberId) {
             const member = membersData.find(m => m.id === memberId);
             if (!member) return;
@@ -3046,6 +3081,7 @@
         }
 
         function renderExpenses() {
+            if (!isLoggedIn) return; // সাধারণ ভিজিটরদের জন্য বন্ধ
             const tbody = document.getElementById('expenses-table-tbody');
             if (!tbody) return;
             tbody.innerHTML = '';
@@ -3073,6 +3109,7 @@
         }
 
         function renderDpsHistory() {
+            if (!isLoggedIn) return; // সাধারণ ভিজিটরদের জন্য বন্ধ
             const tbody = document.getElementById('dps-history-tbody');
             if (!tbody) return;
             tbody.innerHTML = '';
