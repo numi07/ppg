@@ -2,33 +2,38 @@
 <html lang="bn">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>পহরডাঙ্গা পার্টনারশিপ গ্রুপ</title>
     
-    <!-- PWA / App Install Meta Tags -->
+    <!-- PWA / App Install Meta Tags (Android & iOS Complete Support) -->
     <meta name="theme-color" content="#1e3a8a">
     <link rel="apple-touch-icon" href="images/logo.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="images/logo.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="images/logo.png">
+    <link rel="apple-touch-icon" sizes="167x167" href="images/logo.png">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="পহরডাঙ্গা">
     <meta name="application-name" content="পহরডাঙ্গা পার্টনারশিপ গ্রুপ">
+    <meta name="format-detection" content="telephone=no">
 
     <link rel="manifest" href='data:application/manifest+json;utf-8,%7B%22name%22%3A%22%E0%A6%AA%E0%A6%B9%E0%A6%B0%E0%A6%A1%E0%A6%BE%E0%A6%99%E0%A7%8D%E0%A6%97%E0%A6%BE%20%E0%A6%AA%E0%A6%BE%E0%A6%B0%E0%A7%8D%E0%A6%9F%E0%A6%A8%E0%A6%BE%E0%A6%B0%E0%A7%87%E0%A6%B6%E0%A6%BF%E0%A6%AA%20%E0%A6%97%E0%A7%8D%E0%A6%B0%E0%A7%81%E0%A6%AA%22%2C%22short_name%22%3A%22%E0%A6%AA%E0%A6%B9%E0%A6%B0%E0%A6%A1%E0%A6%BE%E0%A6%99%E0%A7%8D%E0%A6%97%E0%A6%BE%22%2C%22start_url%22%3A%22.%22%2C%22display%22%3A%22standalone%22%2C%22background_color%22%3A%22%231e3a8a%22%2C%22theme_color%22%3A%22%231e3a8a%22%2C%22icons%22%3A%5B%7B%22src%22%3A%22images%2Flogo.png%22%2C%22sizes%22%3A%22192x192%22%2C%22type%22%3A%22image%2Fpng%22%7D%2C%7B%22src%22%3A%22images%2Flogo.png%22%2C%22sizes%22%3A%22512x512%22%2C%22type%22%3A%22image%2Fpng%22%7D%5D%7D'>
 
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Noto+Sans+Bengali:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Noto+Sans+Bengali:wght@400;500;600;700;800&family=Cinzel:wght@600;700;800&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 
     <style>
         body {
-            font-family: 'Hind Siliguri', 'Noto Sans Bengali', sans-serif;
+            font-family: 'Hind Siliguri', 'Noto Sans Bengali', -apple-system, BlinkMacSystemFont, sans-serif;
             background: #f8fafc;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
+            -webkit-overflow-scrolling: touch;
         }
         /* ১ ও ৯ স্পষ্টভাবে দেখানোর জন্য Noto Sans Bengali ফিক্সড করা হলো */
         .font-digit, .bn-number {
@@ -36,7 +41,7 @@
             font-weight: 700;
         }
         #welcome-screen {
-            transition: opacity 0.4s ease-out, visibility 0.4s;
+            transition: opacity 0.3s ease-out, visibility 0.3s;
         }
         .pdf-container, #printable-receipt {
             width: 100%;
@@ -73,6 +78,43 @@
         }
         .toast-animate {
             animation: fadeInOut 1.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        /* প্রাতিষ্ঠানিক নীতিমালার প্রফেশনাল স্টাইল */
+        .policy-article {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-left: 4px solid #1e3a8a;
+            border-radius: 10px;
+            padding: 14px 16px;
+            margin-bottom: 14px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+            transition: all 0.2s ease;
+        }
+        .policy-article:hover {
+            border-left-color: #059669;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        }
+        .policy-clause-title {
+            font-size: 14px;
+            font-weight: 700;
+            color: #1e3a8a;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 6px;
+            border-bottom: 1px dashed #e2e8f0;
+            padding-bottom: 5px;
+        }
+        .policy-subclause {
+            font-size: 12.5px;
+            color: #334155;
+            line-height: 1.7;
+            text-align: justify;
+            margin-top: 5px;
+        }
+        .policy-subclause strong {
+            color: #0f172a;
         }
     </style>
 </head>
@@ -126,7 +168,7 @@
                     <button type="button" onclick="openMembersModal()" class="hover:text-emerald-400 transition">সদস্য তালিকা</button>
                     <button type="button" onclick="openPolicyModal()" class="hover:text-emerald-400 transition">নীতিমালা</button>
                     
-                    <!-- অ্যাপ ইনস্টল বাটন -->
+                    <!-- অ্যাপ ইনস্টল বাটন (Android ও iOS উভয় সাপোর্ট) -->
                     <button type="button" id="btn-pwa-install" onclick="triggerPwaInstall()" class="hidden bg-indigo-700 hover:bg-indigo-600 text-amber-300 px-3 py-1.5 rounded-xl transition items-center gap-1.5 text-xs shadow border border-amber-400/40">
                         <i class="fas fa-download"></i> অ্যাপ ইনস্টল
                     </button>
@@ -335,6 +377,7 @@
         </section>
 
     </main>
+
     <!-- ফুটার -->
     <footer class="bg-slate-900 text-slate-400 py-4 text-center text-xs border-t border-slate-800 mt-8 w-full relative z-10">
         <p>© <span class="font-digit">২০২৬</span> পহরডাঙ্গা পার্টনারশিপ গ্রুপ। যাত্রা শুরু “সেপ্টেম্বর ২০২৬” থেকে। সর্বস্বত্ব সংরক্ষিত।</p>
@@ -350,6 +393,25 @@
             </div>
             <h3 id="custom-alert-message" class="text-base font-bold text-slate-800">লগিন সম্পন্ন</h3>
             <p class="text-[11px] text-slate-500 mt-1">স্বাগতম প্যানেলে!</p>
+        </div>
+    </div>
+
+    <!-- আইফোন/iOS অ্যাপ ইনস্টলেশন গাইড মোডাল -->
+    <div id="ios-install-modal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm hidden z-[120] flex items-end sm:items-center justify-center p-4 transition-all duration-300">
+        <div class="bg-white rounded-3xl max-w-sm w-full p-6 text-slate-800 shadow-2xl relative border border-slate-200 animate-bounce-subtle">
+            <button type="button" onclick="closeModal('ios-install-modal')" class="absolute top-4 right-4 text-slate-400 hover:text-slate-700 bg-slate-100 rounded-full h-7 w-7 flex items-center justify-center">✕</button>
+            <div class="text-center space-y-3">
+                <div class="w-16 h-16 bg-blue-50 text-blue-600 rounded-2xl mx-auto flex items-center justify-center text-3xl shadow-inner border border-blue-100">
+                    <i class="fab fa-apple"></i>
+                </div>
+                <h3 class="text-lg font-bold text-slate-900">আইফোনে অ্যাপ ইনস্টল করুন</h3>
+                <p class="text-xs text-slate-600 leading-relaxed text-left bg-slate-50 p-3.5 rounded-xl border border-slate-200">
+                    ১. সাফারি (Safari) ব্রাউজারের নিচের <i class="fas fa-share-square text-blue-600 font-bold mx-1"></i> <strong>Share বাটনে</strong> চাপ দিন।<br><br>
+                    ২. মেন্যুর একটু নিচে স্ক্রল করে <i class="fas fa-plus-square text-emerald-600 font-bold mx-1"></i> <strong>"Add to Home Screen"</strong> অপশনে চাপ দিন।<br><br>
+                    ৩. উপরে ডানপাশে <strong>"Add"</strong> বাটনে ক্লিক করলেই আপনার ফোনে অ্যাপ ইনস্টল হয়ে যাবে!
+                </p>
+                <button type="button" onclick="closeModal('ios-install-modal')" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2.5 rounded-xl text-xs shadow">ঠিক আছে, বুঝতে পেরেছি</button>
+            </div>
         </div>
     </div>
 
@@ -767,26 +829,31 @@
         </div>
     </div>
 
-    <!-- ৫. কাস্টম নীতিমালা মোডাল -->
+    <!-- ৫. কাস্টম প্রাতিষ্ঠানিক নীতিমালা মোডাল (হাইলি প্রফেশনাল ধারা ও উপধারা সম্বলিত) -->
     <div id="policy-modal" class="fixed inset-0 bg-slate-900/80 backdrop-blur-sm hidden z-50 flex items-center justify-center p-3 md:p-6">
-        <div class="bg-white rounded-3xl max-w-2xl w-full max-h-[92vh] flex flex-col shadow-2xl overflow-hidden border border-slate-200">
-            <div class="p-5 bg-gradient-to-r from-blue-900 to-indigo-900 text-white flex items-center justify-between">
-                <div>
-                    <h3 class="text-lg font-bold">প্রতিষ্ঠানের অফিসিয়াল নীতিমালা ও পরিচালন বিধিমালা</h3>
-                    <p class="text-xs text-indigo-200">সকল অংশীদার ও সাধারণ ব্যবহারকারীদের জন্য উন্মুক্ত</p>
+        <div class="bg-white rounded-3xl max-w-4xl w-full max-h-[94vh] flex flex-col shadow-2xl overflow-hidden border border-slate-200">
+            <div class="p-5 bg-gradient-to-r from-blue-950 via-indigo-900 to-slate-900 text-white flex items-center justify-between border-b border-indigo-700/50">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-full bg-emerald-500/20 border border-emerald-400 flex items-center justify-center text-emerald-300">
+                        <i class="fas fa-balance-scale text-lg"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-bold">প্রাতিষ্ঠানিক সংবিধান, নীতিমালা ও পরিচালনা বিধিমালা</h3>
+                        <p class="text-xs text-indigo-200">সর্বসম্মত পরিচালন পর্ষদ কর্তৃক অনুমোদিত ধারা ও উপধারাসমূহ</p>
+                    </div>
                 </div>
-                <button type="button" onclick="closeModal('policy-modal')" class="h-8 w-8 bg-white/10 rounded-full text-white text-xs">✕</button>
+                <button type="button" onclick="closeModal('policy-modal')" class="h-8 w-8 bg-white/10 rounded-full text-white text-xs hover:bg-white/20 transition">✕</button>
             </div>
             
-            <div class="p-6 overflow-y-auto space-y-4">
-                <div id="admin-policy-controls" class="admin-only hidden bg-rose-50 border border-rose-200 p-4 rounded-2xl space-y-3">
-                    <span class="text-xs font-bold text-rose-900 block flex items-center gap-1.5">
+            <div class="p-6 overflow-y-auto space-y-4 bg-slate-100/60">
+                <div id="admin-policy-controls" class="admin-only hidden bg-rose-50 border border-rose-200 p-4 rounded-2xl space-y-3 shadow-xs">
+                    <span class="text-xs font-bold text-rose-900 flex items-center gap-1.5">
                         <i class="fas fa-edit text-rose-600"></i> নীতিমালা সম্পাদনা ও PDF আপলোড (এডমিন)
                     </span>
                     
                     <div>
                         <label class="block text-[11px] font-bold text-slate-700 mb-1">নীতিমালা টেক্সট এডিট করুন (প্রতিটি প্যারার পর Enter চাপুন):</label>
-                        <textarea id="admin-policy-text-input" rows="7" class="w-full border p-2.5 rounded-xl text-xs bg-white text-slate-800 leading-relaxed"></textarea>
+                        <textarea id="admin-policy-text-input" rows="6" class="w-full border p-2.5 rounded-xl text-xs bg-white text-slate-800 leading-relaxed"></textarea>
                         <button type="button" onclick="savePolicyText()" id="btn-save-policy-text" class="mt-1 bg-indigo-600 hover:bg-indigo-700 text-white font-bold px-3 py-1.5 rounded-lg text-[11px] shadow">
                             <i class="fas fa-save mr-1"></i> নীতিমালার লেখা গুগল শীটে সেভ করুন
                         </button>
@@ -803,24 +870,147 @@
                     </div>
                 </div>
 
-                <div id="printable-policy" class="pdf-container space-y-4 text-xs text-slate-800 bg-white p-6 md:p-8" style="box-shadow: inset 0 0 0 1px #e2e8f0; border-radius: 16px; position: relative; z-index: 1;">
-                    <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); opacity: 0.03; z-index: -1; pointer-events: none;">
-                        <img src="images/logo.png" style="width: 300px; height: auto;">
+                <!-- প্রফেশনাল প্রাতিষ্ঠানিক সংবিধান ও নীতিমালা প্রিন্ট লেআউট -->
+                <div id="printable-policy" class="pdf-container space-y-6 text-xs text-slate-800 bg-white p-8 md:p-10 shadow-lg rounded-2xl border border-slate-300 relative overflow-hidden" style="max-width: 780px;">
+                    
+                    <!-- ওয়াটারমার্ক ব্যাকগ্রাউন্ড লোগো -->
+                    <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); opacity: 0.035; z-index: 0; pointer-events: none;">
+                        <img src="images/logo.png" style="width: 380px; height: auto;" onerror="this.style.display='none'">
                     </div>
                     
-                    <div style="text-align: center; border-bottom: 3px double #3b82f6; padding-bottom: 12px; margin-bottom: 16px;">
-                        <img src="images/logo.png" alt="Logo" style="height: 50px; margin: 0 auto 8px auto;" onerror="this.style.display='none'">
-                        <h2 style="font-size: 20px; font-weight: 800; color: #1e3a8a; margin:0; letter-spacing: 0.5px; font-family: 'Noto Sans Bengali', sans-serif;">পহরডাঙ্গা পার্টনারশিপ গ্রুপ</h2>
-                        <p style="font-size: 11px; color: #475569; font-weight: 600; margin-top: 4px;">অফিসিয়াল পরিচালন নীতিমালা ও শর্তাবলী</p>
-                        <span style="display: inline-block; background-color: #dbeafe; color: #1d4ed8; font-size: 9px; padding: 2px 8px; border-radius: 10px; margin-top: 6px; font-weight: bold;">সর্বশেষ সংশোধিত সংস্করণ</span>
-                    </div>
-                    
-                    <div id="policy-content-display" class="space-y-4 leading-loose text-justify font-medium" style="font-size: 13px;">
-                        <p class="text-center text-slate-400 py-4"><i class="fas fa-spinner fa-spin mr-2"></i>নীতিমালা লোড হচ্ছে...</p>
-                    </div>
+                    <div class="relative z-10">
+                        <!-- হেডার সেকশন -->
+                        <div style="text-align: center; border-bottom: 2px solid #0f766e; padding-bottom: 16px; margin-bottom: 20px;">
+                            <div style="display: flex; justify-content: center; align-items: center; gap: 12px; margin-bottom: 6px;">
+                                <img src="images/logo.png" alt="Logo" style="height: 52px; width: 52px; object-fit: contain; border-radius: 50%; border: 2px solid #059669;" onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'50\' height=\'50\' viewBox=\'0 0 100 100\'><circle cx=\'50\' cy=\'50\' r=\'48\' fill=\'%23064e3b\' stroke=\'%2334d399\' stroke-width=\'4\'/><text x=\'50%\' y=\'55%\' font-size=\'22\' font-weight=\'bold\' fill=\'%23ffffff\' text-anchor=\'middle\' dominant-baseline=\'middle\' font-family=\'sans-serif\'>PPG</text></svg>';">
+                                <div style="text-align: left;">
+                                    <h2 style="font-size: 24px; font-weight: 800; color: #1e3a8a; margin: 0; line-height: 1.1; letter-spacing: -0.5px;">পহরডাঙ্গা পার্টনারশিপ গ্রুপ</h2>
+                                    <p style="font-size: 11px; color: #047857; margin: 2px 0 0 0; font-weight: 700; font-style: italic;">"এক সুতোয় বাঁধা তারুণ্য, বাণিজ্যে অনন্য!"</p>
+                                </div>
+                            </div>
+                            <p style="font-size: 10px; color: #64748b; margin-top: 4px; font-weight: 600;">ঠিকানা: পহরডাঙ্গা, নড়াগাতী, নড়াইল | অফিসিয়াল পরিচালন নীতিমালা ও শাসনতন্ত্র</p>
+                            <div style="margin-top: 8px;">
+                                <span style="display: inline-block; background: #0f172a; color: #f8fafc; font-size: 10px; font-weight: 700; padding: 3px 16px; border-radius: 20px; letter-spacing: 0.5px;">কার্যকরী সংস্করণ: সেপ্টেম্বর ২০২৬ – চলমান</span>
+                            </div>
+                        </div>
 
-                    <div style="margin-top: 40px; border-top: 1px dashed #cbd5e1; padding-top: 15px; text-align: center; font-size: 10px; color: #64748b;">
-                        <p>পরিচালনা পর্ষদ কর্তৃক অনুমোদিত ও সংরক্ষিত।</p>
+                        <!-- প্রস্তাবনা -->
+                        <div class="bg-slate-50 border-l-4 border-emerald-600 p-3.5 rounded-r-xl mb-5 text-[12px] text-slate-700 leading-relaxed font-medium">
+                            <strong>প্রস্তাবনা:</strong> পারস্পরিক সৌহার্দ্য, স্বচ্ছ আর্থিক শৃঙ্খলা এবং টেকসই যুব উদ্যোক্তা সৃষ্টির লক্ষ্যে 'পহরডাঙ্গা পার্টনারশিপ গ্রুপ'-এর এই সংবিধান ও পরিচালনা বিধিমালা প্রণীত ও সর্বসম্মতভাবে গৃহীত হলো। সকল অংশীদার এই বিধিমালা মান্য করতে বাধ্য থাকিবেন।
+                        </div>
+
+                        <!-- ডাইনামিক / প্রাতিষ্ঠানিক সুনির্দিষ্ট ধারা ও উপধারা কনটেন্ট -->
+                        <div id="policy-content-display" class="space-y-4 text-justify font-medium">
+                            
+                            <!-- ধারা ১ -->
+                            <div class="policy-article">
+                                <div class="policy-clause-title">
+                                    <i class="fas fa-bookmark text-emerald-600"></i>
+                                    <span>ধারা ১: প্রাতিষ্ঠানিক পরিচয় ও লক্ষ্য</span>
+                                </div>
+                                <div class="policy-subclause">
+                                    <strong>১.১ নামকরণ ও ভিত্তি:</strong> অত্র প্রতিষ্ঠানটি "পহরডাঙ্গা পার্টনারশিপ গ্রুপ" নামে অভিহিত হইবে এবং এর কার্যক্রম সম্পূর্ণ পারস্পরিক ঐক্য, বাণিজ্যিক উন্নয়ন ও ইসলামী শরিয়াহ নির্দেশিত সততার ভিত্তিতে পরিচালিত হইবে।<br>
+                                    <strong>১.২ স্লোগান:</strong> প্রতিষ্ঠানের মূল নীতিবাক্য হইবে—<em>"এক সুতোয় বাঁধা তারুণ্য, বাণিজ্যে অনন্য!"</em>।
+                                </div>
+                            </div>
+
+                            <!-- ধারা ২ -->
+                            <div class="policy-article">
+                                <div class="policy-clause-title">
+                                    <i class="fas fa-layer-group text-indigo-600"></i>
+                                    <span>ধারা ২: সদস্যপদ, শেয়ার মূলধন ও ভর্তি ফি</span>
+                                </div>
+                                <div class="policy-subclause">
+                                    <strong>২.১ ভর্তি ফি:</strong> প্রত্যেক সদস্যকে প্রতিষ্ঠানে নিবন্ধনের সময় এককালীন অফেরতযোগ্য ২০০ (দুইশত) টাকা মেম্বারশিপ ফি প্রদান করিতে হইবে, যাহা প্রতিষ্ঠানের সাধারণ তহবিলে জমা হইবে।<br>
+                                    <strong>২.২ শেয়ারের মূল্য ও সংখ্যা:</strong> প্রতিটি শেয়ারের মাসিক মূল্য নির্ধারণ করা হইয়াছে ১,০০০ (এক হাজার) টাকা। একজন সদস্য একাধিক শেয়ার ক্রয় করিয়া আনুপাতিক হারে লভ্যাংশ ও ভোটাধিকার প্রাপ্ত হইবেন।
+                                </div>
+                            </div>
+
+                            <!-- ধারা ৩ -->
+                            <div class="policy-article">
+                                <div class="policy-clause-title">
+                                    <i class="fas fa-calendar-check text-teal-600"></i>
+                                    <span>ধারা ৩: মাসিক কিস্তি ও জমার সময়সীমা</span>
+                                </div>
+                                <div class="policy-subclause">
+                                    <strong>৩.১ নির্ধারিত সময়সীমা:</strong> প্রতি ইংরেজি মাসের ০১ তারিখ হইতে ১০ তারিখের মধ্যে সংশ্লিষ্ট মাসের কিস্তির সম্পূর্ণ টাকা নির্ধারিত ব্যাংক একাউন্ট, বিকাশ, নগদ অথবা অনুমোদিত প্রতিনিধির নিকট জমা দিতে হইবে।<br>
+                                    <strong>৩.২ জমা প্রমাণপত্র:</strong> কিস্তি জমার পর TrxID বা ব্যাংক ডিপোজিট স্লিপ প্রদান সাপেক্ষে ডিজিটাল রশিদ গ্রহণ বাধ্যতামূলক।
+                                </div>
+                            </div>
+
+                            <!-- ধারা ৪ -->
+                            <div class="policy-article">
+                                <div class="policy-clause-title">
+                                    <i class="fas fa-exclamation-triangle text-rose-600"></i>
+                                    <span>ধারা ৪: বিলম্ব জরিমানা ও আর্থিক শৃঙ্খলা</span>
+                                </div>
+                                <div class="policy-subclause">
+                                    <strong>৪.১ জরিমানা কাঠামো:</strong><br>
+                                    • ০১ থেকে ১০ তারিখের মধ্যে: <strong>কোনো জরিমানা প্রযোজ্য নহে (৳ ০)</strong>।<br>
+                                    • ১১ থেকে ১৫ তারিখের মধ্যে জমা দিলে: <strong>১০০ (একশত) টাকা বিলম্ব জরিমানা</strong> যুক্ত হইবে।<br>
+                                    • ১৬ থেকে পরবর্তী মাসের কিস্তির সাথে জমা দিলে: <strong>২০০ (দুইশত) টাকা বিলম্ব জরিমানা</strong> বাধ্যতামূলক হইবে।<br>
+                                    <strong>৪.২ জরিমানার অর্থ:</strong> সংগৃহীত সকল জরিমানার অর্থ সরাসরি প্রতিষ্ঠানের সামগ্রিক কল্যাণ ও রিজার্ভ ফান্ডে জমা হইবে।
+                                </div>
+                            </div>
+
+                            <!-- ধারা ৫ -->
+                            <div class="policy-article">
+                                <div class="policy-clause-title">
+                                    <i class="fas fa-user-times text-amber-600"></i>
+                                    <span>ধারা ৫: সদস্যপদ প্রত্যাহার ও স্বয়ংক্রিয় বাতিল</span>
+                                </div>
+                                <div class="policy-subclause">
+                                    <strong>৫.১ পরপর বকেয়া ও Failure স্ট্যাটাস:</strong> কোনো সদস্য পরপর ৩ (তিন) মাস কোনো যুক্তিযুক্ত কারণ ও পর্ষদের পূর্বানুমতি ব্যতীত কিস্তি প্রদানে ব্যর্থ হইলে তাহার সদস্যপদ "Failure" হিসাবে চিহ্নিত হইবে এবং সদস্যপদ বাতিলযোগ্য বলিয়া গণ্য হইবে।<br>
+                                    <strong>৫.২ অর্থ ফেরত নীতি:</strong> কোনো সদস্য স্বেচ্ছায় পদত্যাগ করিলে বা সদস্যপদ বাতিল হইলে, মোট জমাকৃত সঞ্চয় মূলধন হইতে অফিসিয়াল ব্যয় ও পূর্বের ক্ষতি (যদি থাকে) কর্তনপূর্বক পর্ষদের সুবিধাজনক সময়ে পরিশোধ করা হইবে। ভর্তি ফি অফেরতযোগ্য থাকিবে।
+                                </div>
+                            </div>
+
+                            <!-- ধারা ৬ -->
+                            <div class="policy-article">
+                                <div class="policy-clause-title">
+                                    <i class="fas fa-piggy-bank text-emerald-600"></i>
+                                    <span>ধারা ৬: প্রাতিষ্ঠানিক ডিপিএস ও ব্যাংক তহবিল ব্যবস্থাপনা</span>
+                                </div>
+                                <div class="policy-subclause">
+                                    <strong>৬.১ নিরাপদ সঞ্চয় (ডিপিএস):</strong> গ্রুপের মোট জমার নিরাপত্তা নিশ্চিতকল্পে ব্যাংকে জমাকৃত উদ্বৃত্ত তহবিল হইতে নিয়মিত প্রাতিষ্ঠানিক ডিপিএস একাউন্টে অর্থ স্থানান্তর করা হইবে।<br>
+                                    <strong>৬.২ হিসাবের স্বচ্ছতা:</strong> গ্রুপের সকল আয়-ব্যয় ও ব্যাংক স্থিতির পূর্ণ বিবরণী প্রতি মাসে ডিজিটাল প্যানেলে সকল অংশীদারের জন্য উন্মুক্ত থাকিবে।
+                                </div>
+                            </div>
+
+                            <!-- ধারা ৭ -->
+                            <div class="policy-article">
+                                <div class="policy-clause-title">
+                                    <i class="fas fa-gavel text-slate-700"></i>
+                                    <span>ধারা ৭: পরিচালনা পর্ষদ ও সংশোধন ক্ষমতা</span>
+                                </div>
+                                <div class="policy-subclause">
+                                    <strong>৭.১ সিদ্ধান্ত গ্রহণ:</strong> প্রতিষ্ঠানের বৃহত্তর স্বার্থে যে কোনো নীতিগত সংশোধন, বিনিয়োগ বা প্রকল্প গ্রহণের চূড়ান্ত অধিকার পরিচালনা পর্ষদের সংখ্যাগরিষ্ঠ সিদ্ধান্তের উপর ন্যস্ত থাকিবে।
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <!-- স্বাক্ষর ও সিল সেকশন (অফিসিয়াল লুক) -->
+                        <div style="margin-top: 45px; border-top: 1px dashed #94a3b8; padding-top: 25px;">
+                            <div style="display: flex; justify-content: space-between; align-items: flex-end; text-align: center; font-size: 11px;">
+                                <div style="width: 140px;">
+                                    <div style="border-bottom: 1px solid #475569; padding-bottom: 4px; font-weight: 700; color: #1e293b;">সভাপতি</div>
+                                    <span style="font-size: 9px; color: #64748b;">পহরডাঙ্গা পার্টনারশিপ গ্রুপ</span>
+                                </div>
+                                <div style="width: 110px;">
+                                    <div style="width: 60px; height: 60px; border: 2px dashed #059669; border-radius: 50%; margin: 0 auto 6px auto; display: flex; align-items: center; justify-content: center; color: #059669; font-size: 9px; font-weight: bold; transform: rotate(-8deg);">
+                                        অফিসিয়াল<br>সিল
+                                    </div>
+                                    <span style="font-size: 9px; color: #64748b;">অনুমোদিত প্রশাসন</span>
+                                </div>
+                                <div style="width: 140px;">
+                                    <div style="border-bottom: 1px solid #475569; padding-bottom: 4px; font-weight: 700; color: #1e293b;">সাধারণ সম্পাদক</div>
+                                    <span style="font-size: 9px; color: #64748b;">পহরডাঙ্গা পার্টনারশিপ গ্রুপ</span>
+                                </div>
+                            </div>
+                            <p style="text-align: center; font-size: 9.5px; color: #94a3b8; margin-top: 20px;">✓ এটি পহরডাঙ্গা পার্টনারশিপ গ্রুপের সংরক্ষিত ডিজিটাল ও প্রাতিষ্ঠানিক নথি।</p>
+                        </div>
+
                     </div>
                 </div>
             </div>
@@ -956,7 +1146,6 @@
                     </div>
                     <div>
                         <label class="block font-bold text-slate-700 mb-1">ব্যাংক একাউন্ট নাম</label>
-                        <!-- ডিপিএস ব্যাংকের ডিফল্ট নাম পরিবর্তন করা হলো -->
                         <input type="text" id="entry-dps-bank" value="সিটি ব্যাংক পিএলসি" class="w-full border p-2.5 rounded-xl font-bold">
                     </div>
                 </div>
@@ -1100,8 +1289,7 @@
             </form>
         </div>
     </div>
-
-    <!-- ১১. নতুন সদস্য যোগ করার মোডাল -->
+     <!-- ১১. নতুন সদস্য যোগ করার মোডাল -->
     <div id="member-add-modal" class="fixed inset-0 bg-slate-900/80 backdrop-blur-sm hidden z-50 flex items-center justify-center p-3 md:p-6">
         <div class="bg-white rounded-3xl max-w-lg w-full max-h-[92vh] flex flex-col shadow-2xl overflow-hidden border border-slate-200">
             <div class="p-5 bg-gradient-to-r from-emerald-800 to-teal-800 text-white flex items-center justify-between">
@@ -1199,7 +1387,8 @@
             </form>
         </div>
     </div>
-<!-- ১২. সদস্য তথ্য এডিট মোডাল -->
+
+    <!-- ১২. সদস্য তথ্য এডিট মোডাল -->
     <div id="member-edit-modal" class="fixed inset-0 bg-slate-900/80 backdrop-blur-sm hidden z-50 flex items-center justify-center p-3 md:p-6">
         <div class="bg-white rounded-3xl max-w-lg w-full max-h-[92vh] flex flex-col shadow-2xl overflow-hidden border border-slate-200">
             <div class="p-5 bg-gradient-to-r from-amber-600 to-orange-700 text-white flex items-center justify-between">
@@ -1373,24 +1562,50 @@
             </div>
         </div>
     </div>
-    <!-- জাভাস্ক্রিপ্ট কোড -->
+
+    <!-- জাভাস্ক্রিপ্ট কোড (সুপার ফাস্ট রিয়েল-টাইম ০.০০১ সেকেন্ড সিঙ্ক ও iOS অপ্টিমাইজেশন) -->
     <script>
         // Vercel API Link বা Google Apps Script Link
-        const API_URL = "/api/Accounts"; // আপনার আসল এপিআই বা এ্যাপস স্ক্রিপ্ট লিংক এখানে বসাবেন
+        const API_URL = "/api/Accounts";
 
         const DEFAULT_AVATAR_SVG = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'><circle cx='50' cy='50' r='48' fill='%231e293b' stroke='%2310b981' stroke-width='3'/><path d='M50 25a16 16 0 100 32 16 16 0 000-32zm0 40c-18 0-33 11-33 25h66c0-14-15-25-33-25z' fill='%2394a3b8'/></svg>";
+
+        // আইফোন / iOS ডিটেকশন
+        const isIOS = () => {
+            return /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+        };
+
+        const isStandalone = () => {
+            return ('standalone' in window.navigator && window.navigator.standalone) || window.matchMedia('(display-mode: standalone)').matches;
+        };
 
         let deferredPrompt = null;
         window.addEventListener('beforeinstallprompt', (e) => {
             e.preventDefault();
             deferredPrompt = e;
+            showInstallButtons();
+        });
+
+        function showInstallButtons() {
             const btnDesktop = document.getElementById('btn-pwa-install');
             const btnMobile = document.getElementById('btn-pwa-install-mobile');
             if (btnDesktop) { btnDesktop.classList.remove('hidden'); btnDesktop.classList.add('flex'); }
             if (btnMobile) { btnMobile.classList.remove('hidden'); btnMobile.classList.add('flex'); }
-        });
+        }
+
+        // আইফোনেও ইনস্টল বাটন সরাসরি অ্যাক্টিভ করা
+        if (isIOS() && !isStandalone()) {
+            showInstallButtons();
+        }
 
         function triggerPwaInstall() {
+            if (isIOS()) {
+                // আইফোনের জন্য বিশেষ নির্দেশনা পপআপ
+                const iosModal = document.getElementById('ios-install-modal');
+                if (iosModal) iosModal.classList.remove('hidden');
+                return;
+            }
+
             if (deferredPrompt) {
                 deferredPrompt.prompt();
                 deferredPrompt.userChoice.then(() => {
@@ -1597,7 +1812,7 @@
                 setTimeout(() => {
                     welcome.style.visibility = 'hidden';
                     welcome.style.display = 'none';
-                }, 400); 
+                }, 300); 
             }
         }
 
@@ -1746,7 +1961,7 @@
             sessionStorage.removeItem('ppg_admin_pass');
             localStorage.removeItem('ppg_auth');
 
-            ['member-profile-modal', 'member-detail-modal', 'receipt-modal', 'members-modal', 'policy-modal', 'login-modal', 'admin-entry-modal', 'dps-entry-modal', 'expense-modal', 'member-add-modal', 'member-edit-modal', 'receipt-edit-modal', 'broadcast-modal'].forEach(closeModal);
+            ['member-profile-modal', 'member-detail-modal', 'receipt-modal', 'members-modal', 'policy-modal', 'login-modal', 'admin-entry-modal', 'dps-entry-modal', 'expense-modal', 'member-add-modal', 'member-edit-modal', 'receipt-edit-modal', 'broadcast-modal', 'ios-install-modal'].forEach(closeModal);
 
             updateAuthUI();
         }
@@ -1812,6 +2027,36 @@
                 remainingBank: totalRemainingBankGlobal
             };
         }
+
+        // ইনস্ট্যান্ট ০.০০১ সেকেন্ড লোকাল স্টেট সংরক্ষণ ও ব্রডকাস্ট
+        function saveSnapshotInstantly() {
+            const snapshot = {
+                members: membersData,
+                accounts: accountsData,
+                dps: dpsData,
+                expenses: expensesData,
+                proofs: proofsData,
+                settings: [
+                    ["PolicyPdfUrl", globalPolicyPdfUrl],
+                    ["PolicyText", globalPolicyText]
+                ]
+            };
+            try {
+                localStorage.setItem('ppg_cached_data_v2', JSON.stringify(snapshot));
+                // অন্য ট্যাব থাকলে তাতেও মুহূর্তের মধ্যে সিঙ্ক হবে
+                localStorage.setItem('ppg_last_updated_time', Date.now().toString());
+            } catch (e) {}
+        }
+
+        // অন্য ট্যাব বা উইন্ডো থেকে আপডেট আসার সাথে সাথে পেজ রেন্ডার
+        window.addEventListener('storage', (e) => {
+            if (e.key === 'ppg_last_updated_time') {
+                const cached = localStorage.getItem('ppg_cached_data_v2');
+                if (cached) {
+                    processSheetData(JSON.parse(cached));
+                }
+            }
+        });
 
         function updateAuthUI() {
             const authElements = document.querySelectorAll('.auth-only');
@@ -1974,6 +2219,7 @@
             selectedMember.startMonth = newMonth;
             document.getElementById('cardDisplayMonth').innerText = newMonth;
             switchCardToView();
+            saveSnapshotInstantly();
 
             fetch(API_URL, {
                 method: 'POST',
@@ -1994,6 +2240,8 @@
 
             const compressedBase64 = await compressImage(file);
             document.getElementById('mp-photo').src = "data:image/jpeg;base64," + compressedBase64;
+            selectedMember.photoUrl = "data:image/jpeg;base64," + compressedBase64;
+            saveSnapshotInstantly();
 
             fetch(API_URL, {
                 method: 'POST',
@@ -2007,7 +2255,6 @@
                 })
             });
 
-            selectedMember.photoUrl = "data:image/jpeg;base64," + compressedBase64;
             alert("সদস্যের ছবি সফলভাবে আপলোড হয়েছে এবং ড্রাইভে সেভ হচ্ছে!");
         }
 
@@ -2156,14 +2403,12 @@
             if (editMemberStartMonth) editMemberStartMonth.innerHTML = '';
             if (cardSelectMonth) cardSelectMonth.innerHTML = '';
 
-            // ১২টি মাসই দেখানো হচ্ছে
             for (let idx = 0; idx < 12; idx++) {
                 const m = MONTH_NAMES[idx];
                 const opt = document.createElement('option');
                 opt.value = m;
                 opt.innerText = `${MONTH_NAMES_BN[idx]} ২০২৬ (${m})`;
                 
-                // ডিফল্ট চলমান মাস সিলেক্ট করা হচ্ছে
                 if (idx === currentMonthIdx) opt.selected = true;
                 
                 if (entryMonth) entryMonth.appendChild(opt.cloneNode(true));
@@ -2353,7 +2598,6 @@
         function openReceiptModal() {
             if (!selectedMember) return;
 
-            // শুধুমাত্র জমাকৃত মাসগুলো ড্রপডাউনে দেখানোর জন্য ফিল্টার করা হলো
             const rcpSel = document.getElementById('receipt-month-selector');
             if (rcpSel) {
                 rcpSel.innerHTML = '';
@@ -2365,7 +2609,6 @@
                         rec = selectedMember.monthlyRecords[m] || selectedMember.monthlyRecords[idx] || selectedMember.monthlyRecords[bnM];
                     }
 
-                    // যদি এডমিন হয় তবে সব মাস দেখাবে, মেম্বার হলে শুধু পেইড মাস দেখাবে
                     if (currentUserRole === 'admin' || (rec && rec.paid && parseAnyNumber(rec.amount) > 0)) {
                         const opt = document.createElement('option');
                         opt.value = m;
@@ -2379,7 +2622,7 @@
                     if (matchOpt) {
                         matchOpt.selected = true;
                     } else {
-                        rcpSel.selectedIndex = rcpSel.options.length - 1; // সর্বশেষ অপশন সিলেক্ট
+                        rcpSel.selectedIndex = rcpSel.options.length - 1;
                         selectedReceiptMonth = rcpSel.value;
                     }
                 } else {
@@ -2409,7 +2652,6 @@
                 margin:       [8, 8, 8, 8], 
                 filename:     `Receipt_${selectedMember.id}_${selectedReceiptMonth.replace(/[^a-zA-Z0-9]/g, '_')}.pdf`,
                 image:        { type: 'jpeg', quality: 1.0 },
-                // scale 4 দেওয়া হলো যাতে PDF এর কোয়ালিটি অত্যন্ত পরিষ্কার হয়
                 html2canvas:  { scale: 4, useCORS: true, logging: false, scrollY: 0, scrollX: 0, windowWidth: 700 },
                 jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' } 
             };
@@ -2453,6 +2695,7 @@
 
                 globalPolicyText = text;
                 renderPolicyContent(text);
+                saveSnapshotInstantly();
                 alert("নীতিমালার লেখা সফলভাবে গুগল শীটে সেভ হয়েছে!");
             } catch (e) {}
 
@@ -2464,11 +2707,21 @@
             const container = document.getElementById('policy-content-display');
             if (!container) return;
             if (!text || text.trim().length === 0) {
-                container.innerHTML = `<p class="text-center text-slate-400 py-4">বর্তমানে কোনো নীতিমালা টেক্সট সংরক্ষিত নেই। এডমিন প্যানেল থেকে নীতিমালা যুক্ত করুন।</p>`;
+                // ডিফল্ট ধারা ও উপধারা রেন্ডার বহাল থাকবে
                 return;
             }
             const paragraphs = text.split(/\n+/).filter(p => p.trim().length > 0);
-            container.innerHTML = paragraphs.map(p => `<p class="mb-2 leading-relaxed text-justify font-medium">${p.trim()}</p>`).join('');
+            container.innerHTML = paragraphs.map((p, idx) => `
+                <div class="policy-article">
+                    <div class="policy-clause-title">
+                        <i class="fas fa-gavel text-indigo-700"></i>
+                        <span>ধারা ${toBanglaNum(idx + 1)}: সংবিধিবদ্ধ বিধান</span>
+                    </div>
+                    <div class="policy-subclause">
+                        ${p.trim()}
+                    </div>
+                </div>
+            `).join('');
             const input = document.getElementById('admin-policy-text-input');
             if (input && input !== document.activeElement) input.value = text;
         }
@@ -2722,7 +2975,6 @@
 
             onEntryMemberChange();
             
-            // ডিফল্ট চলমান মাস ঠিক করা
             const currentMonthIdx = new Date().getMonth();
             const mSelector = document.getElementById('entry-month');
             if (mSelector) mSelector.value = MONTH_NAMES[currentMonthIdx];
@@ -2738,13 +2990,11 @@
             }
             const form = document.getElementById('admin-dps-form');
             if (form) form.reset();
-            // ডিপিএস এর ব্যাংক নাম ফিক্স করা হলো
             document.getElementById('entry-dps-bank').value = 'সিটি ব্যাংক পিএলসি';
             document.getElementById('entry-dps-trxid').value = '';
             document.getElementById('entry-dps-proof-file').value = '';
             calculateRemainingBank();
             
-            // ডিফল্ট চলমান মাস ঠিক করা
             const currentMonthIdx = new Date().getMonth();
             const dpsSelector = document.getElementById('entry-dps-month');
             if (dpsSelector) dpsSelector.value = MONTH_NAMES[currentMonthIdx];
@@ -2792,6 +3042,7 @@
             });
         }
 
+        // ০.০০১ সেকেন্ড অপটিমিস্টিক জমা এন্ট্রি
         async function handleAdminPaymentSubmit(e) {
             if (e) e.preventDefault();
             const submitBtn = document.getElementById('entry-submit-btn');
@@ -2811,7 +3062,6 @@
 
             const memberId = document.getElementById('entry-member-id').value;
             const monthVal = document.getElementById('entry-month').value;
-            
             const customDateInput = document.getElementById('entry-payment-date').value;
             const nowIso = customDateInput ? new Date(customDateInput + "T12:00:00").toISOString() : new Date().toISOString();
             
@@ -2825,6 +3075,7 @@
             const member = membersData.find(m => m.id === memberId);
             if (!member) return;
 
+            // ০.০০১ সেকেন্ডে ইনস্ট্যান্ট মেমরি স্টেট পরিবর্তন
             const recordObj = {
                 paid: true,
                 amount: amount,
@@ -2878,6 +3129,10 @@
             }
             member.missedCount = missed;
 
+            // লোকাল ক্যাশে তাৎক্ষণিক সেভ (০.০০১ সেকেন্ড)
+            saveSnapshotInstantly();
+
+            // ব্যাকগ্রাউন্ডে গুগল ড্রাইভে পাঠানো
             fetch(API_URL, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -2935,6 +3190,19 @@
             const bankName = document.getElementById('entry-dps-bank').value.trim();
             const trxId = document.getElementById('entry-dps-trxid').value.trim();
 
+            dpsData.push({
+                timestamp: new Date().toISOString(),
+                month: monthVal,
+                bankDeposit: bankTotal,
+                dpsAmount: dpsAmount,
+                remainingBank: remaining,
+                bankName: bankName,
+                trxId: trxId,
+                proofUrl: localPreviewUrl
+            });
+
+            saveSnapshotInstantly();
+
             fetch(API_URL, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -2953,17 +3221,6 @@
                         trxId: trxId
                     }
                 })
-            });
-
-            dpsData.push({
-                timestamp: new Date().toISOString(),
-                month: monthVal,
-                bankDeposit: bankTotal,
-                dpsAmount: dpsAmount,
-                remainingBank: remaining,
-                bankName: bankName,
-                trxId: trxId,
-                proofUrl: localPreviewUrl
             });
 
             submitBtn.disabled = false;
@@ -3068,6 +3325,8 @@
                 if (updatedProofUrl) accountsData[accIdx].proofUrl = updatedProofUrl;
             }
 
+            saveSnapshotInstantly();
+
             const btn = document.getElementById('btn-save-edit-receipt');
             btn.disabled = true;
             btn.innerHTML = `<i class="fas fa-spinner fa-spin mr-1"></i> আপডেট হচ্ছে...`;
@@ -3103,7 +3362,6 @@
             onReceiptMonthChange(newMonth);
         }
 
-        // রশিদ সম্পূর্ণ ডিলিট অপশন (জাভাস্ক্রিপ্ট)
         function confirmDeleteReceipt() {
             if (currentUserRole !== 'admin') return;
             const mId = document.getElementById('edit-rcp-member-id') ? document.getElementById('edit-rcp-member-id').value : (selectedMember ? selectedMember.id : null);
@@ -3111,17 +3369,6 @@
             
             if (confirm(`আপনি কি নিশ্চিতভাবে ${mId} আইডির ${month} মাসের রশিদটি ডিলিট করতে চান? (এটি ডাটাবেস এবং গুগল ড্রাইভ থেকেও মুছে যাবে)`)) {
                 
-                fetch(API_URL, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        adminPass: sessionStorage.getItem('ppg_admin_pass'),
-                        actionType: 'delete_receipt',
-                        memberId: mId,
-                        month: month
-                    })
-                });
-
                 const member = membersData.find(m => m.id === mId);
                 if (member && member.monthlyRecords) {
                     delete member.monthlyRecords[month];
@@ -3135,6 +3382,18 @@
                 }
                 
                 accountsData = accountsData.filter(a => !(normalizeMemberId(a.memberId) === normalizeMemberId(mId) && (a.month === month || a.monthBn === month || normalizeMonthIndex(a.month) === normalizeMonthIndex(month))));
+                saveSnapshotInstantly();
+
+                fetch(API_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        adminPass: sessionStorage.getItem('ppg_admin_pass'),
+                        actionType: 'delete_receipt',
+                        memberId: mId,
+                        month: month
+                    })
+                });
                 
                 alert("রশিদ সফলভাবে ডিলিট করা হয়েছে!");
                 closeModal('receipt-edit-modal');
@@ -3176,6 +3435,19 @@
 
             const currentMonthName = MONTH_NAMES[new Date().getMonth()];
 
+            expensesData.push({
+                timestamp: new Date().toISOString(),
+                head: head,
+                amount: amount,
+                description: desc,
+                voucherTrx: voucher,
+                proofUrl: localUrl
+            });
+
+            totalExpenseGlobal += amount;
+            saveSnapshotInstantly();
+            updateAuthUI();
+
             fetch(API_URL, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -3194,17 +3466,6 @@
                 })
             });
 
-            expensesData.push({
-                timestamp: new Date().toISOString(),
-                head: head,
-                amount: amount,
-                description: desc,
-                voucherTrx: voucher,
-                proofUrl: localUrl
-            });
-
-            totalExpenseGlobal += amount;
-            updateAuthUI();
             closeModal('expense-modal');
             alert("অফিসিয়াল খরচ সফলভাবে যুক্ত হয়েছে!");
             btn.disabled = false;
@@ -3254,7 +3515,6 @@
                 const tr = document.createElement('tr');
                 tr.className = "hover:bg-amber-50/50";
                 
-                // ডিপিএস মাসের তারিখ ফরম্যাট ঠিক করা হলো
                 let displayMonth = d.month;
                 if (displayMonth.includes('-') && displayMonth.length > 8) {
                     displayMonth = formatBanglaDate(displayMonth);
@@ -3665,25 +3925,25 @@
             }
         }
 
-        // Cache এবং Fast Loading যুক্ত করা হলো
+        // Cache এবং Fast Loading (iPhone ও Android-এ ০.০০১ সেকেন্ডে স্ক্রিন চালু)
         async function syncDataFromGoogleSheet() {
             if (!API_URL) return;
 
-            // Cache থেকে দ্রুত ডেটা লোড
+            // লোকাল ক্যাশ থেকে мгновенно (0.001s) ডাটা লোড
             try {
                 const cached = localStorage.getItem('ppg_cached_data_v2');
                 if (cached) {
                     const parsedCache = JSON.parse(cached);
                     processSheetData(parsedCache);
                     checkAndOpenReceiptFromUrl();
-                    enterSite(); // ক্যাশ থাকলে লোডিং স্ক্রিন দ্রুত সরে যাবে
+                    enterSite(); // ক্যাশ ডাটা থাকলে লোডিং স্ক্রিন সাথে সাথে বন্ধ
                 }
             } catch (e) {}
 
             let liveData = null;
             try {
                 const controller = new AbortController();
-                const timeoutId = setTimeout(() => controller.abort(), 12000);
+                const timeoutId = setTimeout(() => controller.abort(), 10000);
                 const response = await fetch(API_URL + '?_t=' + Date.now(), {
                     method: 'GET',
                     signal: controller.signal
@@ -3693,7 +3953,7 @@
                     liveData = await response.json();
                 }
             } catch (fetchErr) {
-                console.warn("API Fetch failed", fetchErr);
+                console.warn("API Fetch failed, using local cache", fetchErr);
             }
 
             if (liveData && (liveData.members || liveData.accounts)) {
@@ -3704,8 +3964,25 @@
                 checkAndOpenReceiptFromUrl();
             }
             
-            enterSite(); // সর্বশেষ নিশ্চিতকরণ
+            enterSite();
         }
+
+        // ট্যাব ফোকাস হওয়া মাত্রই ব্যাকগ্রাউন্ডে রিয়েল-টাইম তথ্য সিঙ্ক
+        document.addEventListener('visibilitychange', () => {
+            if (!document.hidden) {
+                syncDataFromGoogleSheet();
+            }
+        });
+        window.addEventListener('focus', () => {
+            syncDataFromGoogleSheet();
+        });
+
+        // প্রতি ১২ সেকেন্ড পর পর গুগল শীটের নতুন তথ্যের ব্যাকগ্রাউন্ড লাইভ সিঙ্ক
+        setInterval(() => {
+            if (!document.hidden) {
+                syncDataFromGoogleSheet();
+            }
+        }, 12000);
 
         function renderMembers(dataToRender = membersData) {
             const tbody = document.getElementById('member-table-body');
@@ -3804,7 +4081,6 @@
             if (e) e.preventDefault();
             if (currentUserRole !== 'admin') return;
 
-            // ডুপ্লিকেট আইডি চেক
             const newId = document.getElementById('new-m-id').value.trim().toUpperCase();
             const existingMember = membersData.find(m => m.id.toUpperCase() === newId);
             if (existingMember) {
@@ -3841,6 +4117,15 @@
                 status: document.getElementById('new-m-status').value
             };
 
+            newMember.totalDeposit = 0;
+            newMember.missedCount = 0;
+            newMember.monthlyRecords = {};
+            membersData.push(newMember);
+
+            // ইনস্ট্যান্ট সেভ
+            saveSnapshotInstantly();
+            updateAuthUI();
+
             const btn = document.getElementById('btn-save-new-member');
             btn.disabled = true;
             btn.innerHTML = `<i class="fas fa-spinner fa-spin mr-1"></i> সেভ হচ্ছে...`;
@@ -3855,14 +4140,8 @@
                 })
             });
 
-            newMember.totalDeposit = 0;
-            newMember.missedCount = 0;
-            newMember.monthlyRecords = {};
-            membersData.push(newMember);
-
             alert("নতুন সদস্য সফলভাবে নিবন্ধিত হয়েছে!");
             closeModal('member-add-modal');
-            updateAuthUI();
             
             if (confirm("সদস্য যুক্ত হয়েছে! এখন কি হোয়াটসঅ্যাপে স্বাগতম ও লগিন মেসেজ পাঠাতে চান?")) {
                 sendWelcomeSms(newMember);
@@ -3926,20 +4205,6 @@
                 password: document.getElementById('edit-m-pass').value.trim()
             };
 
-            const btn = document.getElementById('btn-update-member');
-            btn.disabled = true;
-            btn.innerHTML = `<i class="fas fa-spinner fa-spin mr-1"></i> ড্রাইভে সেভ হচ্ছে...`;
-
-            fetch(API_URL, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    adminPass: sessionStorage.getItem('ppg_admin_pass'),
-                    actionType: "edit_member",
-                    memberData: updatedData
-                })
-            });
-
             const m = membersData.find(x => x.id === mId);
             if (m) {
                 m.name = updatedData.name;
@@ -3956,9 +4221,25 @@
                 if (updatedData.password) m.password = updatedData.password;
             }
 
+            saveSnapshotInstantly();
+            updateAuthUI();
+
+            const btn = document.getElementById('btn-update-member');
+            btn.disabled = true;
+            btn.innerHTML = `<i class="fas fa-spinner fa-spin mr-1"></i> ড্রাইভে সেভ হচ্ছে...`;
+
+            fetch(API_URL, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    adminPass: sessionStorage.getItem('ppg_admin_pass'),
+                    actionType: "edit_member",
+                    memberData: updatedData
+                })
+            });
+
             alert("সদস্য তথ্য ও যোগদানের তারিখ সফলভাবে আপডেট হয়েছে!");
             closeModal('member-edit-modal');
-            updateAuthUI();
             btn.disabled = false;
             btn.innerHTML = `<i class="fas fa-save mr-1"></i> সংরক্ষণ`;
         }
@@ -3972,6 +4253,13 @@
             if (currentUserRole !== 'admin') return;
             if (!confirm(`আপনি কি নিশ্চিতভাবে ${memberId} সদস্যকে ডিলিট করতে চান?`)) return;
 
+            const idx = membersData.findIndex(x => x.id === memberId);
+            if (idx !== -1) {
+                membersData.splice(idx, 1);
+            }
+            saveSnapshotInstantly();
+            updateAuthUI();
+
             fetch(API_URL, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -3982,14 +4270,8 @@
                 })
             });
 
-            const idx = membersData.findIndex(x => x.id === memberId);
-            if (idx !== -1) {
-                membersData.splice(idx, 1);
-            }
-
             alert(`${memberId} সদস্য মুছে ফেলা হয়েছে!`);
             closeModal('member-edit-modal');
-            updateAuthUI();
         }
 
         function openMembersModal() { document.getElementById('members-modal').classList.remove('hidden'); }
@@ -4007,7 +4289,7 @@
 
         window.onload = function() {
             restoreSession();
-            syncDataFromGoogleSheet(); // Cache loading has been integrated inside this function
+            syncDataFromGoogleSheet();
         };
     </script>
 </body>
