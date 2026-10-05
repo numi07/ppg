@@ -35,7 +35,7 @@
             font-weight: 700;
         }
         #welcome-screen {
-            transition: opacity 0.6s ease-out, visibility 0.6s;
+            transition: opacity 0.4s ease-out, visibility 0.4s;
         }
         .pdf-container, #printable-receipt {
             width: 100%;
@@ -76,7 +76,7 @@
 </head>
 <body class="text-slate-800 antialiased min-h-screen flex flex-col justify-between">
 
-    <!-- স্বাগতম স্ক্রিন (আপডেটেড এনিমেশন ও তথ্যসহ) -->
+    <!-- স্বাগতম স্ক্রিন -->
     <div id="welcome-screen" class="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-gradient-to-br from-blue-950 via-indigo-900 to-violet-950 text-white p-4">
         <div class="mb-6 shadow-2xl rounded-full p-4 bg-white/10 backdrop-blur-md border border-white/20 animate-pulse">
             <img src="images/logo.png" alt="PPG Logo" class="h-28 w-28 md:h-36 md:w-36 object-contain rounded-full drop-shadow-lg" onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'150\' height=\'150\' viewBox=\'0 0 100 100\'><circle cx=\'50\' cy=\'50\' r=\'48\' fill=\'%23064e3b\' stroke=\'%2334d399\' stroke-width=\'4\'/><text x=\'50%\' y=\'55%\' font-size=\'22\' font-weight=\'bold\' fill=\'%23ffffff\' text-anchor=\'middle\' dominant-baseline=\'middle\' font-family=\'sans-serif\'>PPG</text></svg>';">
@@ -452,7 +452,7 @@
                                     <span class="text-white font-medium mr-1">:</span>
                                     <select id="cardSelectMonth" class="bg-[#0d1d31] border border-emerald-500/60 text-emerald-200 text-xs rounded-xl px-2 py-1 outline-none font-medium">
                                     </select>
-                                    <button type="button" onclick="saveCardStartMonth()" class="px-2.5 py-1 text-xs rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white font-bold">সেভ</button>
+                                    <button type="button" onclick="saveCardStartMonth()" class="px-2.5 py-1 text-xs rounded-lg bg-emerald-600 hover:bg-emerald-50 text-white font-bold">সেভ</button>
                                     <button type="button" onclick="switchCardToView()" class="px-2 py-1 text-xs rounded-lg bg-slate-800 text-slate-300">✕</button>
                                 </div>
                             </div>
@@ -606,10 +606,9 @@
             </div>
             
             <div class="p-4 overflow-y-auto space-y-4">
-                <!-- PDF রেন্ডারিং ও প্রিন্ট এরিয়া: সম্পূর্ণ মার্জিন ও অ্যালাইনমেন্ট নিখুঁত -->
+                <!-- PDF রেন্ডারিং ও প্রিন্ট এরিয়া -->
                 <div id="printable-receipt" class="pdf-container space-y-4 bg-white text-slate-900 relative">
                     
-                    <!-- রশিদের সুবিন্যস্ত হেডার -->
                     <div style="display: flex; align-items: center; justify-content: space-between; border-bottom: 2px dashed #0f766e; padding-bottom: 12px; margin-bottom: 12px;">
                         <div style="width: 60px; text-align: left;">
                             <img src="images/logo.png" alt="PPG Logo" style="width: 52px; height: 52px; object-fit: contain; border-radius: 50%;" onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'50\' height=\'50\' viewBox=\'0 0 100 100\'><circle cx=\'50\' cy=\'50\' r=\'48\' fill=\'%23064e3b\' stroke=\'%2334d399\' stroke-width=\'4\'/><text x=\'50%\' y=\'55%\' font-size=\'24\' font-weight=\'bold\' fill=\'%23ffffff\' text-anchor=\'middle\' dominant-baseline=\'middle\' font-family=\'sans-serif\'>PPG</text></svg>';">
@@ -676,12 +675,10 @@
                                 <td style="border: 1px solid #cbd5e1; padding: 6px 10px;">চলতি মাসে কিস্তি জমা (<span id="rcp-inst-month">চলতি মাস</span>)</td>
                                 <td style="border: 1px solid #cbd5e1; padding: 6px 10px; text-align: right; font-weight: bold; color: #059669;" id="rcp-last-amount">৳ ০</td>
                             </tr>
-                            <!-- জরিমানা রো -->
                             <tr id="rcp-penalty-row" style="display: none; background-color: #fff1f2;">
                                 <td style="border: 1px solid #cbd5e1; padding: 6px 10px; color: #e11d48; font-weight: bold;">বিলম্ব জরিমানা (Penalty)</td>
                                 <td style="border: 1px solid #cbd5e1; padding: 6px 10px; text-align: right; font-weight: bold; color: #e11d48;" id="rcp-penalty-amount">৳ ০</td>
                             </tr>
-                            <!-- সর্বমোট চলতি মাসের পেমেন্ট -->
                             <tr id="rcp-current-total-row" style="display: none; background-color: #e0f2fe;">
                                 <td style="border: 1px solid #cbd5e1; padding: 6px 10px; color: #0284c7; font-weight: bold;">মোট পরিশোধিত (কিস্তি + জরিমানা)</td>
                                 <td style="border: 1px solid #cbd5e1; padding: 6px 10px; text-align: right; font-weight: bold; color: #0284c7;" id="rcp-current-total-amount">৳ ০</td>
@@ -799,7 +796,6 @@
                     </div>
                 </div>
 
-                <!-- প্রফেশনাল পলিসি ডিজাইন -->
                 <div id="printable-policy" class="pdf-container space-y-4 text-xs text-slate-800 bg-white p-6 md:p-8" style="box-shadow: inset 0 0 0 1px #e2e8f0; border-radius: 16px; position: relative; z-index: 1;">
                     <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); opacity: 0.03; z-index: -1; pointer-events: none;">
                         <img src="images/logo.png" style="width: 300px; height: auto;">
@@ -876,7 +872,6 @@
                         </select>
                     </div>
 
-                    <!-- পরিশোধের তারিখ সিলেক্ট করার অপশন -->
                     <div>
                         <label class="block font-bold text-slate-700 mb-1">পরিশোধের তারিখ</label>
                         <input type="date" id="entry-payment-date" class="w-full border p-2.5 rounded-xl focus:ring-2 focus:ring-emerald-500 font-bold bg-white text-emerald-800">
@@ -1380,7 +1375,7 @@
     <!-- জাভাস্ক্রিপ্ট কোড -->
     <script>
         // Vercel API Link বা Google Apps Script Link
-        const API_URL = "/api/Accounts"; // আপনার আসল এপিআই লিংক এখানে বসাবেন
+        const API_URL = "/api/Accounts"; // আপনার আসল এপিআই বা এ্যাপস স্ক্রিপ্ট লিংক এখানে বসাবেন
 
         const DEFAULT_AVATAR_SVG = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'><circle cx='50' cy='50' r='48' fill='%231e293b' stroke='%2310b981' stroke-width='3'/><path d='M50 25a16 16 0 100 32 16 16 0 000-32zm0 40c-18 0-33 11-33 25h66c0-14-15-25-33-25z' fill='%2394a3b8'/></svg>";
 
@@ -1424,12 +1419,15 @@
             }
         }
 
-        // WhatsApp Link Open in New Tab
+        // WhatsApp Link Open in New Tab (১০০% ডাইনামিক এবং পপ-আপ ব্লকার বাইপাস পদ্ধতি)
         function openWhatsAppUrl(url) {
-            const win = window.open(url, '_blank', 'noopener,noreferrer');
-            if (!win || win.closed || typeof win.closed === 'undefined') {
-                window.location.href = url;
-            }
+            const a = document.createElement('a');
+            a.href = url;
+            a.target = '_blank';
+            a.rel = 'noopener noreferrer';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
         }
 
         function showCustomAlert(msg) {
@@ -1495,7 +1493,7 @@
             if (!dateStr || dateStr === '--') return '--';
             let str = dateStr.toString().trim();
 
-            const bnDigits = {'০':'0', '১':'1', '২':'2', '৩':'3', '৪':'4', '৫':'5', '৬':'6', '৭':'7', '৮':'8', '৯':'9'};
+            const bnDigits = {'০':'0', '১':'1', '২':'2', '৩':'3', '৪':'4', '৫':'5', '৬':'6', '৭':'৭', '৮':'৮', '৯':'৯'};
             let enStr = str.replace(/[০-৯]/g, d => bnDigits[d]);
 
             let matchISO = enStr.match(/(\d{4})[-/](\d{1,2})[-/](\d{1,2})/);
@@ -1598,7 +1596,7 @@
                 setTimeout(() => {
                     welcome.style.visibility = 'hidden';
                     welcome.style.display = 'none';
-                }, 600); 
+                }, 400); 
             }
         }
 
@@ -2692,6 +2690,12 @@
             });
 
             onEntryMemberChange();
+            
+            // ডিফল্ট চলমান মাস ঠিক করা
+            const currentMonthIdx = new Date().getMonth();
+            const mSelector = document.getElementById('entry-month');
+            if (mSelector) mSelector.value = MONTH_NAMES[currentMonthIdx];
+
             document.getElementById('admin-entry-modal').classList.remove('hidden');
         }
 
@@ -2707,6 +2711,12 @@
             document.getElementById('entry-dps-trxid').value = '';
             document.getElementById('entry-dps-proof-file').value = '';
             calculateRemainingBank();
+            
+            // ডিফল্ট চলমান মাস ঠিক করা
+            const currentMonthIdx = new Date().getMonth();
+            const dpsSelector = document.getElementById('entry-dps-month');
+            if (dpsSelector) dpsSelector.value = MONTH_NAMES[currentMonthIdx];
+
             document.getElementById('dps-entry-modal').classList.remove('hidden');
         }
 
@@ -3061,13 +3071,13 @@
             onReceiptMonthChange(newMonth);
         }
 
-        // রশিদ ডিলিট অপশন
+        // রশিদ সম্পূর্ণ ডিলিট অপশন (জাভাস্ক্রিপ্ট)
         function confirmDeleteReceipt() {
             if (currentUserRole !== 'admin') return;
             const mId = document.getElementById('edit-rcp-member-id').value;
             const month = document.getElementById('edit-rcp-old-month').value;
             
-            if (confirm(`আপনি কি নিশ্চিতভাবে ${mId} আইডির ${month} মাসের রশিদটি ডিলিট করতে চান? (এটি ডাটাবেস থেকেও মুছে যাবে)`)) {
+            if (confirm(`আপনি কি নিশ্চিতভাবে ${mId} আইডির ${month} মাসের রশিদটি ডিলিট করতে চান? (এটি ডাটাবেস এবং গুগল ড্রাইভ থেকেও মুছে যাবে)`)) {
                 
                 fetch(API_URL, {
                     method: 'POST',
@@ -3950,18 +3960,7 @@
 
         window.onload = function() {
             restoreSession();
-            
-            try {
-                const cached = localStorage.getItem('ppg_cached_data_v2');
-                if (cached) {
-                    const parsedCache = JSON.parse(cached);
-                    processSheetData(parsedCache);
-                    checkAndOpenReceiptFromUrl();
-                }
-            } catch (e) {}
-
-            updateAuthUI();
-            syncDataFromGoogleSheet();
+            syncDataFromGoogleSheet(); // Cache loading has been integrated inside this function
         };
     </script>
 </body>
