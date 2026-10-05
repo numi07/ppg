@@ -1380,13 +1380,11 @@
 
     <!-- জাভাস্ক্রিপ্ট কোড -->
     <script>
-        // Vercel API Link (গোপনীয়তা রক্ষার জন্য সরাসরি GAS লিংক ব্যবহার করা হয়নি)
+        // Vercel API Link
         const API_URL = "/api/Accounts";
 
-        // ডিফল্ট ভেক্টর এসভিজি অবতার
         const DEFAULT_AVATAR_SVG = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'><circle cx='50' cy='50' r='48' fill='%231e293b' stroke='%2310b981' stroke-width='3'/><path d='M50 25a16 16 0 100 32 16 16 0 000-32zm0 40c-18 0-33 11-33 25h66c0-14-15-25-33-25z' fill='%2394a3b8'/></svg>";
 
-        // PWA App Install - সার্ভিস ওয়ার্কার ও ইনস্টল লিসেনার
         let deferredPrompt = null;
         window.addEventListener('beforeinstallprompt', (e) => {
             e.preventDefault();
@@ -1412,7 +1410,6 @@
             }
         }
 
-        // কম্পিউটার ও মোবাইল উভয় প্লাটফর্মেই নির্ভরযোগ্য WhatsApp লিংক ওপেনার (সব সময় নতুন ট্যাবে খুলবে)
         function formatWhatsAppLink(phone, message) {
             let p = (phone || '').toString().replace(/[^0-9]/g, '');
             if (p.startsWith('01') && p.length === 11) {
@@ -1435,7 +1432,6 @@
             }
         }
 
-        // কাস্টম এলার্ট মেসেজ (বাটনে চাপ ছাড়াই অটোমেটিক দেড় সেকেন্ডে বন্ধ হয়ে যাবে)
         function showCustomAlert(msg) {
             const modal = document.getElementById('custom-alert-modal');
             const msgEl = document.getElementById('custom-alert-message');
@@ -1448,7 +1444,6 @@
             }
         }
 
-        // বাংলা সংখ্যা রূপান্তর
         function toBanglaNum(num) {
             if (num === undefined || num === null || num === '') return '০';
             const banglaDigits = {'0':'০', '1':'১', '2':'২', '3':'৩', '4':'৪', '5':'৫', '6':'৬', '7':'৭', '8':'৮', '9':'৯'};
@@ -1540,7 +1535,6 @@
 
         const START_MONTH_IDX = 8;   // 09. September 2026
 
-        // ১২ মাসের পূর্ণাঙ্গ লিস্ট যোগ করা হলো
         const MONTH_NAMES = [
             "01. January", "02. February", "03. March", "04. April",
             "05. May", "06. June", "07. July", "08. August",
@@ -1574,9 +1568,8 @@
         let currentUserRole = null;
         let loggedInMemberId = null;
         let selectedMember = null;
-        let selectedReceiptMonth = MONTH_NAMES[new Date().getMonth()]; // ডিফল্ট বর্তমান মাস
+        let selectedReceiptMonth = MONTH_NAMES[new Date().getMonth()]; 
 
-        // ৫ মিনিট নিষ্ক্রিয়তায় অটো লগআউট
         let inactivityTime = function () {
             let time;
             window.onload = resetTimer;
@@ -1605,7 +1598,7 @@
                 setTimeout(() => {
                     welcome.style.visibility = 'hidden';
                     welcome.style.display = 'none';
-                }, 600); // স্মুথ ফেড আউটের জন্য 0.6s
+                }, 600); 
             }
         }
 
@@ -1628,7 +1621,6 @@
             if (combined.includes("জুলাই") || combined.includes("july") || combined.includes("jul")) return 6;
             if (combined.includes("আগস্ট") || combined.includes("august") || combined.includes("aug")) return 7;
 
-            // ডিজিট চেক
             if (/\b01\b|[-/. ]01[-/. ]|০১/.test(combined)) return 0;
             if (/\b02\b|[-/. ]02[-/. ]|০২/.test(combined)) return 1;
             if (/\b03\b|[-/. ]03[-/. ]|০৩/.test(combined)) return 2;
@@ -1690,34 +1682,65 @@
             }
         }
 
-        function handleLogin(e) {
+        // লগিন হ্যান্ডলিং (Vercel API এর মাধ্যমে এডমিন ভেরিফাই)
+        async function handleLogin(e) {
             if (e) e.preventDefault();
             const idInput = document.getElementById('login-id').value.trim();
             const passInput = document.getElementById('login-pass').value.trim();
 
-            if (idInput === "admin" && passInput === "admin123") {
-                isLoggedIn = true;
-                currentUserRole = "admin";
-                loggedInMemberId = null;
-                sessionStorage.setItem('ppg_auth', JSON.stringify({ role: 'admin', id: 'admin' }));
-                closeModal('login-modal');
-                showCustomAlert('লগিন সম্পন্ন');
-                updateAuthUI();
-            } else {
-                const foundMember = membersData.find(m => m.id.toLowerCase() === idInput.toLowerCase() && m.password === passInput);
-                if (foundMember) {
+            const submitBtn = e.target.querySelector('button[type="submit"]');
+            const origText = submitBtn.innerText;
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = `<i class="fas fa-spinner fa-spin mr-1"></i> চেক হচ্ছে...`;
+
+            try {
+                // ১. এডমিন লগিন চেক (API Call)
+                const response = await fetch(API_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        actionType: 'admin_login',
+                        id: idInput,
+                        pass: passInput
+                    })
+                });
+                
+                const result = await response.json();
+
+                if (result.success && result.role === 'admin') {
                     isLoggedIn = true;
-                    currentUserRole = "member";
-                    loggedInMemberId = foundMember.id;
-                    sessionStorage.setItem('ppg_auth', JSON.stringify({ role: 'member', id: foundMember.id }));
+                    currentUserRole = "admin";
+                    loggedInMemberId = null;
+                    
+                    // পরবর্তী সব রিকোয়েস্টের জন্য এডমিন পাসওয়ার্ড সেশনে সেভ রাখা হলো
+                    sessionStorage.setItem('ppg_admin_pass', passInput);
+                    sessionStorage.setItem('ppg_auth', JSON.stringify({ role: 'admin', id: idInput }));
+                    
                     closeModal('login-modal');
-                    showCustomAlert('লগিন সম্পন্ন');
+                    showCustomAlert('এডমিন লগিন সম্পন্ন');
                     updateAuthUI();
-                    openMemberProfileModal(foundMember.id);
                 } else {
-                    alert('ভুল আইডি অথবা পাসওয়ার্ড দেওয়া হয়েছে!');
+                    // ২. সাধারণ সদস্য লগিন চেক (ডাটাবেস থেকে)
+                    const foundMember = membersData.find(m => m.id.toLowerCase() === idInput.toLowerCase() && m.password === passInput);
+                    if (foundMember) {
+                        isLoggedIn = true;
+                        currentUserRole = "member";
+                        loggedInMemberId = foundMember.id;
+                        sessionStorage.setItem('ppg_auth', JSON.stringify({ role: 'member', id: foundMember.id }));
+                        closeModal('login-modal');
+                        showCustomAlert('লগিন সম্পন্ন');
+                        updateAuthUI();
+                        openMemberProfileModal(foundMember.id);
+                    } else {
+                        alert('ভুল আইডি অথবা পাসওয়ার্ড দেওয়া হয়েছে!');
+                    }
                 }
+            } catch (err) {
+                alert('লগিন সার্ভারে সমস্যা হচ্ছে! দয়া করে ইন্টারনেট কানেকশন চেক করুন।');
             }
+
+            submitBtn.disabled = false;
+            submitBtn.innerText = origText;
         }
 
         function logout() {
@@ -1725,6 +1748,7 @@
             currentUserRole = null;
             loggedInMemberId = null;
             sessionStorage.removeItem('ppg_auth');
+            sessionStorage.removeItem('ppg_admin_pass'); // এডমিন পাসওয়ার্ড রিমুভ
             localStorage.removeItem('ppg_auth');
 
             ['member-profile-modal', 'member-detail-modal', 'receipt-modal', 'members-modal', 'policy-modal', 'login-modal', 'admin-entry-modal', 'dps-entry-modal', 'expense-modal', 'member-add-modal', 'member-edit-modal', 'receipt-edit-modal', 'broadcast-modal'].forEach(closeModal);
@@ -1960,7 +1984,7 @@
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
-                    adminPass: "admin123",
+                    adminPass: sessionStorage.getItem('ppg_admin_pass'),
                     actionType: "update_start_month",
                     memberId: selectedMember.id,
                     startMonth: newMonth
@@ -1980,7 +2004,7 @@
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
-                    adminPass: "admin123",
+                    adminPass: sessionStorage.getItem('ppg_admin_pass'),
                     actionType: "upload_member_photo",
                     memberId: selectedMember.id,
                     memberName: selectedMember.name,
@@ -2120,7 +2144,6 @@
             const entryDpsMonth = document.getElementById('entry-dps-month');
             const editRcpMonth = document.getElementById('edit-rcp-month');
             
-            // নতুন মেম্বার ও কার্ডের এডিট মাস সিলেক্টরের জন্য
             const newMemberJoinMonth = document.getElementById('new-m-join-month');
             const newMemberStartMonth = document.getElementById('new-m-start-month');
             const editMemberJoinMonth = document.getElementById('edit-m-join-month');
@@ -2140,14 +2163,12 @@
             if (editMemberStartMonth) editMemberStartMonth.innerHTML = '';
             if (cardSelectMonth) cardSelectMonth.innerHTML = '';
 
-            // ১২ মাসের অপশন জেনারেট
             for (let idx = 0; idx < 12; idx++) {
                 const m = MONTH_NAMES[idx];
                 const opt = document.createElement('option');
                 opt.value = m;
                 opt.innerText = `${MONTH_NAMES_BN[idx]} ২০২৬ (${m})`;
                 
-                // ডিফল্ট বর্তমান মাস সিলেক্ট করা
                 if (idx === currentMonthIdx) opt.selected = true;
                 
                 if (selector) selector.appendChild(opt.cloneNode(true));
@@ -2397,7 +2418,7 @@
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
-                        adminPass: "admin123",
+                        adminPass: sessionStorage.getItem('ppg_admin_pass'),
                         actionType: "save_policy_text",
                         policyText: text
                     })
@@ -2446,7 +2467,7 @@
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify({
-                            adminPass: "admin123",
+                            adminPass: sessionStorage.getItem('ppg_admin_pass'),
                             actionType: "policy",
                             fileName: `PPG_Policy_${new Date().getFullYear()}.pdf`,
                             pdfBase64: base64Data
@@ -2575,7 +2596,7 @@
             const penalty = calculatePenalty(currentDay);
             const baseInst = (m.shares || 1) * 1000;
             const totalDue = baseInst + penalty + (m.previousDue || 0);
-            const monthBn = "১০. অক্টোবর ২০২৬"; // অথবা ডায়নামিক মাস
+            const monthBn = "১০. অক্টোবর ২০২৬";
 
             const msg = encodeURIComponent(
                 `📢 *মাসিক কিস্তি পরিশোধের নোটিশ*\n` +
@@ -2821,7 +2842,7 @@
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
-                    adminPass: "admin123",
+                    adminPass: sessionStorage.getItem('ppg_admin_pass'),
                     actionType: "installment",
                     folderName: monthVal,
                     fileName: `MEM_${member.id}_${monthVal.replace(/[^a-zA-Z0-9]/g, '_')}.jpg`,
@@ -2878,7 +2899,7 @@
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
-                    adminPass: "admin123",
+                    adminPass: sessionStorage.getItem('ppg_admin_pass'),
                     actionType: "institutional_dps",
                     folderName: monthVal,
                     fileName: `DPS_${monthVal.replace(/[^a-zA-Z0-9]/g, '_')}.jpg`,
@@ -3015,7 +3036,7 @@
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
-                    adminPass: "admin123",
+                    adminPass: sessionStorage.getItem('ppg_admin_pass'),
                     actionType: "edit_receipt",
                     folderName: newMonth,
                     fileName: `MEM_${memberId}_${newMonth.replace(/[^a-zA-Z0-9]/g, '_')}_edit.jpg`,
@@ -3054,14 +3075,13 @@
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
-                        adminPass: "admin123",
+                        adminPass: sessionStorage.getItem('ppg_admin_pass'),
                         actionType: 'delete_receipt',
                         memberId: mId,
                         month: month
                     })
                 });
 
-                // Locally Delete
                 const member = membersData.find(m => m.id === mId);
                 if (member && member.monthlyRecords) {
                     delete member.monthlyRecords[month];
@@ -3120,7 +3140,7 @@
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
-                    adminPass: "admin123",
+                    adminPass: sessionStorage.getItem('ppg_admin_pass'),
                     actionType: "add_expense",
                     folderName: currentMonthName,
                     fileName: `EXP_${voucher}.jpg`,
@@ -3605,7 +3625,7 @@
 
             try {
                 const controller = new AbortController();
-                const timeoutId = setTimeout(() => controller.abort(), 12000); // ফাস্ট লোডের জন্য
+                const timeoutId = setTimeout(() => controller.abort(), 12000);
                 const response = await fetch(API_URL + '?_t=' + Date.now(), {
                     method: 'GET',
                     signal: controller.signal
@@ -3626,7 +3646,6 @@
                 checkAndOpenReceiptFromUrl();
             }
             
-            // ডাটা লোড হওয়ার পরে এনিমেশন হাইড করে মেইন পেইজে প্রবেশ করবে
             enterSite();
         }
 
@@ -3698,7 +3717,6 @@
             document.getElementById('member-add-modal').classList.remove('hidden');
         }
         
-        // লগইন মেসেজ ও স্বাগতম বার্তা (হোয়াটসঅ্যাপ)
         function sendWelcomeSms(member) {
             const loginUrl = window.location.origin + window.location.pathname;
             const msg = encodeURIComponent(
@@ -3765,7 +3783,7 @@
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
-                    adminPass: "admin123",
+                    adminPass: sessionStorage.getItem('ppg_admin_pass'),
                     actionType: "add_member",
                     memberData: newMember
                 })
@@ -3780,7 +3798,6 @@
             closeModal('member-add-modal');
             updateAuthUI();
             
-            // যুক্ত করার পর স্বাগতম বার্তা পাঠাতে পপআপ
             if (confirm("সদস্য যুক্ত হয়েছে! এখন কি হোয়াটসঅ্যাপে স্বাগতম ও লগিন মেসেজ পাঠাতে চান?")) {
                 sendWelcomeSms(newMember);
             }
@@ -3851,7 +3868,7 @@
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
-                    adminPass: "admin123",
+                    adminPass: sessionStorage.getItem('ppg_admin_pass'),
                     actionType: "edit_member",
                     memberData: updatedData
                 })
@@ -3893,7 +3910,7 @@
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
-                    adminPass: "admin123",
+                    adminPass: sessionStorage.getItem('ppg_admin_pass'),
                     actionType: "delete_member",
                     memberId: memberId
                 })
@@ -3935,7 +3952,6 @@
             } catch (e) {}
 
             updateAuthUI();
-            // ডাটা লোড ও এনিমেশন শেষ করতে API কল
             syncDataFromGoogleSheet();
         };
     </script>
