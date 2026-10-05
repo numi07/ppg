@@ -2,6 +2,7 @@ export default async function handler(req, res) {
     // Vercel Environment Variables থেকে ডাটা নেওয়া
     const scriptURL = process.env.ACCOUNT_GAS_SCRIPT_URL;
     const adminPass = process.env.ACCOUNT_ADMIN_PASSWORD;
+    const adminId = process.env.ACCOUNT_ADMIN_ID || "admin"; // ডিফল্ট admin
 
     // ১. ডোমেইন সিকিউরিটি চেক
     const allowedDomains = ["ppgroup.vercel.app", "vercel.app", "localhost"];
@@ -17,7 +18,7 @@ export default async function handler(req, res) {
         return res.status(200).end();
     }
 
-    // ৩. GET রিকোয়েস্ট (ডাটা পড়া) - সাধারণ ইউজারদের জন্য ওপেন (পাসওয়ার্ড ছাড়া)
+    // ৩. GET রিকোয়েস্ট (ডাটা পড়া)
     if (req.method === 'GET') {
         try {
             const response = await fetch(scriptURL);
@@ -28,20 +29,29 @@ export default async function handler(req, res) {
         }
     }
 
-    // ৪. POST রিকোয়েস্ট (ডাটা এন্ট্রি / ডিলিট) - শুধুমাত্র এডমিন পাসওয়ার্ড দিয়ে এক্সেসযোগ্য
+    // ৪. POST রিকোয়েস্ট (লগিন ও ডাটা এন্ট্রি)
     if (req.method === 'POST') {
         try {
             const bodyData = typeof req.body === 'string' ? JSON.parse(req.body) : req.body;
-            
-            // এডমিন এক্সেস যাচাই
+
+            // [নতুন] এডমিন লগিন চেক লজিক
+            if (bodyData.actionType === 'admin_login') {
+                if (bodyData.id === adminId && bodyData.pass === adminPass) {
+                    return res.status(200).json({ success: true, role: 'admin' });
+                } else {
+                    return res.status(401).json({ success: false, message: "ভুল আইডি অথবা পাসওয়ার্ড!" });
+                }
+            }
+
+            // অন্যান্য ডেটা সেভ/আপডেট/ডিলিট এর জন্য পাসওয়ার্ড ভেরিফিকেশন
             if (bodyData.adminPass !== adminPass) {
                 return res.status(401).json({ 
                     error: "Unauthorized", 
-                    message: "সরাসরি এক্সেস বা ভুল পাসওয়ার্ড! তথ্য পরিবর্তন করতে এডমিন প্যানেল ব্যবহার করুন।" 
+                    message: "সরাসরি এক্সেস বা ভুল পাসওয়ার্ড! তথ্য পরিবর্তন করতে সঠিক এডমিন পাসওয়ার্ড প্রয়োজন।" 
                 });
             }
 
-            // পাসওয়ার্ড সরিয়ে শুধু মূল ডাটা GAS এ পাঠানো
+            // গুগল স্ক্রিপ্টে পাঠানোর আগে পাসওয়ার্ড রিমুভ করে দেওয়া হচ্ছে (সিকিউরিটির জন্য)
             delete bodyData.adminPass;
 
             const response = await fetch(scriptURL, {
@@ -53,7 +63,7 @@ export default async function handler(req, res) {
             const result = await response.json();
             return res.status(200).json(result);
         } catch (error) {
-            return res.status(500).json({ error: "ডাটা সেভ করতে ব্যর্থ হয়েছে!" });
+            return res.status(500).json({ error: "ডাটা প্রসেস করতে ব্যর্থ হয়েছে!" });
         }
     }
 }
