@@ -30,8 +30,9 @@
             flex-direction: column;
             justify-content: space-between;
         }
+        /* ১ ও ৯ স্পষ্টভাবে দেখানোর জন্য Noto Sans Bengali ফিক্সড করা হলো */
         .font-digit, .bn-number {
-            font-family: 'Noto Sans Bengali', 'Hind Siliguri', sans-serif !important;
+            font-family: 'Noto Sans Bengali', Arial, sans-serif !important;
             font-weight: 700;
         }
         #welcome-screen {
@@ -47,21 +48,22 @@
             box-sizing: border-box;
             border: 2px solid #0f766e;
             border-radius: 16px;
-            font-family: 'Noto Sans Bengali', 'Hind Siliguri', Arial, sans-serif !important;
+            font-family: 'Noto Sans Bengali', Arial, sans-serif !important;
             overflow: visible !important;
             text-rendering: optimizeLegibility;
             -webkit-font-smoothing: antialiased;
         }
         #printable-receipt * {
-            font-family: 'Noto Sans Bengali', 'Hind Siliguri', Arial, sans-serif !important;
+            font-family: 'Noto Sans Bengali', Arial, sans-serif !important;
             box-sizing: border-box;
         }
         #printable-receipt .font-digit, #printable-receipt .bn-number {
+            font-family: 'Noto Sans Bengali', Arial, sans-serif !important;
             font-weight: 600 !important;
             letter-spacing: 0.3px;
         }
         .card-bn-text {
-            font-family: 'Noto Sans Bengali', 'Hind Siliguri', sans-serif !important;
+            font-family: 'Noto Sans Bengali', Arial, sans-serif !important;
         }
         @keyframes fadeInOut {
             0% { opacity: 0; transform: scale(0.9); }
@@ -595,6 +597,7 @@
             <div class="p-4 bg-slate-900 text-white flex justify-between items-center">
                 <span class="text-xs font-bold flex items-center gap-1.5"><i class="fas fa-receipt text-emerald-400"></i> ডিজিটাল জমা রশিদ ও প্রমাণাদি</span>
                 <div class="flex items-center gap-2">
+                    <!-- মাস সিলেকশন - ফিল্টার করা হবে -->
                     <select id="receipt-month-selector" onchange="onReceiptMonthChange(this.value)" class="text-slate-800 text-[11px] py-1 px-2 rounded-lg font-bold border-none outline-none bg-white">
                     </select>
                     <!-- Header Edit Button -->
@@ -705,7 +708,7 @@
             </div>
 
             <div class="p-4 bg-slate-50 border-t flex flex-wrap gap-2">
-                <button type="button" onclick="downloadReceiptPDF()" class="flex-1 bg-rose-600 hover:bg-rose-700 text-white font-bold py-2 rounded-xl text-xs flex items-center justify-center gap-1 shadow">
+                <button type="button" onclick="downloadReceiptPDF()" class="flex-[2] bg-rose-600 hover:bg-rose-700 text-white font-bold py-2 rounded-xl text-xs flex items-center justify-center gap-1 shadow">
                     <i class="fas fa-file-pdf"></i> PDF ডাউনলোড
                 </button>
                 <button type="button" onclick="sendSuccessPaymentSMS()" class="admin-only hidden flex-1 bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-2 rounded-xl text-xs flex items-center justify-center gap-1 shadow">
@@ -713,6 +716,10 @@
                 </button>
                 <button type="button" onclick="openEditReceiptModal()" class="admin-only hidden flex-1 bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold py-2 rounded-xl text-xs flex items-center justify-center gap-1 shadow">
                     <i class="fas fa-edit"></i> এডিট
+                </button>
+                <!-- এডমিন লগিনের মাধ্যমে সরাসরি ডিলিট অপশন -->
+                <button type="button" onclick="confirmDeleteReceipt()" class="admin-only hidden flex-1 bg-rose-700 hover:bg-rose-800 text-white font-bold py-2 rounded-xl text-xs flex items-center justify-center gap-1 shadow" title="রশিদ ডিলিট">
+                    <i class="fas fa-trash-alt"></i> ডিলিট
                 </button>
                 <button type="button" onclick="closeModal('receipt-modal')" class="px-3 bg-slate-200 text-slate-700 font-bold rounded-xl text-xs">বন্ধ</button>
             </div>
@@ -949,7 +956,8 @@
                     </div>
                     <div>
                         <label class="block font-bold text-slate-700 mb-1">ব্যাংক একাউন্ট নাম</label>
-                        <input type="text" id="entry-dps-bank" value="ব্র্যাক ব্যাংক (চলতি একাউন্ট)" class="w-full border p-2.5 rounded-xl font-bold">
+                        <!-- ডিপিএস ব্যাংকের ডিফল্ট নাম পরিবর্তন করা হলো -->
+                        <input type="text" id="entry-dps-bank" value="সিটি ব্যাংক পিএলসি" class="w-full border p-2.5 rounded-xl font-bold">
                     </div>
                 </div>
 
@@ -1134,8 +1142,6 @@
                     <div>
                         <label class="block font-bold text-slate-700 mb-1">যোগদানের মাস</label>
                         <select id="new-m-join-month" class="w-full border p-2.5 rounded-xl font-bold bg-white text-emerald-800">
-                            <option value="সেপ্টেম্বর ২০২৬" selected>সেপ্টেম্বর ২০২৬</option>
-                            <option value="অক্টোবর ২০২৬">অক্টোবর ২০২৬</option>
                         </select>
                     </div>
                     <div>
@@ -1163,8 +1169,6 @@
                     <div>
                         <label class="block font-bold text-slate-700 mb-1">কিস্তি শুরুর মাস</label>
                         <select id="new-m-start-month" class="w-full border p-2.5 rounded-xl font-bold bg-white">
-                            <option value="সেপ্টেম্বর" selected>সেপ্টেম্বর</option>
-                            <option value="অক্টোবর">অক্টোবর</option>
                         </select>
                     </div>
                     <div>
@@ -1195,8 +1199,7 @@
             </form>
         </div>
     </div>
-
-    <!-- ১২. সদস্য তথ্য এডিট মোডাল -->
+<!-- ১২. সদস্য তথ্য এডিট মোডাল -->
     <div id="member-edit-modal" class="fixed inset-0 bg-slate-900/80 backdrop-blur-sm hidden z-50 flex items-center justify-center p-3 md:p-6">
         <div class="bg-white rounded-3xl max-w-lg w-full max-h-[92vh] flex flex-col shadow-2xl overflow-hidden border border-slate-200">
             <div class="p-5 bg-gradient-to-r from-amber-600 to-orange-700 text-white flex items-center justify-between">
@@ -1238,8 +1241,6 @@
                     <div>
                         <label class="block font-bold text-slate-700 mb-1">যোগদানের মাস</label>
                         <select id="edit-m-join-month" class="w-full border p-2.5 rounded-xl font-bold bg-white text-emerald-800">
-                            <option value="সেপ্টেম্বর ২০২৬">সেপ্টেম্বর ২০২৬</option>
-                            <option value="অক্টোবর ২০২৬">অক্টোবর ২০২৬</option>
                         </select>
                     </div>
                 </div>
@@ -1419,7 +1420,7 @@
             }
         }
 
-        // WhatsApp Link Open in New Tab (১০০% ডাইনামিক এবং পপ-আপ ব্লকার বাইপাস পদ্ধতি)
+        // WhatsApp Link Open in New Tab
         function openWhatsAppUrl(url) {
             const a = document.createElement('a');
             a.href = url;
@@ -2133,7 +2134,6 @@
         }
 
         function initMonthSelectors() {
-            const selector = document.getElementById('receipt-month-selector');
             const entryMonth = document.getElementById('entry-month');
             const entryDpsMonth = document.getElementById('entry-dps-month');
             const editRcpMonth = document.getElementById('edit-rcp-month');
@@ -2146,7 +2146,6 @@
 
             const currentMonthIdx = new Date().getMonth();
             
-            if (selector) selector.innerHTML = '';
             if (entryMonth) entryMonth.innerHTML = '';
             if (entryDpsMonth) entryDpsMonth.innerHTML = '';
             if (editRcpMonth) editRcpMonth.innerHTML = '';
@@ -2167,7 +2166,6 @@
                 // ডিফল্ট চলমান মাস সিলেক্ট করা হচ্ছে
                 if (idx === currentMonthIdx) opt.selected = true;
                 
-                if (selector) selector.appendChild(opt.cloneNode(true));
                 if (entryMonth) entryMonth.appendChild(opt.cloneNode(true));
                 if (entryDpsMonth) entryDpsMonth.appendChild(opt.cloneNode(true));
                 if (editRcpMonth) editRcpMonth.appendChild(opt.cloneNode(true));
@@ -2355,9 +2353,41 @@
         function openReceiptModal() {
             if (!selectedMember) return;
 
+            // শুধুমাত্র জমাকৃত মাসগুলো ড্রপডাউনে দেখানোর জন্য ফিল্টার করা হলো
             const rcpSel = document.getElementById('receipt-month-selector');
-            if (rcpSel && selectedReceiptMonth) {
-                rcpSel.value = selectedReceiptMonth;
+            if (rcpSel) {
+                rcpSel.innerHTML = '';
+                for (let idx = 0; idx < 12; idx++) {
+                    const m = MONTH_NAMES[idx];
+                    const bnM = MONTH_NAMES_BN[idx];
+                    let rec = null;
+                    if (selectedMember.monthlyRecords) {
+                        rec = selectedMember.monthlyRecords[m] || selectedMember.monthlyRecords[idx] || selectedMember.monthlyRecords[bnM];
+                    }
+
+                    // যদি এডমিন হয় তবে সব মাস দেখাবে, মেম্বার হলে শুধু পেইড মাস দেখাবে
+                    if (currentUserRole === 'admin' || (rec && rec.paid && parseAnyNumber(rec.amount) > 0)) {
+                        const opt = document.createElement('option');
+                        opt.value = m;
+                        opt.innerText = `${bnM} ২০২৬ (${m})`;
+                        rcpSel.appendChild(opt);
+                    }
+                }
+
+                if (rcpSel.options.length > 0) {
+                    let matchOpt = Array.from(rcpSel.options).find(o => o.value === selectedReceiptMonth);
+                    if (matchOpt) {
+                        matchOpt.selected = true;
+                    } else {
+                        rcpSel.selectedIndex = rcpSel.options.length - 1; // সর্বশেষ অপশন সিলেক্ট
+                        selectedReceiptMonth = rcpSel.value;
+                    }
+                } else {
+                    const opt = document.createElement('option');
+                    opt.value = selectedReceiptMonth;
+                    opt.innerText = `কোনো জমা নেই`;
+                    rcpSel.appendChild(opt);
+                }
             }
 
             document.getElementById('rcp-name').innerText = selectedMember.name;
@@ -2379,7 +2409,8 @@
                 margin:       [8, 8, 8, 8], 
                 filename:     `Receipt_${selectedMember.id}_${selectedReceiptMonth.replace(/[^a-zA-Z0-9]/g, '_')}.pdf`,
                 image:        { type: 'jpeg', quality: 1.0 },
-                html2canvas:  { scale: 2, useCORS: true, logging: false, scrollY: 0, scrollX: 0, windowWidth: 700 },
+                // scale 4 দেওয়া হলো যাতে PDF এর কোয়ালিটি অত্যন্ত পরিষ্কার হয়
+                html2canvas:  { scale: 4, useCORS: true, logging: false, scrollY: 0, scrollX: 0, windowWidth: 700 },
                 jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' } 
             };
             html2pdf().set(opt).from(element).save();
@@ -2391,7 +2422,7 @@
                 margin:       [10, 10, 10, 10],
                 filename:     `PPG_Policy.pdf`,
                 image:        { type: 'jpeg', quality: 0.98 },
-                html2canvas:  { scale: 2, useCORS: true },
+                html2canvas:  { scale: 4, useCORS: true },
                 jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
             };
             html2pdf().set(opt).from(element).save();
@@ -2707,7 +2738,8 @@
             }
             const form = document.getElementById('admin-dps-form');
             if (form) form.reset();
-            document.getElementById('entry-dps-bank').value = 'ব্র্যাক ব্যাংক (চলতি একাউন্ট)';
+            // ডিপিএস এর ব্যাংক নাম ফিক্স করা হলো
+            document.getElementById('entry-dps-bank').value = 'সিটি ব্যাংক পিএলসি';
             document.getElementById('entry-dps-trxid').value = '';
             document.getElementById('entry-dps-proof-file').value = '';
             calculateRemainingBank();
@@ -3074,8 +3106,8 @@
         // রশিদ সম্পূর্ণ ডিলিট অপশন (জাভাস্ক্রিপ্ট)
         function confirmDeleteReceipt() {
             if (currentUserRole !== 'admin') return;
-            const mId = document.getElementById('edit-rcp-member-id').value;
-            const month = document.getElementById('edit-rcp-old-month').value;
+            const mId = document.getElementById('edit-rcp-member-id') ? document.getElementById('edit-rcp-member-id').value : (selectedMember ? selectedMember.id : null);
+            const month = document.getElementById('edit-rcp-old-month') ? document.getElementById('edit-rcp-old-month').value : selectedReceiptMonth;
             
             if (confirm(`আপনি কি নিশ্চিতভাবে ${mId} আইডির ${month} মাসের রশিদটি ডিলিট করতে চান? (এটি ডাটাবেস এবং গুগল ড্রাইভ থেকেও মুছে যাবে)`)) {
                 
@@ -3221,8 +3253,15 @@
             dpsData.forEach(d => {
                 const tr = document.createElement('tr');
                 tr.className = "hover:bg-amber-50/50";
+                
+                // ডিপিএস মাসের তারিখ ফরম্যাট ঠিক করা হলো
+                let displayMonth = d.month;
+                if (displayMonth.includes('-') && displayMonth.length > 8) {
+                    displayMonth = formatBanglaDate(displayMonth);
+                }
+
                 tr.innerHTML = `
-                    <td class="p-3 font-bold text-slate-800">${d.month}</td>
+                    <td class="p-3 font-bold text-slate-800">${displayMonth}</td>
                     <td class="p-3 font-digit text-indigo-700 font-bold">৳ ${formatBnCurrency(d.bankDeposit || 0)}</td>
                     <td class="p-3 font-digit text-amber-700 font-black">৳ ${formatBnCurrency(d.dpsAmount || 0)}</td>
                     <td class="p-3 font-digit text-emerald-700 font-bold">৳ ${formatBnCurrency(d.remainingBank || 0)}</td>
@@ -3765,6 +3804,14 @@
             if (e) e.preventDefault();
             if (currentUserRole !== 'admin') return;
 
+            // ডুপ্লিকেট আইডি চেক
+            const newId = document.getElementById('new-m-id').value.trim().toUpperCase();
+            const existingMember = membersData.find(m => m.id.toUpperCase() === newId);
+            if (existingMember) {
+                alert("এই সদস্য আইডিটি আগেই ব্যবহার করা হয়েছে! দয়া করে ভিন্ন আইডি দিন।");
+                return;
+            }
+
             const shares = parseInt(document.getElementById('new-m-shares').value) || 1;
             const photoFileInput = document.getElementById('new-m-photo-file');
             let photoBase64 = "";
@@ -3777,7 +3824,7 @@
             const cleanJoinDate = formatBanglaDate(rawJoinDate);
 
             const newMember = {
-                id: document.getElementById('new-m-id').value.trim().toUpperCase(),
+                id: newId,
                 name: document.getElementById('new-m-name').value.trim(),
                 fatherName: document.getElementById('new-m-father').value.trim(),
                 phone: document.getElementById('new-m-phone').value.trim(),
