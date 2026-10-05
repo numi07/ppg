@@ -1377,11 +1377,10 @@
             </div>
         </div>
     </div>
-
     <!-- জাভাস্ক্রিপ্ট কোড -->
     <script>
-        // Vercel API Link
-        const API_URL = "/api/Accounts";
+        // Vercel API Link বা Google Apps Script Link
+        const API_URL = "/api/Accounts"; // আপনার আসল এপিআই লিংক এখানে বসাবেন
 
         const DEFAULT_AVATAR_SVG = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'><circle cx='50' cy='50' r='48' fill='%231e293b' stroke='%2310b981' stroke-width='3'/><path d='M50 25a16 16 0 100 32 16 16 0 000-32zm0 40c-18 0-33 11-33 25h66c0-14-15-25-33-25z' fill='%2394a3b8'/></svg>";
 
@@ -1425,8 +1424,9 @@
             }
         }
 
+        // WhatsApp Link Open in New Tab
         function openWhatsAppUrl(url) {
-            const win = window.open(url, '_blank');
+            const win = window.open(url, '_blank', 'noopener,noreferrer');
             if (!win || win.closed || typeof win.closed === 'undefined') {
                 window.location.href = url;
             }
@@ -1586,7 +1586,7 @@
             }
             function resetTimer() {
                 clearTimeout(time);
-                time = setTimeout(doLogout, 300000);
+                time = setTimeout(doLogout, 300000); // 5 minutes
             }
         };
         inactivityTime();
@@ -1682,7 +1682,6 @@
             }
         }
 
-        // লগিন হ্যান্ডলিং (Vercel API এর মাধ্যমে এডমিন ভেরিফাই)
         async function handleLogin(e) {
             if (e) e.preventDefault();
             const idInput = document.getElementById('login-id').value.trim();
@@ -1694,7 +1693,6 @@
             submitBtn.innerHTML = `<i class="fas fa-spinner fa-spin mr-1"></i> চেক হচ্ছে...`;
 
             try {
-                // ১. এডমিন লগিন চেক (API Call)
                 const response = await fetch(API_URL, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
@@ -1712,7 +1710,6 @@
                     currentUserRole = "admin";
                     loggedInMemberId = null;
                     
-                    // পরবর্তী সব রিকোয়েস্টের জন্য এডমিন পাসওয়ার্ড সেশনে সেভ রাখা হলো
                     sessionStorage.setItem('ppg_admin_pass', passInput);
                     sessionStorage.setItem('ppg_auth', JSON.stringify({ role: 'admin', id: idInput }));
                     
@@ -1720,7 +1717,6 @@
                     showCustomAlert('এডমিন লগিন সম্পন্ন');
                     updateAuthUI();
                 } else {
-                    // ২. সাধারণ সদস্য লগিন চেক (ডাটাবেস থেকে)
                     const foundMember = membersData.find(m => m.id.toLowerCase() === idInput.toLowerCase() && m.password === passInput);
                     if (foundMember) {
                         isLoggedIn = true;
@@ -1748,7 +1744,7 @@
             currentUserRole = null;
             loggedInMemberId = null;
             sessionStorage.removeItem('ppg_auth');
-            sessionStorage.removeItem('ppg_admin_pass'); // এডমিন পাসওয়ার্ড রিমুভ
+            sessionStorage.removeItem('ppg_admin_pass');
             localStorage.removeItem('ppg_auth');
 
             ['member-profile-modal', 'member-detail-modal', 'receipt-modal', 'members-modal', 'policy-modal', 'login-modal', 'admin-entry-modal', 'dps-entry-modal', 'expense-modal', 'member-add-modal', 'member-edit-modal', 'receipt-edit-modal', 'broadcast-modal'].forEach(closeModal);
@@ -2163,12 +2159,14 @@
             if (editMemberStartMonth) editMemberStartMonth.innerHTML = '';
             if (cardSelectMonth) cardSelectMonth.innerHTML = '';
 
+            // ১২টি মাসই দেখানো হচ্ছে
             for (let idx = 0; idx < 12; idx++) {
                 const m = MONTH_NAMES[idx];
                 const opt = document.createElement('option');
                 opt.value = m;
                 opt.innerText = `${MONTH_NAMES_BN[idx]} ২০২৬ (${m})`;
                 
+                // ডিফল্ট চলমান মাস সিলেক্ট করা হচ্ছে
                 if (idx === currentMonthIdx) opt.selected = true;
                 
                 if (selector) selector.appendChild(opt.cloneNode(true));
@@ -3618,11 +3616,22 @@
             }
         }
 
+        // Cache এবং Fast Loading যুক্ত করা হলো
         async function syncDataFromGoogleSheet() {
             if (!API_URL) return;
 
-            let liveData = null;
+            // Cache থেকে দ্রুত ডেটা লোড
+            try {
+                const cached = localStorage.getItem('ppg_cached_data_v2');
+                if (cached) {
+                    const parsedCache = JSON.parse(cached);
+                    processSheetData(parsedCache);
+                    checkAndOpenReceiptFromUrl();
+                    enterSite(); // ক্যাশ থাকলে লোডিং স্ক্রিন দ্রুত সরে যাবে
+                }
+            } catch (e) {}
 
+            let liveData = null;
             try {
                 const controller = new AbortController();
                 const timeoutId = setTimeout(() => controller.abort(), 12000);
@@ -3646,7 +3655,7 @@
                 checkAndOpenReceiptFromUrl();
             }
             
-            enterSite();
+            enterSite(); // সর্বশেষ নিশ্চিতকরণ
         }
 
         function renderMembers(dataToRender = membersData) {
