@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>পহরডাঙ্গা পার্টনারশিপ গ্রুপ</title>
     
-    <!-- PWA / App Install Meta Tags (আলাদা manifest.json ছাড়াই সম্পূর্ণ সেলফ-কন্টেইন্ড ইনলাইন Data URI) -->
+    <!-- PWA / App Install Meta Tags -->
     <meta name="theme-color" content="#1e3a8a">
     <link rel="apple-touch-icon" href="images/logo.png">
     <meta name="apple-mobile-web-app-capable" content="yes">
@@ -13,16 +13,12 @@
     <meta name="apple-mobile-web-app-title" content="পহরডাঙ্গা">
     <meta name="application-name" content="পহরডাঙ্গা পার্টনারশিপ গ্রুপ">
 
-    <!-- ইনলাইন সিনক্রোনাস PWA ম্যানিফেস্ট (মোবাইলে সরাসরি অ্যাপস আকারে ইনস্টল হওয়ার নিশ্চয়তা) -->
     <link rel="manifest" href='data:application/manifest+json;utf-8,%7B%22name%22%3A%22%E0%A6%AA%E0%A6%B9%E0%A6%B0%E0%A6%A1%E0%A6%BE%E0%A6%99%E0%A7%8D%E0%A6%97%E0%A6%BE%20%E0%A6%AA%E0%A6%BE%E0%A6%B0%E0%A7%8D%E0%A6%9F%E0%A6%A8%E0%A6%BE%E0%A6%B0%E0%A7%87%E0%A6%B6%E0%A6%BF%E0%A6%AA%20%E0%A6%97%E0%A7%8D%E0%A6%B0%E0%A7%81%E0%A6%AA%22%2C%22short_name%22%3A%22%E0%A6%AA%E0%A6%B9%E0%A6%B0%E0%A6%A1%E0%A6%BE%E0%A6%99%E0%A7%8D%E0%A6%97%E0%A6%BE%22%2C%22start_url%22%3A%22.%22%2C%22display%22%3A%22standalone%22%2C%22background_color%22%3A%22%231e3a8a%22%2C%22theme_color%22%3A%22%231e3a8a%22%2C%22icons%22%3A%5B%7B%22src%22%3A%22images%2Flogo.png%22%2C%22sizes%22%3A%22192x192%22%2C%22type%22%3A%22image%2Fpng%22%7D%2C%7B%22src%22%3A%22images%2Flogo.png%22%2C%22sizes%22%3A%22512x512%22%2C%22type%22%3A%22image%2Fpng%22%7D%5D%7D'>
 
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts for Bengali -->
-    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Noto+Sans+Bengali:wght@400;500;600;700&family=Noto+Serif+Bengali:wght@400;600;700;800&family=Tiro+Bangla&display=swap" rel="stylesheet">
-    <!-- html2pdf.js for generating PDF -->
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Noto+Sans+Bengali:wght@400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 
     <style>
@@ -39,9 +35,8 @@
             font-weight: 700;
         }
         #welcome-screen {
-            display: none !important;
+            transition: opacity 0.6s ease-out, visibility 0.6s;
         }
-        /* প্রিন্ট ও রশিদের নিখুঁত স্ট্যান্ডার্ড ফরম্যাটিং */
         .pdf-container, #printable-receipt {
             width: 100%;
             max-width: 680px;
@@ -81,18 +76,23 @@
 </head>
 <body class="text-slate-800 antialiased min-h-screen flex flex-col justify-between">
 
-    <!-- স্বাগতম স্ক্রিন -->
-    <div id="welcome-screen" class="fixed inset-0 z-50 flex flex-col items-center justify-center bg-gradient-to-br from-blue-950 via-indigo-900 to-violet-950 text-white p-4">
-        <div class="mb-6 shadow-2xl rounded-full p-4 bg-white/10 backdrop-blur-md border border-white/20">
+    <!-- স্বাগতম স্ক্রিন (আপডেটেড এনিমেশন ও তথ্যসহ) -->
+    <div id="welcome-screen" class="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-gradient-to-br from-blue-950 via-indigo-900 to-violet-950 text-white p-4">
+        <div class="mb-6 shadow-2xl rounded-full p-4 bg-white/10 backdrop-blur-md border border-white/20 animate-pulse">
             <img src="images/logo.png" alt="PPG Logo" class="h-28 w-28 md:h-36 md:w-36 object-contain rounded-full drop-shadow-lg" onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'150\' height=\'150\' viewBox=\'0 0 100 100\'><circle cx=\'50\' cy=\'50\' r=\'48\' fill=\'%23064e3b\' stroke=\'%2334d399\' stroke-width=\'4\'/><text x=\'50%\' y=\'55%\' font-size=\'22\' font-weight=\'bold\' fill=\'%23ffffff\' text-anchor=\'middle\' dominant-baseline=\'middle\' font-family=\'sans-serif\'>PPG</text></svg>';">
         </div>
         <h1 class="text-2xl md:text-4xl font-bold text-center text-emerald-300 mb-2 tracking-wide drop-shadow">
-            "পহরডাঙ্গা পার্টনারশিপ গ্রুপে" আপনাকে স্বাগতম
+            পহরডাঙ্গা পার্টনারশিপ গ্রুপ
         </h1>
-        <p class="text-indigo-100 text-sm md:text-base mb-8 text-center max-w-md italic">"এক সুতোয় বাঁধা তারুণ্য, বাণিজ্যে অনন্য!"</p>
-        <button type="button" onclick="enterSite()" class="px-8 py-3 bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold rounded-full shadow-lg hover:shadow-emerald-500/40 transition duration-300 transform hover:-translate-y-1">
-            ওয়েবসাইট প্রবেশ করুন <i class="fas fa-arrow-right ml-2"></i>
-        </button>
+        <p class="text-indigo-100 text-sm md:text-base mb-8 text-center max-w-md italic tracking-wider">"এক সুতোয় বাঁধা তারুণ্য, বাণিজ্যে অনন্য!"</p>
+        
+        <div class="mt-2 text-emerald-400">
+            <i class="fas fa-spinner fa-spin text-3xl drop-shadow-lg"></i>
+        </div>
+        
+        <div class="absolute bottom-6 w-full text-center px-4">
+            <p class="text-[12px] md:text-sm text-indigo-300 uppercase tracking-widest font-semibold border-t border-indigo-700/50 pt-3 inline-block">ঠিকানা: পহরডাঙ্গা, নড়াগাতী, নড়াইল</p>
+        </div>
     </div>
 
     <!-- হেডার নেভিগেশন -->
@@ -333,16 +333,15 @@
         </section>
 
     </main>
-
     <!-- ফুটার -->
-    <footer class="bg-slate-900 text-slate-400 py-4 text-center text-xs border-t border-slate-800 mt-8 w-full">
+    <footer class="bg-slate-900 text-slate-400 py-4 text-center text-xs border-t border-slate-800 mt-8 w-full relative z-10">
         <p>© <span class="font-digit">২০২৬</span> পহরডাঙ্গা পার্টনারশিপ গ্রুপ। যাত্রা শুরু “সেপ্টেম্বর ২০২৬” থেকে। সর্বস্বত্ব সংরক্ষিত।</p>
     </footer>
 
     <!-- ================= মোডালসমূহ ================= -->
 
     <!-- কাস্টম স্বয়ংক্রিয় এলার্ট / টোস্ট মোডাল -->
-    <div id="custom-alert-modal" class="fixed inset-0 bg-slate-900/40 backdrop-blur-xs hidden z-[100] flex items-center justify-center p-4 transition-all duration-300">
+    <div id="custom-alert-modal" class="fixed inset-0 bg-slate-900/40 backdrop-blur-xs hidden z-[110] flex items-center justify-center p-4 transition-all duration-300">
         <div id="custom-alert-box" class="bg-white rounded-3xl max-w-xs w-full p-5 text-center shadow-2xl relative border border-emerald-500/20 toast-animate">
             <div class="w-14 h-14 bg-emerald-100 rounded-full flex items-center justify-center mx-auto mb-3 text-emerald-600 text-2xl shadow-inner">
                 <i class="fas fa-check-circle"></i>
@@ -452,8 +451,6 @@
                                 <div id="cardEditMode" class="hidden items-center space-x-1.5">
                                     <span class="text-white font-medium mr-1">:</span>
                                     <select id="cardSelectMonth" class="bg-[#0d1d31] border border-emerald-500/60 text-emerald-200 text-xs rounded-xl px-2 py-1 outline-none font-medium">
-                                        <option value="সেপ্টেম্বর">সেপ্টেম্বর</option>
-                                        <option value="অক্টোবর">অক্টোবর</option>
                                     </select>
                                     <button type="button" onclick="saveCardStartMonth()" class="px-2.5 py-1 text-xs rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white font-bold">সেভ</button>
                                     <button type="button" onclick="switchCardToView()" class="px-2 py-1 text-xs rounded-lg bg-slate-800 text-slate-300">✕</button>
@@ -712,13 +709,13 @@
 
             <div class="p-4 bg-slate-50 border-t flex flex-wrap gap-2">
                 <button type="button" onclick="downloadReceiptPDF()" class="flex-1 bg-rose-600 hover:bg-rose-700 text-white font-bold py-2 rounded-xl text-xs flex items-center justify-center gap-1 shadow">
-                    <i class="fas fa-file-pdf"></i> রশিদ PDF ডাউনলোড
+                    <i class="fas fa-file-pdf"></i> PDF ডাউনলোড
                 </button>
                 <button type="button" onclick="sendSuccessPaymentSMS()" class="admin-only hidden flex-1 bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-2 rounded-xl text-xs flex items-center justify-center gap-1 shadow">
-                    <i class="fab fa-whatsapp"></i> WhatsApp এ পাঠান
+                    <i class="fab fa-whatsapp"></i> WhatsApp
                 </button>
                 <button type="button" onclick="openEditReceiptModal()" class="admin-only hidden flex-1 bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold py-2 rounded-xl text-xs flex items-center justify-center gap-1 shadow">
-                    <i class="fas fa-edit"></i> রশিদ এডিট
+                    <i class="fas fa-edit"></i> এডিট
                 </button>
                 <button type="button" onclick="closeModal('receipt-modal')" class="px-3 bg-slate-200 text-slate-700 font-bold rounded-xl text-xs">বন্ধ</button>
             </div>
@@ -996,7 +993,7 @@
         </div>
     </div>
 
-    <!-- ৯. রশিদ এডিট মোডাল (নতুন ফটো আপলোড / আগের ছবি বহাল রাখার সুবিধাসহ) -->
+    <!-- ৯. রশিদ এডিট মোডাল (নতুন ফটো আপলোড ও রশিদ ডিলিট অপশনসহ) -->
     <div id="receipt-edit-modal" class="fixed inset-0 bg-slate-900/80 backdrop-blur-sm hidden z-50 flex items-center justify-center p-3 md:p-6">
         <div class="bg-white rounded-3xl max-w-md w-full max-h-[92vh] flex flex-col shadow-2xl overflow-hidden border border-slate-200">
             <div class="p-5 bg-gradient-to-r from-amber-600 to-orange-700 text-white flex items-center justify-between">
@@ -1040,7 +1037,6 @@
                     <input type="text" id="edit-rcp-trxid" required class="w-full border p-2.5 rounded-xl font-mono">
                 </div>
                 
-                <!-- নতুন ভাউচার / রসিদের ছবি আপলোড (না দিলে আগেরটিই অপরিবর্তিত থাকবে) -->
                 <div class="bg-amber-50/70 border border-amber-200 p-2.5 rounded-xl">
                     <label class="block font-bold text-slate-800 mb-1">ভাউচার / রসিদের ছবি পরিবর্তন (ঐচ্ছিক)</label>
                     <input type="file" id="edit-rcp-proof-file" accept="image/*" class="w-full border p-2 rounded-xl text-xs bg-white text-slate-600">
@@ -1048,14 +1044,19 @@
                 </div>
 
                 <div class="pt-2 flex gap-2">
-                    <button type="submit" id="btn-save-edit-receipt" class="flex-1 bg-amber-600 hover:bg-amber-700 text-white font-bold py-2.5 rounded-xl shadow">
-                        <i class="fas fa-save mr-1"></i> আপডেট সংরক্ষণ
+                    <button type="submit" id="btn-save-edit-receipt" class="flex-[2] bg-amber-600 hover:bg-amber-700 text-white font-bold py-2.5 rounded-xl shadow">
+                        <i class="fas fa-save mr-1"></i> আপডেট
                     </button>
-                    <button type="button" onclick="closeModal('receipt-edit-modal')" class="px-4 bg-slate-200 text-slate-700 font-bold rounded-xl">বাতিল</button>
+                    <!-- রশিদ ডিলিট বাটন -->
+                    <button type="button" onclick="confirmDeleteReceipt()" class="flex-1 bg-rose-600 hover:bg-rose-700 text-white font-bold py-2.5 rounded-xl shadow flex items-center justify-center" title="এই রশিদটি মুছে ফেলুন">
+                        <i class="fas fa-trash-alt mr-1"></i> ডিলিট
+                    </button>
+                    <button type="button" onclick="closeModal('receipt-edit-modal')" class="px-3 bg-slate-200 text-slate-700 font-bold rounded-xl">বাতিল</button>
                 </div>
             </form>
         </div>
     </div>
+    
     <!-- ১০. অফিসিয়াল খরচ এন্ট্রি মোডাল -->
     <div id="expense-modal" class="fixed inset-0 bg-slate-900/80 backdrop-blur-sm hidden z-50 flex items-center justify-center p-3 md:p-6">
         <div class="bg-white rounded-3xl max-w-md w-full max-h-[92vh] flex flex-col shadow-2xl overflow-hidden border border-slate-200">
@@ -1263,8 +1264,6 @@
                     <div>
                         <label class="block font-bold text-slate-700 mb-1">কিস্তি শুরুর মাস</label>
                         <select id="edit-m-start-month" class="w-full border p-2.5 rounded-xl font-bold bg-white">
-                            <option value="সেপ্টেম্বর">সেপ্টেম্বর</option>
-                            <option value="অক্টোবর">অক্টোবর</option>
                         </select>
                     </div>
                     <div>
@@ -1290,8 +1289,12 @@
                     <button type="submit" id="btn-update-member" class="flex-1 bg-amber-600 hover:bg-amber-700 text-white font-bold py-2.5 rounded-xl shadow">
                         <i class="fas fa-save mr-1"></i> সংরক্ষণ
                     </button>
+                    <!-- স্বাগতম ও লগিন মেসেজ বাটন -->
+                    <button type="button" onclick="triggerWelcomeSmsFromEdit()" class="flex-1 bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-2.5 rounded-xl shadow flex items-center justify-center gap-1">
+                        <i class="fab fa-whatsapp"></i> লগিন মেসেজ
+                    </button>
                     <button type="button" onclick="confirmDeleteMember()" class="px-4 bg-rose-600 hover:bg-rose-700 text-white font-bold py-2.5 rounded-xl shadow">
-                        <i class="fas fa-trash-alt mr-1"></i> ডিলিট
+                        <i class="fas fa-trash-alt"></i>
                     </button>
                     <button type="button" onclick="closeModal('member-edit-modal')" class="px-3 bg-slate-200 text-slate-700 font-bold rounded-xl">বাতিল</button>
                 </div>
@@ -1377,7 +1380,8 @@
 
     <!-- জাভাস্ক্রিপ্ট কোড -->
     <script>
-        const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyvoEi0hAev_p1E1b6q_-HSk4qqNuwQuDajMkxifPdUVzexW70oxYJFDd1muQiY-7Ln2g/exec";
+        // Vercel API Link (গোপনীয়তা রক্ষার জন্য সরাসরি GAS লিংক ব্যবহার করা হয়নি)
+        const API_URL = "/api/Accounts";
 
         // ডিফল্ট ভেক্টর এসভিজি অবতার
         const DEFAULT_AVATAR_SVG = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'><circle cx='50' cy='50' r='48' fill='%231e293b' stroke='%2310b981' stroke-width='3'/><path d='M50 25a16 16 0 100 32 16 16 0 000-32zm0 40c-18 0-33 11-33 25h66c0-14-15-25-33-25z' fill='%2394a3b8'/></svg>";
@@ -1408,7 +1412,7 @@
             }
         }
 
-        // কম্পিউটার ও মোবাইল উভয় প্লাটফর্মেই নির্ভরযোগ্য WhatsApp লিংক ওপেনার
+        // কম্পিউটার ও মোবাইল উভয় প্লাটফর্মেই নির্ভরযোগ্য WhatsApp লিংক ওপেনার (সব সময় নতুন ট্যাবে খুলবে)
         function formatWhatsAppLink(phone, message) {
             let p = (phone || '').toString().replace(/[^0-9]/g, '');
             if (p.startsWith('01') && p.length === 11) {
@@ -1535,8 +1539,8 @@
         }
 
         const START_MONTH_IDX = 8;   // 09. September 2026
-        const CURRENT_MONTH_IDX = 9; // 10. October 2026
 
+        // ১২ মাসের পূর্ণাঙ্গ লিস্ট যোগ করা হলো
         const MONTH_NAMES = [
             "01. January", "02. February", "03. March", "04. April",
             "05. May", "06. June", "07. July", "08. August",
@@ -1570,7 +1574,7 @@
         let currentUserRole = null;
         let loggedInMemberId = null;
         let selectedMember = null;
-        let selectedReceiptMonth = "10. October";
+        let selectedReceiptMonth = MONTH_NAMES[new Date().getMonth()]; // ডিফল্ট বর্তমান মাস
 
         // ৫ মিনিট নিষ্ক্রিয়তায় অটো লগআউট
         let inactivityTime = function () {
@@ -1598,8 +1602,10 @@
             const welcome = document.getElementById('welcome-screen');
             if (welcome) {
                 welcome.style.opacity = '0';
-                welcome.style.visibility = 'hidden';
-                welcome.style.display = 'none';
+                setTimeout(() => {
+                    welcome.style.visibility = 'hidden';
+                    welcome.style.display = 'none';
+                }, 600); // স্মুথ ফেড আউটের জন্য 0.6s
             }
         }
 
@@ -1622,6 +1628,15 @@
             if (combined.includes("জুলাই") || combined.includes("july") || combined.includes("jul")) return 6;
             if (combined.includes("আগস্ট") || combined.includes("august") || combined.includes("aug")) return 7;
 
+            // ডিজিট চেক
+            if (/\b01\b|[-/. ]01[-/. ]|০১/.test(combined)) return 0;
+            if (/\b02\b|[-/. ]02[-/. ]|০২/.test(combined)) return 1;
+            if (/\b03\b|[-/. ]03[-/. ]|০৩/.test(combined)) return 2;
+            if (/\b04\b|[-/. ]04[-/. ]|০৪/.test(combined)) return 3;
+            if (/\b05\b|[-/. ]05[-/. ]|০৫/.test(combined)) return 4;
+            if (/\b06\b|[-/. ]06[-/. ]|০৬/.test(combined)) return 5;
+            if (/\b07\b|[-/. ]07[-/. ]|০৭/.test(combined)) return 6;
+            if (/\b08\b|[-/. ]08[-/. ]|০৮/.test(combined)) return 7;
             if (/\b09\b|[-/. ]09[-/. ]|০৯/.test(combined)) return 8;
             if (/\b10\b|[-/. ]10[-/. ]|১০/.test(combined)) return 9;
             if (/\b11\b|[-/. ]11[-/. ]|১১/.test(combined)) return 10;
@@ -1779,7 +1794,6 @@
             };
         }
 
-        // সাধারণ ভিজিটরদের জন্য সম্পূর্ণ হিসাব লুকানো ও সদস্য/এডমিন লগইন হলে হিসাব প্রদর্শন করার লজিক
         function updateAuthUI() {
             const authElements = document.querySelectorAll('.auth-only');
             const adminElements = document.querySelectorAll('.admin-only');
@@ -1788,10 +1802,8 @@
 
             const fin = recalculateAllFinancials();
 
-            // মোট বিক্রিত শেয়ার সর্বদাই দেখা যাবে
             document.getElementById('total-shares-count').innerText = `${toBanglaNum(fin.totalShares)} টি`;
 
-            // লগইন করা থাকলে (সদস্য বা এডমিন) সম্পূর্ণ হিসাব দেখানো হবে, অন্যথায় ভিজিটরদের জন্য লক থাকবে
             if (isLoggedIn) {
                 document.getElementById('total-fund-amount').innerText = `৳ ${formatBnCurrency(fin.totalFund)}`;
                 
@@ -1816,7 +1828,6 @@
                 renderDpsHistory();
                 renderExpenses();
             } else {
-                // সাধারণ ভিজিটরদের জন্য হিসাব লক ও প্রটেক্টেড
                 document.getElementById('total-fund-amount').innerHTML = `<span class="text-sm text-emerald-200 cursor-pointer hover:underline" onclick="openLoginModal()"><i class="fas fa-lock mr-1.5"></i>লগইন প্রয়োজন</span>`;
                 const subFundElem = document.getElementById('total-fund-sub');
                 if (subFundElem) subFundElem.innerText = "(হিসাব দেখতে সদস্য বা এডমিন লগইন করুন)";
@@ -1830,13 +1841,11 @@
                 const dpsSub = document.getElementById('total-dps-sub');
                 if (dpsSub) dpsSub.innerText = "(হিসাব দেখতে সদস্য বা এডমিন লগইন করুন)";
 
-                // খরচের টেবিল সাধারণ ভিজিটরের জন্য গোপন
                 const expTbody = document.getElementById('expenses-table-tbody');
                 if (expTbody) {
                     expTbody.innerHTML = `<tr><td colspan="6" class="p-6 text-center text-slate-500 font-bold bg-slate-50/50"><i class="fas fa-lock text-amber-500 mr-2"></i>প্রতিষ্ঠানের অফিসিয়াল খরচের পূর্ণাঙ্গ বিবরণী দেখতে <button type="button" onclick="openLoginModal()" class="text-indigo-600 underline font-bold ml-1 hover:text-indigo-800">লগইন করুন</button>।</td></tr>`;
                 }
 
-                // ডিপিএস টেবিল সাধারণ ভিজিটরের জন্য গোপন
                 const dpsTbody = document.getElementById('dps-history-tbody');
                 if (dpsTbody) {
                     dpsTbody.innerHTML = `<tr><td colspan="6" class="p-6 text-center text-slate-500 font-bold bg-slate-50/50"><i class="fas fa-lock text-amber-500 mr-2"></i>প্রাতিষ্ঠানিক ডিপিএস ও ব্যাংক বিবরণী দেখতে <button type="button" onclick="openLoginModal()" class="text-indigo-600 underline font-bold ml-1 hover:text-indigo-800">লগইন করুন</button>।</td></tr>`;
@@ -1865,6 +1874,7 @@
             initMonthSelectors();
             renderDueList();
         }
+
         function openMemberProfileModal(memberId) {
             const member = membersData.find(m => m.id === memberId);
             if (!member) return;
@@ -1946,11 +1956,11 @@
             document.getElementById('cardDisplayMonth').innerText = newMonth;
             switchCardToView();
 
-            fetch(GOOGLE_SCRIPT_URL, {
+            fetch(API_URL, {
                 method: 'POST',
-                mode: 'no-cors',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
+                    adminPass: "admin123",
                     actionType: "update_start_month",
                     memberId: selectedMember.id,
                     startMonth: newMonth
@@ -1966,11 +1976,11 @@
             const compressedBase64 = await compressImage(file);
             document.getElementById('mp-photo').src = "data:image/jpeg;base64," + compressedBase64;
 
-            fetch(GOOGLE_SCRIPT_URL, {
+            fetch(API_URL, {
                 method: 'POST',
-                mode: 'no-cors',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
+                    adminPass: "admin123",
                     actionType: "upload_member_photo",
                     memberId: selectedMember.id,
                     memberName: selectedMember.name,
@@ -2028,11 +2038,11 @@
                 adminEditBtn.classList.add('hidden');
             }
 
-            const maxMonthIdx = CURRENT_MONTH_IDX; 
+            const currentMonthIdx = new Date().getMonth();
             const breakdownBody = document.getElementById('md-monthly-breakdown-body');
             breakdownBody.innerHTML = '';
 
-            for (let idx = START_MONTH_IDX; idx <= maxMonthIdx; idx++) {
+            for (let idx = START_MONTH_IDX; idx <= currentMonthIdx; idx++) {
                 const mName = MONTH_NAMES[idx];
                 const bnName = MONTH_NAMES_BN[idx];
                 let rec = member.monthlyRecords ? (member.monthlyRecords[mName] || member.monthlyRecords[idx] || member.monthlyRecords[bnName]) : null;
@@ -2109,28 +2119,51 @@
             const entryMonth = document.getElementById('entry-month');
             const entryDpsMonth = document.getElementById('entry-dps-month');
             const editRcpMonth = document.getElementById('edit-rcp-month');
-            if (!selector || !entryMonth) return;
+            
+            // নতুন মেম্বার ও কার্ডের এডিট মাস সিলেক্টরের জন্য
+            const newMemberJoinMonth = document.getElementById('new-m-join-month');
+            const newMemberStartMonth = document.getElementById('new-m-start-month');
+            const editMemberJoinMonth = document.getElementById('edit-m-join-month');
+            const editMemberStartMonth = document.getElementById('edit-m-start-month');
+            const cardSelectMonth = document.getElementById('cardSelectMonth');
 
-            selector.innerHTML = '';
-            entryMonth.innerHTML = '';
+            const currentMonthIdx = new Date().getMonth();
+            
+            if (selector) selector.innerHTML = '';
+            if (entryMonth) entryMonth.innerHTML = '';
             if (entryDpsMonth) entryDpsMonth.innerHTML = '';
             if (editRcpMonth) editRcpMonth.innerHTML = '';
+            
+            if (newMemberJoinMonth) newMemberJoinMonth.innerHTML = '';
+            if (newMemberStartMonth) newMemberStartMonth.innerHTML = '';
+            if (editMemberJoinMonth) editMemberJoinMonth.innerHTML = '';
+            if (editMemberStartMonth) editMemberStartMonth.innerHTML = '';
+            if (cardSelectMonth) cardSelectMonth.innerHTML = '';
 
-            for (let idx = START_MONTH_IDX; idx <= CURRENT_MONTH_IDX; idx++) {
+            // ১২ মাসের অপশন জেনারেট
+            for (let idx = 0; idx < 12; idx++) {
                 const m = MONTH_NAMES[idx];
                 const opt = document.createElement('option');
                 opt.value = m;
                 opt.innerText = `${MONTH_NAMES_BN[idx]} ২০২৬ (${m})`;
-                if (idx === CURRENT_MONTH_IDX) opt.selected = true;
                 
-                selector.appendChild(opt);
-                entryMonth.appendChild(opt.cloneNode(true));
+                // ডিফল্ট বর্তমান মাস সিলেক্ট করা
+                if (idx === currentMonthIdx) opt.selected = true;
+                
+                if (selector) selector.appendChild(opt.cloneNode(true));
+                if (entryMonth) entryMonth.appendChild(opt.cloneNode(true));
                 if (entryDpsMonth) entryDpsMonth.appendChild(opt.cloneNode(true));
                 if (editRcpMonth) editRcpMonth.appendChild(opt.cloneNode(true));
+                
+                if (newMemberJoinMonth) newMemberJoinMonth.appendChild(opt.cloneNode(true));
+                if (newMemberStartMonth) newMemberStartMonth.appendChild(opt.cloneNode(true));
+                if (editMemberJoinMonth) editMemberJoinMonth.appendChild(opt.cloneNode(true));
+                if (editMemberStartMonth) editMemberStartMonth.appendChild(opt.cloneNode(true));
+                if (cardSelectMonth) cardSelectMonth.appendChild(opt.cloneNode(true));
             }
 
-            if (!selectedReceiptMonth || normalizeMonthIndex(selectedReceiptMonth) > CURRENT_MONTH_IDX) {
-                selectedReceiptMonth = MONTH_NAMES[CURRENT_MONTH_IDX];
+            if (!selectedReceiptMonth) {
+                selectedReceiptMonth = MONTH_NAMES[currentMonthIdx];
             }
         }
 
@@ -2323,7 +2356,6 @@
             document.getElementById('receipt-modal').classList.remove('hidden');
         }
 
-        // PDF ডাউনলোড (মার্জিন ও বিন্যাস শতভাগ অক্ষুণ্ণ রেখে)
         function downloadReceiptPDF() {
             const element = document.getElementById('printable-receipt');
             const opt = {
@@ -2361,11 +2393,11 @@
             btn.innerHTML = `<i class="fas fa-spinner fa-spin mr-1"></i> গুগল শীটে সেভ হচ্ছে...`;
 
             try {
-                await fetch(GOOGLE_SCRIPT_URL, {
+                await fetch(API_URL, {
                     method: 'POST',
-                    mode: 'no-cors',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
+                        adminPass: "admin123",
                         actionType: "save_policy_text",
                         policyText: text
                     })
@@ -2410,11 +2442,11 @@
             reader.onload = async function(e) {
                 const base64Data = e.target.result.split(',')[1];
                 try {
-                    await fetch(GOOGLE_SCRIPT_URL, {
+                    await fetch(API_URL, {
                         method: 'POST',
-                        mode: 'no-cors',
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify({
+                            adminPass: "admin123",
                             actionType: "policy",
                             fileName: `PPG_Policy_${new Date().getFullYear()}.pdf`,
                             pdfBase64: base64Data
@@ -2433,7 +2465,6 @@
             reader.readAsDataURL(fileInput.files[0]);
         }
 
-        // WhatsApp এ রশিদ পাঠানো (কম্পিউটার ও মোবাইল উভয় থেকেই ১০০% কার্যকর)
         function shareWhatsApp() {
             if (currentUserRole !== 'admin' || !selectedMember) return;
             const idx = normalizeMonthIndex(selectedReceiptMonth);
@@ -2544,7 +2575,7 @@
             const penalty = calculatePenalty(currentDay);
             const baseInst = (m.shares || 1) * 1000;
             const totalDue = baseInst + penalty + (m.previousDue || 0);
-            const monthBn = "১০. অক্টোবর ২০২৬";
+            const monthBn = "১০. অক্টোবর ২০২৬"; // অথবা ডায়নামিক মাস
 
             const msg = encodeURIComponent(
                 `📢 *মাসিক কিস্তি পরিশোধের নোটিশ*\n` +
@@ -2753,7 +2784,7 @@
             }
 
             let sumDep = 0;
-            for (let i = START_MONTH_IDX; i <= CURRENT_MONTH_IDX; i++) {
+            for (let i = START_MONTH_IDX; i <= new Date().getMonth(); i++) {
                 const r = member.monthlyRecords[MONTH_NAMES[i]] || member.monthlyRecords[i] || member.monthlyRecords[MONTH_NAMES_BN[i]];
                 if (r && r.paid) sumDep += parseAnyNumber(r.amount);
             }
@@ -2778,7 +2809,7 @@
             });
 
             let missed = 0;
-            for (let i = START_MONTH_IDX; i <= CURRENT_MONTH_IDX; i++) {
+            for (let i = START_MONTH_IDX; i <= new Date().getMonth(); i++) {
                 const mKey = MONTH_NAMES[i];
                 if (!member.monthlyRecords[mKey] && !member.monthlyRecords[i] && !member.monthlyRecords[MONTH_NAMES_BN[i]]) {
                     missed++;
@@ -2786,11 +2817,11 @@
             }
             member.missedCount = missed;
 
-            fetch(GOOGLE_SCRIPT_URL, {
+            fetch(API_URL, {
                 method: 'POST',
-                mode: 'no-cors',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
+                    adminPass: "admin123",
                     actionType: "installment",
                     folderName: monthVal,
                     fileName: `MEM_${member.id}_${monthVal.replace(/[^a-zA-Z0-9]/g, '_')}.jpg`,
@@ -2810,7 +2841,7 @@
             });
 
             submitBtn.disabled = false;
-            submitBtn.innerHTML = `<i class="fas fa-check-circle"></i> সম্পন্ন`;
+            submitBtn.innerHTML = `<i class="fas fa-check-circle"></i> গুগল শীট ও ড্রাইভে সেভ করুন`;
             closeModal('admin-entry-modal');
 
             selectedMember = member;
@@ -2843,11 +2874,11 @@
             const bankName = document.getElementById('entry-dps-bank').value.trim();
             const trxId = document.getElementById('entry-dps-trxid').value.trim();
 
-            fetch(GOOGLE_SCRIPT_URL, {
+            fetch(API_URL, {
                 method: 'POST',
-                mode: 'no-cors',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
+                    adminPass: "admin123",
                     actionType: "institutional_dps",
                     folderName: monthVal,
                     fileName: `DPS_${monthVal.replace(/[^a-zA-Z0-9]/g, '_')}.jpg`,
@@ -2881,7 +2912,6 @@
             alert("প্রাতিষ্ঠানিক ডিপিএস ফান্ডে সফলভাবে সেভ হয়েছে!");
         }
 
-        // এডিট রসিদ মোডাল খোলার ফাংশন
         function openEditReceiptModal() {
             if (currentUserRole !== 'admin' || !selectedMember) return;
             const rec = selectedMember.monthlyRecords ? (selectedMember.monthlyRecords[selectedReceiptMonth] || selectedMember.monthlyRecords[normalizeMonthIndex(selectedReceiptMonth)]) : null;
@@ -2909,7 +2939,6 @@
             document.getElementById('receipt-edit-modal').classList.remove('hidden');
         }
 
-        // রশিদ তথ্য ও ফটো সম্পাদনা সাবমিট
         async function handleReceiptEditSubmit(e) {
             if (e) e.preventDefault();
             if (currentUserRole !== 'admin') return;
@@ -2960,7 +2989,7 @@
             }
 
             let sumDep = 0;
-            for (let i = START_MONTH_IDX; i <= CURRENT_MONTH_IDX; i++) {
+            for (let i = START_MONTH_IDX; i <= new Date().getMonth(); i++) {
                 const r = member.monthlyRecords[MONTH_NAMES[i]] || member.monthlyRecords[i] || member.monthlyRecords[MONTH_NAMES_BN[i]];
                 if (r && r.paid) sumDep += parseAnyNumber(r.amount);
             }
@@ -2982,11 +3011,11 @@
             btn.disabled = true;
             btn.innerHTML = `<i class="fas fa-spinner fa-spin mr-1"></i> আপডেট হচ্ছে...`;
 
-            fetch(GOOGLE_SCRIPT_URL, {
+            fetch(API_URL, {
                 method: 'POST',
-                mode: 'no-cors',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
+                    adminPass: "admin123",
                     actionType: "edit_receipt",
                     folderName: newMonth,
                     fileName: `MEM_${memberId}_${newMonth.replace(/[^a-zA-Z0-9]/g, '_')}_edit.jpg`,
@@ -3006,11 +3035,53 @@
 
             alert("রশিদ ও ভাউচারের তথ্য সফলভাবে এডিট করা হয়েছে!");
             btn.disabled = false;
-            btn.innerHTML = `<i class="fas fa-save mr-1"></i> আপডেট সংরক্ষণ`;
+            btn.innerHTML = `<i class="fas fa-save mr-1"></i> আপডেট`;
             closeModal('receipt-edit-modal');
             selectedReceiptMonth = newMonth;
             updateAuthUI();
             onReceiptMonthChange(newMonth);
+        }
+
+        // রশিদ ডিলিট অপশন
+        function confirmDeleteReceipt() {
+            if (currentUserRole !== 'admin') return;
+            const mId = document.getElementById('edit-rcp-member-id').value;
+            const month = document.getElementById('edit-rcp-old-month').value;
+            
+            if (confirm(`আপনি কি নিশ্চিতভাবে ${mId} আইডির ${month} মাসের রশিদটি ডিলিট করতে চান? (এটি ডাটাবেস থেকেও মুছে যাবে)`)) {
+                
+                fetch(API_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        adminPass: "admin123",
+                        actionType: 'delete_receipt',
+                        memberId: mId,
+                        month: month
+                    })
+                });
+
+                // Locally Delete
+                const member = membersData.find(m => m.id === mId);
+                if (member && member.monthlyRecords) {
+                    delete member.monthlyRecords[month];
+                    const idx = normalizeMonthIndex(month);
+                    if (idx !== -1) {
+                        delete member.monthlyRecords[idx];
+                        delete member.monthlyRecords[String(idx)];
+                        delete member.monthlyRecords[MONTH_NAMES[idx]];
+                        delete member.monthlyRecords[MONTH_NAMES_BN[idx]];
+                    }
+                }
+                
+                accountsData = accountsData.filter(a => !(normalizeMemberId(a.memberId) === normalizeMemberId(mId) && (a.month === month || a.monthBn === month || normalizeMonthIndex(a.month) === normalizeMonthIndex(month))));
+                
+                alert("রশিদ সফলভাবে ডিলিট করা হয়েছে!");
+                closeModal('receipt-edit-modal');
+                closeModal('receipt-modal');
+                updateAuthUI();
+                if (selectedMember) showMemberDetail(selectedMember.id);
+            }
         }
 
         function openExpenseModal() {
@@ -3043,13 +3114,13 @@
                 imageBase64 = await compressImage(fileInput.files[0]);
             }
 
-            const currentMonthName = MONTH_NAMES[CURRENT_MONTH_IDX];
+            const currentMonthName = MONTH_NAMES[new Date().getMonth()];
 
-            fetch(GOOGLE_SCRIPT_URL, {
+            fetch(API_URL, {
                 method: 'POST',
-                mode: 'no-cors',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
+                    adminPass: "admin123",
                     actionType: "add_expense",
                     folderName: currentMonthName,
                     fileName: `EXP_${voucher}.jpg`,
@@ -3081,7 +3152,7 @@
         }
 
         function renderExpenses() {
-            if (!isLoggedIn) return; // সাধারণ ভিজিটরদের জন্য বন্ধ
+            if (!isLoggedIn) return; 
             const tbody = document.getElementById('expenses-table-tbody');
             if (!tbody) return;
             tbody.innerHTML = '';
@@ -3109,7 +3180,7 @@
         }
 
         function renderDpsHistory() {
-            if (!isLoggedIn) return; // সাধারণ ভিজিটরদের জন্য বন্ধ
+            if (!isLoggedIn) return; 
             const tbody = document.getElementById('dps-history-tbody');
             if (!tbody) return;
             tbody.innerHTML = '';
@@ -3180,7 +3251,6 @@
             return { id, name, phone, shares, joinDate, joinMonth, membershipFee, password, status, fatherName, startMonth, nomineeName, nomineeRelation, photoUrl };
         }
 
-        // স্মার্ট হেডার ও ডেটা পার্সিং (কলাম স্থানচ্যুতির নির্ভুল সমাধান)
         function parseAccountRowData(row, headerMap) {
             if (!row) return null;
             let memberId = "", name = "", month = "", monthBn = "", amount = 0, penalty = 0, paymentMethod = "", trxId = "", proofUrl = "", timestamp = "";
@@ -3244,36 +3314,6 @@
             return { memberId, name, month, monthBn, amount, penalty, paymentMethod, trxId, proofUrl, timestamp };
         }
 
-        function fetchJsonp(url) {
-            return new Promise((resolve, reject) => {
-                const callbackName = 'ppg_jsonp_cb_' + Date.now() + '_' + Math.floor(Math.random() * 10000);
-                const script = document.createElement('script');
-                let timer = setTimeout(() => {
-                    cleanup();
-                    reject(new Error('JSONP Request Timeout'));
-                }, 12000);
-
-                function cleanup() {
-                    if (timer) clearTimeout(timer);
-                    delete window[callbackName];
-                    if (script.parentNode) script.parentNode.removeChild(script);
-                }
-
-                window[callbackName] = function(data) {
-                    cleanup();
-                    resolve(data);
-                };
-
-                const sep = url.includes('?') ? '&' : '?';
-                script.src = `${url}${sep}callback=${callbackName}&_t=${Date.now()}`;
-                script.onerror = function() {
-                    cleanup();
-                    reject(new Error('JSONP Script Load Failed'));
-                };
-                document.body.appendChild(script);
-            });
-        }
-
         function processSheetData(data) {
             if (!data) return;
 
@@ -3304,7 +3344,6 @@
 
             if (rawAccounts && rawAccounts.length > 0) {
                 accountsData = [];
-
                 let headerMap = null;
                 if (Array.isArray(rawAccounts[0])) {
                     const r0 = rawAccounts[0].map(c => (c || '').toString().trim().toLowerCase());
@@ -3517,7 +3556,7 @@
 
             membersData.forEach(m => {
                 let missed = 0;
-                for (let idx = START_MONTH_IDX; idx <= CURRENT_MONTH_IDX; idx++) {
+                for (let idx = START_MONTH_IDX; idx <= new Date().getMonth(); idx++) {
                     const mKey = MONTH_NAMES[idx];
                     const bnKey = MONTH_NAMES_BN[idx];
                     if (!m.monthlyRecords || (!m.monthlyRecords[mKey] && !m.monthlyRecords[idx] && !m.monthlyRecords[bnKey])) {
@@ -3549,26 +3588,25 @@
                 const member = membersData.find(m => m.id.toLowerCase() === viewMemberId.toLowerCase());
                 if (member && (!document.getElementById('receipt-modal') || document.getElementById('receipt-modal').classList.contains('hidden'))) {
                     selectedMember = member;
-                    if (targetMonth && normalizeMonthIndex(targetMonth) <= CURRENT_MONTH_IDX) {
+                    if (targetMonth) {
                         selectedReceiptMonth = targetMonth;
                     } else {
-                        selectedReceiptMonth = MONTH_NAMES[CURRENT_MONTH_IDX];
+                        selectedReceiptMonth = MONTH_NAMES[new Date().getMonth()];
                     }
-                    enterSite();
                     openReceiptModal();
                 }
             }
         }
 
         async function syncDataFromGoogleSheet() {
-            if (!GOOGLE_SCRIPT_URL) return;
+            if (!API_URL) return;
 
             let liveData = null;
 
             try {
                 const controller = new AbortController();
-                const timeoutId = setTimeout(() => controller.abort(), 7000);
-                const response = await fetch(GOOGLE_SCRIPT_URL + (GOOGLE_SCRIPT_URL.includes('?') ? '&' : '?') + '_t=' + Date.now(), {
+                const timeoutId = setTimeout(() => controller.abort(), 12000); // ফাস্ট লোডের জন্য
+                const response = await fetch(API_URL + '?_t=' + Date.now(), {
                     method: 'GET',
                     signal: controller.signal
                 });
@@ -3577,15 +3615,7 @@
                     liveData = await response.json();
                 }
             } catch (fetchErr) {
-                console.warn("Fetch failed, trying JSONP fallback:", fetchErr);
-            }
-
-            if (!liveData || !liveData.members) {
-                try {
-                    liveData = await fetchJsonp(GOOGLE_SCRIPT_URL);
-                } catch (jsonpErr) {
-                    console.error("JSONP Fallback also failed:", jsonpErr);
-                }
+                console.warn("API Fetch failed", fetchErr);
             }
 
             if (liveData && (liveData.members || liveData.accounts)) {
@@ -3595,6 +3625,9 @@
                 processSheetData(liveData);
                 checkAndOpenReceiptFromUrl();
             }
+            
+            // ডাটা লোড হওয়ার পরে এনিমেশন হাইড করে মেইন পেইজে প্রবেশ করবে
+            enterSite();
         }
 
         function renderMembers(dataToRender = membersData) {
@@ -3619,9 +3652,6 @@
                     actionButtons += `
                         <button type="button" onclick="openEditMemberModal('${m.id}')" class="bg-amber-100 hover:bg-amber-200 text-amber-900 text-[11px] px-2.5 py-1 rounded-lg font-bold transition ml-1">
                             <i class="fas fa-edit"></i>
-                        </button>
-                        <button type="button" onclick="deleteMemberDirect('${m.id}')" class="bg-rose-100 hover:bg-rose-200 text-rose-800 text-[11px] px-2.5 py-1 rounded-lg font-bold transition ml-1">
-                            <i class="fas fa-trash-alt"></i>
                         </button>
                     `;
                 }
@@ -3667,6 +3697,32 @@
             document.getElementById('new-m-photo-file').value = '';
             document.getElementById('member-add-modal').classList.remove('hidden');
         }
+        
+        // লগইন মেসেজ ও স্বাগতম বার্তা (হোয়াটসঅ্যাপ)
+        function sendWelcomeSms(member) {
+            const loginUrl = window.location.origin + window.location.pathname;
+            const msg = encodeURIComponent(
+                `🎉 *স্বাগতম! পহরডাঙ্গা পার্টনারশিপ গ্রুপে*\n` +
+                `"এক সুতোয় বাঁধা তারুণ্য, বাণিজ্যে অনন্য!"\n` +
+                `------------------------------------\n` +
+                `প্রিয় ${member.name},\n` +
+                `আপনাকে *${member.joinMonth}* হতে আমাদের প্রতিষ্ঠানে অংশীদার হিসেবে যুক্ত করা হয়েছে।\n\n` +
+                `🔐 *আপনার লগইন তথ্য:*\n` +
+                `👤 *আইডি:* ${member.id}\n` +
+                `🔑 *পাসওয়ার্ড:* ${member.password}\n\n` +
+                `🌐 *ওয়েবসাইটে লগইন করুন:*\n${loginUrl}\n\n` +
+                `_ধন্যবাদান্তে: পরিচালনা পর্ষদ_`
+            );
+            openWhatsAppUrl(formatWhatsAppLink(member.phone, msg));
+        }
+        
+        function triggerWelcomeSmsFromEdit() {
+            const mId = document.getElementById('edit-m-id').value;
+            const m = membersData.find(x => x.id === mId);
+            if (m) {
+                sendWelcomeSms(m);
+            }
+        }
 
         async function handleNewMemberSubmit(e) {
             if (e) e.preventDefault();
@@ -3705,11 +3761,11 @@
             btn.disabled = true;
             btn.innerHTML = `<i class="fas fa-spinner fa-spin mr-1"></i> সেভ হচ্ছে...`;
 
-            fetch(GOOGLE_SCRIPT_URL, {
+            fetch(API_URL, {
                 method: 'POST',
-                mode: 'no-cors',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
+                    adminPass: "admin123",
                     actionType: "add_member",
                     memberData: newMember
                 })
@@ -3720,9 +3776,15 @@
             newMember.monthlyRecords = {};
             membersData.push(newMember);
 
-            alert("নতুন সদস্য নিবন্ধিত হয়েছে!");
+            alert("নতুন সদস্য সফলভাবে নিবন্ধিত হয়েছে!");
             closeModal('member-add-modal');
             updateAuthUI();
+            
+            // যুক্ত করার পর স্বাগতম বার্তা পাঠাতে পপআপ
+            if (confirm("সদস্য যুক্ত হয়েছে! এখন কি হোয়াটসঅ্যাপে স্বাগতম ও লগিন মেসেজ পাঠাতে চান?")) {
+                sendWelcomeSms(newMember);
+            }
+            
             btn.disabled = false;
             btn.innerHTML = `<i class="fas fa-check-circle mr-1"></i> সদস্য যুক্ত করুন`;
         }
@@ -3745,7 +3807,7 @@
             document.getElementById('edit-m-start-month').value = member.startMonth || 'সেপ্টেম্বর';
             document.getElementById('edit-m-status').value = member.status || 'Active';
             document.getElementById('edit-m-photo-file').value = '';
-            document.getElementById('edit-m-pass').value = '';
+            document.getElementById('edit-m-pass').value = member.password || '';
 
             document.getElementById('member-edit-modal').classList.remove('hidden');
         }
@@ -3785,11 +3847,11 @@
             btn.disabled = true;
             btn.innerHTML = `<i class="fas fa-spinner fa-spin mr-1"></i> ড্রাইভে সেভ হচ্ছে...`;
 
-            fetch(GOOGLE_SCRIPT_URL, {
+            fetch(API_URL, {
                 method: 'POST',
-                mode: 'no-cors',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
+                    adminPass: "admin123",
                     actionType: "edit_member",
                     memberData: updatedData
                 })
@@ -3815,7 +3877,7 @@
             closeModal('member-edit-modal');
             updateAuthUI();
             btn.disabled = false;
-            btn.innerHTML = `<i class="fas fa-save mr-1"></i> তথ্য সংরক্ষণ`;
+            btn.innerHTML = `<i class="fas fa-save mr-1"></i> সংরক্ষণ`;
         }
 
         function confirmDeleteMember() {
@@ -3827,11 +3889,11 @@
             if (currentUserRole !== 'admin') return;
             if (!confirm(`আপনি কি নিশ্চিতভাবে ${memberId} সদস্যকে ডিলিট করতে চান?`)) return;
 
-            fetch(GOOGLE_SCRIPT_URL, {
+            fetch(API_URL, {
                 method: 'POST',
-                mode: 'no-cors',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
+                    adminPass: "admin123",
                     actionType: "delete_member",
                     memberId: memberId
                 })
@@ -3861,7 +3923,6 @@
         }
 
         window.onload = function() {
-            enterSite();
             restoreSession();
             
             try {
@@ -3874,6 +3935,7 @@
             } catch (e) {}
 
             updateAuthUI();
+            // ডাটা লোড ও এনিমেশন শেষ করতে API কল
             syncDataFromGoogleSheet();
         };
     </script>
