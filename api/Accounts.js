@@ -1,10 +1,9 @@
 export default async function handler(req, res) {
-    // Vercel Environment Variables থেকে ডাটা নেওয়া
     const scriptURL = process.env.ACCOUNT_GAS_SCRIPT_URL;
     const adminPass = process.env.ACCOUNT_ADMIN_PASSWORD;
-    const adminId = process.env.ACCOUNT_ADMIN_ID || "admin"; // ডিফল্ট admin
+    const adminId = process.env.ACCOUNT_ADMIN_ID || "admin";
 
-    // ১. হেডার সেটআপ (CORS Security)
+    // ১. আল্ট্রা-ফাস্ট CORS ও পারফরম্যান্স হেডার
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Methods', 'GET,POST,OPTIONS');
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
@@ -13,10 +12,17 @@ export default async function handler(req, res) {
         return res.status(200).end();
     }
 
-    // ২. GET রিকোয়েস্ট (গুগল শীট থেকে সমস্ত ডাটা দ্রুত পড়া)
+    // ২. GET রিকোয়েস্টে Edge Cache হ্যান্ডলিং (যাতে কয়েক মিলিসেকেন্ডেই রেসপন্স চলে আসে)
     if (req.method === 'GET') {
         try {
-            const response = await fetch(scriptURL + (scriptURL.includes('?') ? '&' : '?') + '_t=' + Date.now());
+            // Vercel Edge Cache: ব্রাউজার ১ সেকেন্ড এবং ব্যাকগ্রাউন্ডে ৬০ সেকেন্ড ক্যাশ সাপোর্ট করবে
+            res.setHeader('Cache-Control', 's-maxage=1, stale-while-revalidate=59');
+
+            const fetchUrl = scriptURL + (scriptURL.includes('?') ? '&' : '?') + '_t=' + Date.now();
+            const response = await fetch(fetchUrl, {
+                method: 'GET',
+                headers: { 'Accept': 'application/json' }
+            });
             const data = await response.json();
             return res.status(200).json(data);
         } catch (error) {
@@ -24,12 +30,12 @@ export default async function handler(req, res) {
         }
     }
 
-    // ৩. POST রিকোয়েস্ট (লগইন, কিস্তি এন্ট্রি, পলিসি এডিট/ডিলিট ইত্যাদি)
+    // ৩. POST রিকোয়েস্ট (এডমিন অপারেশন)
     if (req.method === 'POST') {
         try {
             const bodyData = typeof req.body === 'string' ? JSON.parse(req.body) : req.body;
 
-            // এডমিন লগিন ভেরিফিকেশন
+            // এডমিন লগিন
             if (bodyData.actionType === 'admin_login') {
                 if (bodyData.id === adminId && bodyData.pass === adminPass) {
                     return res.status(200).json({ success: true, role: 'admin' });
@@ -38,7 +44,7 @@ export default async function handler(req, res) {
                 }
             }
 
-            // সিকিউরিটি চেক: ডাটা পরিবর্তন/ডিলিটের জন্য এডমিন পাসওয়ার্ড নিশ্চিতকরণ
+            // সিকিউরিটি চেক
             if (bodyData.adminPass !== adminPass) {
                 return res.status(401).json({ 
                     error: "Unauthorized", 
@@ -46,7 +52,6 @@ export default async function handler(req, res) {
                 });
             }
 
-            // গুগল স্ক্রিপ্টে পাঠানোর আগে পাসওয়ার্ড নিরাপদভাবে রিমুভ করা
             delete bodyData.adminPass;
 
             const response = await fetch(scriptURL, {
