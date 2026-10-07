@@ -35,7 +35,6 @@
             justify-content: space-between;
             -webkit-overflow-scrolling: touch;
         }
-        /* ১ ও ৯ স্পষ্টভাবে দেখানোর জন্য Noto Sans Bengali ফিক্সড করা হলো */
         .font-digit, .bn-number {
             font-family: 'Noto Sans Bengali', Arial, sans-serif !important;
             font-weight: 700;
@@ -80,14 +79,14 @@
             animation: fadeInOut 1.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
 
-        /* প্রাতিষ্ঠানিক নীতিমালার প্রফেশনাল স্টাইল */
+        /* প্রাতিষ্ঠানিক নীতিমালার কার্ড স্টাইল */
         .policy-article {
             background: #ffffff;
             border: 1px solid #e2e8f0;
             border-left: 4px solid #1e3a8a;
             border-radius: 10px;
-            padding: 14px 16px;
-            margin-bottom: 14px;
+            padding: 16px 18px;
+            margin-bottom: 16px;
             box-shadow: 0 1px 3px rgba(0,0,0,0.02);
             transition: all 0.2s ease;
         }
@@ -96,25 +95,38 @@
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
         }
         .policy-clause-title {
-            font-size: 14px;
-            font-weight: 700;
+            font-size: 14.5px;
+            font-weight: 800;
             color: #1e3a8a;
             display: flex;
             align-items: center;
             gap: 8px;
-            margin-bottom: 6px;
-            border-bottom: 1px dashed #e2e8f0;
-            padding-bottom: 5px;
+            margin-bottom: 8px;
+            border-bottom: 1px dashed #cbd5e1;
+            padding-bottom: 6px;
         }
         .policy-subclause {
             font-size: 12.5px;
             color: #334155;
-            line-height: 1.7;
+            line-height: 1.8;
             text-align: justify;
-            margin-top: 5px;
         }
         .policy-subclause strong {
             color: #0f172a;
+        }
+
+        /* কাস্টম স্ক্রলবার ও স্টিকি কলাম */
+        .sticky-col {
+            position: sticky;
+            left: 0;
+            background: #ffffff;
+            z-index: 10;
+        }
+        .sticky-col-header {
+            position: sticky;
+            left: 0;
+            background: #f1f5f9;
+            z-index: 20;
         }
     </style>
 </head>
@@ -159,6 +171,7 @@
                 <div class="hidden md:flex space-x-5 items-center text-sm font-semibold">
                     <a href="#home" class="hover:text-emerald-400 transition">হোম</a>
                     <a href="#accounting-panel" class="hover:text-emerald-400 transition text-emerald-300"><i class="fas fa-calculator mr-1"></i>হিসাব প্যানেল</a>
+                    <a href="#statement-section" class="auth-only hidden hover:text-emerald-400 transition text-sky-300"><i class="fas fa-table mr-1"></i>জমা স্টেটমেন্ট</a>
                     <button type="button" onclick="openAdminEntryModal()" class="admin-only hidden hover:text-emerald-400 transition text-amber-300"><i class="fas fa-plus-circle mr-1"></i>কিস্তি এন্ট্রি</button>
                     <button type="button" onclick="openDpsEntryModal()" class="admin-only hidden hover:text-emerald-400 transition text-amber-200"><i class="fas fa-piggy-bank mr-1"></i>ডিপিএস ফান্ড এন্ট্রি</button>
                     <button type="button" onclick="openExpenseModal()" class="admin-only hidden hover:text-emerald-400 transition text-rose-300"><i class="fas fa-receipt mr-1"></i>খরচ এন্ট্রি</button>
@@ -168,7 +181,6 @@
                     <button type="button" onclick="openMembersModal()" class="hover:text-emerald-400 transition">সদস্য তালিকা</button>
                     <button type="button" onclick="openPolicyModal()" class="hover:text-emerald-400 transition">নীতিমালা</button>
                     
-                    <!-- অ্যাপ ইনস্টল বাটন (Android ও iOS উভয় সাপোর্ট) -->
                     <button type="button" id="btn-pwa-install" onclick="triggerPwaInstall()" class="hidden bg-indigo-700 hover:bg-indigo-600 text-amber-300 px-3 py-1.5 rounded-xl transition items-center gap-1.5 text-xs shadow border border-amber-400/40">
                         <i class="fas fa-download"></i> অ্যাপ ইনস্টল
                     </button>
@@ -194,6 +206,7 @@
         <div id="mobile-menu" class="hidden md:hidden bg-indigo-950 border-t border-indigo-800 px-4 pt-3 pb-5 space-y-3 text-sm">
             <a href="#home" onclick="toggleMobileMenu()" class="block text-slate-200 font-semibold py-1">হোম</a>
             <a href="#accounting-panel" onclick="toggleMobileMenu()" class="block text-emerald-300 font-semibold py-1"><i class="fas fa-calculator mr-2"></i>হিসাব প্যানেল</a>
+            <a href="#statement-section" onclick="toggleMobileMenu()" class="auth-only hidden block text-sky-300 font-semibold py-1"><i class="fas fa-table mr-2"></i>জমা স্টেটমেন্ট</a>
             <button type="button" onclick="openAdminEntryModal(); toggleMobileMenu();" class="admin-only hidden block text-amber-300 font-semibold py-1 text-left w-full"><i class="fas fa-plus-circle mr-2"></i>কিস্তি এন্ট্রি</button>
             <button type="button" onclick="openDpsEntryModal(); toggleMobileMenu();" class="admin-only hidden block text-amber-200 font-semibold py-1 text-left w-full"><i class="fas fa-piggy-bank mr-2"></i>ডিপিএস ফান্ড এন্ট্রি</button>
             <button type="button" onclick="openExpenseModal(); toggleMobileMenu();" class="admin-only hidden block text-rose-300 font-semibold py-1 text-left w-full"><i class="fas fa-receipt mr-2"></i>খরচ এন্ট্রি</button>
@@ -219,14 +232,18 @@
                 <span class="bg-emerald-500/20 border border-emerald-400/30 text-emerald-300 text-xs px-3.5 py-1.5 rounded-full font-semibold">স্বচ্ছতা ও উন্নয়ন</span>
                 <h2 class="text-3xl md:text-5xl font-extrabold mt-4 mb-2 leading-tight">পহরডাঙ্গা পার্টনারশিপ গ্রুপ</h2>
                 <p class="text-indigo-200 text-base md:text-lg mb-2 italic">"এক সুতোয় বাঁধা তারুণ্য, বাণিজ্যে অনন্য!"</p>
-                <div class="flex items-center gap-2 text-xs mb-6">
+                <div class="flex items-center gap-2 text-xs mb-6 flex-wrap">
                     <span class="bg-white/10 px-3 py-1 rounded-full text-emerald-300 font-digit">কার্যক্রম শুরু: ০৯. সেপ্টেম্বর ২০২৬</span>
                     <span class="bg-white/10 px-3 py-1 rounded-full text-amber-300 font-digit">মেম্বারশিপ ফি: ৳ ২০০</span>
+                    <span class="bg-white/10 px-3 py-1 rounded-full text-sky-300 font-digit">সর্বোচ্চ সদস্য: ৫০ জন | ১০০ শেয়ার</span>
                 </div>
                 
                 <div class="flex flex-wrap gap-4">
                     <a href="#accounting-panel" class="bg-emerald-500 text-slate-950 font-bold px-6 py-3 rounded-xl hover:bg-emerald-400 transition shadow-lg flex items-center gap-2">
                         <i class="fas fa-calculator"></i> গ্রুপ হিসাব দেখুন
+                    </a>
+                    <a href="#statement-section" class="auth-only hidden bg-sky-600 hover:bg-sky-500 text-white font-bold px-6 py-3 rounded-xl transition shadow-lg flex items-center gap-2">
+                        <i class="fas fa-table"></i> জমা স্টেটমেন্ট
                     </a>
                     <button type="button" onclick="openAdminEntryModal()" class="admin-only hidden bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold px-6 py-3 rounded-xl transition shadow-lg flex items-center gap-2">
                         <i class="fas fa-file-invoice-dollar"></i> কিস্তি এন্ট্রি
@@ -244,7 +261,7 @@
                         <i class="fas fa-users"></i> সদস্য তালিকা
                     </button>
                     <button type="button" onclick="openPolicyModal()" class="bg-white/10 border border-white/20 text-white font-bold px-6 py-3 rounded-xl hover:bg-white/20 transition flex items-center gap-2">
-                        <i class="fas fa-file-pdf text-rose-400"></i> প্রাতিষ্ঠানিক নীতিমালা
+                        <i class="fas fa-file-pdf text-rose-400"></i> প্রাতিষ্ঠানিক সংবিধান ও নীতিমালা
                     </button>
                 </div>
             </div>
@@ -336,7 +353,7 @@
             <!-- প্রাতিষ্ঠানিক ডিপিএস বিবরণী -->
             <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-4">
                 <h4 class="font-bold text-slate-800 text-sm border-b pb-2 flex items-center justify-between">
-                    <span><i class="fas fa-vault text-amber-600 mr-2"></i>প্রাতিষ্ঠানিক ডিপিএস ও ব্যাংক তহবিল বিবরণী</span>
+                    <span><i class="fas fa-vault text-amber-600 mr-2"></i> প্রাতিষ্ঠানিক ডিপিএস ও ব্যাংক তহবিল বিবরণী</span>
                     <span class="text-[11px] text-slate-500 font-normal">ব্যাংক ফান্ড থেকে ডিপিএসে স্থানান্তরিত হিসাব</span>
                 </h4>
                 <div class="overflow-x-auto">
@@ -357,6 +374,64 @@
                             </tr>
                         </tbody>
                     </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= সার্বজনীন জমা স্টেটমেন্ট সেকশন ================= -->
+        <section id="statement-section" class="auth-only hidden space-y-6 pt-4">
+            <div class="bg-white p-6 rounded-3xl border border-slate-200 shadow-lg space-y-5">
+                <div class="flex flex-wrap items-center justify-between gap-3 border-b pb-4">
+                    <div>
+                        <h3 class="text-xl md:text-2xl font-bold text-slate-900 flex items-center gap-2">
+                            <i class="fas fa-table-list text-indigo-600"></i> সকল সদস্যের সার্বিক জমা স্টেটমেন্ট
+                        </h3>
+                        <p class="text-xs text-slate-500 mt-0.5">কার্যক্রম শুরুর মাস (০৯. সেপ্টেম্বর ২০২৬) হতে সদস্যভিত্তিক বাৎসরিক ও ধারাবাহিক জমার সম্পূর্ণ খতিয়ান</p>
+                    </div>
+
+                    <div class="flex items-center gap-2 flex-wrap">
+                        <button type="button" onclick="printStatementTable()" class="px-3.5 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl text-xs font-bold shadow flex items-center gap-1.5 transition">
+                            <i class="fas fa-print"></i> স্টেটমেন্ট প্রিন্ট / PDF
+                        </button>
+                    </div>
+                </div>
+
+                <!-- ফিল্টারিং বার -->
+                <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200 flex flex-wrap items-end gap-3 text-xs">
+                    <div class="flex-1 min-w-[140px]">
+                        <label class="block font-bold text-slate-700 mb-1">শুরুর তারিখ (From)</label>
+                        <input type="date" id="stmt-filter-from" class="w-full border p-2 rounded-xl bg-white font-medium text-slate-800" onchange="renderUniversalStatement()">
+                    </div>
+                    <div class="flex-1 min-w-[140px]">
+                        <label class="block font-bold text-slate-700 mb-1">শেষ তারিখ (To)</label>
+                        <input type="date" id="stmt-filter-to" class="w-full border p-2 rounded-xl bg-white font-medium text-slate-800" onchange="renderUniversalStatement()">
+                    </div>
+                    <div class="flex-1 min-w-[160px]">
+                        <label class="block font-bold text-slate-700 mb-1">সদস্য খুঁজুন (নাম বা আইডি)</label>
+                        <input type="text" id="stmt-filter-search" placeholder="সদস্যের নাম বা PPG-XX..." class="w-full border p-2 rounded-xl bg-white text-slate-800" oninput="renderUniversalStatement()">
+                    </div>
+                    <div class="flex gap-2">
+                        <button type="button" onclick="resetStatementFilters()" class="px-3 py-2 bg-slate-200 hover:bg-slate-300 text-slate-700 rounded-xl font-bold flex items-center gap-1">
+                            <i class="fas fa-undo"></i> রিসেট
+                        </button>
+                    </div>
+                </div>
+
+                <!-- স্টেটমেন্ট প্রিন্ট কন্টেইনার -->
+                <div id="statement-print-area" class="overflow-x-auto rounded-2xl border border-slate-200 shadow-inner bg-white max-h-[600px] overflow-y-auto">
+                    <table class="w-full text-left text-[11px] whitespace-nowrap border-collapse">
+                        <thead id="stmt-table-head" class="bg-slate-100 text-slate-700 font-bold sticky top-0 z-20 shadow-xs">
+                        </thead>
+                        <tbody id="stmt-table-body" class="divide-y divide-slate-100 text-slate-700">
+                        </tbody>
+                        <tfoot id="stmt-table-foot" class="bg-slate-100 text-slate-800 font-black sticky bottom-0 z-20 border-t-2 border-slate-300">
+                        </tfoot>
+                    </table>
+                </div>
+
+                <div class="text-[11px] text-slate-500 flex flex-wrap justify-between items-center pt-2">
+                    <span>* সবুজ রঙের ঘরে জমার পরিমাণ ও ব্র্যাকেটে জমার তারিখ প্রদর্শিত রয়েছে। লাল রঙের ঘর দ্বারা বকেয়া নির্দেশ করে।</span>
+                    <span id="stmt-records-count" class="font-bold text-indigo-700">মোট সদস্য: ০ জন</span>
                 </div>
             </div>
         </section>
@@ -383,7 +458,7 @@
         <p>© <span class="font-digit">২০২৬</span> পহরডাঙ্গা পার্টনারশিপ গ্রুপ। যাত্রা শুরু “সেপ্টেম্বর ২০২৬” থেকে। সর্বস্বত্ব সংরক্ষিত।</p>
     </footer>
 
-    <!-- ================= মোডালসমূহ ================= -->
+    <!-- ================= মোডালসমূহ (১ম অংশ) ================= -->
 
     <!-- কাস্টম স্বয়ংক্রিয় এলার্ট / টোস্ট মোডাল -->
     <div id="custom-alert-modal" class="fixed inset-0 bg-slate-900/40 backdrop-blur-xs hidden z-[110] flex items-center justify-center p-4 transition-all duration-300">
@@ -455,7 +530,7 @@
                             <div class="absolute inset-0 rounded-full border-4 border-emerald-500 shadow-xl overflow-hidden bg-slate-800">
                                 <img id="mp-photo" src="" alt="সদস্যের ছবি" class="w-full h-full object-cover">
                             </div>
-                            <label for="mp-direct-photo-file" class="admin-only hidden absolute bottom-0 right-0 bg-emerald-600 hover:bg-emerald-50 text-white p-2 rounded-full shadow-lg cursor-pointer border border-white/40" title="সদস্যের ছবি পরিবর্তন">
+                            <label for="mp-direct-photo-file" class="admin-only hidden absolute bottom-0 right-0 bg-emerald-600 hover:bg-emerald-500 text-white p-2 rounded-full shadow-lg cursor-pointer border border-white/40" title="সদস্যের ছবি পরিবর্তন">
                                 <i class="fas fa-camera text-xs"></i>
                                 <input type="file" id="mp-direct-photo-file" accept="image/*" class="hidden" onchange="handleDirectPhotoUpload(event)">
                             </label>
@@ -516,7 +591,7 @@
                                     <span class="text-white font-medium mr-1">:</span>
                                     <select id="cardSelectMonth" class="bg-[#0d1d31] border border-emerald-500/60 text-emerald-200 text-xs rounded-xl px-2 py-1 outline-none font-medium">
                                     </select>
-                                    <button type="button" onclick="saveCardStartMonth()" class="px-2.5 py-1 text-xs rounded-lg bg-emerald-600 hover:bg-emerald-50 text-white font-bold">সেভ</button>
+                                    <button type="button" onclick="saveCardStartMonth()" class="px-2.5 py-1 text-xs rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white font-bold">সেভ</button>
                                     <button type="button" onclick="switchCardToView()" class="px-2 py-1 text-xs rounded-lg bg-slate-800 text-slate-300">✕</button>
                                 </div>
                             </div>
@@ -574,7 +649,6 @@
             </div>
         </div>
     </div>
-
     <!-- ২. সদস্যের হিসাব খতিয়ান ও লেনদেন মোডাল -->
     <div id="member-detail-modal" class="fixed inset-0 bg-slate-900/80 backdrop-blur-sm hidden z-50 flex items-center justify-center p-3 md:p-6">
         <div class="bg-white rounded-3xl max-w-3xl w-full max-h-[92vh] flex flex-col shadow-2xl overflow-hidden border border-slate-200">
@@ -653,16 +727,14 @@
         </div>
     </div>
 
-    <!-- ৩. ডিজিটাল রশিদ মোডাল (পিডিএফ সুন্দর ও সুবিন্যস্ত করা হয়েছে) -->
+    <!-- ৩. ডিজিটাল রশিদ মোডাল -->
     <div id="receipt-modal" class="fixed inset-0 bg-slate-900/80 backdrop-blur-sm hidden z-50 flex items-center justify-center p-3 md:p-6">
         <div class="bg-white rounded-3xl max-w-lg w-full max-h-[94vh] flex flex-col shadow-2xl overflow-hidden border border-slate-200">
             <div class="p-4 bg-slate-900 text-white flex justify-between items-center">
                 <span class="text-xs font-bold flex items-center gap-1.5"><i class="fas fa-receipt text-emerald-400"></i> ডিজিটাল জমা রশিদ ও প্রমাণাদি</span>
                 <div class="flex items-center gap-2">
-                    <!-- মাস সিলেকশন - ফিল্টার করা হবে -->
                     <select id="receipt-month-selector" onchange="onReceiptMonthChange(this.value)" class="text-slate-800 text-[11px] py-1 px-2 rounded-lg font-bold border-none outline-none bg-white">
                     </select>
-                    <!-- Header Edit Button -->
                     <button type="button" onclick="openEditReceiptModal()" class="admin-only hidden text-xs bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold px-2.5 py-1 rounded-lg shadow">
                         <i class="fas fa-edit mr-1"></i>এডিট
                     </button>
@@ -671,7 +743,6 @@
             </div>
             
             <div class="p-4 overflow-y-auto space-y-4">
-                <!-- PDF রেন্ডারিং ও প্রিন্ট এরিয়া -->
                 <div id="printable-receipt" class="pdf-container space-y-4 bg-white text-slate-900 relative">
                     
                     <div style="display: flex; align-items: center; justify-content: space-between; border-bottom: 2px dashed #0f766e; padding-bottom: 12px; margin-bottom: 12px;">
@@ -689,7 +760,6 @@
                         </div>
                     </div>
 
-                    <!-- স্পেশাল রশিদ আইডি ও মেম্বার তথ্য বক্স -->
                     <div style="border: 1px solid #cbd5e1; border-radius: 8px; overflow: hidden; font-size: 11px; line-height: 1.6;">
                         <div style="display: flex; justify-content: space-between; background-color: #f1f5f9; padding: 5px 10px; border-bottom: 1px solid #cbd5e1;">
                             <span><strong>রশিদ নং (ID):</strong> <span id="rcp-special-id" style="font-family: monospace; font-weight: bold; color: #1e3a8a;">--</span></span>
@@ -711,7 +781,6 @@
                         </div>
                     </div>
 
-                    <!-- ট্রানজেকশন বক্স -->
                     <div style="background-color: #f8fafc; padding: 8px 12px; border-radius: 8px; border: 1px solid #e2e8f0; font-size: 11px;">
                         <div style="display: flex; justify-content: space-between; margin-bottom: 3px;">
                             <span style="color: #64748b;">পেমেন্ট মাধ্যম:</span>
@@ -723,7 +792,6 @@
                         </div>
                     </div>
 
-                    <!-- মাসভিত্তিক আর্থিক হিসাবের স্পষ্ট ছক -->
                     <table style="width: 100%; border-collapse: collapse; font-size: 11px; margin-top: 4px;">
                         <thead>
                             <tr style="background-color: #f1f5f9; text-align: left;">
@@ -755,14 +823,12 @@
                         </tbody>
                     </table>
 
-                    <!-- ভাউচার ইমেজ সরাসরি PDF-এর ভেতরে সুবিন্যস্ত -->
                     <div id="rcp-proof-inside-pdf" style="margin-top: 12px; border: 1px dashed #cbd5e1; border-radius: 8px; padding: 8px; text-align: center; background: #fafafa;">
                         <span style="font-size: 10px; font-weight: bold; color: #475569; display: block; margin-bottom: 5px;">সংযুক্ত প্রামাণ্য ভাউচার / পেমেন্ট প্রমাণপত্র:</span>
                         <img id="receipt-proof-img" src="" alt="Payment Proof" style="max-height: 140px; max-width: 95%; margin: 0 auto; object-fit: contain; border-radius: 6px; border: 1px solid #e2e8f0; display: none;">
                         <span id="no-proof-text" style="font-size: 10px; color: #94a3b8; font-style: italic;">এই জমার জন্য আলাদা কোনো ভাউচার ছবি সংযুক্ত নেই</span>
                     </div>
 
-                    <!-- ডিজিটাল সিল ও সিগনেচার বিহীন ম্যাসেজ -->
                     <div style="margin-top: 18px; text-align: center; font-size: 10px; color: #64748b; font-style: italic; border-top: 1px dashed #cbd5e1; padding-top: 8px;">
                         ✓ এটি একটি কম্পিউটার জেনারেটেড ডিজিটাল সনদ ও রশিদ, বিধায় ম্যানুয়াল স্বাক্ষরের প্রয়োজন নেই।
                     </div>
@@ -779,7 +845,6 @@
                 <button type="button" onclick="openEditReceiptModal()" class="admin-only hidden flex-1 bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold py-2 rounded-xl text-xs flex items-center justify-center gap-1 shadow">
                     <i class="fas fa-edit"></i> এডিট
                 </button>
-                <!-- এডমিন লগিনের মাধ্যমে সরাসরি ডিলিট অপশন -->
                 <button type="button" onclick="confirmDeleteReceipt()" class="admin-only hidden flex-1 bg-rose-700 hover:bg-rose-800 text-white font-bold py-2 rounded-xl text-xs flex items-center justify-center gap-1 shadow" title="রশিদ ডিলিট">
                     <i class="fas fa-trash-alt"></i> ডিলিট
                 </button>
@@ -829,169 +894,56 @@
         </div>
     </div>
 
-    <!-- ৫. কাস্টম প্রাতিষ্ঠানিক নীতিমালা মোডাল (হাইলি প্রফেশনাল ধারা ও উপধারা সম্বলিত) -->
+    <!-- ৫. প্রাতিষ্ঠানিক সংবিধান ও নীতিমালা মোডাল (সম্পূর্ণ গুগল শীট থেকে ডাইনামিক লোড) -->
     <div id="policy-modal" class="fixed inset-0 bg-slate-900/80 backdrop-blur-sm hidden z-50 flex items-center justify-center p-3 md:p-6">
-        <div class="bg-white rounded-3xl max-w-4xl w-full max-h-[94vh] flex flex-col shadow-2xl overflow-hidden border border-slate-200">
+        <div class="bg-white rounded-3xl max-w-5xl w-full max-h-[94vh] flex flex-col shadow-2xl overflow-hidden border border-slate-200">
             <div class="p-5 bg-gradient-to-r from-blue-950 via-indigo-900 to-slate-900 text-white flex items-center justify-between border-b border-indigo-700/50">
                 <div class="flex items-center gap-3">
                     <div class="w-10 h-10 rounded-full bg-emerald-500/20 border border-emerald-400 flex items-center justify-center text-emerald-300">
                         <i class="fas fa-balance-scale text-lg"></i>
                     </div>
                     <div>
-                        <h3 class="text-lg font-bold">প্রাতিষ্ঠানিক সংবিধান, নীতিমালা ও পরিচালনা বিধিমালা</h3>
-                        <p class="text-xs text-indigo-200">সর্বসম্মত পরিচালন পর্ষদ কর্তৃক অনুমোদিত ধারা ও উপধারাসমূহ</p>
+                        <h3 class="text-lg font-bold">পহরডাঙ্গা পার্টনারশিপ গ্রুপ • সাধারণ নীতিমালা</h3>
+                        <p class="text-xs text-indigo-200">গুগল শীট হতে সরাসরি পরিচালিত সংবিধান ও পরিচালনা বিধিমালা</p>
                     </div>
                 </div>
-                <button type="button" onclick="closeModal('policy-modal')" class="h-8 w-8 bg-white/10 rounded-full text-white text-xs hover:bg-white/20 transition">✕</button>
+                <div class="flex items-center gap-2">
+                    <!-- এডমিনের নতুন ধারা যোগ করার বাটন -->
+                    <button type="button" onclick="openAddPolicyClauseModal()" class="admin-only hidden px-3 py-1.5 bg-emerald-500 hover:bg-emerald-400 text-slate-950 rounded-xl text-xs font-bold shadow flex items-center gap-1">
+                        <i class="fas fa-plus-circle"></i> নতুন ধারা যোগ করুন
+                    </button>
+                    <button type="button" onclick="closeModal('policy-modal')" class="h-8 w-8 bg-white/10 rounded-full text-white text-xs hover:bg-white/20 transition">✕</button>
+                </div>
             </div>
             
             <div class="p-6 overflow-y-auto space-y-4 bg-slate-100/60">
-                <div id="admin-policy-controls" class="admin-only hidden bg-rose-50 border border-rose-200 p-4 rounded-2xl space-y-3 shadow-xs">
-                    <span class="text-xs font-bold text-rose-900 flex items-center gap-1.5">
-                        <i class="fas fa-edit text-rose-600"></i> নীতিমালা সম্পাদনা ও PDF আপলোড (এডমিন)
-                    </span>
-                    
-                    <div>
-                        <label class="block text-[11px] font-bold text-slate-700 mb-1">নীতিমালা টেক্সট এডিট করুন (প্রতিটি প্যারার পর Enter চাপুন):</label>
-                        <textarea id="admin-policy-text-input" rows="6" class="w-full border p-2.5 rounded-xl text-xs bg-white text-slate-800 leading-relaxed"></textarea>
-                        <button type="button" onclick="savePolicyText()" id="btn-save-policy-text" class="mt-1 bg-indigo-600 hover:bg-indigo-700 text-white font-bold px-3 py-1.5 rounded-lg text-[11px] shadow">
-                            <i class="fas fa-save mr-1"></i> নীতিমালার লেখা গুগল শীটে সেভ করুন
-                        </button>
-                    </div>
-
-                    <div class="border-t border-rose-200 pt-2">
-                        <label class="block text-[11px] font-bold text-slate-700 mb-1">নতুন নীতিমালা PDF আপলোড:</label>
-                        <div class="flex gap-2 items-center">
-                            <input type="file" id="policy-pdf-file" accept="application/pdf" class="border bg-white p-1.5 rounded-xl text-xs w-full">
-                            <button type="button" onclick="handlePolicyPdfUpload()" id="btn-upload-policy" class="bg-rose-600 hover:bg-rose-700 text-white font-bold px-4 py-2 rounded-xl text-xs shadow flex-shrink-0">
-                                আপলোড
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
                 <!-- প্রফেশনাল প্রাতিষ্ঠানিক সংবিধান ও নীতিমালা প্রিন্ট লেআউট -->
-                <div id="printable-policy" class="pdf-container space-y-6 text-xs text-slate-800 bg-white p-8 md:p-10 shadow-lg rounded-2xl border border-slate-300 relative overflow-hidden" style="max-width: 780px;">
-                    
-                    <!-- ওয়াটারমার্ক ব্যাকগ্রাউন্ড লোগো -->
-                    <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); opacity: 0.035; z-index: 0; pointer-events: none;">
-                        <img src="images/logo.png" style="width: 380px; height: auto;" onerror="this.style.display='none'">
-                    </div>
+                <div id="printable-policy" class="pdf-container space-y-6 text-xs text-slate-800 bg-white p-6 md:p-10 shadow-lg rounded-2xl border border-slate-300 relative overflow-hidden" style="max-width: 820px;">
                     
                     <div class="relative z-10">
-                        <!-- হেডার সেকশন -->
+                        <!-- হেডার -->
                         <div style="text-align: center; border-bottom: 2px solid #0f766e; padding-bottom: 16px; margin-bottom: 20px;">
                             <div style="display: flex; justify-content: center; align-items: center; gap: 12px; margin-bottom: 6px;">
                                 <img src="images/logo.png" alt="Logo" style="height: 52px; width: 52px; object-fit: contain; border-radius: 50%; border: 2px solid #059669;" onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'50\' height=\'50\' viewBox=\'0 0 100 100\'><circle cx=\'50\' cy=\'50\' r=\'48\' fill=\'%23064e3b\' stroke=\'%2334d399\' stroke-width=\'4\'/><text x=\'50%\' y=\'55%\' font-size=\'22\' font-weight=\'bold\' fill=\'%23ffffff\' text-anchor=\'middle\' dominant-baseline=\'middle\' font-family=\'sans-serif\'>PPG</text></svg>';">
                                 <div style="text-align: left;">
-                                    <h2 style="font-size: 24px; font-weight: 800; color: #1e3a8a; margin: 0; line-height: 1.1; letter-spacing: -0.5px;">পহরডাঙ্গা পার্টনারশিপ গ্রুপ</h2>
-                                    <p style="font-size: 11px; color: #047857; margin: 2px 0 0 0; font-weight: 700; font-style: italic;">"এক সুতোয় বাঁধা তারুণ্য, বাণিজ্যে অনন্য!"</p>
+                                    <h2 style="font-size: 24px; font-weight: 800; color: #1e3a8a; margin: 0; line-height: 1.1;">পহরডাঙ্গা পার্টনারশিপ গ্রুপ</h2>
+                                    <p style="font-size: 12px; color: #047857; margin: 3px 0 0 0; font-weight: 700; font-style: italic;">“এক সুতোয় বাঁধা তারুণ্য, বাণিজ্যে অনন্য।”</p>
                                 </div>
                             </div>
-                            <p style="font-size: 10px; color: #64748b; margin-top: 4px; font-weight: 600;">ঠিকানা: পহরডাঙ্গা, নড়াগাতী, নড়াইল | অফিসিয়াল পরিচালন নীতিমালা ও শাসনতন্ত্র</p>
-                            <div style="margin-top: 8px;">
-                                <span style="display: inline-block; background: #0f172a; color: #f8fafc; font-size: 10px; font-weight: 700; padding: 3px 16px; border-radius: 20px; letter-spacing: 0.5px;">কার্যকরী সংস্করণ: সেপ্টেম্বর ২০২৬ – চলমান</span>
-                            </div>
+                            <h3 style="font-size: 14px; font-weight: bold; color: #1e293b; margin-top: 8px;">সাধারণ নীতিমালা, পরিচালনা, সঞ্চয় ও বিনিয়োগ বিধিমালা</h3>
+                            <p style="font-size: 10px; color: #64748b; margin-top: 2px; font-weight: 600;">সংরক্ষণ ও সংস্করণ: গুগল ক্লাউড ডাটাবেস (সরাসরি পরিচালনা পর্ষদ কর্তৃক সংরক্ষিত)</p>
                         </div>
 
-                        <!-- প্রস্তাবনা -->
-                        <div class="bg-slate-50 border-l-4 border-emerald-600 p-3.5 rounded-r-xl mb-5 text-[12px] text-slate-700 leading-relaxed font-medium">
-                            <strong>প্রস্তাবনা:</strong> পারস্পরিক সৌহার্দ্য, স্বচ্ছ আর্থিক শৃঙ্খলা এবং টেকসই যুব উদ্যোক্তা সৃষ্টির লক্ষ্যে 'পহরডাঙ্গা পার্টনারশিপ গ্রুপ'-এর এই সংবিধান ও পরিচালনা বিধিমালা প্রণীত ও সর্বসম্মতভাবে গৃহীত হলো। সকল অংশীদার এই বিধিমালা মান্য করতে বাধ্য থাকিবেন।
-                        </div>
-
-                        <!-- ডাইনামিক / প্রাতিষ্ঠানিক সুনির্দিষ্ট ধারা ও উপধারা কনটেন্ট -->
+                        <!-- ডাইনামিক কন্টেইনার (এখানে গুগল শীটের সকল ধারা রেন্ডার হবে) -->
                         <div id="policy-content-display" class="space-y-4 text-justify font-medium">
-                            
-                            <!-- ধারা ১ -->
-                            <div class="policy-article">
-                                <div class="policy-clause-title">
-                                    <i class="fas fa-bookmark text-emerald-600"></i>
-                                    <span>ধারা ১: প্রাতিষ্ঠানিক পরিচয় ও লক্ষ্য</span>
-                                </div>
-                                <div class="policy-subclause">
-                                    <strong>১.১ নামকরণ ও ভিত্তি:</strong> অত্র প্রতিষ্ঠানটি "পহরডাঙ্গা পার্টনারশিপ গ্রুপ" নামে অভিহিত হইবে এবং এর কার্যক্রম সম্পূর্ণ পারস্পরিক ঐক্য, বাণিজ্যিক উন্নয়ন ও ইসলামী শরিয়াহ নির্দেশিত সততার ভিত্তিতে পরিচালিত হইবে।<br>
-                                    <strong>১.২ স্লোগান:</strong> প্রতিষ্ঠানের মূল নীতিবাক্য হইবে—<em>"এক সুতোয় বাঁধা তারুণ্য, বাণিজ্যে অনন্য!"</em>।
-                                </div>
+                            <div class="py-8 text-center text-slate-400">
+                                <i class="fas fa-spinner fa-spin text-2xl mb-2 text-indigo-600"></i>
+                                <p>গুগল শীট থেকে নীতিমালা লোড হচ্ছে...</p>
                             </div>
-
-                            <!-- ধারা ২ -->
-                            <div class="policy-article">
-                                <div class="policy-clause-title">
-                                    <i class="fas fa-layer-group text-indigo-600"></i>
-                                    <span>ধারা ২: সদস্যপদ, শেয়ার মূলধন ও ভর্তি ফি</span>
-                                </div>
-                                <div class="policy-subclause">
-                                    <strong>২.১ ভর্তি ফি:</strong> প্রত্যেক সদস্যকে প্রতিষ্ঠানে নিবন্ধনের সময় এককালীন অফেরতযোগ্য ২০০ (দুইশত) টাকা মেম্বারশিপ ফি প্রদান করিতে হইবে, যাহা প্রতিষ্ঠানের সাধারণ তহবিলে জমা হইবে।<br>
-                                    <strong>২.২ শেয়ারের মূল্য ও সংখ্যা:</strong> প্রতিটি শেয়ারের মাসিক মূল্য নির্ধারণ করা হইয়াছে ১,০০০ (এক হাজার) টাকা। একজন সদস্য একাধিক শেয়ার ক্রয় করিয়া আনুপাতিক হারে লভ্যাংশ ও ভোটাধিকার প্রাপ্ত হইবেন।
-                                </div>
-                            </div>
-
-                            <!-- ধারা ৩ -->
-                            <div class="policy-article">
-                                <div class="policy-clause-title">
-                                    <i class="fas fa-calendar-check text-teal-600"></i>
-                                    <span>ধারা ৩: মাসিক কিস্তি ও জমার সময়সীমা</span>
-                                </div>
-                                <div class="policy-subclause">
-                                    <strong>৩.১ নির্ধারিত সময়সীমা:</strong> প্রতি ইংরেজি মাসের ০১ তারিখ হইতে ১০ তারিখের মধ্যে সংশ্লিষ্ট মাসের কিস্তির সম্পূর্ণ টাকা নির্ধারিত ব্যাংক একাউন্ট, বিকাশ, নগদ অথবা অনুমোদিত প্রতিনিধির নিকট জমা দিতে হইবে।<br>
-                                    <strong>৩.২ জমা প্রমাণপত্র:</strong> কিস্তি জমার পর TrxID বা ব্যাংক ডিপোজিট স্লিপ প্রদান সাপেক্ষে ডিজিটাল রশিদ গ্রহণ বাধ্যতামূলক।
-                                </div>
-                            </div>
-
-                            <!-- ধারা ৪ -->
-                            <div class="policy-article">
-                                <div class="policy-clause-title">
-                                    <i class="fas fa-exclamation-triangle text-rose-600"></i>
-                                    <span>ধারা ৪: বিলম্ব জরিমানা ও আর্থিক শৃঙ্খলা</span>
-                                </div>
-                                <div class="policy-subclause">
-                                    <strong>৪.১ জরিমানা কাঠামো:</strong><br>
-                                    • ০১ থেকে ১০ তারিখের মধ্যে: <strong>কোনো জরিমানা প্রযোজ্য নহে (৳ ০)</strong>।<br>
-                                    • ১১ থেকে ১৫ তারিখের মধ্যে জমা দিলে: <strong>১০০ (একশত) টাকা বিলম্ব জরিমানা</strong> যুক্ত হইবে।<br>
-                                    • ১৬ থেকে পরবর্তী মাসের কিস্তির সাথে জমা দিলে: <strong>২০০ (দুইশত) টাকা বিলম্ব জরিমানা</strong> বাধ্যতামূলক হইবে।<br>
-                                    <strong>৪.২ জরিমানার অর্থ:</strong> সংগৃহীত সকল জরিমানার অর্থ সরাসরি প্রতিষ্ঠানের সামগ্রিক কল্যাণ ও রিজার্ভ ফান্ডে জমা হইবে।
-                                </div>
-                            </div>
-
-                            <!-- ধারা ৫ -->
-                            <div class="policy-article">
-                                <div class="policy-clause-title">
-                                    <i class="fas fa-user-times text-amber-600"></i>
-                                    <span>ধারা ৫: সদস্যপদ প্রত্যাহার ও স্বয়ংক্রিয় বাতিল</span>
-                                </div>
-                                <div class="policy-subclause">
-                                    <strong>৫.১ পরপর বকেয়া ও Failure স্ট্যাটাস:</strong> কোনো সদস্য পরপর ৩ (তিন) মাস কোনো যুক্তিযুক্ত কারণ ও পর্ষদের পূর্বানুমতি ব্যতীত কিস্তি প্রদানে ব্যর্থ হইলে তাহার সদস্যপদ "Failure" হিসাবে চিহ্নিত হইবে এবং সদস্যপদ বাতিলযোগ্য বলিয়া গণ্য হইবে।<br>
-                                    <strong>৫.২ অর্থ ফেরত নীতি:</strong> কোনো সদস্য স্বেচ্ছায় পদত্যাগ করিলে বা সদস্যপদ বাতিল হইলে, মোট জমাকৃত সঞ্চয় মূলধন হইতে অফিসিয়াল ব্যয় ও পূর্বের ক্ষতি (যদি থাকে) কর্তনপূর্বক পর্ষদের সুবিধাজনক সময়ে পরিশোধ করা হইবে। ভর্তি ফি অফেরতযোগ্য থাকিবে।
-                                </div>
-                            </div>
-
-                            <!-- ধারা ৬ -->
-                            <div class="policy-article">
-                                <div class="policy-clause-title">
-                                    <i class="fas fa-piggy-bank text-emerald-600"></i>
-                                    <span>ধারা ৬: প্রাতিষ্ঠানিক ডিপিএস ও ব্যাংক তহবিল ব্যবস্থাপনা</span>
-                                </div>
-                                <div class="policy-subclause">
-                                    <strong>৬.১ নিরাপদ সঞ্চয় (ডিপিএস):</strong> গ্রুপের মোট জমার নিরাপত্তা নিশ্চিতকল্পে ব্যাংকে জমাকৃত উদ্বৃত্ত তহবিল হইতে নিয়মিত প্রাতিষ্ঠানিক ডিপিএস একাউন্টে অর্থ স্থানান্তর করা হইবে।<br>
-                                    <strong>৬.২ হিসাবের স্বচ্ছতা:</strong> গ্রুপের সকল আয়-ব্যয় ও ব্যাংক স্থিতির পূর্ণ বিবরণী প্রতি মাসে ডিজিটাল প্যানেলে সকল অংশীদারের জন্য উন্মুক্ত থাকিবে।
-                                </div>
-                            </div>
-
-                            <!-- ধারা ৭ -->
-                            <div class="policy-article">
-                                <div class="policy-clause-title">
-                                    <i class="fas fa-gavel text-slate-700"></i>
-                                    <span>ধারা ৭: পরিচালনা পর্ষদ ও সংশোধন ক্ষমতা</span>
-                                </div>
-                                <div class="policy-subclause">
-                                    <strong>৭.১ সিদ্ধান্ত গ্রহণ:</strong> প্রতিষ্ঠানের বৃহত্তর স্বার্থে যে কোনো নীতিগত সংশোধন, বিনিয়োগ বা প্রকল্প গ্রহণের চূড়ান্ত অধিকার পরিচালনা পর্ষদের সংখ্যাগরিষ্ঠ সিদ্ধান্তের উপর ন্যস্ত থাকিবে।
-                                </div>
-                            </div>
-
                         </div>
 
-                        <!-- স্বাক্ষর ও সিল সেকশন (অফিসিয়াল লুক) -->
-                        <div style="margin-top: 45px; border-top: 1px dashed #94a3b8; padding-top: 25px;">
+                        <!-- অফিসিয়াল সিল ও স্বাক্ষর -->
+                        <div style="margin-top: 40px; border-top: 1px dashed #94a3b8; padding-top: 25px;">
                             <div style="display: flex; justify-content: space-between; align-items: flex-end; text-align: center; font-size: 11px;">
                                 <div style="width: 140px;">
                                     <div style="border-bottom: 1px solid #475569; padding-bottom: 4px; font-weight: 700; color: #1e293b;">সভাপতি</div>
@@ -1016,16 +968,45 @@
             </div>
 
             <div class="p-4 bg-slate-50 border-t flex flex-wrap justify-between items-center gap-2">
-                <div class="flex gap-2">
-                    <button type="button" onclick="downloadPolicyPDF()" class="px-4 py-2 bg-rose-600 hover:bg-rose-700 text-white text-xs font-bold rounded-xl flex items-center gap-2 shadow">
-                        <i class="fas fa-file-pdf"></i> নীতিমালা PDF সেভ
-                    </button>
-                    <a id="btn-view-drive-policy" href="#" target="_blank" class="hidden px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold rounded-xl flex items-center gap-2 shadow">
-                        <i class="fas fa-external-link-alt"></i> ড্রাইভ থেকে অফিসিয়াল PDF দেখুন
-                    </a>
-                </div>
+                <button type="button" onclick="downloadPolicyPDF()" class="px-4 py-2 bg-rose-600 hover:bg-rose-700 text-white text-xs font-bold rounded-xl flex items-center gap-2 shadow">
+                    <i class="fas fa-file-pdf"></i> নীতিমালা PDF সেভ
+                </button>
                 <button type="button" onclick="closeModal('policy-modal')" class="px-4 py-2 bg-slate-200 text-slate-700 text-xs font-bold rounded-xl">বন্ধ করুন</button>
             </div>
+        </div>
+    </div>
+
+    <!-- [নতুন] পলিসি ধারা তৈরি ও সম্পাদনা মোডাল (এডমিন) -->
+    <div id="policy-clause-modal" class="fixed inset-0 bg-slate-900/80 backdrop-blur-sm hidden z-[60] flex items-center justify-center p-3 md:p-6">
+        <div class="bg-white rounded-3xl max-w-lg w-full max-h-[90vh] flex flex-col shadow-2xl overflow-hidden border border-slate-200">
+            <div class="p-5 bg-gradient-to-r from-blue-900 to-indigo-900 text-white flex items-center justify-between">
+                <div>
+                    <h3 class="text-base font-bold flex items-center gap-2" id="pcm-title"><i class="fas fa-edit"></i> ধারা সম্পাদনা</h3>
+                    <p class="text-[11px] text-indigo-200">গুগল শীটে সরাসরি পরিবর্তন সংরক্ষিত হবে</p>
+                </div>
+                <button type="button" onclick="closeModal('policy-clause-modal')" class="h-7 w-7 bg-white/10 rounded-full text-white text-xs">✕</button>
+            </div>
+            <form onsubmit="handlePolicyClauseSubmit(event)" class="p-5 space-y-3 text-xs overflow-y-auto">
+                <input type="hidden" id="pcm-id">
+                <div>
+                    <label class="block font-bold text-slate-700 mb-1">ধারার ক্রম / নম্বর</label>
+                    <input type="text" id="pcm-clauseno" required placeholder="যেমন: ধারা ১ বা ধারা ৮" class="w-full border p-2.5 rounded-xl font-bold">
+                </div>
+                <div>
+                    <label class="block font-bold text-slate-700 mb-1">ধারার শিরোনাম</label>
+                    <input type="text" id="pcm-clausetitle" required placeholder="যেমন: নাম, প্রকৃতি, কার্যালয় ও কার্যপরিধি" class="w-full border p-2.5 rounded-xl font-bold">
+                </div>
+                <div>
+                    <label class="block font-bold text-slate-700 mb-1">ধারার বিস্তারিত বিষয়বস্তু (উপধারাসমূহ প্রতি লাইনে লিখুন)</label>
+                    <textarea id="pcm-content" rows="6" required placeholder="উপধারা ও বিস্তারিত বিধিমালা লিখুন..." class="w-full border p-2.5 rounded-xl leading-relaxed text-slate-800"></textarea>
+                </div>
+                <div class="pt-2 flex gap-2">
+                    <button type="submit" id="pcm-submit-btn" class="flex-1 bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2.5 rounded-xl shadow">
+                        <i class="fas fa-save mr-1"></i> গুগল শীটে সেভ করুন
+                    </button>
+                    <button type="button" onclick="closeModal('policy-clause-modal')" class="px-4 bg-slate-200 text-slate-700 font-bold rounded-xl">বাতিল</button>
+                </div>
+            </form>
         </div>
     </div>
 
@@ -1185,7 +1166,7 @@
         </div>
     </div>
 
-    <!-- ৯. রশিদ এডিট মোডাল (নতুন ফটো আপলোড ও রশিদ ডিলিট অপশনসহ) -->
+    <!-- ৯. রশিদ এডিট মোডাল -->
     <div id="receipt-edit-modal" class="fixed inset-0 bg-slate-900/80 backdrop-blur-sm hidden z-50 flex items-center justify-center p-3 md:p-6">
         <div class="bg-white rounded-3xl max-w-md w-full max-h-[92vh] flex flex-col shadow-2xl overflow-hidden border border-slate-200">
             <div class="p-5 bg-gradient-to-r from-amber-600 to-orange-700 text-white flex items-center justify-between">
@@ -1232,14 +1213,13 @@
                 <div class="bg-amber-50/70 border border-amber-200 p-2.5 rounded-xl">
                     <label class="block font-bold text-slate-800 mb-1">ভাউচার / রসিদের ছবি পরিবর্তন (ঐচ্ছিক)</label>
                     <input type="file" id="edit-rcp-proof-file" accept="image/*" class="w-full border p-2 rounded-xl text-xs bg-white text-slate-600">
-                    <p class="text-[10px] text-amber-800 mt-1">* কোনো ছবি নির্বাচন না করলে আগের সংযুক্ত ছবিটিই বহাল থাকবে। নতুন ছবি দিলে পূর্বের ছবি রিপ্লেস হবে।</p>
+                    <p class="text-[10px] text-amber-800 mt-1">* কোনো ছবি নির্বাচন না করলে আগের সংযুক্ত ছবিটিই বহাল থাকবে।</p>
                 </div>
 
                 <div class="pt-2 flex gap-2">
                     <button type="submit" id="btn-save-edit-receipt" class="flex-[2] bg-amber-600 hover:bg-amber-700 text-white font-bold py-2.5 rounded-xl shadow">
                         <i class="fas fa-save mr-1"></i> আপডেট
                     </button>
-                    <!-- রশিদ ডিলিট বাটন -->
                     <button type="button" onclick="confirmDeleteReceipt()" class="flex-1 bg-rose-600 hover:bg-rose-700 text-white font-bold py-2.5 rounded-xl shadow flex items-center justify-center" title="এই রশিদটি মুছে ফেলুন">
                         <i class="fas fa-trash-alt mr-1"></i> ডিলিট
                     </button>
@@ -1289,7 +1269,8 @@
             </form>
         </div>
     </div>
-     <!-- ১১. নতুন সদস্য যোগ করার মোডাল -->
+
+    <!-- ১১. নতুন সদস্য যোগ করার মোডাল -->
     <div id="member-add-modal" class="fixed inset-0 bg-slate-900/80 backdrop-blur-sm hidden z-50 flex items-center justify-center p-3 md:p-6">
         <div class="bg-white rounded-3xl max-w-lg w-full max-h-[92vh] flex flex-col shadow-2xl overflow-hidden border border-slate-200">
             <div class="p-5 bg-gradient-to-r from-emerald-800 to-teal-800 text-white flex items-center justify-between">
@@ -1334,7 +1315,7 @@
                     </div>
                     <div>
                         <label class="block font-bold text-slate-700 mb-1">শেয়ার সংখ্যা</label>
-                        <input type="number" id="new-m-shares" required value="1" min="1" class="w-full border p-2.5 rounded-xl font-bold">
+                        <input type="number" id="new-m-shares" required value="1" min="1" max="3" class="w-full border p-2.5 rounded-xl font-bold">
                     </div>
                 </div>
 
@@ -1345,7 +1326,7 @@
                     </div>
                     <div>
                         <label class="block font-bold text-slate-700 mb-1">নমিনির সাথে সম্পর্ক</label>
-                        <input type="text" id="new-m-nominee-rel" placeholder="যেমন: মাতা, স্ত্রী, ভাই" class="w-full border p-2.5 rounded-xl">
+                        <input type="text" id="new-m-nominee-rel" placeholder="যেমন: পিতা, মাতা, স্ত্রী" class="w-full border p-2.5 rounded-xl">
                     </div>
                 </div>
 
@@ -1418,7 +1399,7 @@
                     </div>
                     <div>
                         <label class="block font-bold text-slate-700 mb-1">শেয়ার সংখ্যা</label>
-                        <input type="number" id="edit-m-shares" required min="1" class="w-full border p-2.5 rounded-xl font-bold">
+                        <input type="number" id="edit-m-shares" required min="1" max="3" class="w-full border p-2.5 rounded-xl font-bold">
                     </div>
                 </div>
 
@@ -1474,7 +1455,6 @@
                     <button type="submit" id="btn-update-member" class="flex-1 bg-amber-600 hover:bg-amber-700 text-white font-bold py-2.5 rounded-xl shadow">
                         <i class="fas fa-save mr-1"></i> সংরক্ষণ
                     </button>
-                    <!-- স্বাগতম ও লগিন মেসেজ বাটন -->
                     <button type="button" onclick="triggerWelcomeSmsFromEdit()" class="flex-1 bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-2.5 rounded-xl shadow flex items-center justify-center gap-1">
                         <i class="fab fa-whatsapp"></i> লগিন মেসেজ
                     </button>
@@ -1546,7 +1526,7 @@
                     </div>
                     <div>
                         <label class="block font-bold text-slate-700 mb-1">বার্তা বিস্তারিত লিখুন:</label>
-                        <textarea id="festive-body" rows="4" class="w-full border p-2.5 rounded-xl text-slate-700">পহরডাঙ্গা পার্টনারশিপ গ্রুপের পক্ষ থেকে আপনাকে ও আপনার পরিবারকে জানাই পবিত্র উৎসবের আন্তরিক শুভেচ্ছা। ঐক্য, সৌহার্দ্য ও ব্যবসায়িক সাফল্যে আমাদের যাত্রা অব্যাহত থাকুক。</textarea>
+                        <textarea id="festive-body" rows="4" class="w-full border p-2.5 rounded-xl text-slate-700">পহরডাঙ্গা পার্টনারশিপ গ্রুপের পক্ষ থেকে আপনাকে ও আপনার পরিবারকে জানাই আন্তরিক শুভেচ্ছা ও মোবারকবাদ। ঐক্য, সৌহার্দ্য ও ব্যবসায়িক সাফল্যে আমাদের যৌথ পথচলা অব্যাহত থাকুক।</textarea>
                     </div>
                     <div class="flex gap-3">
                         <button type="button" onclick="sendFestiveSmsToAllQueue()" class="flex-1 bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-2.5 rounded-xl shadow flex items-center justify-center gap-2">
@@ -1562,8 +1542,7 @@
             </div>
         </div>
     </div>
-
-    <!-- জাভাস্ক্রিপ্ট কোড (সুপার ফাস্ট রিয়েল-টাইম ০.০০১ সেকেন্ড সিঙ্ক ও iOS অপ্টিমাইজেশন) -->
+    <!-- জাভাস্ক্রিপ্ট কোড (সুপার ফাস্ট রিয়েল-টাইম ০.০০১ সেকেন্ড সিঙ্ক, সার্বজনীন স্টেটমেন্ট ও পলিসি ইঞ্জিন) -->
     <script>
         // Vercel API Link বা Google Apps Script Link
         const API_URL = "/api/Accounts";
@@ -1593,14 +1572,12 @@
             if (btnMobile) { btnMobile.classList.remove('hidden'); btnMobile.classList.add('flex'); }
         }
 
-        // আইফোনেও ইনস্টল বাটন সরাসরি অ্যাক্টিভ করা
         if (isIOS() && !isStandalone()) {
             showInstallButtons();
         }
 
         function triggerPwaInstall() {
             if (isIOS()) {
-                // আইফোনের জন্য বিশেষ নির্দেশনা পপআপ
                 const iosModal = document.getElementById('ios-install-modal');
                 if (iosModal) iosModal.classList.remove('hidden');
                 return;
@@ -1635,7 +1612,6 @@
             }
         }
 
-        // WhatsApp Link Open in New Tab
         function openWhatsAppUrl(url) {
             const a = document.createElement('a');
             a.href = url;
@@ -1747,7 +1723,8 @@
             return `PPG-RCP-${cleanId}-26${mCode}-${suffix}`;
         }
 
-        const START_MONTH_IDX = 8;   // 09. September 2026
+        const START_YEAR = 2026;
+        const START_MONTH_IDX = 8; // September (0-indexed: 8)
 
         const MONTH_NAMES = [
             "01. January", "02. February", "03. March", "04. April",
@@ -1766,8 +1743,7 @@
         let dpsData = [];
         let expensesData = [];
         let proofsData = [];
-        let globalPolicyPdfUrl = "";
-        let globalPolicyText = "";
+        let policyData = []; // গুগল শীট হতে ডাইনামিক নীতিমালা
 
         let totalSharesGlobal = 0;
         let totalFundGlobal = 0;
@@ -1961,7 +1937,7 @@
             sessionStorage.removeItem('ppg_admin_pass');
             localStorage.removeItem('ppg_auth');
 
-            ['member-profile-modal', 'member-detail-modal', 'receipt-modal', 'members-modal', 'policy-modal', 'login-modal', 'admin-entry-modal', 'dps-entry-modal', 'expense-modal', 'member-add-modal', 'member-edit-modal', 'receipt-edit-modal', 'broadcast-modal', 'ios-install-modal'].forEach(closeModal);
+            ['member-profile-modal', 'member-detail-modal', 'receipt-modal', 'members-modal', 'policy-modal', 'policy-clause-modal', 'login-modal', 'admin-entry-modal', 'dps-entry-modal', 'expense-modal', 'member-add-modal', 'member-edit-modal', 'receipt-edit-modal', 'broadcast-modal', 'ios-install-modal'].forEach(closeModal);
 
             updateAuthUI();
         }
@@ -2028,7 +2004,6 @@
             };
         }
 
-        // ইনস্ট্যান্ট ০.০০১ সেকেন্ড লোকাল স্টেট সংরক্ষণ ও ব্রডকাস্ট
         function saveSnapshotInstantly() {
             const snapshot = {
                 members: membersData,
@@ -2036,19 +2011,14 @@
                 dps: dpsData,
                 expenses: expensesData,
                 proofs: proofsData,
-                settings: [
-                    ["PolicyPdfUrl", globalPolicyPdfUrl],
-                    ["PolicyText", globalPolicyText]
-                ]
+                policy: policyData
             };
             try {
                 localStorage.setItem('ppg_cached_data_v2', JSON.stringify(snapshot));
-                // অন্য ট্যাব থাকলে তাতেও মুহূর্তের মধ্যে সিঙ্ক হবে
                 localStorage.setItem('ppg_last_updated_time', Date.now().toString());
             } catch (e) {}
         }
 
-        // অন্য ট্যাব বা উইন্ডো থেকে আপডেট আসার সাথে সাথে পেজ রেন্ডার
         window.addEventListener('storage', (e) => {
             if (e.key === 'ppg_last_updated_time') {
                 const cached = localStorage.getItem('ppg_cached_data_v2');
@@ -2091,6 +2061,7 @@
 
                 renderDpsHistory();
                 renderExpenses();
+                renderUniversalStatement();
             } else {
                 document.getElementById('total-fund-amount').innerHTML = `<span class="text-sm text-emerald-200 cursor-pointer hover:underline" onclick="openLoginModal()"><i class="fas fa-lock mr-1.5"></i>লগইন প্রয়োজন</span>`;
                 const subFundElem = document.getElementById('total-fund-sub');
@@ -2137,8 +2108,424 @@
             renderMembers();
             initMonthSelectors();
             renderDueList();
+            renderPolicyContent();
         }
 
+        // =========================================================================
+        // সার্বজনীন জমা স্টেটমেন্ট লজিক (বাৎসরিক পরিক্রমা ও পূর্বের জমা কলাম)
+        // =========================================================================
+        function getStatementTimeline() {
+            const currentYear = new Date().getFullYear();
+            const currentMonthIdx = new Date().getMonth();
+            const timeline = [];
+
+            for (let y = START_YEAR; y <= Math.max(START_YEAR, currentYear); y++) {
+                const sMonth = (y === START_YEAR) ? START_MONTH_IDX : 0;
+                const eMonth = (y === currentYear) ? currentMonthIdx : 11;
+
+                if (y > START_YEAR) {
+                    timeline.push({
+                        type: 'prior_accumulated',
+                        year: y,
+                        label: `পূর্বের জমা (${toBanglaNum(y - 1)} পর্যন্ত)`
+                    });
+                }
+
+                for (let m = sMonth; m <= eMonth; m++) {
+                    timeline.push({
+                        type: 'month',
+                        year: y,
+                        monthIdx: m,
+                        monthName: MONTH_NAMES[m],
+                        monthBn: MONTH_NAMES_BN[m],
+                        label: `${MONTH_NAMES_BN[m]} ${toBanglaNum(y)}`
+                    });
+                }
+            }
+
+            return timeline;
+        }
+
+        function renderUniversalStatement() {
+            if (!isLoggedIn) return;
+
+            const thead = document.getElementById('stmt-table-head');
+            const tbody = document.getElementById('stmt-table-body');
+            const tfoot = document.getElementById('stmt-table-foot');
+            const countBadge = document.getElementById('stmt-records-count');
+
+            if (!thead || !tbody || !tfoot) return;
+
+            const fromDateVal = document.getElementById('stmt-filter-from')?.value;
+            const toDateVal = document.getElementById('stmt-filter-to')?.value;
+            const searchQuery = document.getElementById('stmt-filter-search')?.value.trim().toLowerCase() || '';
+
+            const timeline = getStatementTimeline();
+
+            let headHtml = `
+                <tr>
+                    <th class="p-3 sticky-col-header shadow-xs text-slate-800">আইডি</th>
+                    <th class="p-3 bg-slate-100 text-slate-800">সদস্যের নাম</th>
+                    <th class="p-3 text-center bg-slate-100 text-slate-800">শেয়ার</th>
+            `;
+
+            timeline.forEach(col => {
+                if (col.type === 'prior_accumulated') {
+                    headHtml += `<th class="p-3 text-right bg-amber-100 text-amber-900 border-x border-amber-200">${col.label}</th>`;
+                } else {
+                    headHtml += `<th class="p-3 text-center bg-slate-100 text-slate-800">${col.label}</th>`;
+                }
+            });
+
+            headHtml += `
+                    <th class="p-3 text-right bg-emerald-100 text-emerald-900">মোট সঞ্চয়</th>
+                    <th class="p-3 text-right bg-rose-100 text-rose-900">মোট বকেয়া</th>
+                    <th class="p-3 text-center bg-slate-100">স্ট্যাটাস</th>
+                </tr>
+            `;
+            thead.innerHTML = headHtml;
+
+            let filteredMembers = membersData.filter(m => {
+                if (!searchQuery) return true;
+                return (m.id && m.id.toLowerCase().includes(searchQuery)) || 
+                       (m.name && m.name.toLowerCase().includes(searchQuery)) ||
+                       (m.phone && m.phone.includes(searchQuery));
+            });
+
+            if (filteredMembers.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="${timeline.length + 6}" class="p-6 text-center text-slate-400">কোনো তথ্য পাওয়া যায়নি</td></tr>`;
+                tfoot.innerHTML = '';
+                if (countBadge) countBadge.innerText = `মোট সদস্য: ০ জন`;
+                return;
+            }
+
+            tbody.innerHTML = '';
+            let grandTotalShares = 0;
+            let grandTotalPaid = 0;
+            let grandTotalDue = 0;
+            const colTotals = new Array(timeline.length).fill(0);
+
+            filteredMembers.forEach(m => {
+                grandTotalShares += (m.shares || 1);
+                let memberTotalPaid = 0;
+                let memberTotalDue = 0;
+
+                let rowHtml = `
+                    <tr class="hover:bg-indigo-50/40 transition border-b border-slate-100">
+                        <td class="p-2.5 font-bold font-digit text-indigo-700 sticky-col shadow-xs cursor-pointer" onclick="openMemberProfileModal('${m.id}')">${m.id}</td>
+                        <td class="p-2.5 font-bold text-slate-800 cursor-pointer hover:text-emerald-700" onclick="openMemberProfileModal('${m.id}')">${m.name}</td>
+                        <td class="p-2.5 text-center font-digit font-bold">${toBanglaNum(m.shares)} টি</td>
+                `;
+
+                let runningPriorAccumulated = 0;
+
+                timeline.forEach((col, idx) => {
+                    if (col.type === 'prior_accumulated') {
+                        rowHtml += `<td class="p-2.5 text-right font-digit font-bold text-amber-800 bg-amber-50/50 border-x border-amber-200">৳ ${formatBnCurrency(runningPriorAccumulated)}</td>`;
+                        colTotals[idx] += runningPriorAccumulated;
+                    } else {
+                        const stdMonthName = col.monthName;
+                        let rec = null;
+
+                        if (m.monthlyRecords) {
+                            rec = m.monthlyRecords[stdMonthName] || m.monthlyRecords[col.monthIdx] || m.monthlyRecords[col.monthBn];
+                        }
+
+                        if (!rec && accountsData.length > 0) {
+                            const found = accountsData.find(a => 
+                                normalizeMemberId(a.memberId) === normalizeMemberId(m.id) &&
+                                normalizeMonthIndex(a.month, a.monthBn) === col.monthIdx
+                            );
+                            if (found) {
+                                rec = {
+                                    paid: true,
+                                    amount: parseAnyNumber(found.amount),
+                                    penalty: parseAnyNumber(found.penalty || 0),
+                                    timestamp: found.timestamp
+                                };
+                            }
+                        }
+
+                        let isInDateRange = true;
+                        if (fromDateVal || toDateVal) {
+                            if (rec && rec.timestamp) {
+                                const payDate = new Date(rec.timestamp.replace(/-/g, '/'));
+                                if (fromDateVal && payDate < new Date(fromDateVal + "T00:00:00")) isInDateRange = false;
+                                if (toDateVal && payDate > new Date(toDateVal + "T23:59:59")) isInDateRange = false;
+                            } else {
+                                isInDateRange = false;
+                            }
+                        }
+
+                        const isPaid = rec && rec.paid && parseAnyNumber(rec.amount) > 0 && isInDateRange;
+                        const cellAmount = isPaid ? parseAnyNumber(rec.amount) : 0;
+                        const baseShareDue = (m.shares || 1) * 1000;
+
+                        if (isPaid) {
+                            memberTotalPaid += cellAmount;
+                            runningPriorAccumulated += cellAmount;
+                            colTotals[idx] += cellAmount;
+
+                            const pDate = rec.timestamp ? formatBanglaDate(rec.timestamp) : '';
+                            rowHtml += `
+                                <td class="p-2 text-center bg-emerald-50/60 border-l border-emerald-100">
+                                    <span class="font-digit font-bold text-emerald-800 block">৳ ${formatBnCurrency(cellAmount)}</span>
+                                    <span class="text-[9px] text-slate-500 font-digit leading-none">${pDate}</span>
+                                </td>
+                            `;
+                        } else {
+                            if (!isInDateRange && (fromDateVal || toDateVal)) {
+                                rowHtml += `<td class="p-2 text-center text-slate-300">--</td>`;
+                            } else {
+                                memberTotalDue += baseShareDue;
+                                rowHtml += `
+                                    <td class="p-2 text-center bg-rose-50/40 border-l border-rose-100">
+                                        <span class="text-[10px] font-bold text-rose-600 block">বকেয়া</span>
+                                        <span class="text-[9px] text-slate-400 font-digit">৳ ${formatBnCurrency(baseShareDue)}</span>
+                                    </td>
+                                `;
+                            }
+                        }
+                    }
+                });
+
+                grandTotalPaid += memberTotalPaid;
+                grandTotalDue += memberTotalDue;
+                const statusInfo = getMemberStatusInfo(m);
+
+                rowHtml += `
+                        <td class="p-2.5 text-right font-digit font-bold text-emerald-700 bg-emerald-50/40">৳ ${formatBnCurrency(memberTotalPaid)}</td>
+                        <td class="p-2.5 text-right font-digit font-bold text-rose-600 bg-rose-50/40">৳ ${formatBnCurrency(memberTotalDue)}</td>
+                        <td class="p-2.5 text-center">
+                            <span class="px-2 py-0.5 rounded-full text-[10px] font-bold ${statusInfo.badge}">${statusInfo.label}</span>
+                        </td>
+                    </tr>
+                `;
+
+                tbody.innerHTML += rowHtml;
+            });
+
+            let footHtml = `
+                <tr>
+                    <td class="p-3 sticky-col bg-slate-200 font-black">সর্বমোট</td>
+                    <td class="p-3 bg-slate-100 font-bold">${toBanglaNum(filteredMembers.length)} জন সদস্য</td>
+                    <td class="p-3 text-center bg-slate-100 font-digit font-black">${toBanglaNum(grandTotalShares)} টি</td>
+            `;
+
+            timeline.forEach((col, idx) => {
+                if (col.type === 'prior_accumulated') {
+                    footHtml += `<td class="p-3 text-right bg-amber-200 text-amber-950 font-digit font-black">৳ ${formatBnCurrency(colTotals[idx])}</td>`;
+                } else {
+                    footHtml += `<td class="p-3 text-center bg-slate-200 text-slate-900 font-digit font-black">৳ ${formatBnCurrency(colTotals[idx])}</td>`;
+                }
+            });
+
+            footHtml += `
+                    <td class="p-3 text-right bg-emerald-200 text-emerald-950 font-digit font-black">৳ ${formatBnCurrency(grandTotalPaid)}</td>
+                    <td class="p-3 text-right bg-rose-200 text-rose-950 font-digit font-black">৳ ${formatBnCurrency(grandTotalDue)}</td>
+                    <td class="p-3 text-center bg-slate-100">--</td>
+                </tr>
+            `;
+            tfoot.innerHTML = footHtml;
+
+            if (countBadge) countBadge.innerText = `মোট সদস্য: ${toBanglaNum(filteredMembers.length)} জন`;
+        }
+
+        function resetStatementFilters() {
+            const f1 = document.getElementById('stmt-filter-from');
+            const f2 = document.getElementById('stmt-filter-to');
+            const f3 = document.getElementById('stmt-filter-search');
+            if (f1) f1.value = '';
+            if (f2) f2.value = '';
+            if (f3) f3.value = '';
+            renderUniversalStatement();
+        }
+
+        function printStatementTable() {
+            const printContent = document.getElementById('statement-print-area').innerHTML;
+            const win = window.open('', '', 'width=1100,height=750');
+            win.document.write(`
+                <html>
+                <head>
+                    <title>পহরডাঙ্গা পার্টনারশিপ গ্রুপ - জমা স্টেটমেন্ট</title>
+                    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;600;700;800&display=swap" rel="stylesheet">
+                    <style>
+                        body { font-family: 'Noto Sans Bengali', Arial, sans-serif; padding: 20px; font-size: 11px; }
+                        h2, p { text-align: center; margin: 2px; }
+                        table { width: 100%; border-collapse: collapse; margin-top: 15px; }
+                        th, td { border: 1px solid #94a3b8; padding: 6px; text-align: left; }
+                        th { background: #f1f5f9; }
+                        .text-right { text-align: right; }
+                        .text-center { text-align: center; }
+                        .font-bold { font-weight: bold; }
+                    </style>
+                </head>
+                <body>
+                    <h2>পহরডাঙ্গা পার্টনারশিপ গ্রুপ</h2>
+                    <p>"এক সুতোয় বাঁধা তারুণ্য, বাণিজ্যে অনন্য!"</p>
+                    <p style="font-weight: bold; margin-bottom: 12px;">সার্বজনীন সকল সদস্যের জমা স্টেটমেন্ট (কার্যকাল: সেপ্টেম্বর ২০২৬ হতে চলমান)</p>
+                    ${printContent}
+                </body>
+                </html>
+            `);
+            win.document.close();
+            win.focus();
+            setTimeout(() => { win.print(); win.close(); }, 500);
+        }
+
+        // =========================================================================
+        // গুগল শীট নির্ভর ডাইনামিক নীতিমালা ইঞ্জিন (এডমিন অ্যাড/এডিট/ডিলিট)
+        // =========================================================================
+        function renderPolicyContent() {
+            const container = document.getElementById('policy-content-display');
+            if (!container) return;
+
+            if (policyData.length === 0) {
+                container.innerHTML = `<div class="p-6 text-center text-slate-400">গুগল শীটে কোনো নীতিমালা পাওয়া যায়নি বা লোড হচ্ছে...</div>`;
+                return;
+            }
+
+            container.innerHTML = policyData.map(p => {
+                const formattedText = (p.content || '').replace(/\n/g, '<br>');
+                const adminActions = (currentUserRole === 'admin') ? `
+                    <div class="flex gap-1.5 ml-auto">
+                        <button type="button" onclick="openEditPolicyClauseModal('${p.id}')" class="px-2 py-0.5 bg-amber-100 hover:bg-amber-200 text-amber-900 rounded-md text-[10px] font-bold" title="এডিট">
+                            <i class="fas fa-edit"></i>
+                        </button>
+                        <button type="button" onclick="deletePolicyClause('${p.id}')" class="px-2 py-0.5 bg-rose-100 hover:bg-rose-200 text-rose-800 rounded-md text-[10px] font-bold" title="ডিলিট">
+                            <i class="fas fa-trash-alt"></i>
+                        </button>
+                    </div>
+                ` : '';
+
+                return `
+                    <div class="policy-article">
+                        <div class="policy-clause-title flex items-center justify-between">
+                            <div class="flex items-center gap-2">
+                                <i class="fas fa-gavel text-indigo-700"></i>
+                                <span>${p.clauseNo} | ${p.title}</span>
+                            </div>
+                            ${adminActions}
+                        </div>
+                        <div class="policy-subclause">
+                            ${formattedText}
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function openAddPolicyClauseModal() {
+            if (currentUserRole !== 'admin') return;
+            document.getElementById('pcm-id').value = '';
+            document.getElementById('pcm-clauseno').value = `ধারা ${toBanglaNum(policyData.length + 1)}`;
+            document.getElementById('pcm-clausetitle').value = '';
+            document.getElementById('pcm-content').value = '';
+            document.getElementById('pcm-title').innerHTML = `<i class="fas fa-plus-circle"></i> নতুন ধারা যুক্ত করুন`;
+            document.getElementById('policy-clause-modal').classList.remove('hidden');
+        }
+
+        function openEditPolicyClauseModal(id) {
+            if (currentUserRole !== 'admin') return;
+            const p = policyData.find(x => x.id === id);
+            if (!p) return;
+
+            document.getElementById('pcm-id').value = p.id;
+            document.getElementById('pcm-clauseno').value = p.clauseNo;
+            document.getElementById('pcm-clausetitle').value = p.title;
+            document.getElementById('pcm-content').value = p.content;
+            document.getElementById('pcm-title').innerHTML = `<i class="fas fa-edit"></i> ধারা সম্পাদনা (${p.clauseNo})`;
+            document.getElementById('policy-clause-modal').classList.remove('hidden');
+        }
+
+        async function handlePolicyClauseSubmit(e) {
+            if (e) e.preventDefault();
+            if (currentUserRole !== 'admin') return;
+
+            const id = document.getElementById('pcm-id').value;
+            const clauseNo = document.getElementById('pcm-clauseno').value.trim();
+            const title = document.getElementById('pcm-clausetitle').value.trim();
+            const content = document.getElementById('pcm-content').value.trim();
+
+            const submitBtn = document.getElementById('pcm-submit-btn');
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = `<i class="fas fa-spinner fa-spin mr-1"></i> সেভ হচ্ছে...`;
+
+            if (id) {
+                const item = policyData.find(x => x.id === id);
+                if (item) {
+                    item.clauseNo = clauseNo;
+                    item.title = title;
+                    item.content = content;
+                }
+            } else {
+                policyData.push({
+                    id: "POL_" + Date.now(),
+                    clauseNo: clauseNo,
+                    title: title,
+                    content: content
+                });
+            }
+
+            renderPolicyContent();
+            saveSnapshotInstantly();
+            closeModal('policy-clause-modal');
+
+            fetch(API_URL, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    adminPass: sessionStorage.getItem('ppg_admin_pass'),
+                    actionType: "save_policy_clause",
+                    clauseData: { id: id, clauseNo: clauseNo, title: title, content: content }
+                })
+            });
+
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = `<i class="fas fa-save mr-1"></i> গুগল শীটে সেভ করুন`;
+            showCustomAlert('ধারা সফলভাবে সংরক্ষিত হয়েছে');
+        }
+
+        async function deletePolicyClause(id) {
+            if (currentUserRole !== 'admin') return;
+            if (!confirm("আপনি কি নিশ্চিতভাবে এই ধারাটি নীতিমালা থেকে মুছে ফেলতে চান?")) return;
+
+            const idx = policyData.findIndex(x => x.id === id);
+            if (idx !== -1) {
+                policyData.splice(idx, 1);
+            }
+
+            renderPolicyContent();
+            saveSnapshotInstantly();
+
+            fetch(API_URL, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    adminPass: sessionStorage.getItem('ppg_admin_pass'),
+                    actionType: "delete_policy_clause",
+                    clauseId: id
+                })
+            });
+
+            showCustomAlert('ধারা মুছে ফেলা হয়েছে');
+        }
+
+        function downloadPolicyPDF() {
+            const element = document.getElementById('printable-policy');
+            const opt = {
+                margin:       [10, 10, 10, 10],
+                filename:     `PPG_Policy.pdf`,
+                image:        { type: 'jpeg', quality: 0.98 },
+                html2canvas:  { scale: 4, useCORS: true },
+                jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
+            };
+            html2pdf().set(opt).from(element).save();
+        }
+
+        // =========================================================================
+        // মেম্বার প্রোফাইল ও ফটো আপলোড
+        // =========================================================================
         function openMemberProfileModal(memberId) {
             const member = membersData.find(m => m.id === memberId);
             if (!member) return;
@@ -2658,114 +3045,6 @@
             html2pdf().set(opt).from(element).save();
         }
 
-        function downloadPolicyPDF() {
-            const element = document.getElementById('printable-policy');
-            const opt = {
-                margin:       [10, 10, 10, 10],
-                filename:     `PPG_Policy.pdf`,
-                image:        { type: 'jpeg', quality: 0.98 },
-                html2canvas:  { scale: 4, useCORS: true },
-                jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
-            };
-            html2pdf().set(opt).from(element).save();
-        }
-
-        async function savePolicyText() {
-            if (currentUserRole !== 'admin') return;
-            const text = document.getElementById('admin-policy-text-input').value.trim();
-            if (!text) {
-                alert("পলিসির টেক্সট খালি রাখা যাবে না!");
-                return;
-            }
-
-            const btn = document.getElementById('btn-save-policy-text');
-            btn.disabled = true;
-            btn.innerHTML = `<i class="fas fa-spinner fa-spin mr-1"></i> গুগল শীটে সেভ হচ্ছে...`;
-
-            try {
-                await fetch(API_URL, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        adminPass: sessionStorage.getItem('ppg_admin_pass'),
-                        actionType: "save_policy_text",
-                        policyText: text
-                    })
-                });
-
-                globalPolicyText = text;
-                renderPolicyContent(text);
-                saveSnapshotInstantly();
-                alert("নীতিমালার লেখা সফলভাবে গুগল শীটে সেভ হয়েছে!");
-            } catch (e) {}
-
-            btn.disabled = false;
-            btn.innerHTML = `<i class="fas fa-save mr-1"></i> নীতিমালার লেখা গুগল শীটে সেভ করুন`;
-        }
-
-        function renderPolicyContent(text) {
-            const container = document.getElementById('policy-content-display');
-            if (!container) return;
-            if (!text || text.trim().length === 0) {
-                // ডিফল্ট ধারা ও উপধারা রেন্ডার বহাল থাকবে
-                return;
-            }
-            const paragraphs = text.split(/\n+/).filter(p => p.trim().length > 0);
-            container.innerHTML = paragraphs.map((p, idx) => `
-                <div class="policy-article">
-                    <div class="policy-clause-title">
-                        <i class="fas fa-gavel text-indigo-700"></i>
-                        <span>ধারা ${toBanglaNum(idx + 1)}: সংবিধিবদ্ধ বিধান</span>
-                    </div>
-                    <div class="policy-subclause">
-                        ${p.trim()}
-                    </div>
-                </div>
-            `).join('');
-            const input = document.getElementById('admin-policy-text-input');
-            if (input && input !== document.activeElement) input.value = text;
-        }
-
-        async function handlePolicyPdfUpload() {
-            if (currentUserRole !== 'admin') return;
-            const fileInput = document.getElementById('policy-pdf-file');
-            const uploadBtn = document.getElementById('btn-upload-policy');
-
-            if (!fileInput.files || !fileInput.files[0]) {
-                alert("অনুগ্রহ করে একটি PDF ফাইল নির্বাচন করুন!");
-                return;
-            }
-
-            uploadBtn.disabled = true;
-            uploadBtn.innerHTML = `<i class="fas fa-spinner fa-spin mr-1"></i> আপলোড হচ্ছে...`;
-
-            const reader = new FileReader();
-            reader.onload = async function(e) {
-                const base64Data = e.target.result.split(',')[1];
-                try {
-                    await fetch(API_URL, {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({
-                            adminPass: sessionStorage.getItem('ppg_admin_pass'),
-                            actionType: "policy",
-                            fileName: `PPG_Policy_${new Date().getFullYear()}.pdf`,
-                            pdfBase64: base64Data
-                        })
-                    });
-
-                    alert("নীতিমালা PDF সফলভাবে আপলোড হয়েছে!");
-                    uploadBtn.disabled = false;
-                    uploadBtn.innerHTML = `আপলোড সম্পন্ন`;
-                    syncDataFromGoogleSheet();
-                } catch (err) {
-                    uploadBtn.disabled = false;
-                    uploadBtn.innerHTML = `আপলোড`;
-                }
-            };
-            reader.readAsDataURL(fileInput.files[0]);
-        }
-
         function shareWhatsApp() {
             if (currentUserRole !== 'admin' || !selectedMember) return;
             const idx = normalizeMonthIndex(selectedReceiptMonth);
@@ -3042,7 +3321,6 @@
             });
         }
 
-        // ০.০০১ সেকেন্ড অপটিমিস্টিক জমা এন্ট্রি
         async function handleAdminPaymentSubmit(e) {
             if (e) e.preventDefault();
             const submitBtn = document.getElementById('entry-submit-btn');
@@ -3075,7 +3353,6 @@
             const member = membersData.find(m => m.id === memberId);
             if (!member) return;
 
-            // ০.০০১ সেকেন্ডে ইনস্ট্যান্ট মেমরি স্টেট পরিবর্তন
             const recordObj = {
                 paid: true,
                 amount: amount,
@@ -3129,10 +3406,8 @@
             }
             member.missedCount = missed;
 
-            // লোকাল ক্যাশে তাৎক্ষণিক সেভ (০.০০১ সেকেন্ড)
             saveSnapshotInstantly();
 
-            // ব্যাকগ্রাউন্ডে গুগল ড্রাইভে পাঠানো
             fetch(API_URL, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -3649,7 +3924,7 @@
             const rawExpenses = data.expenses || data.Expenses || data.expense || data.Expense || [];
             const rawDps = data.dps || data.DPS || data.Dps || [];
             const rawProofs = data.proofs || data.Proofs || data.proof || data.Proof || [];
-            const rawSettings = data.settings || data.Settings || [];
+            const rawPolicy = data.policy || data.Policy || [];
 
             if (rawMembers && rawMembers.length > 0) {
                 membersData = [];
@@ -3861,24 +4136,30 @@
                 }
             }
 
-            if (rawSettings && rawSettings.length > 0) {
-                for (let s = 0; s < rawSettings.length; s++) {
-                    const sRow = rawSettings[s];
-                    if (Array.isArray(sRow)) {
-                        if (sRow[0] === "PolicyPdfUrl") {
-                            globalPolicyPdfUrl = sRow[1];
-                            const driveBtn = document.getElementById('btn-view-drive-policy');
-                            if (driveBtn && globalPolicyPdfUrl) {
-                                driveBtn.href = globalPolicyPdfUrl;
-                                driveBtn.classList.remove('hidden');
-                            }
-                        }
-                        if (sRow[0] === "PolicyText") {
-                            globalPolicyText = sRow[1];
-                            renderPolicyContent(globalPolicyText);
-                        }
+            // [ডাইনামিক পলিসি রিড]
+            if (rawPolicy && rawPolicy.length > 0) {
+                policyData = [];
+                const pStart = Array.isArray(rawPolicy[0]) ? 1 : 0;
+                for (let p = pStart; p < rawPolicy.length; p++) {
+                    const row = rawPolicy[p];
+                    if (!row) continue;
+                    if (Array.isArray(row)) {
+                        policyData.push({
+                            id: row[0] || ("POL_" + p),
+                            clauseNo: row[1] || `ধারা ${toBanglaNum(p)}`,
+                            title: row[2] || "সংবিধিবদ্ধ বিধান",
+                            content: row[3] || ""
+                        });
+                    } else if (typeof row === 'object') {
+                        policyData.push({
+                            id: row.id || ("POL_" + p),
+                            clauseNo: row.clauseNo || `ধারা ${toBanglaNum(p)}`,
+                            title: row.title || "সংবিধিবদ্ধ বিধান",
+                            content: row.content || ""
+                        });
                     }
                 }
+                renderPolicyContent();
             }
 
             membersData.forEach(m => {
@@ -3925,18 +4206,16 @@
             }
         }
 
-        // Cache এবং Fast Loading (iPhone ও Android-এ ০.০০১ সেকেন্ডে স্ক্রিন চালু)
         async function syncDataFromGoogleSheet() {
             if (!API_URL) return;
 
-            // লোকাল ক্যাশ থেকে мгновенно (0.001s) ডাটা লোড
             try {
                 const cached = localStorage.getItem('ppg_cached_data_v2');
                 if (cached) {
                     const parsedCache = JSON.parse(cached);
                     processSheetData(parsedCache);
                     checkAndOpenReceiptFromUrl();
-                    enterSite(); // ক্যাশ ডাটা থাকলে লোডিং স্ক্রিন সাথে সাথে বন্ধ
+                    enterSite();
                 }
             } catch (e) {}
 
@@ -3967,7 +4246,6 @@
             enterSite();
         }
 
-        // ট্যাব ফোকাস হওয়া মাত্রই ব্যাকগ্রাউন্ডে রিয়েল-টাইম তথ্য সিঙ্ক
         document.addEventListener('visibilitychange', () => {
             if (!document.hidden) {
                 syncDataFromGoogleSheet();
@@ -3977,7 +4255,6 @@
             syncDataFromGoogleSheet();
         });
 
-        // প্রতি ১২ সেকেন্ড পর পর গুগল শীটের নতুন তথ্যের ব্যাকগ্রাউন্ড লাইভ সিঙ্ক
         setInterval(() => {
             if (!document.hidden) {
                 syncDataFromGoogleSheet();
@@ -4122,7 +4399,6 @@
             newMember.monthlyRecords = {};
             membersData.push(newMember);
 
-            // ইনস্ট্যান্ট সেভ
             saveSnapshotInstantly();
             updateAuthUI();
 
