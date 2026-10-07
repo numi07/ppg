@@ -40,7 +40,7 @@
             font-weight: 700;
         }
         #welcome-screen {
-            transition: opacity 0.3s ease-out, visibility 0.3s;
+            transition: opacity 0.4s ease-out, visibility 0.4s;
         }
         .pdf-container, #printable-receipt {
             width: 100%;
@@ -128,26 +128,46 @@
             background: #f1f5f9;
             z-index: 20;
         }
+        .opening-video-box {
+            position: relative;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6);
+            border: 2px solid rgba(52, 211, 153, 0.4);
+            border-radius: 20px;
+            overflow: hidden;
+            background: #000;
+            max-width: 380px;
+            width: 100%;
+        }
     </style>
 </head>
 <body class="text-slate-800 antialiased min-h-screen flex flex-col justify-between">
 
-    <!-- স্বাগতম স্ক্রিন -->
+    <!-- স্বাগতম স্ক্রিন (Opening Video সহ) -->
     <div id="welcome-screen" class="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-gradient-to-br from-blue-950 via-indigo-900 to-violet-950 text-white p-4">
-        <div class="mb-6 shadow-2xl rounded-full p-4 bg-white/10 backdrop-blur-md border border-white/20 animate-pulse">
-            <img src="images/logo.png" alt="PPG Logo" class="h-28 w-28 md:h-36 md:w-36 object-contain rounded-full drop-shadow-lg" onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'150\' height=\'150\' viewBox=\'0 0 100 100\'><circle cx=\'50\' cy=\'50\' r=\'48\' fill=\'%23064e3b\' stroke=\'%2334d399\' stroke-width=\'4\'/><text x=\'50%\' y=\'55%\' font-size=\'22\' font-weight=\'bold\' fill=\'%23ffffff\' text-anchor=\'middle\' dominant-baseline=\'middle\' font-family=\'sans-serif\'>PPG</text></svg>';">
+        
+        <!-- opening.mp4 ভিডিও প্লেয়ার কনটেইনার -->
+        <div class="opening-video-box mb-6">
+            <video id="opening-video" autoplay muted loop playsinline class="w-full h-auto object-cover max-h-[260px] md:max-h-[300px]">
+                <source src="videos/opening.mp4" type="video/mp4">
+                আপনার ব্রাউজার ভিডিও সাপোর্ট করে না।
+            </video>
         </div>
+
+        <!-- ভিডিওর নিচের টেক্সট -->
         <h1 class="text-2xl md:text-4xl font-bold text-center text-emerald-300 mb-2 tracking-wide drop-shadow">
             পহরডাঙ্গা পার্টনারশিপ গ্রুপ
         </h1>
-        <p class="text-indigo-100 text-sm md:text-base mb-8 text-center max-w-md italic tracking-wider">"এক সুতোয় বাঁধা তারুণ্য, বাণিজ্যে অনন্য!"</p>
+        <p class="text-indigo-100 text-sm md:text-base mb-6 text-center max-w-md italic tracking-wider">
+            "এক সুতোয় বাঁধা তারুণ্য, বাণিজ্যে অনন্য!"
+        </p>
         
-        <div class="mt-2 text-emerald-400">
-            <i class="fas fa-spinner fa-spin text-3xl drop-shadow-lg"></i>
+        <div class="mt-1 text-emerald-400 flex flex-col items-center gap-2">
+            <i class="fas fa-spinner fa-spin text-2xl drop-shadow-lg"></i>
+            <span class="text-xs text-emerald-200">ডাটা লোড হচ্ছে...</span>
         </div>
         
-        <div class="absolute bottom-6 w-full text-center px-4">
-            <p class="text-[12px] md:text-sm text-indigo-300 uppercase tracking-widest font-semibold border-t border-indigo-700/50 pt-3 inline-block">ঠিকানা: পহরডাঙ্গা, নড়াগাতী, নড়াইল</p>
+        <div class="absolute bottom-5 w-full text-center px-4">
+            <p class="text-[12px] md:text-sm text-indigo-300 uppercase tracking-widest font-semibold border-t border-indigo-700/50 pt-2 inline-block">ঠিকানা: পহরডাঙ্গা, নড়াগাতী, নড়াইল</p>
         </div>
     </div>
 
@@ -377,7 +397,6 @@
                 </div>
             </div>
         </section>
-
         <!-- ================= সার্বজনীন জমা স্টেটমেন্ট সেকশন ================= -->
         <section id="statement-section" class="auth-only hidden space-y-6 pt-4">
             <div class="bg-white p-6 rounded-3xl border border-slate-200 shadow-lg space-y-5">
@@ -458,7 +477,7 @@
         <p>© <span class="font-digit">২০২৬</span> পহরডাঙ্গা পার্টনারশিপ গ্রুপ। যাত্রা শুরু “সেপ্টেম্বর ২০২৬” থেকে। সর্বস্বত্ব সংরক্ষিত।</p>
     </footer>
 
-    <!-- ================= মোডালসমূহ (১ম অংশ) ================= -->
+    <!-- ================= মোডালসমূহ ================= -->
 
     <!-- কাস্টম স্বয়ংক্রিয় এলার্ট / টোস্ট মোডাল -->
     <div id="custom-alert-modal" class="fixed inset-0 bg-slate-900/40 backdrop-blur-xs hidden z-[110] flex items-center justify-center p-4 transition-all duration-300">
@@ -649,6 +668,7 @@
             </div>
         </div>
     </div>
+
     <!-- ২. সদস্যের হিসাব খতিয়ান ও লেনদেন মোডাল -->
     <div id="member-detail-modal" class="fixed inset-0 bg-slate-900/80 backdrop-blur-sm hidden z-50 flex items-center justify-center p-3 md:p-6">
         <div class="bg-white rounded-3xl max-w-3xl w-full max-h-[92vh] flex flex-col shadow-2xl overflow-hidden border border-slate-200">
@@ -894,7 +914,7 @@
         </div>
     </div>
 
-    <!-- ৫. প্রাতিষ্ঠানিক সংবিধান ও নীতিমালা মোডাল (স্ক্রিনশটের ওভারভিউ চার্ট ও সূচিপত্রসহ ডাইনামিক) -->
+    <!-- ৫. প্রাতিষ্ঠানিক সংবিধান ও নীতিমালা মোডাল -->
     <div id="policy-modal" class="fixed inset-0 bg-slate-900/80 backdrop-blur-sm hidden z-50 flex items-center justify-center p-3 md:p-6">
         <div class="bg-white rounded-3xl max-w-5xl w-full max-h-[94vh] flex flex-col shadow-2xl overflow-hidden border border-slate-200">
             <div class="p-5 bg-gradient-to-r from-blue-950 via-indigo-900 to-slate-900 text-white flex items-center justify-between border-b border-indigo-700/50">
@@ -919,7 +939,6 @@
             </div>
             
             <div class="p-6 overflow-y-auto space-y-4 bg-slate-100/60">
-                <!-- প্রফেশনাল প্রাতিষ্ঠানিক সংবিধান ও নীতিমালা প্রিন্ট লেআউট (হুবহু স্ক্রিনশট ১ ও ২ অনুযায়ী) -->
                 <div id="printable-policy" class="pdf-container space-y-6 text-xs text-slate-800 bg-white p-6 md:p-10 shadow-lg rounded-2xl border border-slate-300 relative overflow-hidden" style="max-width: 820px;">
                     
                     <div class="relative z-10">
@@ -936,7 +955,7 @@
                             <p style="font-size: 10px; color: #64748b; margin-top: 2px; font-weight: 600;">প্রস্তুতকরণ: সদস্যদের সম্মিলিত সিদ্ধান্তের ভিত্তিতে | সংস্করণ: ২০২৬</p>
                         </div>
 
-                        <!-- স্ক্রিনশট ১: মূল বিষয় ও নির্ধারিত বিধান টেবিল (ডাইনামিক) -->
+                        <!-- মূল বিষয় ও নির্ধারিত বিধান টেবিল -->
                         <div class="mb-6 overflow-hidden rounded-xl border border-slate-300">
                             <table class="w-full text-xs text-left">
                                 <thead class="bg-blue-950 text-white font-bold">
@@ -974,13 +993,13 @@
                             </table>
                         </div>
 
-                        <!-- স্ক্রিনশট ১: গুরুত্বপূর্ণ ঘোষণা বক্স (ডাইনামিক) -->
+                        <!-- গুরুত্বপূর্ণ ঘোষণা বক্স -->
                         <div class="bg-amber-50/80 border-2 border-amber-300 p-4 rounded-xl mb-6 text-[11.5px] text-amber-950 leading-relaxed shadow-xs">
                             <strong class="text-amber-900 block mb-1 font-bold flex items-center gap-1.5"><i class="fas fa-exclamation-circle text-amber-600"></i> গুরুত্বপূর্ণ ঘোষণা:</strong>
                             <span id="pv-disclaimer">এই নীতিমালা গ্রুপের অভ্যন্তরীণ পরিচালনা ও সদস্যদের পারস্পরিক অধিকার-দায়িত্বের লিখিত কাঠামো। বাস্তবে অংশীদারী ব্যবসা, জমি/ফ্ল্যাট ক্রয়, কর, নিবন্ধন, ব্যাংকিং বা অন্য কোনো নিয়ন্ত্রিত কার্যক্রম শুরু করার আগে পৃথক Partnership Deed/চুক্তি এবং প্রয়োজনীয় আইনগত ও হিসাবগত যাচাই সম্পন্ন করতে হবে।</span>
                         </div>
 
-                        <!-- স্ক্রিনশট ২: ধারা সূচিপত্র | নীতিমালার কাঠামো (গুগল শীটের ধারা থেকে অটো জেনারেটেড) -->
+                        <!-- ধারা সূচিপত্র | নীতিমালার কাঠামো -->
                         <div class="bg-slate-50 border border-slate-200 p-4 rounded-xl mb-6">
                             <h4 class="font-bold text-slate-800 text-xs mb-2 border-b pb-1.5 flex items-center gap-1.5">
                                 <i class="fas fa-list-ol text-indigo-600"></i> ধারা সূচিপত্র | নীতিমালার কাঠামো
@@ -989,7 +1008,7 @@
                             </div>
                         </div>
 
-                        <!-- ডাইনামিক ধারা ও উপধারাসমূহ (গুগল শীট থেকে রেন্ডার হবে) -->
+                        <!-- ডাইনামিক ধারা ও উপধারাসমূহ -->
                         <div id="policy-content-display" class="space-y-4 text-justify font-medium">
                             <div class="py-8 text-center text-slate-400">
                                 <i class="fas fa-spinner fa-spin text-2xl mb-2 text-indigo-600"></i>
@@ -2222,9 +2241,6 @@
             renderPolicyContent();
         }
 
-        // =========================================================================
-        // সার্বজনীন জমা স্টেটমেন্ট লজিক (বাৎসরিক পরিক্রমা ও পূর্বের জমা কলাম)
-        // =========================================================================
         function getStatementTimeline() {
             const currentYear = new Date().getFullYear();
             const currentMonthIdx = new Date().getMonth();
@@ -2484,10 +2500,6 @@
             setTimeout(() => { win.print(); win.close(); }, 500);
         }
 
-        // =========================================================================
-        // গুগল শীট নির্ভর ডাইনামিক নীতিমালা ও ওভারভিউ ইঞ্জিন (এডমিন অ্যাড/এডিট/ডিলিট)
-        // =========================================================================
-
         let policyOverview = {
             maxMembers: "৫০ জন",
             maxShares: "১০০টি",
@@ -2712,9 +2724,6 @@
             html2pdf().set(opt).from(element).save();
         }
 
-        // =========================================================================
-        // মেম্বার প্রোফাইল ও ফটো আপলোড
-        // =========================================================================
         function openMemberProfileModal(memberId) {
             const member = membersData.find(m => m.id === memberId);
             if (!member) return;
@@ -4326,7 +4335,6 @@
                 }
             }
 
-            // [গুগল শীট থেকে স্ক্রিনশট ১ এর ওভারভিউ চার্ট ও ঘোষণা রিড]
             if (rawSettings && rawSettings.length > 0) {
                 for (let s = 0; s < rawSettings.length; s++) {
                     const sRow = rawSettings[s];
@@ -4343,7 +4351,6 @@
                 renderPolicyOverviewUI();
             }
 
-            // [ডাইনামিক পলিসি রিড]
             if (rawPolicy && rawPolicy.length > 0) {
                 policyData = [];
                 const pStart = Array.isArray(rawPolicy[0]) ? 1 : 0;
@@ -4413,9 +4420,11 @@
             }
         }
 
+        // ================= আল্ট্রা-ফাস্ট ০.০০১ সেকেন্ড সিঙ্ক মেকানিজম =================
         async function syncDataFromGoogleSheet() {
             if (!API_URL) return;
 
+            // ১. ক্যাশ মেমোরি থেকে ইনস্ট্যান্ট ০.০০১ সেকেন্ডে লোড
             try {
                 const cached = localStorage.getItem('ppg_cached_data_v2');
                 if (cached) {
@@ -4423,16 +4432,19 @@
                     if (parsedCache.policyOverview) policyOverview = parsedCache.policyOverview;
                     processSheetData(parsedCache);
                     checkAndOpenReceiptFromUrl();
-                    enterSite();
+                    // যদি ভিডিও কিছুক্ষণ চলতে দেওয়া প্রয়োজন হয়
+                    setTimeout(enterSite, 1000);
                 }
             } catch (e) {}
 
+            // ২. ব্যাকগ্রাউন্ডে প্যারালাল ফেচ ও লাইভ ডাটা সিঙ্ক
             let liveData = null;
             try {
                 const controller = new AbortController();
-                const timeoutId = setTimeout(() => controller.abort(), 10000);
+                const timeoutId = setTimeout(() => controller.abort(), 6000);
                 const response = await fetch(API_URL + '?_t=' + Date.now(), {
                     method: 'GET',
+                    headers: { 'Cache-Control': 'no-cache' },
                     signal: controller.signal
                 });
                 clearTimeout(timeoutId);
@@ -4440,7 +4452,7 @@
                     liveData = await response.json();
                 }
             } catch (fetchErr) {
-                console.warn("API Fetch failed, using local cache", fetchErr);
+                console.warn("API Fetch failed, using ultra-fast local cache", fetchErr);
             }
 
             if (liveData && (liveData.members || liveData.accounts)) {
@@ -4467,7 +4479,7 @@
             if (!document.hidden) {
                 syncDataFromGoogleSheet();
             }
-        }, 12000);
+        }, 10000);
 
         function renderMembers(dataToRender = membersData) {
             const tbody = document.getElementById('member-table-body');
