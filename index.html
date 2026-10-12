@@ -616,6 +616,7 @@
                             </div>
                         </div>
                         
+                        <!-- রক্তের গ্রুপ ও শেষ রক্তদান (সবার জন্য দৃশ্যমান ও পারমিশন ভিত্তিক আপডেট) -->
                         <div class="grid grid-cols-12 items-center pt-2 border-t border-[#1e3a5f]/60">
                             <span class="col-span-4 text-slate-300 flex items-center space-x-2 font-medium">
                                 <span>🩸</span> <span>রক্তের গ্রুপ</span>
@@ -767,6 +768,7 @@
             </div>
         </div>
     </div>
+
     <!-- ৩. ডিজিটাল রশিদ মোডাল -->
     <div id="receipt-modal" class="fixed inset-0 bg-slate-900/80 backdrop-blur-sm hidden z-50 flex items-center justify-center p-3 md:p-6">
         <div class="bg-white rounded-3xl max-w-lg w-full max-h-[94vh] flex flex-col shadow-2xl overflow-hidden border border-slate-200">
@@ -892,7 +894,6 @@
             </div>
         </div>
     </div>
-
     <!-- ৪. সদস্য তালিকা মোডাল -->
     <div id="members-modal" class="fixed inset-0 bg-slate-900/80 backdrop-blur-sm hidden z-50 flex items-center justify-center p-3 md:p-6">
         <div class="bg-white rounded-3xl max-w-5xl w-full max-h-[90vh] flex flex-col shadow-2xl overflow-hidden border border-slate-200">
@@ -1657,7 +1658,6 @@
             </form>
         </div>
     </div>
-
     <!-- ১৩. WhatsApp নোটিশ মোডাল -->
     <div id="broadcast-modal" class="fixed inset-0 bg-slate-900/80 backdrop-blur-sm hidden z-50 flex items-center justify-center p-3 md:p-6">
         <div class="bg-white rounded-3xl max-w-2xl w-full max-h-[92vh] flex flex-col shadow-2xl overflow-hidden border border-slate-200">
@@ -1733,6 +1733,7 @@
             </div>
         </div>
     </div>
+
     <!-- জাভাস্ক্রিপ্ট কোড (সুপার ফাস্ট রিয়েল-টাইম ০.০০১ সেকেন্ড সিঙ্ক, সার্বজনীন স্টেটমেন্ট ও পলিসি ইঞ্জিন) -->
     <script>
         // Vercel API Link বা Google Apps Script Link
@@ -2569,7 +2570,7 @@
             appFee: "২০০ টাকা (অফেরতযোগ্য)",
             reinvestPeriod: "প্রথম ৩ বছর",
             headOffice: "পহরডাঙ্গা",
-            disclaimer: "এই নীতিমালা গ্রুপের অভ্যন্তরীণ পরিচালনা ও সদস্যদের পারস্পরিক অধিকার-দায়িত্বের লিখিত কাঠামো। বাস্তবে অংশীদারী ব্যবসা, জমি/ফ্ল্যাট ক্রয়, কর, নিবন্ধন, ব্যাংকিং বা অন্য কোনো নিয়ন্ত্রিত কার্যক্রম শুরু করার আগে পৃথক Partnership Deed/চুক্তি এবং প্রয়োজনীয় আইনগত ও হিসাবগত যাচাই সম্পন্ন করতে হবে।"
+            disclaimer: "এই নীতিমালা গ্রুপের অভ্যন্তরীণ পরিচালনা ও সদস্যদের পারস্পরিক অধিকার-দায়িত্বের লিখিত কাঠামো। বাস্তবে অংশীদারী ব্যবসা, জমি/ফ্ল্যাট ক্রয়, কর, নিবন্ধন, ব্যাংকিং বা অন্য কোনো নিয়ন্ত্রিত কার্যক্রম শুরু করার আগে পৃথক Partnership Deed/চুক্তি এবং প্রয়োজনীয় আইনগত ও হিসাবগত যাচাই সম্পন্ন করতে হবে।"
         };
 
         function renderPolicyContent() {
@@ -2796,7 +2797,18 @@
             document.getElementById('mp-id').innerText = `: ${member.id}`;
             document.getElementById('mp-shares').innerText = `${toBanglaNum(member.shares)} টি`;
 
+            // রক্তের গ্রুপ ও শেষ রক্তদান এখন উন্মুক্ত ও সার্বজনীন (লগইন ছাড়াই দেখতে পারবে)
+            document.getElementById('mp-blood').innerText = `: ${member.bloodGroup || 'অজানা'}`;
+            document.getElementById('mp-blood-date').innerText = `: ${member.lastBloodDonation ? formatBanglaDate(member.lastBloodDonation) : '--'}`;
+
             const canViewPrivate = (currentUserRole === 'admin') || (currentUserRole === 'member' && loggedInMemberId === member.id);
+
+            // রক্তদানের তারিখ আপডেটের সুযোগ শুধুমাত্র এডমিন অথবা স্বয়ং ঐ সদস্য পাবেন
+            if (canViewPrivate) {
+                document.getElementById('btn-update-blood-date').classList.remove('hidden');
+            } else {
+                document.getElementById('btn-update-blood-date').classList.add('hidden');
+            }
 
             if (canViewPrivate) {
                 document.getElementById('mp-father').innerText = `: ${member.fatherName || '--'}`;
@@ -2805,10 +2817,6 @@
                 document.getElementById('mp-nominee').innerText = `: ${member.nomineeName || '--'}`;
                 document.getElementById('mp-nominee-rel').innerText = `: ${member.nomineeRelation || '--'}`;
                 document.getElementById('cardDisplayMonth').innerText = member.startMonth || "সেপ্টেম্বর";
-                document.getElementById('mp-blood').innerText = `: ${member.bloodGroup || 'অজানা'}`;
-                document.getElementById('mp-blood-date').innerText = `: ${member.lastBloodDonation ? formatBanglaDate(member.lastBloodDonation) : '--'}`;
-                
-                document.getElementById('btn-update-blood-date').classList.remove('hidden');
                 
                 document.getElementById('mp-action-container').innerHTML = `
                     <button type="button" onclick="openMemberAccountsFromCard()" class="w-full bg-gradient-to-r from-[#047857] to-[#059669] hover:from-[#065f46] hover:to-[#047857] text-white font-semibold py-3 px-6 rounded-2xl shadow-lg transition duration-300 flex items-center justify-center space-x-2 border border-emerald-400/30 cursor-pointer">
@@ -2824,10 +2832,6 @@
                 document.getElementById('mp-nominee').innerText = `: *********** (লগইন প্রয়োজন)`;
                 document.getElementById('mp-nominee-rel').innerText = `: *********** (লগইন প্রয়োজন)`;
                 document.getElementById('cardDisplayMonth').innerText = `গোপনীয়`;
-                document.getElementById('mp-blood').innerText = `: ***********`;
-                document.getElementById('mp-blood-date').innerText = `: ***********`;
-                
-                document.getElementById('btn-update-blood-date').classList.add('hidden');
                 
                 document.getElementById('mp-action-container').innerHTML = `
                     <button type="button" onclick="closeModal('member-profile-modal'); openLoginModal();" class="w-full bg-slate-800 hover:bg-slate-700 text-amber-300 font-semibold py-3 px-6 rounded-2xl shadow-lg transition duration-300 flex items-center justify-center space-x-2 border border-amber-500/30 cursor-pointer">
@@ -2894,11 +2898,9 @@
             document.getElementById('btn-update-blood-date').classList.add('hidden');
             document.getElementById('update-blood-date-form').classList.remove('hidden');
             
-            // Set current date in the form
             let curDate = selectedMember.lastBloodDonation || '';
             let formattedDate = "";
             if (curDate) {
-                // Try to format to YYYY-MM-DD for the input type="date"
                 let d = new Date(curDate.replace(/-/g, '/'));
                 if (!isNaN(d.getTime())) {
                     formattedDate = d.toISOString().split('T')[0];
@@ -4554,7 +4556,6 @@
                     if (parsedCache.policyOverview) policyOverview = parsedCache.policyOverview;
                     processSheetData(parsedCache);
                     checkAndOpenReceiptFromUrl();
-                    // যদি ভিডিও কিছুক্ষণ চলতে দেওয়া প্রয়োজন হয়
                     setTimeout(enterSite, 1000);
                 }
             } catch (e) {}
