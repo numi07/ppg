@@ -615,6 +615,27 @@
                                 </div>
                             </div>
                         </div>
+                        
+                        <div class="grid grid-cols-12 items-center pt-2 border-t border-[#1e3a5f]/60">
+                            <span class="col-span-4 text-slate-300 flex items-center space-x-2 font-medium">
+                                <span>🩸</span> <span>রক্তের গ্রুপ</span>
+                            </span>
+                            <span class="col-span-8 text-rose-400 font-bold" id="mp-blood">: --</span>
+                        </div>
+                        <div class="grid grid-cols-12 items-center">
+                            <span class="col-span-4 text-slate-300 flex items-center space-x-2 font-medium">
+                                <span>📅</span> <span>শেষ রক্তদান</span>
+                            </span>
+                            <span class="col-span-8 text-white font-medium flex items-center gap-2">
+                                <span id="mp-blood-date" class="card-bn-text">: --</span>
+                                <button type="button" onclick="openUpdateBloodDate()" id="btn-update-blood-date" class="hidden bg-rose-600 hover:bg-rose-500 text-white text-[10px] px-2 py-0.5 rounded shadow cursor-pointer">আপডেট</button>
+                            </span>
+                        </div>
+                        <div id="update-blood-date-form" class="hidden col-span-12 mt-2 bg-slate-800 p-2 rounded-xl flex items-center gap-2 border border-slate-600">
+                             <input type="date" id="mp-new-blood-date" class="text-xs p-1 rounded border-none outline-none text-slate-800 font-bold w-full">
+                             <button type="button" onclick="saveBloodDate()" class="bg-emerald-600 hover:bg-emerald-500 text-white text-xs px-3 py-1 rounded font-bold">সেভ</button>
+                             <button type="button" onclick="closeUpdateBloodDate()" class="bg-slate-600 hover:bg-slate-500 text-white text-xs px-3 py-1 rounded">বাতিল</button>
+                        </div>
                     </div>
 
                     <!-- নমিনি বক্স -->
@@ -746,7 +767,6 @@
             </div>
         </div>
     </div>
-
     <!-- ৩. ডিজিটাল রশিদ মোডাল -->
     <div id="receipt-modal" class="fixed inset-0 bg-slate-900/80 backdrop-blur-sm hidden z-50 flex items-center justify-center p-3 md:p-6">
         <div class="bg-white rounded-3xl max-w-lg w-full max-h-[94vh] flex flex-col shadow-2xl overflow-hidden border border-slate-200">
@@ -1342,7 +1362,7 @@
                 <div class="bg-amber-50/70 border border-amber-200 p-2.5 rounded-xl">
                     <label class="block font-bold text-slate-800 mb-1">ভাউচার / রসিদের ছবি পরিবর্তন (ঐচ্ছিক)</label>
                     <input type="file" id="edit-rcp-proof-file" accept="image/*" class="w-full border p-2 rounded-xl text-xs bg-white text-slate-600">
-                    <p class="text-[10px] text-amber-800 mt-1">* কোনো ছবি নির্বাচন না করলে আগের সংযুক্ত ছবিটিই বহাল থাকবে।</p>
+                    <p class="text-[10px] text-amber-800 mt-1">* কোনো ছবি নির্বাচন না করলে আগের সংযুক্ত ছবিটিই বহাল থাকবে.</p>
                 </div>
 
                 <div class="pt-2 flex gap-2">
@@ -1447,6 +1467,27 @@
                         <input type="number" id="new-m-shares" required value="1" min="1" max="3" class="w-full border p-2.5 rounded-xl font-bold">
                     </div>
                 </div>
+                
+                <div class="grid grid-cols-2 gap-3">
+                    <div>
+                        <label class="block font-bold text-slate-700 mb-1">রক্তের গ্রুপ</label>
+                        <select id="new-m-blood" class="w-full border p-2.5 rounded-xl font-bold bg-white text-rose-600">
+                            <option value="">অজানা</option>
+                            <option value="A+">A+</option>
+                            <option value="A-">A-</option>
+                            <option value="B+">B+</option>
+                            <option value="B-">B-</option>
+                            <option value="AB+">AB+</option>
+                            <option value="AB-">AB-</option>
+                            <option value="O+">O+</option>
+                            <option value="O-">O-</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block font-bold text-slate-700 mb-1">সর্বশেষ রক্তদান (তারিখ)</label>
+                        <input type="date" id="new-m-blood-date" class="w-full border p-2.5 rounded-xl font-bold text-slate-700">
+                    </div>
+                </div>
 
                 <div class="grid grid-cols-2 gap-3">
                     <div>
@@ -1541,6 +1582,27 @@
                         <label class="block font-bold text-slate-700 mb-1">যোগদানের মাস</label>
                         <select id="edit-m-join-month" class="w-full border p-2.5 rounded-xl font-bold bg-white text-emerald-800">
                         </select>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-2 gap-3">
+                    <div>
+                        <label class="block font-bold text-slate-700 mb-1">রক্তের গ্রুপ</label>
+                        <select id="edit-m-blood" class="w-full border p-2.5 rounded-xl font-bold bg-white text-rose-600">
+                            <option value="">অজানা</option>
+                            <option value="A+">A+</option>
+                            <option value="A-">A-</option>
+                            <option value="B+">B+</option>
+                            <option value="B-">B-</option>
+                            <option value="AB+">AB+</option>
+                            <option value="AB-">AB-</option>
+                            <option value="O+">O+</option>
+                            <option value="O-">O-</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block font-bold text-slate-700 mb-1">সর্বশেষ রক্তদান (তারিখ)</label>
+                        <input type="date" id="edit-m-blood-date" class="w-full border p-2.5 rounded-xl font-bold text-slate-700">
                     </div>
                 </div>
 
@@ -1674,7 +1736,7 @@
     <!-- জাভাস্ক্রিপ্ট কোড (সুপার ফাস্ট রিয়েল-টাইম ০.০০১ সেকেন্ড সিঙ্ক, সার্বজনীন স্টেটমেন্ট ও পলিসি ইঞ্জিন) -->
     <script>
         // Vercel API Link বা Google Apps Script Link
-        const API_URL = "/api/Accounts";
+        const API_URL = "/api/Accounts"; // আপনার আসল API লিংক এখানে বসাবেন
 
         const DEFAULT_AVATAR_SVG = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'><circle cx='50' cy='50' r='48' fill='%231e293b' stroke='%2310b981' stroke-width='3'/><path d='M50 25a16 16 0 100 32 16 16 0 000-32zm0 40c-18 0-33 11-33 25h66c0-14-15-25-33-25z' fill='%2394a3b8'/></svg>";
 
@@ -2507,7 +2569,7 @@
             appFee: "২০০ টাকা (অফেরতযোগ্য)",
             reinvestPeriod: "প্রথম ৩ বছর",
             headOffice: "পহরডাঙ্গা",
-            disclaimer: "এই নীতিমালা গ্রুপের অভ্যন্তরীণ পরিচালনা ও সদস্যদের পারস্পরিক অধিকার-দায়িত্বের লিখিত কাঠামো। বাস্তবে অংশীদারী ব্যবসা, জমি/ফ্ল্যাট ক্রয়, কর, নিবন্ধন, ব্যাংকিং বা অন্য কোনো নিয়ন্ত্রিত কার্যক্রম শুরু করার আগে পৃথক Partnership Deed/চুক্তি এবং প্রয়োজনীয় আইনগত ও হিসাবগত যাচাই সম্পন্ন করতে হবে।"
+            disclaimer: "এই নীতিমালা গ্রুপের অভ্যন্তরীণ পরিচালনা ও সদস্যদের পারস্পরিক অধিকার-দায়িত্বের লিখিত কাঠামো। বাস্তবে অংশীদারী ব্যবসা, জমি/ফ্ল্যাট ক্রয়, কর, নিবন্ধন, ব্যাংকিং বা অন্য কোনো নিয়ন্ত্রিত কার্যক্রম শুরু করার আগে পৃথক Partnership Deed/চুক্তি এবং প্রয়োজনীয় আইনগত ও হিসাবগত যাচাই সম্পন্ন করতে হবে।"
         };
 
         function renderPolicyContent() {
@@ -2743,6 +2805,10 @@
                 document.getElementById('mp-nominee').innerText = `: ${member.nomineeName || '--'}`;
                 document.getElementById('mp-nominee-rel').innerText = `: ${member.nomineeRelation || '--'}`;
                 document.getElementById('cardDisplayMonth').innerText = member.startMonth || "সেপ্টেম্বর";
+                document.getElementById('mp-blood').innerText = `: ${member.bloodGroup || 'অজানা'}`;
+                document.getElementById('mp-blood-date').innerText = `: ${member.lastBloodDonation ? formatBanglaDate(member.lastBloodDonation) : '--'}`;
+                
+                document.getElementById('btn-update-blood-date').classList.remove('hidden');
                 
                 document.getElementById('mp-action-container').innerHTML = `
                     <button type="button" onclick="openMemberAccountsFromCard()" class="w-full bg-gradient-to-r from-[#047857] to-[#059669] hover:from-[#065f46] hover:to-[#047857] text-white font-semibold py-3 px-6 rounded-2xl shadow-lg transition duration-300 flex items-center justify-center space-x-2 border border-emerald-400/30 cursor-pointer">
@@ -2758,6 +2824,10 @@
                 document.getElementById('mp-nominee').innerText = `: *********** (লগইন প্রয়োজন)`;
                 document.getElementById('mp-nominee-rel').innerText = `: *********** (লগইন প্রয়োজন)`;
                 document.getElementById('cardDisplayMonth').innerText = `গোপনীয়`;
+                document.getElementById('mp-blood').innerText = `: ***********`;
+                document.getElementById('mp-blood-date').innerText = `: ***********`;
+                
+                document.getElementById('btn-update-blood-date').classList.add('hidden');
                 
                 document.getElementById('mp-action-container').innerHTML = `
                     <button type="button" onclick="closeModal('member-profile-modal'); openLoginModal();" class="w-full bg-slate-800 hover:bg-slate-700 text-amber-300 font-semibold py-3 px-6 rounded-2xl shadow-lg transition duration-300 flex items-center justify-center space-x-2 border border-amber-500/30 cursor-pointer">
@@ -2768,6 +2838,7 @@
             }
 
             document.getElementById('cardSelectMonth').value = member.startMonth || "সেপ্টেম্বর";
+            closeUpdateBloodDate();
 
             const photoElem = document.getElementById('mp-photo');
             photoElem.src = member.photoUrl || DEFAULT_AVATAR_SVG;
@@ -2816,6 +2887,53 @@
                     startMonth: newMonth
                 })
             });
+        }
+        
+        function openUpdateBloodDate() {
+            document.getElementById('mp-blood-date').classList.add('hidden');
+            document.getElementById('btn-update-blood-date').classList.add('hidden');
+            document.getElementById('update-blood-date-form').classList.remove('hidden');
+            
+            // Set current date in the form
+            let curDate = selectedMember.lastBloodDonation || '';
+            let formattedDate = "";
+            if (curDate) {
+                // Try to format to YYYY-MM-DD for the input type="date"
+                let d = new Date(curDate.replace(/-/g, '/'));
+                if (!isNaN(d.getTime())) {
+                    formattedDate = d.toISOString().split('T')[0];
+                }
+            }
+            document.getElementById('mp-new-blood-date').value = formattedDate;
+        }
+
+        function closeUpdateBloodDate() {
+            document.getElementById('mp-blood-date').classList.remove('hidden');
+            if (currentUserRole === 'admin' || (currentUserRole === 'member' && loggedInMemberId === (selectedMember && selectedMember.id))) {
+                document.getElementById('btn-update-blood-date').classList.remove('hidden');
+            }
+            document.getElementById('update-blood-date-form').classList.add('hidden');
+        }
+
+        async function saveBloodDate() {
+            if (!selectedMember) return;
+            const newDate = document.getElementById('mp-new-blood-date').value;
+            selectedMember.lastBloodDonation = newDate;
+            document.getElementById('mp-blood-date').innerText = `: ${newDate ? formatBanglaDate(newDate) : '--'}`;
+            closeUpdateBloodDate();
+            saveSnapshotInstantly();
+
+            fetch(API_URL, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    adminPass: sessionStorage.getItem('ppg_admin_pass') || '', 
+                    actionType: "update_blood_date",
+                    memberId: selectedMember.id,
+                    lastBloodDonation: newDate
+                })
+            });
+            showCustomAlert('রক্তদানের তারিখ আপডেট হয়েছে');
         }
 
         async function handleDirectPhotoUpload(event) {
@@ -4009,7 +4127,7 @@
 
         function parseMemberRowData(row) {
             if (!row) return null;
-            let id = "", name = "", phone = "", shares = 1, joinDate = "", joinMonth = "", membershipFee = 200, password = "1234", status = "Active", fatherName = "", startMonth = "সেপ্টেম্বর", nomineeName = "", nomineeRelation = "", photoUrl = "";
+            let id = "", name = "", phone = "", shares = 1, joinDate = "", joinMonth = "", membershipFee = 200, password = "1234", status = "Active", fatherName = "", startMonth = "সেপ্টেম্বর", nomineeName = "", nomineeRelation = "", photoUrl = "", bloodGroup = "", lastBloodDonation = "";
 
             if (Array.isArray(row)) {
                 const firstCol = (row[0] || "").toString().trim().toLowerCase();
@@ -4030,6 +4148,8 @@
                 nomineeName = row[11] ? row[11].toString().trim() : "";
                 nomineeRelation = row[12] ? row[12].toString().trim() : "";
                 photoUrl = row[13] ? getDirectImageUrl(row[13].toString().trim()) : "";
+                bloodGroup = row[14] ? row[14].toString().trim() : "";
+                lastBloodDonation = row[15] ? row[15].toString().trim() : "";
             } else if (typeof row === 'object') {
                 id = (row.id || row.memberId || row['ID'] || row['Member ID'] || row['আইডি'] || "").toString().trim();
                 name = (row.memberName || row.name || row['Name'] || row['নাম'] || id).toString().trim();
@@ -4045,10 +4165,12 @@
                 nomineeName = (row.nomineeName || row['Nominee'] || "").toString().trim();
                 nomineeRelation = (row.nomineeRelation || row['Relation'] || "").toString().trim();
                 photoUrl = getDirectImageUrl(row.photoUrl || row['Photo'] || "");
+                bloodGroup = (row.bloodGroup || row['BloodGroup'] || row['Blood'] || "").toString().trim();
+                lastBloodDonation = (row.lastBloodDonation || row['LastBloodDonation'] || "").toString().trim();
             }
 
             if (!id) return null;
-            return { id, name, phone, shares, joinDate, joinMonth, membershipFee, password, status, fatherName, startMonth, nomineeName, nomineeRelation, photoUrl };
+            return { id, name, phone, shares, joinDate, joinMonth, membershipFee, password, status, fatherName, startMonth, nomineeName, nomineeRelation, photoUrl, bloodGroup, lastBloodDonation };
         }
 
         function parseAccountRowData(row, headerMap) {
@@ -4542,6 +4664,9 @@
             document.getElementById('new-m-shares').value = '1';
             document.getElementById('new-m-join-date').value = `০৯.০৯.২০২৬`;
             
+            document.getElementById('new-m-blood').value = '';
+            document.getElementById('new-m-blood-date').value = '';
+
             document.getElementById('new-m-nominee').value = '';
             document.getElementById('new-m-nominee-rel').value = '';
             document.getElementById('new-m-fee').value = '200';
@@ -4606,6 +4731,8 @@
                 joinMonth: document.getElementById('new-m-join-month').value,
                 membershipFee: 200,
                 startMonth: document.getElementById('new-m-start-month').value,
+                bloodGroup: document.getElementById('new-m-blood').value,
+                lastBloodDonation: document.getElementById('new-m-blood-date').value,
                 nomineeName: document.getElementById('new-m-nominee').value.trim(),
                 nomineeRelation: document.getElementById('new-m-nominee-rel').value.trim(),
                 photoBase64: photoBase64,
@@ -4663,6 +4790,18 @@
             document.getElementById('edit-m-nominee-rel').value = member.nomineeRelation || '';
             document.getElementById('edit-m-join-month').value = member.joinMonth || 'অক্টোবর ২০২৬';
             document.getElementById('edit-m-start-month').value = member.startMonth || 'সেপ্টেম্বর';
+            
+            document.getElementById('edit-m-blood').value = member.bloodGroup || '';
+            
+            let bDate = "";
+            if (member.lastBloodDonation) {
+                let d = new Date(member.lastBloodDonation.replace(/-/g, '/'));
+                if (!isNaN(d.getTime())) {
+                    bDate = d.toISOString().split('T')[0];
+                }
+            }
+            document.getElementById('edit-m-blood-date').value = bDate;
+            
             document.getElementById('edit-m-status').value = member.status || 'Active';
             document.getElementById('edit-m-photo-file').value = '';
             document.getElementById('edit-m-pass').value = member.password || '';
@@ -4692,6 +4831,8 @@
                 phone: document.getElementById('edit-m-phone').value.trim(),
                 shares: parseInt(document.getElementById('edit-m-shares').value) || 1,
                 joinDate: cleanJoinDate,
+                bloodGroup: document.getElementById('edit-m-blood').value,
+                lastBloodDonation: document.getElementById('edit-m-blood-date').value,
                 nomineeName: document.getElementById('edit-m-nominee').value.trim(),
                 nomineeRelation: document.getElementById('edit-m-nominee-rel').value.trim(),
                 joinMonth: document.getElementById('edit-m-join-month').value,
@@ -4708,6 +4849,8 @@
                 m.phone = updatedData.phone;
                 m.shares = updatedData.shares;
                 m.joinDate = updatedData.joinDate;
+                m.bloodGroup = updatedData.bloodGroup;
+                m.lastBloodDonation = updatedData.lastBloodDonation;
                 m.nomineeName = updatedData.nomineeName;
                 m.nomineeRelation = updatedData.nomineeRelation;
                 m.joinMonth = updatedData.joinMonth;
