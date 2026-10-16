@@ -3,7 +3,7 @@ export default async function handler(req, res) {
     const adminPass = process.env.ACCOUNT_ADMIN_PASSWORD;
     const adminId = process.env.ACCOUNT_ADMIN_ID || "admin";
 
-    // ১. আল্ট্রা-ফাস্ট CORS ও পারফরম্যান্স হেডার
+    // আল্ট্রা-ফাস্ট CORS হেডার
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Methods', 'GET,POST,OPTIONS');
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
@@ -12,10 +12,9 @@ export default async function handler(req, res) {
         return res.status(200).end();
     }
 
-    // ২. GET রিকোয়েস্টে Edge Cache হ্যান্ডলিং (যাতে কয়েক মিলিসেকেন্ডেই রেসপন্স চলে আসে)
+    // Edge Cache হ্যান্ডলিং (মিলি-সেকেন্ডে ফাস্ট ডাটা রিটার্ন)
     if (req.method === 'GET') {
         try {
-            // Vercel Edge Cache: ব্রাউজার ১ সেকেন্ড এবং ব্যাকগ্রাউন্ডে ৬০ সেকেন্ড ক্যাশ সাপোর্ট করবে
             res.setHeader('Cache-Control', 's-maxage=1, stale-while-revalidate=59');
 
             const fetchUrl = scriptURL + (scriptURL.includes('?') ? '&' : '?') + '_t=' + Date.now();
@@ -30,7 +29,7 @@ export default async function handler(req, res) {
         }
     }
 
-    // ৩. POST রিকোয়েস্ট (এডমিন অপারেশন)
+    // POST রিকোয়েস্ট (এডমিন অপারেশন)
     if (req.method === 'POST') {
         try {
             const bodyData = typeof req.body === 'string' ? JSON.parse(req.body) : req.body;
