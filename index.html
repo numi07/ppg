@@ -43,7 +43,7 @@
             -webkit-overflow-scrolling: touch;
             color: #0f172a;
         }
-        /* ১ ও ৯ স্পষ্টভাবে পড়ার জন্য Tiro Bangla ও Anek Bangla ফন্ট প্রোভাইড করা হলো */
+        /* ১ ও ৯ স্পষ্টভাবে পড়ার জন্য Tiro Bangla ও Anek Bangla ফন্ট এবং হাই-লেজিবিলিটি ক্লাস */
         .font-digit, .bn-number {
             font-family: 'Tiro Bangla', 'Anek Bangla', 'Noto Sans Bengali', Arial, sans-serif !important;
             font-weight: 700 !important;
@@ -201,10 +201,12 @@
                 <div class="hidden md:flex space-x-5 items-center text-sm font-semibold">
                     <a href="#home" class="hover:text-emerald-400 transition-colors">হোম</a>
                     <a href="#accounting-panel" class="hover:text-emerald-300 transition-colors text-emerald-400 flex items-center gap-1.5"><i class="fas fa-chart-pie text-xs"></i>হিসাব প্যানেল</a>
+                    <a href="#cashier-section" class="auth-only hidden hover:text-emerald-300 transition-colors text-emerald-400 flex items-center gap-1.5"><i class="fas fa-wallet text-xs"></i>ক্যাশিয়ার ক্যাশ</a>
                     <a href="#statement-section" class="auth-only hidden hover:text-sky-300 transition-colors text-sky-400 flex items-center gap-1.5"><i class="fas fa-table-columns text-xs"></i>জমা স্টেটমেন্ট</a>
                     <button type="button" onclick="openAdminEntryModal()" class="admin-only hidden hover:text-amber-300 transition-colors text-amber-400 flex items-center gap-1.5"><i class="fas fa-file-invoice-dollar text-xs"></i>কিস্তি ও অগ্রিম এন্ট্রি</button>
                     <button type="button" onclick="openDpsEntryModal()" class="admin-only hidden hover:text-amber-200 transition-colors text-amber-300 flex items-center gap-1.5"><i class="fas fa-piggy-bank text-xs"></i>ডিপিএস ফান্ড</button>
                     <button type="button" onclick="openExpenseModal()" class="admin-only hidden hover:text-rose-300 transition-colors text-rose-400 flex items-center gap-1.5"><i class="fas fa-receipt text-xs"></i>খরচ এন্ট্রি</button>
+                    <button type="button" onclick="openCashDepositModal()" class="admin-only hidden hover:text-sky-300 transition-colors text-sky-400 flex items-center gap-1.5"><i class="fas fa-money-bill-transfer text-xs"></i>ক্যাশ টু ব্যাংক</button>
                     <button type="button" onclick="openAddMemberModal()" class="admin-only hidden hover:text-emerald-300 transition-colors text-emerald-400 flex items-center gap-1.5"><i class="fas fa-user-plus text-xs"></i>সদস্য যোগ</button>
                     <button type="button" onclick="openBroadcastModal()" class="admin-only hidden hover:text-teal-300 transition-colors text-teal-400 flex items-center gap-1.5"><i class="fab fa-whatsapp text-xs"></i>WhatsApp নোটিশ</button>
                     <a href="#media-gallery" class="hover:text-emerald-400 transition-colors">মিডিয়া</a>
@@ -236,10 +238,12 @@
         <div id="mobile-menu" class="hidden md:hidden bg-[#071324] border-t border-indigo-900/70 px-4 pt-3 pb-5 space-y-2.5 text-sm">
             <a href="#home" onclick="toggleMobileMenu()" class="block text-slate-200 font-semibold py-1.5 px-2 rounded-lg hover:bg-white/5">হোম</a>
             <a href="#accounting-panel" onclick="toggleMobileMenu()" class="block text-emerald-300 font-semibold py-1.5 px-2 rounded-lg hover:bg-white/5"><i class="fas fa-chart-pie mr-2"></i>হিসাব প্যানেল</a>
+            <a href="#cashier-section" onclick="toggleMobileMenu()" class="auth-only hidden block text-emerald-300 font-semibold py-1.5 px-2 rounded-lg hover:bg-white/5"><i class="fas fa-wallet mr-2"></i>ক্যাশিয়ার ক্যাশ</a>
             <a href="#statement-section" onclick="toggleMobileMenu()" class="auth-only hidden block text-sky-300 font-semibold py-1.5 px-2 rounded-lg hover:bg-white/5"><i class="fas fa-table-columns mr-2"></i>জমা স্টেটমেন্ট</a>
             <button type="button" onclick="openAdminEntryModal(); toggleMobileMenu();" class="admin-only hidden block text-amber-300 font-semibold py-1.5 px-2 rounded-lg hover:bg-white/5 text-left w-full"><i class="fas fa-file-invoice-dollar mr-2"></i>কিস্তি ও অগ্রিম এন্ট্রি</button>
             <button type="button" onclick="openDpsEntryModal(); toggleMobileMenu();" class="admin-only hidden block text-amber-200 font-semibold py-1.5 px-2 rounded-lg hover:bg-white/5 text-left w-full"><i class="fas fa-piggy-bank mr-2"></i>ডিপিএস ফান্ড এন্ট্রি</button>
             <button type="button" onclick="openExpenseModal(); toggleMobileMenu();" class="admin-only hidden block text-rose-300 font-semibold py-1.5 px-2 rounded-lg hover:bg-white/5 text-left w-full"><i class="fas fa-receipt mr-2"></i>খরচ এন্ট্রি</button>
+            <button type="button" onclick="openCashDepositModal(); toggleMobileMenu();" class="admin-only hidden block text-sky-300 font-semibold py-1.5 px-2 rounded-lg hover:bg-white/5 text-left w-full"><i class="fas fa-money-bill-transfer mr-2"></i>ক্যাশ টু ব্যাংক</button>
             <button type="button" onclick="openAddMemberModal(); toggleMobileMenu();" class="admin-only hidden block text-emerald-300 font-semibold py-1.5 px-2 rounded-lg hover:bg-white/5 text-left w-full"><i class="fas fa-user-plus mr-2"></i>নতুন সদস্য যোগ</button>
             <button type="button" onclick="openBroadcastModal(); toggleMobileMenu();" class="admin-only hidden block text-teal-300 font-semibold py-1.5 px-2 rounded-lg hover:bg-white/5 text-left w-full"><i class="fab fa-whatsapp mr-2"></i>WhatsApp নোটিশ</button>
             <a href="#media-gallery" onclick="toggleMobileMenu()" class="block text-slate-200 font-semibold py-1.5 px-2 rounded-lg hover:bg-white/5">চিত্র ও ভিডিও</a>
@@ -303,7 +307,7 @@
             <div class="absolute -right-20 -top-20 w-80 h-80 bg-blue-500/15 rounded-full blur-3xl pointer-events-none"></div>
         </section>
 
-        <!-- আধুনিক সামগ্রিক হিসাব প্যানেল -->
+        <!-- আধুনিক সামগ্রিক হিসাব প্যানেল (১ ও ৯ স্পষ্ট ফন্টসহ) -->
         <section id="accounting-panel" class="space-y-6 pt-2">
             <div class="border-b border-slate-200 pb-4 flex flex-wrap justify-between items-center gap-3">
                 <div>
@@ -328,32 +332,89 @@
                 </div>
             </div>
 
-            <!-- সামগ্রিক কার্ডসমূহ -->
+            <!-- সামগ্রিক কার্ডসমূহ (১ ও ৯ ক্রিস্টাল ক্লিয়ার রেন্ডারিং) -->
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
                 <div class="bg-gradient-to-br from-[#0c2340] to-[#1d4ed8] text-white p-5 rounded-3xl shadow-lg border border-blue-400/20 relative overflow-hidden">
                     <span class="text-xs text-blue-200 block mb-1 font-semibold"><i class="fas fa-layer-group mr-1.5"></i> মোট বিক্রিত শেয়ার</span>
-                    <h4 class="text-2xl font-black font-digit" id="total-shares-count">০ টি</h4>
-                    <span class="text-[11px] text-emerald-300 block mt-2 font-medium">(শেয়ার মূল্য: ৳ ১,০০০)</span>
+                    <h4 class="text-2xl font-black font-digit tracking-wide" id="total-shares-count">০ টি</h4>
+                    <span class="text-[11px] text-emerald-300 block mt-2 font-medium tracking-wide font-digit">(শেয়ার মূল্য: ৳ ১,০০০)</span>
                 </div>
                 <div class="bg-gradient-to-br from-[#064e3b] to-[#047857] text-white p-5 rounded-3xl shadow-lg border border-emerald-400/20 relative overflow-hidden">
                     <span class="text-xs text-emerald-200 block mb-1 font-semibold"><i class="fas fa-hand-holding-dollar mr-1.5"></i> মোট সংগৃহীত তহবিল</span>
-                    <h4 class="text-2xl font-black font-digit" id="total-fund-amount">৳ ০</h4>
-                    <span class="text-[11px] text-emerald-200 block mt-2" id="total-fund-sub">(সঞ্চয়, অগ্রিম, ভর্তি ফি ও জরিমানা সহ)</span>
+                    <h4 class="text-2xl font-black font-digit tracking-wide" id="total-fund-amount">৳ ০</h4>
+                    <span class="text-[11px] text-emerald-200 block mt-2 font-medium tracking-wide font-digit" id="total-fund-sub">(সঞ্চয়, অগ্রিম, ভর্তি ফি ও জরিমানা সহ)</span>
                 </div>
                 <div class="bg-gradient-to-br from-[#881337] to-[#be123c] text-white p-5 rounded-3xl shadow-lg border border-rose-400/20 relative overflow-hidden">
                     <span class="text-xs text-rose-200 block mb-1 font-semibold"><i class="fas fa-receipt mr-1.5"></i> মোট অফিসিয়াল খরচ</span>
-                    <h4 class="text-2xl font-black font-digit" id="total-expense-amount">৳ ০</h4>
-                    <span class="text-[11px] text-rose-200 block mt-2 font-medium">(ফান্ড থেকে বাদ দেওয়া হয়েছে)</span>
+                    <h4 class="text-2xl font-black font-digit tracking-wide" id="total-expense-amount">৳ ০</h4>
+                    <span class="text-[11px] text-rose-200 block mt-2 font-medium tracking-wide">(ফান্ড থেকে বাদ দেওয়া হয়েছে)</span>
                 </div>
                 <div class="bg-gradient-to-br from-[#134e4a] to-[#0f766e] text-white p-5 rounded-3xl shadow-lg border border-teal-400/20 relative overflow-hidden">
                     <span class="text-xs text-teal-200 block mb-1 font-semibold"><i class="fas fa-university mr-1.5"></i> ব্যাংকে জমা স্থিতি</span>
-                    <h4 class="text-2xl font-black font-digit" id="total-net-balance">৳ ০</h4>
-                    <span class="text-[11px] text-teal-200 block mt-2" id="total-bank-remaining-sub">(ডিপিএস বাদে ব্যাংকে অবশিষ্ট: ৳ ০)</span>
+                    <h4 class="text-2xl font-black font-digit tracking-wide" id="total-net-balance">৳ ০</h4>
+                    <span class="text-[11px] text-teal-200 block mt-2 font-medium tracking-wide font-digit" id="total-bank-remaining-sub">(ডিপিএস বাদে ব্যাংকে অবশিষ্ট: ৳ ০)</span>
                 </div>
                 <div class="bg-gradient-to-br from-[#7c2d12] to-[#c2410c] text-white p-5 rounded-3xl shadow-lg border border-amber-400/20 relative overflow-hidden">
                     <span class="text-xs text-amber-200 block mb-1 font-semibold"><i class="fas fa-piggy-bank mr-1.5"></i> প্রাতিষ্ঠানিক ডিপিএস</span>
-                    <h4 class="text-2xl font-black font-digit" id="total-dps-amount">৳ ০</h4>
-                    <span class="text-[11px] text-amber-200 block mt-2 font-medium" id="total-dps-sub">(ব্যাংক থেকে স্থানান্তরিত সঞ্চয়)</span>
+                    <h4 class="text-2xl font-black font-digit tracking-wide" id="total-dps-amount">৳ ০</h4>
+                    <span class="text-[11px] text-amber-200 block mt-2 font-medium tracking-wide" id="total-dps-sub">(ব্যাংক থেকে স্থানান্তরিত সঞ্চয়)</span>
+                </div>
+            </div>
+
+            <!-- ৫ নং নির্দেশনা: কোষাধ্যক্ষ / ক্যাশিয়ারের ক্যাশ লেজার কার্ড -->
+            <div id="cashier-section" class="glass-card p-6 rounded-3xl border border-emerald-500/30 bg-gradient-to-r from-emerald-950/5 via-teal-950/5 to-transparent space-y-4">
+                <div class="flex flex-wrap items-center justify-between gap-3 border-b border-emerald-500/20 pb-3">
+                    <div>
+                        <h4 class="font-bold text-slate-800 text-sm flex items-center gap-2">
+                            <i class="fas fa-wallet text-emerald-600 text-lg"></i> কোষাধ্যক্ষ / ক্যাশিয়ারের ক্যাশ লেজার ও ব্যাংকে জমা খতিয়ান
+                        </h4>
+                        <p class="text-[11.5px] text-slate-500 mt-0.5">সদস্যদের থেকে নগদে (Cash) সংগৃহীত টাকা, ব্যাংকে জমা এবং ক্যাশিয়ারের কাছে বর্তমান অবশিষ্ট ক্যাশ স্থিতি</p>
+                    </div>
+                    <div class="flex gap-2">
+                        <button type="button" onclick="openCashDepositModal()" class="admin-only hidden px-4 py-2 bg-emerald-700 hover:bg-emerald-800 text-white rounded-xl text-xs font-bold shadow flex items-center gap-1.5 transition">
+                            <i class="fas fa-money-bill-transfer"></i> ক্যাশ থেকে ব্যাংক ডিপোজিট এন্ট্রি
+                        </button>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-3.5">
+                    <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200 shadow-sm">
+                        <span class="text-xs text-slate-500 font-semibold block mb-1"><i class="fas fa-arrow-down-long text-emerald-600 mr-1"></i> মোট নগদ (Cash) সংগ্রহ</span>
+                        <h5 class="text-xl font-bold font-digit text-slate-800" id="cashier-total-collected">৳ ০</h5>
+                        <span class="text-[10px] text-slate-400 block mt-1">(সদস্যদের নগদ কিস্তি)</span>
+                    </div>
+                    <div class="bg-blue-50/80 p-4 rounded-2xl border border-blue-200 shadow-sm">
+                        <span class="text-xs text-blue-700 font-semibold block mb-1"><i class="fas fa-building-columns text-blue-600 mr-1"></i> ব্যাংকে জমা সম্পন্ন (সিটি ব্যাংক)</span>
+                        <h5 class="text-xl font-bold font-digit text-blue-900" id="cashier-total-deposited">৳ ০</h5>
+                        <span class="text-[10px] text-blue-600/80 block mt-1">(ভাউচার ও প্রমাণপত্র সহ)</span>
+                    </div>
+                    <div class="bg-amber-50/80 p-4 rounded-2xl border border-amber-200 shadow-sm">
+                        <span class="text-xs text-amber-800 font-semibold block mb-1"><i class="fas fa-coins text-amber-600 mr-1"></i> কোষাধ্যক্ষের কাছে ক্যাশ অবশিষ্ট</span>
+                        <h5 class="text-xl font-black font-digit text-amber-900" id="cashier-remaining-cash">৳ ০</h5>
+                        <span class="text-[10px] text-amber-700 block mt-1 font-medium">(ব্যাংকে জমা দেওয়ার অপেক্ষায়)</span>
+                    </div>
+                </div>
+
+                <!-- ক্যাশ টু ব্যাংক ডিপোজিট হিস্টোরি টেবিল -->
+                <div class="overflow-x-auto rounded-2xl border border-slate-200 mt-2">
+                    <table class="w-full text-left text-xs">
+                        <thead class="bg-slate-100/80 text-slate-700 font-bold">
+                            <tr>
+                                <th class="p-3">জমার তারিখ</th>
+                                <th class="p-3">ব্যাংকের নাম</th>
+                                <th class="p-3">জমার পরিমাণ (৳)</th>
+                                <th class="p-3">ডিপোজিট স্লিপ / TrxID</th>
+                                <th class="p-3">বিবরণ / নোট</th>
+                                <th class="p-3 text-center">ব্যাংক স্লিপ রশিদ</th>
+                                <th class="p-3 text-center admin-only hidden">একশন</th>
+                            </tr>
+                        </thead>
+                        <tbody id="cashier-deposits-tbody" class="divide-y divide-slate-100">
+                            <tr>
+                                <td colspan="7" class="p-4 text-center text-slate-400">কোনো ব্যাংক ডিপোজিট রেকর্ড নেই</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
 
@@ -387,11 +448,11 @@
                 </div>
             </div>
 
-            <!-- প্রাতিষ্ঠানিক ডিপিএস ও ব্যাংক বিবরণী (এডিট ও ডিলিট সুবিধাসহ) -->
+            <!-- প্রাতিষ্ঠানিক ডিপিএস ও ব্যাংক বিবরণী (এডিট ও ডিলিট সুবিধাসহ, সিটি ব্যাংক) -->
             <div class="glass-card p-6 rounded-3xl space-y-4">
                 <h4 class="font-bold text-slate-800 text-sm border-b border-slate-100 pb-3 flex items-center justify-between">
                     <span><i class="fas fa-vault text-amber-600 mr-2"></i> প্রাতিষ্ঠানিক ডিপিএস ও ব্যাংক তহবিল বিবরণী</span>
-                    <span class="text-[11px] text-slate-500 font-medium bg-slate-100 px-3 py-1 rounded-full">ব্যাংক ফান্ড থেকে ডিপিএসে স্থানান্তরিত হিসাব</span>
+                    <span class="text-[11px] text-slate-500 font-medium bg-slate-100 px-3 py-1 rounded-full">সিটি ব্যাংক ফান্ড থেকে ডিপিএসে স্থানান্তরিত হিসাব</span>
                 </h4>
                 <div class="overflow-x-auto rounded-2xl border border-slate-200">
                     <table class="w-full text-left text-xs">
@@ -984,7 +1045,6 @@
                 <div id="printable-policy" class="pdf-container space-y-6 text-xs text-slate-800 bg-white p-6 md:p-10 shadow-lg rounded-3xl border border-slate-300 relative overflow-hidden" style="max-width: 820px;">
                     
                     <div class="relative z-10">
-                        <!-- কভার হেডার -->
                         <div style="text-align: center; border-bottom: 2px solid #0f766e; padding-bottom: 16px; margin-bottom: 20px;">
                             <div style="display: flex; justify-content: center; align-items: center; gap: 12px; margin-bottom: 6px;">
                                 <img src="images/logo.png" alt="Logo" style="height: 52px; width: 52px; object-fit: contain; border-radius: 50%; border: 2px solid #059669;" onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'50\' height=\'50\' viewBox=\'0 0 100 100\'><circle cx=\'50\' cy=\'50\' r=\'48\' fill=\'%23064e3b\' stroke=\'%2334d399\' stroke-width=\'4\'/><text x=\'50%\' y=\'55%\' font-size=\'22\' font-weight=\'bold\' fill=\'%23ffffff\' text-anchor=\'middle\' dominant-baseline=\'middle\' font-family=\'sans-serif\'>PPG</text></svg>';">
@@ -997,7 +1057,6 @@
                             <p style="font-size: 10px; color: #64748b; margin-top: 2px; font-weight: 600;">প্রস্তুতকরণ: সদস্যদের সম্মিলিত সিদ্ধান্তের ভিত্তিতে | সংস্করণ: ২০২৬</p>
                         </div>
 
-                        <!-- মূল বিষয় ও নির্ধারিত বিধান টেবিল -->
                         <div class="mb-6 overflow-hidden rounded-2xl border border-slate-300">
                             <table class="w-full text-xs text-left">
                                 <thead class="bg-blue-950 text-white font-bold">
@@ -1035,13 +1094,11 @@
                             </table>
                         </div>
 
-                        <!-- গুরুত্বপূর্ণ ঘোষণা বক্স -->
                         <div class="bg-amber-50/90 border-2 border-amber-300 p-4 rounded-2xl mb-6 text-[12px] text-amber-950 leading-relaxed shadow-sm">
                             <strong class="text-amber-900 block mb-1.5 font-bold flex items-center gap-1.5"><i class="fas fa-exclamation-circle text-amber-600"></i> গুরুত্বপূর্ণ ঘোষণা:</strong>
                             <span id="pv-disclaimer">এই নীতিমালা গ্রুপের অভ্যন্তরীণ পরিচালনা ও সদস্যদের পারস্পরিক অধিকার-দায়িত্বের লিখিত কাঠামো। বাস্তবে অংশীদারী ব্যবসা, জমি/ফ্ল্যাট ক্রয়, কর, নিবন্ধন, ব্যাংকিং বা অন্য কোনো নিয়ন্ত্রিত কার্যক্রম শুরু করার আগে পৃথক Partnership Deed/চুক্তি এবং প্রয়োজনীয় আইনগত ও হিসাবগত যাচাই সম্পন্ন করতে হবে।</span>
                         </div>
 
-                        <!-- ধারা সূচিপত্র -->
                         <div class="bg-slate-50 border border-slate-200 p-4 rounded-2xl mb-6">
                             <h4 class="font-bold text-slate-800 text-xs mb-2 border-b border-slate-200 pb-2 flex items-center gap-1.5">
                                 <i class="fas fa-list-ol text-indigo-600"></i> ধারা সূচিপত্র | নীতিমালার কাঠামো
@@ -1050,7 +1107,6 @@
                             </div>
                         </div>
 
-                        <!-- ডাইনামিক ধারা ও উপধারাসমূহ -->
                         <div id="policy-content-display" class="space-y-4 text-justify font-medium">
                             <div class="py-8 text-center text-slate-400">
                                 <i class="fas fa-spinner fa-spin text-2xl mb-2 text-indigo-600"></i>
@@ -1058,7 +1114,6 @@
                             </div>
                         </div>
 
-                        <!-- অফিসিয়াল সিল ও স্বাক্ষর -->
                         <div style="margin-top: 40px; border-top: 1px dashed #94a3b8; padding-top: 25px;">
                             <div style="display: flex; justify-content: space-between; align-items: flex-end; text-align: center; font-size: 11px;">
                                 <div style="width: 140px;">
@@ -1268,10 +1323,10 @@
                     <div>
                         <label class="block font-bold text-slate-700 mb-1">পেমেন্ট মাধ্যম</label>
                         <select id="entry-method" class="w-full border border-slate-300 p-2.5 rounded-2xl focus:ring-2 focus:ring-emerald-500 font-bold bg-white outline-none shadow-sm">
-                            <option value="ব্যাংক ট্রান্সফার (Bank)">ব্যাংক ট্রান্সফার (Bank)</option>
+                            <option value="ব্যাংক ট্রান্সফার (Bank)">ব্যাংক ট্রান্সফার (সিটি ব্যাংক)</option>
                             <option value="বিকাশ (bKash)">বিকাশ (bKash)</option>
                             <option value="নগদ (Nagad)">নগদ (Nagad)</option>
-                            <option value="নগদ ক্যাশ (Cash)">নগদ ক্যাশ (Cash)</option>
+                            <option value="নগদ ক্যাশ (Cash)">নগদ ক্যাশ (ক্যাশিয়ারের কাছে)</option>
                         </select>
                     </div>
                     <div>
@@ -1283,7 +1338,7 @@
                 <div>
                     <label class="block font-bold text-slate-700 mb-1">পেমেন্ট / ভাউচারের স্ক্রিনশট বা ছবি</label>
                     <input type="file" id="entry-proof-file" accept="image/*" class="w-full border border-slate-300 p-2 rounded-2xl text-slate-600 bg-slate-50">
-                    <p class="text-[10px] text-slate-400 mt-1">* ফাইল স্বয়ংক্রিয় অপ্টিমাইজ হয়ে ড্রাইভে সংরক্ষিত হবে।</p>
+                    <p class="text-[10px] text-slate-400 mt-1">* ছবি সিলেক্ট করলেও আপনার নির্বাচন করা মাস অপরিবর্তিত থাকবে।</p>
                 </div>
 
                 <div class="pt-2 flex gap-3">
@@ -1302,7 +1357,7 @@
             <div class="p-5 bg-gradient-to-r from-amber-700 to-orange-800 text-white flex items-center justify-between">
                 <div>
                     <h3 class="text-lg font-bold"><i class="fas fa-piggy-bank mr-2"></i>প্রাতিষ্ঠানিক ডিপিএস ফান্ড এন্ট্রি (Bank to DPS)</h3>
-                    <p class="text-xs text-amber-200 mt-0.5">ব্যাংক ব্যালেন্স হতে ডিপিএস ফান্ডে অর্থ স্থানান্তর</p>
+                    <p class="text-xs text-amber-200 mt-0.5">সিটি ব্যাংক ব্যালেন্স হতে ডিপিএস ফান্ডে অর্থ স্থানান্তর</p>
                 </div>
                 <button type="button" onclick="closeModal('dps-entry-modal')" class="h-8 w-8 bg-white/10 hover:bg-white/20 rounded-full text-white text-xs transition">✕</button>
             </div>
@@ -1316,7 +1371,7 @@
                     </div>
                     <div>
                         <label class="block font-bold text-slate-700 mb-1">ব্যাংক নাম</label>
-                        <input type="text" id="entry-dps-bank" value="সিটি ব্যাংক" class="w-full border border-slate-300 p-2.5 rounded-2xl font-bold outline-none">
+                        <input type="text" id="entry-dps-bank" value="সিটি ব্যাংক" class="w-full border border-slate-300 p-2.5 rounded-2xl font-bold outline-none text-slate-900">
                     </div>
                 </div>
 
@@ -1355,7 +1410,7 @@
         </div>
     </div>
 
-    <!-- ৯. প্রাতিষ্ঠানিক ডিপিএস ও ব্যাংক তথ্য সম্পাদনা মোডাল (নতুন) -->
+    <!-- ৯. প্রাতিষ্ঠানিক ডিপিএস ও ব্যাংক তথ্য সম্পাদনা মোডাল -->
     <div id="dps-edit-modal" class="fixed inset-0 bg-slate-900/80 backdrop-blur-sm hidden z-50 flex items-center justify-center p-3 md:p-6">
         <div class="bg-white rounded-3xl max-w-xl w-full max-h-[92vh] flex flex-col shadow-2xl border border-slate-200 overflow-hidden">
             <div class="p-5 bg-gradient-to-r from-amber-700 to-orange-800 text-white flex items-center justify-between">
@@ -1376,7 +1431,7 @@
                     </div>
                     <div>
                         <label class="block font-bold text-slate-700 mb-1">ব্যাংক নাম</label>
-                        <input type="text" id="edit-dps-bank" required value="সিটি ব্যাংক" class="w-full border border-slate-300 p-2.5 rounded-2xl font-bold outline-none">
+                        <input type="text" id="edit-dps-bank" required value="সিটি ব্যাংক" class="w-full border border-slate-300 p-2.5 rounded-2xl font-bold outline-none text-slate-900">
                     </div>
                 </div>
 
@@ -1418,7 +1473,60 @@
         </div>
     </div>
 
-    <!-- ১০. রশিদ এডিট মোডাল (পূর্বের মূল তারিখ বজায় রেখে) -->
+    <!-- ১০. ক্যাশ থেকে ব্যাংক ডিপোজিট এন্ট্রি মোডাল (৫ নং নির্দেশনা) -->
+    <div id="cash-deposit-modal" class="fixed inset-0 bg-slate-900/80 backdrop-blur-sm hidden z-50 flex items-center justify-center p-3 md:p-6">
+        <div class="bg-white rounded-3xl max-w-lg w-full max-h-[92vh] flex flex-col shadow-2xl border border-slate-200 overflow-hidden">
+            <div class="p-5 bg-gradient-to-r from-emerald-800 to-teal-900 text-white flex items-center justify-between">
+                <div>
+                    <h3 class="text-lg font-bold"><i class="fas fa-money-bill-transfer mr-2"></i>ক্যাশ টাকা ব্যাংকে জমা (City Bank)</h3>
+                    <p class="text-xs text-emerald-200 mt-0.5">ক্যাশিয়ারের কাছে বর্তমান অবশিষ্ট ক্যাশ: <span id="cdm-available-cash" class="font-bold text-amber-300 font-digit">৳ ০</span></p>
+                </div>
+                <button type="button" onclick="closeModal('cash-deposit-modal')" class="h-8 w-8 bg-white/10 hover:bg-white/20 rounded-full text-white text-xs transition">✕</button>
+            </div>
+
+            <form onsubmit="handleCashDepositSubmit(event)" class="p-6 overflow-y-auto space-y-3.5 text-xs">
+                <div>
+                    <label class="block font-bold text-slate-700 mb-1">ব্যাংকে জমার তারিখ</label>
+                    <input type="date" id="cdm-date" required class="w-full border border-slate-300 p-2.5 rounded-2xl font-bold bg-white text-emerald-800 outline-none">
+                </div>
+                <div class="grid grid-cols-2 gap-3">
+                    <div>
+                        <label class="block font-bold text-slate-700 mb-1">ব্যাংক নাম</label>
+                        <input type="text" id="cdm-bank" readonly value="সিটি ব্যাংক" class="w-full border border-slate-300 p-2.5 rounded-2xl font-bold bg-slate-50 text-slate-900 outline-none">
+                    </div>
+                    <div>
+                        <label class="block font-bold text-slate-700 mb-1">জমার পরিমাণ (টাকা)</label>
+                        <input type="number" id="cdm-amount" required placeholder="যেমন: ৫০০০" class="w-full border border-slate-300 p-2.5 rounded-2xl font-bold text-emerald-700 outline-none">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block font-bold text-slate-700 mb-1">ব্যাংক ডিপোজিট স্লিপ নং / TrxID</label>
+                    <input type="text" id="cdm-trxid" required placeholder="DEP-SLIP-XXXXXX" class="w-full border border-slate-300 p-2.5 rounded-2xl font-mono outline-none">
+                </div>
+
+                <div>
+                    <label class="block font-bold text-slate-700 mb-1">বিবরণ / নোট (ঐচ্ছিক)</label>
+                    <input type="text" id="cdm-note" placeholder="যেমন: কোষাধ্যক্ষের হাত থেকে ব্যাংকে ক্যাশ জমা" class="w-full border border-slate-300 p-2.5 rounded-2xl text-slate-700 outline-none">
+                </div>
+
+                <div class="bg-emerald-50/80 border border-emerald-200 p-3 rounded-2xl">
+                    <label class="block font-bold text-slate-800 mb-1">ব্যাংক ডিপোজিট স্লিপের ছবি / প্রমাণপত্র</label>
+                    <input type="file" id="cdm-proof-file" accept="image/*" class="w-full border border-slate-300 p-2 rounded-2xl text-xs bg-white text-slate-600">
+                    <p class="text-[10px] text-emerald-800 mt-1">* ব্যাংকের সীলমোহরযুক্ত স্লিপ আপলোড করুন।</p>
+                </div>
+
+                <div class="pt-2 flex gap-3">
+                    <button type="submit" id="btn-save-cash-deposit" class="flex-1 bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 rounded-2xl shadow transition flex items-center justify-center gap-1.5">
+                        <i class="fas fa-check-circle"></i> ব্যাংকে জমা সংরক্ষণ করুন
+                    </button>
+                    <button type="button" onclick="closeModal('cash-deposit-modal')" class="px-5 bg-slate-200 hover:bg-slate-300 text-slate-700 font-bold rounded-2xl transition">বাতিল</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- ১১. রশিদ এডিট মোডাল (পূর্বের মূল তারিখ বজায় রেখে) -->
     <div id="receipt-edit-modal" class="fixed inset-0 bg-slate-900/80 backdrop-blur-sm hidden z-50 flex items-center justify-center p-3 md:p-6">
         <div class="bg-white rounded-3xl max-w-md w-full max-h-[92vh] flex flex-col shadow-2xl border border-slate-200 overflow-hidden">
             <div class="p-5 bg-gradient-to-r from-amber-600 to-orange-700 text-white flex items-center justify-between">
@@ -1453,8 +1561,8 @@
                     <select id="edit-rcp-method" class="w-full border border-slate-300 p-2.5 rounded-2xl font-bold bg-white outline-none">
                         <option value="বিকাশ (bKash)">বিকাশ (bKash)</option>
                         <option value="নগদ (Nagad)">নগদ (Nagad)</option>
-                        <option value="ব্যাংক ট্রান্সফার (Bank)">ব্যাংক ট্রান্সফার (Bank)</option>
-                        <option value="নগদ ক্যাশ (Cash)">নগদ ক্যাশ (Cash)</option>
+                        <option value="ব্যাংক ট্রান্সফার (Bank)">ব্যাংক ট্রান্সফার (সিটি ব্যাংক)</option>
+                        <option value="নগদ ক্যাশ (Cash)">নগদ ক্যাশ (ক্যাশিয়ারের কাছে)</option>
                     </select>
                 </div>
                 <div>
@@ -1481,7 +1589,7 @@
         </div>
     </div>
     
-    <!-- ১১. অফিসিয়াল খরচ এন্ট্রি মোডাল -->
+    <!-- ১২. অফিসিয়াল খরচ এন্ট্রি মোডাল -->
     <div id="expense-modal" class="fixed inset-0 bg-slate-900/80 backdrop-blur-sm hidden z-50 flex items-center justify-center p-3 md:p-6">
         <div class="bg-white rounded-3xl max-w-md w-full max-h-[92vh] flex flex-col shadow-2xl border border-slate-200 overflow-hidden">
             <div class="p-5 bg-gradient-to-r from-rose-800 to-red-900 text-white flex items-center justify-between">
@@ -1522,7 +1630,7 @@
         </div>
     </div>
 
-    <!-- ১২. খরচ ও ভাউচার এডিট মোডাল (Admin) -->
+    <!-- ১৩. খরচ ও ভাউচার এডিট মোডাল (Admin) -->
     <div id="expense-edit-modal" class="fixed inset-0 bg-slate-900/80 backdrop-blur-sm hidden z-50 flex items-center justify-center p-3 md:p-6">
         <div class="bg-white rounded-3xl max-w-md w-full max-h-[92vh] flex flex-col shadow-2xl border border-slate-200 overflow-hidden">
             <div class="p-5 bg-gradient-to-r from-rose-800 to-red-900 text-white flex items-center justify-between">
@@ -1572,7 +1680,7 @@
         </div>
     </div>
 
-    <!-- ১৩. নতুন সদস্য যোগ করার মোডাল -->
+    <!-- ১৪. নতুন সদস্য যোগ করার মোডাল -->
     <div id="member-add-modal" class="fixed inset-0 bg-slate-900/80 backdrop-blur-sm hidden z-50 flex items-center justify-center p-3 md:p-6">
         <div class="bg-white rounded-3xl max-w-lg w-full max-h-[92vh] flex flex-col shadow-2xl border border-slate-200 overflow-hidden">
             <div class="p-5 bg-gradient-to-r from-emerald-800 to-teal-800 text-white flex items-center justify-between">
@@ -1692,7 +1800,7 @@
         </div>
     </div>
 
-    <!-- ১৪. সদস্য তথ্য এডিট মোডাল (পূর্বের মূল তারিখ বজায় রেখে) -->
+    <!-- ১৫. সদস্য তথ্য এডিট মোডাল (পূর্বের মূল তারিখ বজায় রেখে) -->
     <div id="member-edit-modal" class="fixed inset-0 bg-slate-900/80 backdrop-blur-sm hidden z-50 flex items-center justify-center p-3 md:p-6">
         <div class="bg-white rounded-3xl max-w-lg w-full max-h-[92vh] flex flex-col shadow-2xl border border-slate-200 overflow-hidden">
             <div class="p-5 bg-gradient-to-r from-amber-600 to-orange-700 text-white flex items-center justify-between">
@@ -1811,7 +1919,7 @@
         </div>
     </div>
 
-    <!-- ১৫. WhatsApp নোটিশ মোডাল -->
+    <!-- ১৬. WhatsApp নোটিশ মোডাল -->
     <div id="broadcast-modal" class="fixed inset-0 bg-slate-900/80 backdrop-blur-sm hidden z-50 flex items-center justify-center p-3 md:p-6">
         <div class="bg-white rounded-3xl max-w-2xl w-full max-h-[92vh] flex flex-col shadow-2xl border border-slate-200 overflow-hidden">
             <div class="p-5 bg-gradient-to-r from-emerald-700 to-green-800 text-white flex items-center justify-between">
@@ -1886,7 +1994,7 @@
             </div>
         </div>
     </div>
-    <!-- জাভাস্ক্রিপ্ট কোড (সুপার ফাস্ট রিয়েল-টাইম ০.০০১ সেকেন্ড সিঙ্ক, সার্বজনীন স্টেটমেন্ট, অটো অ্যাডজাস্টমেন্ট ও পলিসি ইঞ্জিন) -->
+    <!-- জাভাস্ক্রিপ্ট কোড (সুপার ফাস্ট রিয়েল-টাইম ০.০০১ সেকেন্ড সিঙ্ক, সার্বজনীন স্টেটমেন্ট, অটো অ্যাডজাস্টমেন্ট ও ক্যাশ লেজার ইঞ্জিন) -->
     <script>
         // Vercel API Link বা Google Apps Script Link
         const API_URL = "/api/Accounts";
@@ -1978,7 +2086,7 @@
             }
         }
 
-        // বাংলা সংখ্যা ১ ও ৯ স্পষ্ট দেখার জন্য ফাংশন
+        // ৩ নং নির্দেশনা: ১ ও ৯ সংখ্যা ক্রিস্টাল ক্লিয়ার দেখানোর ফাংশন
         function toBanglaNum(num) {
             if (num === undefined || num === null || num === '') return '০';
             const banglaDigits = {'0':'০', '1':'১', '2':'২', '3':'৩', '4':'৪', '5':'৫', '6':'৬', '7':'৭', '8':'৮', '9':'৯'};
@@ -2026,7 +2134,6 @@
             return s;
         }
 
-        // তারিখ পার্সিং ও ইনপুট ফিল্ড হ্যান্ডলিং (৩ নং নির্দেশনা: আসল তারিখ ঠিক রাখা)
         function formatBanglaDate(dateStr) {
             if (!dateStr || dateStr === '--') return '--';
             let str = dateStr.toString().trim();
@@ -2091,9 +2198,8 @@
         }
 
         const START_YEAR = 2026;
-        const START_MONTH_IDX = 8; // September (0-indexed: 8)
+        const START_MONTH_IDX = 8; // September
 
-        // ৪ নং নির্দেশনা: মাসের নামের আগে থেকে ক্রমিক সংখ্যা বাদ দেওয়া হলো
         const MONTH_NAMES = [
             "January", "February", "March", "April",
             "May", "June", "July", "August",
@@ -2112,6 +2218,7 @@
         let expensesData = [];
         let proofsData = [];
         let policyData = [];
+        let cashDepositsData = [];
 
         let totalSharesGlobal = 0;
         let totalFundGlobal = 0;
@@ -2122,6 +2229,10 @@
         let totalExpenseGlobal = 0;
         let totalDpsGlobal = 0;
         let totalRemainingBankGlobal = 0;
+
+        let cashierCollectedGlobal = 0;
+        let cashierDepositedGlobal = 0;
+        let cashierRemainingGlobal = 0;
 
         let isLoggedIn = false;
         let currentUserRole = null;
@@ -2145,7 +2256,7 @@
             }
             function resetTimer() {
                 clearTimeout(time);
-                time = setTimeout(doLogout, 300000); // 5 minutes
+                time = setTimeout(doLogout, 300000);
             }
         };
         inactivityTime();
@@ -2195,7 +2306,7 @@
             return -1;
         }
 
-        // ================= ১, ৫ ও ৬ নং নির্দেশনা: এডভান্স ও মূল কিস্তির পৃথক সমন্বয় ইঞ্জিন =================
+        // ================= ১ নং নির্দেশনা: অগ্রিম টাকা জমা ও ধারাবাহিক অটো-সমন্বয় ইঞ্জিন =================
         function autoAdjustMemberMonthlyRecords(member) {
             if (!member) return;
             const shares = parseAnyNumber(member.shares) || 1;
@@ -2218,7 +2329,7 @@
             let lastPaymentMethod = "";
             let lastTrxId = "";
 
-            // ১ম ধাপ: নিয়মিত ট্রানজেকশনসমূহ মূল মাসে পোস্টিং
+            // ১ম ধাপ: প্রতিটি জমার প্রকৃত হিসাব পৃথকভাবে পোস্টিং
             memberAccounts.forEach(acc => {
                 const sIdx = normalizeMonthIndex(acc.month, acc.monthBn);
                 if (sIdx === -1) return;
@@ -2232,7 +2343,6 @@
                 const stdMonth = MONTH_NAMES[sIdx];
                 const existing = member.monthlyRecords[stdMonth];
 
-                // যদি ঐ মাসের জন্য সাধারণ কিস্তি পূর্বে না থাকে
                 if (!existing) {
                     const baseCoverage = Math.min(paidAmount, requiredPerMonth);
                     const extra = Math.max(0, paidAmount - requiredPerMonth);
@@ -2257,7 +2367,7 @@
 
                     advancePool += extra;
                 } else {
-                    // একই মাসে যদি দ্বিতীয়বার জমা দেওয়া হয় (যেমন: অক্টোবর এ ১০০০ কিস্তি দেওয়ার পর আবার ১০০০০ অগ্রিম দেওয়া হয়েছে)
+                    // একই মাসে একাধিক জমা হলে (যেমন: কিস্তি দেওয়ার পর আবার আলাদা অগ্রিম জমা)
                     existing.actualDeposit = (existing.actualDeposit || existing.amount) + paidAmount;
                     existing.advanceAmount = (existing.advanceAmount || 0) + paidAmount;
                     advancePool += paidAmount;
@@ -2266,7 +2376,7 @@
 
             // ২য় ধাপ: পুলের অগ্রিম অর্থ পরবর্তী মাসগুলোতে স্বয়ংক্রিয় বিতরণ (১০,০০০ হলে পরবর্তী ১০ মাস কভার হবে)
             let currentMonthIdx = new Date().getMonth();
-            let maxTimelineMonth = Math.max(currentMonthIdx, 11) + 12; // ভবিষ্যৎ ১২ মাস পর্যন্ত এক্সটেন্ডেবল
+            let maxTimelineMonth = Math.max(currentMonthIdx, 11) + 24;
 
             for (let targetIdx = START_MONTH_IDX; targetIdx <= maxTimelineMonth; targetIdx++) {
                 if (advancePool < requiredPerMonth) break;
@@ -2428,7 +2538,7 @@
             sessionStorage.removeItem('ppg_admin_pass');
             localStorage.removeItem('ppg_auth');
 
-            ['member-profile-modal', 'member-detail-modal', 'receipt-modal', 'members-modal', 'policy-modal', 'policy-overview-modal', 'policy-clause-modal', 'login-modal', 'admin-entry-modal', 'dps-entry-modal', 'dps-edit-modal', 'expense-modal', 'expense-edit-modal', 'member-add-modal', 'member-edit-modal', 'receipt-edit-modal', 'broadcast-modal', 'ios-install-modal'].forEach(closeModal);
+            ['member-profile-modal', 'member-detail-modal', 'receipt-modal', 'members-modal', 'policy-modal', 'policy-overview-modal', 'policy-clause-modal', 'login-modal', 'admin-entry-modal', 'dps-entry-modal', 'dps-edit-modal', 'cash-deposit-modal', 'expense-modal', 'expense-edit-modal', 'member-add-modal', 'member-edit-modal', 'receipt-edit-modal', 'broadcast-modal', 'ios-install-modal'].forEach(closeModal);
 
             updateAuthUI();
         }
@@ -2442,6 +2552,38 @@
                     loggedInMemberId = authData.id;
                 }
             } catch (e) {}
+        }
+
+        // ৫ নং নির্দেশনা: কোষাধ্যক্ষ / ক্যাশিয়ারের ক্যাশ লেজার ক্যালকুলেশন
+        function recalculateCashierLedger() {
+            cashierCollectedGlobal = 0;
+            cashierDepositedGlobal = 0;
+
+            accountsData.forEach(a => {
+                const method = (a.paymentMethod || '').toLowerCase();
+                if (method.includes('cash') || method.includes('নগদ ক্যাশ')) {
+                    cashierCollectedGlobal += parseAnyNumber(a.amount);
+                    if (a.penalty) cashierCollectedGlobal += parseAnyNumber(a.penalty);
+                }
+            });
+
+            cashDepositsData.forEach(d => {
+                cashierDepositedGlobal += parseAnyNumber(d.amount);
+            });
+
+            cashierRemainingGlobal = Math.max(0, cashierCollectedGlobal - cashierDepositedGlobal);
+
+            const elCollected = document.getElementById('cashier-total-collected');
+            const elDeposited = document.getElementById('cashier-total-deposited');
+            const elRemaining = document.getElementById('cashier-remaining-cash');
+            const elModalAvail = document.getElementById('cdm-available-cash');
+
+            if (elCollected) elCollected.innerText = `৳ ${formatBnCurrency(cashierCollectedGlobal)}`;
+            if (elDeposited) elDeposited.innerText = `৳ ${formatBnCurrency(cashierDepositedGlobal)}`;
+            if (elRemaining) elRemaining.innerText = `৳ ${formatBnCurrency(cashierRemainingGlobal)}`;
+            if (elModalAvail) elModalAvail.innerText = `৳ ${formatBnCurrency(cashierRemainingGlobal)}`;
+
+            renderCashierDepositsTable();
         }
 
         function recalculateAllFinancials() {
@@ -2484,6 +2626,8 @@
             const netBalance = Math.max(0, totalFundGlobal - totalExpenseGlobal);
             totalRemainingBankGlobal = Math.max(0, netBalance - totalDpsGlobal);
 
+            recalculateCashierLedger();
+
             return {
                 netBalance: netBalance,
                 totalFund: totalFundGlobal,
@@ -2498,7 +2642,6 @@
             };
         }
 
-        // লোকাল ইনস্ট্যান্ট ক্যাশিং সিস্টেম (০.০০১ সেকেন্ডে লোড)
         function saveSnapshotInstantly() {
             const snapshot = {
                 members: membersData,
@@ -2506,6 +2649,7 @@
                 dps: dpsData,
                 expenses: expensesData,
                 proofs: proofsData,
+                cashDeposits: cashDepositsData,
                 policy: policyData,
                 policyOverview: policyOverview
             };
@@ -2524,6 +2668,7 @@
             }
         });
 
+        // ৩ নং নির্দেশনা: ড্যাশবোর্ডের বন্ধনীসহ ১ ও ৯ সংখ্যার স্পষ্টতা ও ভিজিবিলিটি
         function updateAuthUI() {
             const authElements = document.querySelectorAll('.auth-only');
             const adminElements = document.querySelectorAll('.admin-only');
@@ -2561,6 +2706,7 @@
                 renderDpsHistory();
                 renderExpenses();
                 renderUniversalStatement();
+                recalculateCashierLedger();
             } else {
                 document.getElementById('total-fund-amount').innerHTML = `<span class="text-sm text-emerald-200 cursor-pointer hover:underline" onclick="openLoginModal()"><i class="fas fa-lock mr-1.5"></i>লগইন প্রয়োজন</span>`;
                 const subFundElem = document.getElementById('total-fund-sub');
@@ -2642,7 +2788,6 @@
             return timeline;
         }
 
-        // সার্বজনীন জমা ও অ্যাডভান্স সমন্বয় স্টেটমেন্ট রেন্ডারিং
         function renderUniversalStatement() {
             if (!isLoggedIn) return;
 
@@ -2933,1274 +3078,68 @@
                 `).join('');
             }
         }
-        function openPolicyOverviewModal() {
-            if (currentUserRole !== 'admin') return;
-            document.getElementById('edit-pv-maxmembers').value = policyOverview.maxMembers;
-            document.getElementById('edit-pv-maxshares').value = policyOverview.maxShares;
-            document.getElementById('edit-pv-sharefee').value = policyOverview.shareFee;
-            document.getElementById('edit-pv-appfee').value = policyOverview.appFee;
-            document.getElementById('edit-pv-reinvest').value = policyOverview.reinvestPeriod;
-            document.getElementById('edit-pv-office').value = policyOverview.headOffice;
-            document.getElementById('edit-pv-disclaimer').value = policyOverview.disclaimer;
-            document.getElementById('policy-overview-modal').classList.remove('hidden');
-        }
-
-        async function handlePolicyOverviewSubmit(e) {
-            if (e) e.preventDefault();
-            if (currentUserRole !== 'admin') return;
-
-            const btn = document.getElementById('btn-save-overview');
-            btn.disabled = true;
-            btn.innerHTML = `<i class="fas fa-spinner fa-spin mr-1"></i> সেভ হচ্ছে...`;
-
-            policyOverview.maxMembers = document.getElementById('edit-pv-maxmembers').value.trim();
-            policyOverview.maxShares = document.getElementById('edit-pv-maxshares').value.trim();
-            policyOverview.shareFee = document.getElementById('edit-pv-sharefee').value.trim();
-            policyOverview.appFee = document.getElementById('edit-pv-appfee').value.trim();
-            policyOverview.reinvestPeriod = document.getElementById('edit-pv-reinvest').value.trim();
-            policyOverview.headOffice = document.getElementById('edit-pv-office').value.trim();
-            policyOverview.disclaimer = document.getElementById('edit-pv-disclaimer').value.trim();
-
-            renderPolicyOverviewUI();
-            saveSnapshotInstantly();
-            closeModal('policy-overview-modal');
-
-            fetch(API_URL, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    adminPass: sessionStorage.getItem('ppg_admin_pass'),
-                    actionType: "save_policy_overview",
-                    overviewData: policyOverview
-                })
-            });
-
-            btn.disabled = false;
-            btn.innerHTML = `<i class="fas fa-save mr-1"></i> গুগল শীটে সেভ করুন`;
-            showCustomAlert('ওভারভিউ চার্ট সংরক্ষিত হয়েছে');
-        }
-
-        function openAddPolicyClauseModal() {
-            if (currentUserRole !== 'admin') return;
-            document.getElementById('pcm-id').value = '';
-            document.getElementById('pcm-clauseno').value = `ধারা ${toBanglaNum(policyData.length + 1)}`;
-            document.getElementById('pcm-clausetitle').value = '';
-            document.getElementById('pcm-content').value = '';
-            document.getElementById('pcm-title').innerHTML = `<i class="fas fa-plus-circle"></i> নতুন ধারা যুক্ত করুন`;
-            document.getElementById('policy-clause-modal').classList.remove('hidden');
-        }
-
-        function openEditPolicyClauseModal(id) {
-            if (currentUserRole !== 'admin') return;
-            const p = policyData.find(x => x.id === id);
-            if (!p) return;
-
-            document.getElementById('pcm-id').value = p.id;
-            document.getElementById('pcm-clauseno').value = p.clauseNo;
-            document.getElementById('pcm-clausetitle').value = p.title;
-            document.getElementById('pcm-content').value = p.content;
-            document.getElementById('pcm-title').innerHTML = `<i class="fas fa-edit"></i> ধারা সম্পাদনা (${p.clauseNo})`;
-            document.getElementById('policy-clause-modal').classList.remove('hidden');
-        }
-
-        async function handlePolicyClauseSubmit(e) {
-            if (e) e.preventDefault();
-            if (currentUserRole !== 'admin') return;
-
-            const id = document.getElementById('pcm-id').value;
-            const clauseNo = document.getElementById('pcm-clauseno').value.trim();
-            const title = document.getElementById('pcm-clausetitle').value.trim();
-            const content = document.getElementById('pcm-content').value.trim();
-
-            const submitBtn = document.getElementById('pcm-submit-btn');
-            submitBtn.disabled = true;
-            submitBtn.innerHTML = `<i class="fas fa-spinner fa-spin mr-1"></i> সেভ হচ্ছে...`;
-
-            if (id) {
-                const item = policyData.find(x => x.id === id);
-                if (item) {
-                    item.clauseNo = clauseNo;
-                    item.title = title;
-                    item.content = content;
-                }
-            } else {
-                policyData.push({
-                    id: "POL_" + Date.now(),
-                    clauseNo: clauseNo,
-                    title: title,
-                    content: content
-                });
-            }
-
-            renderPolicyContent();
-            saveSnapshotInstantly();
-            closeModal('policy-clause-modal');
-
-            fetch(API_URL, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    adminPass: sessionStorage.getItem('ppg_admin_pass'),
-                    actionType: "save_policy_clause",
-                    clauseData: { id: id, clauseNo: clauseNo, title: title, content: content }
-                })
-            });
-
-            submitBtn.disabled = false;
-            submitBtn.innerHTML = `<i class="fas fa-save mr-1"></i> গুগল শীটে সেভ করুন`;
-            showCustomAlert('ধারা সফলভাবে সংরক্ষিত হয়েছে');
-        }
-
-        async function deletePolicyClause(id) {
-            if (currentUserRole !== 'admin') return;
-            if (!confirm("আপনি কি নিশ্চিতভাবে এই ধারাটি নীতিমালা থেকে মুছে ফেলতে চান?")) return;
-
-            const idx = policyData.findIndex(x => x.id === id);
-            if (idx !== -1) {
-                policyData.splice(idx, 1);
-            }
-
-            renderPolicyContent();
-            saveSnapshotInstantly();
-
-            fetch(API_URL, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    adminPass: sessionStorage.getItem('ppg_admin_pass'),
-                    actionType: "delete_policy_clause",
-                    clauseId: id
-                })
-            });
-
-            showCustomAlert('ধারা মুছে ফেলা হয়েছে');
-        }
-
-        function downloadPolicyPDF() {
-            const element = document.getElementById('printable-policy');
-            const opt = {
-                margin:       [10, 10, 10, 10],
-                filename:     `PPG_Policy.pdf`,
-                image:        { type: 'jpeg', quality: 0.98 },
-                html2canvas:  { scale: 4, useCORS: true },
-                jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
-            };
-            html2pdf().set(opt).from(element).save();
-        }
-
-        function openMemberProfileModal(memberId) {
-            const member = membersData.find(m => m.id === memberId);
-            if (!member) return;
-
-            selectedMember = member;
-
-            document.getElementById('mp-name').innerText = member.name || '--';
-            document.getElementById('mp-id').innerText = `: ${member.id}`;
-            document.getElementById('mp-shares').innerText = `${toBanglaNum(member.shares)} টি`;
-
-            document.getElementById('mp-blood').innerText = `: ${member.bloodGroup || 'অজানা'}`;
-            document.getElementById('mp-blood-date').innerText = `: ${member.lastBloodDonation ? formatBanglaDate(member.lastBloodDonation) : '--'}`;
-
-            const canViewPrivate = (currentUserRole === 'admin') || (currentUserRole === 'member' && loggedInMemberId === member.id);
-
-            if (canViewPrivate) {
-                document.getElementById('btn-update-blood-date').classList.remove('hidden');
-                document.getElementById('mp-father').innerText = `: ${member.fatherName || '--'}`;
-                document.getElementById('mp-phone').innerText = `: ${member.phone || '--'}`;
-                document.getElementById('mp-join').innerText = `: ${formatBanglaDate(member.joinDate)}`;
-                document.getElementById('mp-nominee').innerText = `: ${member.nomineeName || '--'}`;
-                document.getElementById('mp-nominee-rel').innerText = `: ${member.nomineeRelation || '--'}`;
-                document.getElementById('cardDisplayMonth').innerText = member.startMonth || "সেপ্টেম্বর";
-                
-                document.getElementById('mp-action-container').innerHTML = `
-                    <button type="button" onclick="openMemberAccountsFromCard()" class="w-full bg-gradient-to-r from-[#047857] to-[#059669] hover:from-[#065f46] hover:to-[#047857] text-white font-bold py-3 px-6 rounded-2xl shadow-lg transition duration-300 flex items-center justify-center space-x-2 border border-emerald-400/30 cursor-pointer">
-                        <i class="fas fa-chart-pie mr-1"></i>
-                        <span>হিসাব তথ্য দেখুন</span>
-                        <i class="fas fa-arrow-right ml-1"></i>
-                    </button>
-                `;
-            } else {
-                document.getElementById('btn-update-blood-date').classList.add('hidden');
-                document.getElementById('mp-father').innerText = `: *********** (লগইন প্রয়োজন)`;
-                document.getElementById('mp-phone').innerText = `: *********** (লগইন প্রয়োজন)`;
-                document.getElementById('mp-join').innerText = `: *********** (লগইন প্রয়োজন)`;
-                document.getElementById('mp-nominee').innerText = `: *********** (লগইন প্রয়োজন)`;
-                document.getElementById('mp-nominee-rel').innerText = `: *********** (লগইন প্রয়োজন)`;
-                document.getElementById('cardDisplayMonth').innerText = `গোপনীয়`;
-                
-                document.getElementById('mp-action-container').innerHTML = `
-                    <button type="button" onclick="closeModal('member-profile-modal'); openLoginModal();" class="w-full bg-slate-800 hover:bg-slate-700 text-amber-300 font-bold py-3 px-6 rounded-2xl shadow-lg transition duration-300 flex items-center justify-center space-x-2 border border-amber-500/30 cursor-pointer">
-                        <i class="fas fa-lock mr-1"></i>
-                        <span>হিসাব দেখতে লগইন করুন</span>
-                    </button>
-                `;
-            }
-
-            document.getElementById('cardSelectMonth').value = member.startMonth || "September";
-            closeUpdateBloodDate();
-
-            const photoElem = document.getElementById('mp-photo');
-            photoElem.src = member.photoUrl || DEFAULT_AVATAR_SVG;
-            photoElem.onerror = function() { this.onerror = null; this.src = DEFAULT_AVATAR_SVG; };
-
-            const statusInfo = getMemberStatusInfo(member);
-            const tag = document.getElementById('mp-status-tag');
-            tag.innerText = statusInfo.label;
-            tag.className = `text-[10px] px-2.5 py-0.5 rounded-full font-bold shadow-sm ${statusInfo.badge}`;
-
-            switchCardToView();
-            closeModal('members-modal');
-            document.getElementById('member-profile-modal').classList.remove('hidden');
-        }
-
-        function switchCardToView() {
-            document.getElementById('cardViewMode').classList.remove('hidden');
-            document.getElementById('cardViewMode').classList.add('flex');
-            document.getElementById('cardEditMode').classList.add('hidden');
-            document.getElementById('cardEditMode').classList.remove('flex');
-        }
-
-        function switchCardToEdit() {
-            if (currentUserRole !== 'admin') return;
-            document.getElementById('cardEditMode').classList.remove('hidden');
-            document.getElementById('cardEditMode').classList.add('flex');
-            document.getElementById('cardViewMode').classList.add('hidden');
-            document.getElementById('cardViewMode').classList.remove('flex');
-        }
-
-        async function saveCardStartMonth() {
-            if (currentUserRole !== 'admin' || !selectedMember) return;
-            const newMonth = document.getElementById('cardSelectMonth').value;
-            const mIdx = normalizeMonthIndex(newMonth);
-            const bnMonth = mIdx !== -1 ? MONTH_NAMES_BN[mIdx] : newMonth;
-
-            selectedMember.startMonth = bnMonth;
-            document.getElementById('cardDisplayMonth').innerText = bnMonth;
-            switchCardToView();
-            saveSnapshotInstantly();
-
-            fetch(API_URL, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    adminPass: sessionStorage.getItem('ppg_admin_pass'),
-                    actionType: "update_start_month",
-                    memberId: selectedMember.id,
-                    startMonth: bnMonth
-                })
-            });
-        }
-        
-        function openUpdateBloodDate() {
-            document.getElementById('mp-blood-date').classList.add('hidden');
-            document.getElementById('btn-update-blood-date').classList.add('hidden');
-            document.getElementById('update-blood-date-form').classList.remove('hidden');
-            
-            let curDate = selectedMember.lastBloodDonation || '';
-            document.getElementById('mp-new-blood-date').value = convertToInputDateFormat(curDate);
-        }
-
-        function closeUpdateBloodDate() {
-            document.getElementById('mp-blood-date').classList.remove('hidden');
-            if (currentUserRole === 'admin' || (currentUserRole === 'member' && loggedInMemberId === (selectedMember && selectedMember.id))) {
-                document.getElementById('btn-update-blood-date').classList.remove('hidden');
-            }
-            document.getElementById('update-blood-date-form').classList.add('hidden');
-        }
-
-        async function saveBloodDate() {
-            if (!selectedMember) return;
-            const newDate = document.getElementById('mp-new-blood-date').value;
-            selectedMember.lastBloodDonation = newDate;
-            document.getElementById('mp-blood-date').innerText = `: ${newDate ? formatBanglaDate(newDate) : '--'}`;
-            closeUpdateBloodDate();
-            saveSnapshotInstantly();
-
-            fetch(API_URL, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    adminPass: sessionStorage.getItem('ppg_admin_pass') || '', 
-                    actionType: "update_blood_date",
-                    memberId: selectedMember.id,
-                    lastBloodDonation: newDate
-                })
-            });
-            showCustomAlert('রক্তদানের তারিখ আপডেট হয়েছে');
-        }
-
-        async function handleDirectPhotoUpload(event) {
-            if (currentUserRole !== 'admin' || !selectedMember) return;
-            const file = event.target.files[0];
-            if (!file) return;
-
-            const compressedBase64 = await compressImage(file);
-            document.getElementById('mp-photo').src = "data:image/jpeg;base64," + compressedBase64;
-            selectedMember.photoUrl = "data:image/jpeg;base64," + compressedBase64;
-            saveSnapshotInstantly();
-
-            fetch(API_URL, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    adminPass: sessionStorage.getItem('ppg_admin_pass'),
-                    actionType: "upload_member_photo",
-                    memberId: selectedMember.id,
-                    memberName: selectedMember.name,
-                    photoBase64: compressedBase64
-                })
-            });
-
-            alert("সদস্যের ছবি সফলভাবে আপলোড হয়েছে এবং ড্রাইভে সেভ হচ্ছে!");
-        }
-
-        function openMemberAccountsFromCard() {
-            if (!selectedMember) return;
-            const canViewPrivate = (currentUserRole === 'admin') || (currentUserRole === 'member' && loggedInMemberId === selectedMember.id);
-            if (!canViewPrivate) {
-                alert("হিসাব তথ্য দেখতে অনুগ্রহ করে লগইন করুন!");
-                closeModal('member-profile-modal');
-                openLoginModal();
-                return;
-            }
-            closeModal('member-profile-modal');
-            showMemberDetail(selectedMember.id);
-        }
-
-        function showMemberDetail(memberId) {
-            const member = membersData.find(m => m.id === memberId);
-            if (!member) return;
-
-            const canViewPrivate = (currentUserRole === 'admin') || (currentUserRole === 'member' && loggedInMemberId === member.id);
-            if (!canViewPrivate) {
-                alert("হিসাব তথ্য দেখতে অনুগ্রহ করে লগইন করুন!");
-                openLoginModal();
-                return;
-            }
-
-            selectedMember = member;
-
-            document.getElementById('md-name').innerText = member.name;
-            document.getElementById('md-id').innerText = member.id;
-            document.getElementById('md-phone').innerText = member.phone || '--';
-            document.getElementById('md-join').innerText = formatBanglaDate(member.joinDate) || '--';
-            document.getElementById('md-shares').innerText = `${toBanglaNum(member.shares)} টি`;
-            document.getElementById('md-total-deposit').innerText = `৳ ${formatBnCurrency(member.totalDeposit || 0)}`;
-
-            const statusInfo = getMemberStatusInfo(member);
-            const banner = document.getElementById('md-status-banner');
-            banner.className = `p-3 rounded-2xl flex items-center justify-between text-xs font-bold border ${statusInfo.colorClass}`;
-            document.getElementById('md-status-text').innerHTML = `<i class="fas fa-circle mr-1 text-[10px]"></i> ${statusInfo.label}`;
-            document.getElementById('md-status-subtext').innerText = statusInfo.subtext;
-
-            const adminEditBtn = document.getElementById('md-btn-admin-edit');
-            if (currentUserRole === 'admin') {
-                adminEditBtn.classList.remove('hidden');
-            } else {
-                adminEditBtn.classList.add('hidden');
-            }
-
-            const currentMonthIdx = new Date().getMonth();
-            const breakdownBody = document.getElementById('md-monthly-breakdown-body');
-            breakdownBody.innerHTML = '';
-
-            for (let idx = START_MONTH_IDX; idx <= currentMonthIdx; idx++) {
-                const mName = MONTH_NAMES[idx];
-                const bnName = MONTH_NAMES_BN[idx];
-                let rec = member.monthlyRecords ? (member.monthlyRecords[mName] || member.monthlyRecords[idx] || member.monthlyRecords[bnName]) : null;
-
-                const isPaid = rec && rec.paid && parseAnyNumber(rec.amount) > 0;
-                const isAdvance = rec && rec.isAutoAdjusted;
-                const tr = document.createElement('tr');
-                tr.className = isPaid ? (isAdvance ? "hover:bg-blue-50/50 bg-blue-50/20" : "hover:bg-emerald-50/50") : "hover:bg-slate-50 opacity-70";
-                
-                tr.innerHTML = `
-                    <td class="p-2.5 font-bold text-slate-800">${bnName} ২০২৬</td>
-                    <td class="p-2.5 font-digit font-bold ${isPaid ? (isAdvance ? 'text-blue-700' : 'text-emerald-700') : 'text-slate-400'}">
-                        ${isPaid ? '৳ ' + formatBnCurrency(rec.amount) : '৳ ০'}
-                        ${rec && rec.penalty > 0 ? `<br><span class="text-[10px] text-rose-600">(জরিমানা: ৳${formatBnCurrency(rec.penalty)})</span>` : ''}
-                        ${rec && rec.advanceAmount > 0 ? `<br><span class="text-[10px] text-blue-600 font-bold">(অগ্রিম জমা: ৳${formatBnCurrency(rec.advanceAmount)})</span>` : ''}
-                    </td>
-                    <td class="p-2.5 text-slate-600 font-digit">
-                        ${isPaid ? `${rec.method} <br><span class="font-mono text-[10px] text-indigo-600">${rec.trxId}</span>` : '--'}
-                    </td>
-                    <td class="p-2.5">
-                        <span class="${isPaid ? (isAdvance ? 'bg-blue-100 text-blue-800 border border-blue-300' : 'bg-emerald-100 text-emerald-800') : 'bg-rose-100 text-rose-800'} px-2 py-0.5 rounded text-[10px] font-bold">
-                            ${isPaid ? (isAdvance ? 'অগ্রিম সমন্বয়' : 'পরিশোধিত') : 'বকেয়া'}
-                        </span>
-                    </td>
-                    <td class="p-2.5 text-center">
-                        <button type="button" onclick="viewSpecificMonthReceipt('${member.id}', '${mName}')" class="bg-indigo-600 hover:bg-indigo-700 text-white text-[10px] px-2 py-1 rounded-lg font-bold shadow">
-                            <i class="fas fa-file-invoice"></i> রশিদ দেখুন
-                        </button>
-                    </td>
-                `;
-                breakdownBody.appendChild(tr);
-            }
-
-            closeModal('members-modal');
-            document.getElementById('member-detail-modal').classList.remove('hidden');
-        }
-
-        function triggerEditFromDetail() {
-            if (selectedMember && currentUserRole === 'admin') {
-                closeModal('member-detail-modal');
-                openEditMemberModal(selectedMember.id);
-            }
-        }
-
-        function viewSpecificMonthReceipt(memberId, monthName) {
-            const member = membersData.find(m => m.id === memberId);
-            if (!member) return;
-            selectedMember = member;
-            selectedReceiptMonth = monthName;
-            
-            const rcpSel = document.getElementById('receipt-month-selector');
-            if (rcpSel) rcpSel.value = monthName;
-
-            openReceiptModal();
-        }
-
-        function initMonthSelectors() {
-            const entryMonth = document.getElementById('entry-month');
-            const entryDpsMonth = document.getElementById('entry-dps-month');
-            const editDpsMonth = document.getElementById('edit-dps-month');
-            const editRcpMonth = document.getElementById('edit-rcp-month');
-            
-            const newMemberJoinMonth = document.getElementById('new-m-join-month');
-            const newMemberStartMonth = document.getElementById('new-m-start-month');
-            const editMemberJoinMonth = document.getElementById('edit-m-join-month');
-            const editMemberStartMonth = document.getElementById('edit-m-start-month');
-            const cardSelectMonth = document.getElementById('cardSelectMonth');
-
-            const currentMonthIdx = new Date().getMonth();
-            
-            const elements = [entryMonth, entryDpsMonth, editDpsMonth, editRcpMonth, newMemberJoinMonth, newMemberStartMonth, editMemberJoinMonth, editMemberStartMonth, cardSelectMonth];
-            elements.forEach(el => { if (el) el.innerHTML = ''; });
-
-            for (let idx = 0; idx < 12; idx++) {
-                const m = MONTH_NAMES[idx];
-                const bn = MONTH_NAMES_BN[idx];
-                const opt = document.createElement('option');
-                opt.value = m;
-                opt.innerText = `${bn} ২০২৬ (${m})`;
-                
-                if (idx === currentMonthIdx) opt.selected = true;
-                
-                elements.forEach(el => {
-                    if (el) el.appendChild(opt.cloneNode(true));
-                });
-            }
-
-            if (!selectedReceiptMonth) {
-                selectedReceiptMonth = MONTH_NAMES[currentMonthIdx];
-            }
-        }
-
-        function onReceiptMonthChange(val) {
-            selectedReceiptMonth = val;
-            const targetIdx = normalizeMonthIndex(val);
-            const bnName = targetIdx !== -1 ? MONTH_NAMES_BN[targetIdx] : val;
-            const stdName = targetIdx !== -1 ? MONTH_NAMES[targetIdx] : val;
-
-            const monthWithYear = `${bnName} ২০২৬`;
-            document.getElementById('rcp-month-display').innerText = monthWithYear;
-            document.getElementById('rcp-inst-month').innerText = monthWithYear;
-
-            if (selectedMember) {
-                let rec = null;
-
-                if (selectedMember.monthlyRecords) {
-                    rec = selectedMember.monthlyRecords[val] ||
-                          selectedMember.monthlyRecords[stdName] ||
-                          (targetIdx !== -1 ? selectedMember.monthlyRecords[targetIdx] : null);
-                }
-
-                const isPaid = rec && rec.paid && parseAnyNumber(rec.amount) > 0;
-                const specialRcpId = generateSpecialReceiptId(selectedMember.id, val, rec ? rec.trxId : "");
-                document.getElementById('rcp-special-id').innerText = isPaid ? specialRcpId : "N/A";
-
-                let paymentDateFormatted = "বকেয়া";
-                if (isPaid) {
-                    if (rec && rec.timestamp && rec.timestamp.toString().trim() !== "") {
-                        paymentDateFormatted = formatBanglaDate(rec.timestamp);
-                    } else if (selectedMember.lastPaymentTimestamp) {
-                        paymentDateFormatted = formatBanglaDate(selectedMember.lastPaymentTimestamp);
-                    } else {
-                        paymentDateFormatted = formatBanglaDate(new Date().toISOString());
-                    }
-                }
-                document.getElementById('rcp-payment-date').innerText = paymentDateFormatted;
-
-                const cornerPhoto = document.getElementById('rcp-member-corner-photo');
-                cornerPhoto.src = selectedMember.photoUrl || DEFAULT_AVATAR_SVG;
-                cornerPhoto.onerror = function() { this.onerror = null; this.src = DEFAULT_AVATAR_SVG; };
-
-                document.getElementById('rcp-method').innerText = (rec && rec.method) || selectedMember.lastPaymentMethod || '--';
-                document.getElementById('rcp-trxid').innerText = (rec && rec.trxId) || selectedMember.lastTrxId || '--';
-                
-                const instAmount = isPaid ? (parseAnyNumber(rec.amount) || 0) : 0;
-                document.getElementById('rcp-last-amount').innerText = `৳ ${formatBnCurrency(instAmount)}`;
-
-                const penaltyAmount = isPaid ? (parseAnyNumber(rec.penalty) || 0) : 0;
-                const advanceAmount = isPaid ? (parseAnyNumber(rec.advanceAmount) || 0) : 0;
-                
-                const penaltyRow = document.getElementById('rcp-penalty-row');
-                const advanceRow = document.getElementById('rcp-advance-row');
-                const currentTotalRow = document.getElementById('rcp-current-total-row');
-
-                if (penaltyAmount > 0) {
-                    penaltyRow.style.display = 'table-row';
-                    document.getElementById('rcp-penalty-amount').innerText = `৳ ${formatBnCurrency(penaltyAmount)}`;
-                } else {
-                    penaltyRow.style.display = 'none';
-                }
-
-                if (advanceAmount > 0) {
-                    advanceRow.style.display = 'table-row';
-                    document.getElementById('rcp-advance-amount').innerText = `৳ ${formatBnCurrency(advanceAmount)}`;
-                } else {
-                    advanceRow.style.display = 'none';
-                }
-
-                if (penaltyAmount > 0 || advanceAmount > 0) {
-                    currentTotalRow.style.display = 'table-row';
-                    document.getElementById('rcp-current-total-amount').innerText = `৳ ${formatBnCurrency(instAmount + penaltyAmount + advanceAmount)}`;
-                } else {
-                    currentTotalRow.style.display = 'none';
-                }
-
-                let priorDeposit = 0;
-                for (let i = START_MONTH_IDX; i < targetIdx; i++) {
-                    const mKey = MONTH_NAMES[i];
-                    let pastRec = selectedMember.monthlyRecords ? (selectedMember.monthlyRecords[mKey] || selectedMember.monthlyRecords[i]) : null;
-                    if (pastRec && pastRec.paid && parseAnyNumber(pastRec.amount) > 0) {
-                        priorDeposit += parseAnyNumber(pastRec.amount);
-                    }
-                }
-
-                const totalUpToMonth = priorDeposit + instAmount + advanceAmount;
-
-                document.getElementById('rcp-prev-amount').innerText = `৳ ${formatBnCurrency(priorDeposit)}`;
-                document.getElementById('rcp-total').innerText = `৳ ${formatBnCurrency(totalUpToMonth)}`;
-                
-                const statusBadge = document.getElementById('rcp-status-badge');
-                if (isPaid) {
-                    statusBadge.innerText = rec && rec.isAutoAdjusted ? "অগ্রিম সমন্বয়" : "পরিশোধিত";
-                    statusBadge.style.color = "#059669";
-                } else {
-                    statusBadge.innerText = "বকেয়া / অপ্রাপ্ত";
-                    statusBadge.style.color = "#dc2626";
-                }
-
-                const proofImg = document.getElementById('receipt-proof-img');
-                const noProof = document.getElementById('no-proof-text');
-                let rawProofUrl = (rec && rec.proofUrl) ? rec.proofUrl : "";
-
-                const directImageUrl = getDirectImageUrl(rawProofUrl);
-
-                if (directImageUrl) {
-                    proofImg.src = directImageUrl;
-                    proofImg.style.display = 'block';
-                    noProof.style.display = 'none';
-                } else {
-                    proofImg.src = "";
-                    proofImg.style.display = 'none';
-                    noProof.style.display = 'block';
-                }
-            }
-        }
-
-        function openReceiptModal() {
-            if (!selectedMember) return;
-
-            const rcpSel = document.getElementById('receipt-month-selector');
-            if (rcpSel) {
-                rcpSel.innerHTML = '';
-                for (let idx = 0; idx < 12; idx++) {
-                    const m = MONTH_NAMES[idx];
-                    const bnM = MONTH_NAMES_BN[idx];
-                    let rec = null;
-                    if (selectedMember.monthlyRecords) {
-                        rec = selectedMember.monthlyRecords[m] || selectedMember.monthlyRecords[idx];
-                    }
-
-                    if (currentUserRole === 'admin' || (rec && rec.paid && parseAnyNumber(rec.amount) > 0)) {
-                        const opt = document.createElement('option');
-                        opt.value = m;
-                        opt.innerText = `${bnM} ২০২৬ (${m})`;
-                        rcpSel.appendChild(opt);
-                    }
-                }
-
-                if (rcpSel.options.length > 0) {
-                    let matchOpt = Array.from(rcpSel.options).find(o => o.value === selectedReceiptMonth);
-                    if (matchOpt) {
-                        matchOpt.selected = true;
-                    } else {
-                        rcpSel.selectedIndex = rcpSel.options.length - 1;
-                        selectedReceiptMonth = rcpSel.value;
-                    }
-                }
-            }
-
-            document.getElementById('rcp-name').innerText = selectedMember.name;
-            document.getElementById('rcp-id').innerText = selectedMember.id;
-            document.getElementById('rcp-shares').innerText = `${toBanglaNum(selectedMember.shares)} টি`;
-            
-            const today = new Date();
-            const d = today.getDate() < 10 ? '0' + today.getDate() : today.getDate();
-            const m = (today.getMonth() + 1) < 10 ? '0' + (today.getMonth() + 1) : (today.getMonth() + 1);
-            document.getElementById('rcp-date').innerText = `${toBanglaNum(d)}.${toBanglaNum(m)}.${toBanglaNum(today.getFullYear())}`;
-
-            onReceiptMonthChange(selectedReceiptMonth);
-            document.getElementById('receipt-modal').classList.remove('hidden');
-        }
-
-        function downloadReceiptPDF() {
-            const element = document.getElementById('printable-receipt');
-            const opt = {
-                margin:       [8, 8, 8, 8], 
-                filename:     `Receipt_${selectedMember.id}_${selectedReceiptMonth}.pdf`,
-                image:        { type: 'jpeg', quality: 1.0 },
-                html2canvas:  { scale: 4, useCORS: true, logging: false },
-                jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' } 
-            };
-            html2pdf().set(opt).from(element).save();
-        }
-
-        function shareWhatsApp() {
-            if (currentUserRole !== 'admin' || !selectedMember) return;
-            const idx = normalizeMonthIndex(selectedReceiptMonth);
-            const currentMonthBn = idx !== -1 ? MONTH_NAMES_BN[idx] : "অক্টোবর";
-            const monthWithYear = `${currentMonthBn} ২০২৬`;
-
-            const rec = selectedMember.monthlyRecords ? (selectedMember.monthlyRecords[selectedReceiptMonth] || selectedMember.monthlyRecords[idx]) : null;
-            const specialId = generateSpecialReceiptId(selectedMember.id, selectedReceiptMonth, rec ? rec.trxId : "");
-            const paymentDateStr = (rec && rec.timestamp) ? formatBanglaDate(rec.timestamp) : formatBanglaDate(new Date().toISOString());
-
-            const message = encodeURIComponent(
-                `📄 *পহরডাঙ্গা পার্টনারশিপ গ্রুপ - অফিসিয়াল জমা রশিদ*\n` +
-                `------------------------------------\n` +
-                `🆔 *রশিদ নং (ID):* ${specialId}\n` +
-                `👤 *সদস্য নাম:* ${selectedMember.name}\n` +
-                `🆔 *মেম্বার আইডি:* ${selectedMember.id}\n` +
-                `📅 *পরিশোধিত মাস:* ${monthWithYear}\n` +
-                `🕒 *পরিশোধের তারিখ:* ${paymentDateStr}\n` +
-                `📊 *শেয়ার সংখ্যা:* ${toBanglaNum(selectedMember.shares)} টি\n` +
-                `💵 *পরিশোধের পরিমাণ:* ৳ ${formatBnCurrency(rec ? rec.amount : (selectedMember.shares * 1000))}\n` +
-                `💰 *সর্বমোট সঞ্চয় ও অগ্রিম জমা:* ৳ ${formatBnCurrency(selectedMember.totalDeposit)}\n` +
-                `------------------------------------\n` +
-                `_ধন্যবাদ সাথে থাকার জন্য!_`
-            );
-            
-            openWhatsAppUrl(formatWhatsAppLink(selectedMember.phone, message));
-        }
-
-        function sendSuccessPaymentSMS(member = selectedMember) {
-            if (currentUserRole !== 'admin' || !member) return;
-            const targetMonth = member.lastPaidMonth || selectedReceiptMonth;
-            const idx = normalizeMonthIndex(targetMonth);
-            const monthBn = idx !== -1 ? MONTH_NAMES_BN[idx] : "অক্টোবর";
-            const monthWithYear = `${monthBn} ২০২৬`;
-
-            const rec = member.monthlyRecords ? (member.monthlyRecords[targetMonth] || member.monthlyRecords[idx]) : null;
-            const specialId = generateSpecialReceiptId(member.id, targetMonth, rec ? rec.trxId : "");
-            const paymentDateStr = (rec && rec.timestamp) ? formatBanglaDate(rec.timestamp) : formatBanglaDate(new Date().toISOString());
-
-            const msg = encodeURIComponent(
-                `🎉 *অভিনন্দন! আপনার কিস্তি সফলভাবে জমা হয়েছে*\n` +
-                `*পহরডাঙ্গা পার্টনারশিপ গ্রুপ*\n` +
-                `------------------------------------\n` +
-                `🆔 *রশিদ নং (ID):* ${specialId}\n` +
-                `প্রিয় ${member.name} (আইডি: ${member.id}),\n` +
-                `আপনার *${monthWithYear}* মাসের কিস্তি সফলভাবে গৃহীত হয়েছে।\n\n` +
-                `🕒 *পরিশোধের তারিখ:* ${paymentDateStr}\n` +
-                `💵 *পরিশোধের পরিমাণ:* ৳ ${formatBnCurrency(rec ? rec.amount : (member.shares * 1000))}\n` +
-                `💰 *সর্বমোট সঞ্চয় ও অগ্রিম জমা:* ৳ ${formatBnCurrency(member.totalDeposit || 0)}\n` +
-                `------------------------------------\n`
-            );
-
-            openWhatsAppUrl(formatWhatsAppLink(member.phone, msg));
-        }
-
-        function calculatePenalty(dayOfMonth) {
-            if (dayOfMonth <= 10) return 0;
-            if (dayOfMonth <= 15) return 100;
-            return 200;
-        }
-
-        function renderDueList() {
-            const tbody = document.getElementById('due-members-list');
-            if (!tbody) return;
-            tbody.innerHTML = '';
-
-            const today = new Date();
-            const currentDay = today.getDate();
-            const penalty = calculatePenalty(currentDay);
-
-            membersData.filter(m => !m.status || m.status.toLowerCase() === 'active' || m.status === 'সক্রিয়').forEach(m => {
-                const baseInst = (m.shares || 1) * 1000;
-                const totalDue = baseInst + penalty + (m.previousDue || 0);
-
-                const tr = document.createElement('tr');
-                tr.className = "hover:bg-slate-50 border-b border-slate-100";
-                tr.innerHTML = `
-                    <td class="p-2.5">
-                        <div class="font-bold text-slate-800">${m.name}</div>
-                        <div class="text-[10px] text-indigo-600 font-digit">${m.id}</div>
-                    </td>
-                    <td class="p-2.5 font-digit font-bold">${toBanglaNum(m.shares)} টি</td>
-                    <td class="p-2.5 font-digit">৳ ${formatBnCurrency(baseInst)}</td>
-                    <td class="p-2.5 font-digit text-rose-600 font-bold">৳ ${formatBnCurrency(penalty)}</td>
-                    <td class="p-2.5 font-digit text-emerald-700 font-black">৳ ${formatBnCurrency(totalDue)}</td>
-                    <td class="p-2.5 text-center">
-                        <button type="button" onclick="sendDueSmsSingle('${m.id}')" class="bg-emerald-500 hover:bg-emerald-600 text-slate-950 font-bold px-2.5 py-1 rounded-lg text-[10px] flex items-center justify-center gap-1 mx-auto shadow">
-                            <i class="fab fa-whatsapp"></i> পাঠান
-                        </button>
-                    </td>
-                `;
-                tbody.appendChild(tr);
-            });
-        }
-
-        function sendDueSmsSingle(memberId) {
-            if (currentUserRole !== 'admin') return;
-            const m = membersData.find(x => x.id === memberId);
-            if (!m) return;
-            const currentDay = new Date().getDate();
-            const penalty = calculatePenalty(currentDay);
-            const baseInst = (m.shares || 1) * 1000;
-            const totalDue = baseInst + penalty + (m.previousDue || 0);
-            const monthBn = "অক্টোবর ২০২৬";
-
-            const msg = encodeURIComponent(
-                `📢 *মাসিক কিস্তি পরিশোধের নোটিশ*\n` +
-                `*পহরডাঙ্গা পার্টনারশিপ গ্রুপ*\n` +
-                `------------------------------------\n` +
-                `সম্মানিত অংশীদার ${m.name} (আইডি: ${m.id}),\n` +
-                `আপনার *${monthBn}* মাসের কিস্তি পরিশোধের বিবরণী:\n\n` +
-                `🔹 *শেয়ার:* ${toBanglaNum(m.shares)} টি\n` +
-                `🔹 *কিস্তি:* ৳ ${formatBnCurrency(baseInst)}\n` +
-                `🔹 *জরিমানা:* ৳ ${formatBnCurrency(penalty)}\n` +
-                `------------------------------------\n` +
-                `💰 *মোট দেয়:* ৳ ${formatBnCurrency(totalDue)}\n` +
-                `_পরিচালনা পর্ষদ_`
-            );
-
-            openWhatsAppUrl(formatWhatsAppLink(m.phone, msg));
-        }
-
-        function sendDueSmsToAllQueue() {
-            if (currentUserRole !== 'admin') return;
-            if (confirm("সকল সক্রিয় সদস্যের কিস্তি নোটিশ পাঠাতে চান?")) {
-                membersData.filter(m => !m.status || m.status.toLowerCase() === 'active' || m.status === 'সক্রিয়').forEach((m, idx) => {
-                    setTimeout(() => {
-                        sendDueSmsSingle(m.id);
-                    }, idx * 1200);
-                });
-            }
-        }
-
-        function sendFestiveSmsToAllQueue() {
-            if (currentUserRole !== 'admin') return;
-            const title = document.getElementById('festive-title').value.trim();
-            const body = document.getElementById('festive-body').value.trim();
-
-            if (!title || !body) return;
-
-            if (confirm("এক ক্লিকে সকল সদস্যের কাছে উৎসব বার্তা পাঠাতে চান?")) {
-                membersData.forEach((m, idx) => {
-                    setTimeout(() => {
-                        const msg = encodeURIComponent(
-                            `✨ *${title}*\n` +
-                            `*পহরডাঙ্গা পার্টনারশিপ গ্রুপ*\n` +
-                            `------------------------------------\n` +
-                            `প্রিয় সদস্য ${m.name},\n\n` +
-                            `${body}\n\n` +
-                            `_শুভেচ্ছান্তে: পরিচালনা পর্ষদ_`
-                        );
-                        openWhatsAppUrl(formatWhatsAppLink(m.phone, msg));
-                    }, idx * 1200);
-                });
-            }
-        }
-
-        function switchBroadcastTab(tab) {
-            const dueBtn = document.getElementById('tab-due-btn');
-            const festiveBtn = document.getElementById('tab-festive-btn');
-            const duePanel = document.getElementById('panel-due-notice');
-            const festivePanel = document.getElementById('panel-festive-notice');
-
-            if (tab === 'due') {
-                dueBtn.className = "pb-2 text-emerald-600 border-b-2 border-emerald-600 font-bold";
-                festiveBtn.className = "pb-2 text-slate-500 font-bold";
-                duePanel.classList.remove('hidden');
-                festivePanel.classList.add('hidden');
-            } else {
-                festiveBtn.className = "pb-2 text-emerald-600 border-b-2 border-emerald-600 font-bold";
-                dueBtn.className = "pb-2 text-slate-500 font-bold";
-                festivePanel.classList.remove('hidden');
-                duePanel.classList.add('hidden');
-            }
-        }
-
-        function openAdminEntryModal() {
+        // ================= ৫ নং নির্দেশনা: ক্যাশিয়ার থেকে ব্যাংক ডিপোজিট হ্যান্ডলার =================
+        function openCashDepositModal() {
             if (!isLoggedIn || currentUserRole !== 'admin') {
                 alert('অনুগ্রহ করে এডমিন হিসেবে লগইন করুন!');
                 openLoginModal();
                 return;
             }
-
-            const form = document.getElementById('admin-payment-form');
-            if (form) form.reset();
+            document.getElementById('cdm-date').value = new Date().toISOString().split('T')[0];
+            document.getElementById('cdm-bank').value = 'সিটি ব্যাংক';
+            document.getElementById('cdm-amount').value = '';
+            document.getElementById('cdm-trxid').value = '';
+            document.getElementById('cdm-note').value = '';
+            document.getElementById('cdm-proof-file').value = '';
             
-            document.getElementById('entry-payment-date').value = new Date().toISOString().split('T')[0];
-            document.getElementById('entry-trxid').value = '';
-            document.getElementById('entry-proof-file').value = '';
-            document.getElementById('entry-penalty').value = '';
-
-            const sel = document.getElementById('entry-member-id');
-            sel.innerHTML = '';
-            membersData.forEach(m => {
-                const opt = document.createElement('option');
-                opt.value = m.id;
-                opt.innerText = `${m.id} - ${m.name} (${toBanglaNum(m.shares)} শেয়ার)`;
-                sel.appendChild(opt);
-            });
-
-            onEntryMemberChange();
-            
-            const currentMonthIdx = new Date().getMonth();
-            const mSelector = document.getElementById('entry-month');
-            if (mSelector) mSelector.value = MONTH_NAMES[currentMonthIdx];
-
-            document.getElementById('advance-preview-box').classList.add('hidden');
-            document.getElementById('admin-entry-modal').classList.remove('hidden');
+            recalculateCashierLedger();
+            document.getElementById('cash-deposit-modal').classList.remove('hidden');
         }
 
-        function onEntryMemberChange() {
-            const memberId = document.getElementById('entry-member-id').value;
-            const m = membersData.find(x => x.id === memberId);
-            if (m) {
-                document.getElementById('entry-amount').value = (m.shares || 1) * 1000;
-            }
-            onEntryMonthOrAmountChange();
-        }
+        async function handleCashDepositSubmit(e) {
+            if (e) e.preventDefault();
+            if (currentUserRole !== 'admin') return;
 
-        function onEntryMonthOrAmountChange() {
-            const memberId = document.getElementById('entry-member-id').value;
-            const m = membersData.find(x => x.id === memberId);
-            if (!m) return;
+            const depositDate = document.getElementById('cdm-date').value;
+            const bankName = document.getElementById('cdm-bank').value.trim() || 'সিটি ব্যাংক';
+            const amount = parseFloat(document.getElementById('cdm-amount').value) || 0;
+            const trxId = document.getElementById('cdm-trxid').value.trim();
+            const note = document.getElementById('cdm-note').value.trim();
+            const proofFile = document.getElementById('cdm-proof-file');
 
-            const shares = parseAnyNumber(m.shares) || 1;
-            const monthlyRequired = shares * 1000;
-            const enteredAmount = parseAnyNumber(document.getElementById('entry-amount').value) || 0;
-            const startMonth = document.getElementById('entry-month').value;
-            const startIdx = normalizeMonthIndex(startMonth);
-
-            const previewBox = document.getElementById('advance-preview-box');
-            const previewText = document.getElementById('advance-preview-text');
-
-            if (enteredAmount > monthlyRequired) {
-                const totalMonthsCovered = Math.floor(enteredAmount / monthlyRequired);
-                const extraMoney = enteredAmount % monthlyRequired;
-                let coveredMonthNames = [];
-
-                for (let i = 0; i < totalMonthsCovered; i++) {
-                    let targetIdx = (startIdx + i) % 12;
-                    coveredMonthNames.push(MONTH_NAMES_BN[targetIdx]);
-                }
-
-                previewBox.classList.remove('hidden');
-                previewText.innerHTML = `<strong>অগ্রিম জমা শনাক্তকরণ:</strong> এই টাকা দ্বারা <strong>${coveredMonthNames.join(', ')}</strong> পর্যন্ত কিস্তি পরিশোধ ও সমন্বিত হবে${extraMoney > 0 ? ` এবং অতিরিক্ত ৳${formatBnCurrency(extraMoney)} অগ্রিম জমা থাকবে` : ''}।`;
-            } else {
-                previewBox.classList.add('hidden');
-            }
-        }
-
-        function openDpsEntryModal() {
-            if (!isLoggedIn || currentUserRole !== 'admin') {
-                alert('অনুগ্রহ করে এডমিন হিসেবে লগইন করুন!');
-                openLoginModal();
+            if (amount <= 0) {
+                alert('অনুগ্রহ করে সঠিক জমার পরিমাণ লিখুন!');
                 return;
             }
-            const form = document.getElementById('admin-dps-form');
-            if (form) form.reset();
-            document.getElementById('entry-dps-bank').value = 'সিটি ব্যাংক';
-            document.getElementById('entry-dps-trxid').value = '';
-            document.getElementById('entry-dps-proof-file').value = '';
-            calculateRemainingBank();
-            
-            const currentMonthIdx = new Date().getMonth();
-            const dpsSelector = document.getElementById('entry-dps-month');
-            if (dpsSelector) dpsSelector.value = MONTH_NAMES[currentMonthIdx];
 
-            document.getElementById('dps-entry-modal').classList.remove('hidden');
-        }
-
-        function calculateRemainingBank() {
-            const total = parseFloat(document.getElementById('entry-dps-bank-total').value) || 0;
-            const dps = parseFloat(document.getElementById('entry-dps-amount').value) || 0;
-            const remaining = Math.max(0, total - dps);
-            document.getElementById('entry-dps-bank-remaining').value = remaining;
-        }
-
-        function calculateEditRemainingBank() {
-            const total = parseFloat(document.getElementById('edit-dps-bank-total').value) || 0;
-            const dps = parseFloat(document.getElementById('edit-dps-amount').value) || 0;
-            const remaining = Math.max(0, total - dps);
-            document.getElementById('edit-dps-bank-remaining').value = remaining;
-        }
-
-        function compressImage(file) {
-            return new Promise((resolve) => {
-                const reader = new FileReader();
-                reader.onload = (e) => {
-                    const img = new Image();
-                    img.src = e.target.result;
-                    img.onload = () => {
-                        const canvas = document.createElement('canvas');
-                        let w = img.width;
-                        let h = img.height;
-                        if (w > 600) {
-                            h = Math.round((h * 600) / w);
-                            w = 600;
-                        }
-                        canvas.width = w;
-                        canvas.height = h;
-                        const ctx = canvas.getContext('2d');
-                        ctx.drawImage(img, 0, 0, w, h);
-                        resolve(canvas.toDataURL('image/jpeg', 0.5).split(',')[1]);
-                    };
-                };
-                reader.readAsDataURL(file);
-            });
-        }
-
-        async function handleAdminPaymentSubmit(e) {
-            if (e) e.preventDefault();
-            const submitBtn = document.getElementById('entry-submit-btn');
-            const fileInput = document.getElementById('entry-proof-file');
-
-            submitBtn.disabled = true;
-            submitBtn.innerHTML = `<i class="fas fa-spinner fa-spin mr-2"></i>সংরক্ষণ হচ্ছে...`;
-
-            let imageBase64 = "";
-            let localPreviewUrl = "";
-
-            if (fileInput.files && fileInput.files[0]) {
-                const file = fileInput.files[0];
-                localPreviewUrl = URL.createObjectURL(file);
-                imageBase64 = await compressImage(file);
-            }
-
-            const memberId = document.getElementById('entry-member-id').value;
-            const monthVal = document.getElementById('entry-month').value;
-            const customDateInput = document.getElementById('entry-payment-date').value;
-            const nowIso = customDateInput ? new Date(customDateInput + "T12:00:00").toISOString() : new Date().toISOString();
-            
-            const idx = normalizeMonthIndex(monthVal);
-            const monthBn = idx !== -1 ? MONTH_NAMES_BN[idx] : monthVal;
-            const amount = parseFloat(document.getElementById('entry-amount').value) || 0;
-            const penalty = parseFloat(document.getElementById('entry-penalty').value) || 0;
-            const method = document.getElementById('entry-method').value;
-            const trxId = document.getElementById('entry-trxid').value.trim();
-
-            const member = membersData.find(m => m.id === memberId);
-            if (!member) return;
-
-            accountsData.push({
-                timestamp: nowIso,
-                memberId: member.id,
-                name: member.name,
-                month: monthVal,
-                monthBn: monthBn,
-                amount: amount,
-                penalty: penalty,
-                paymentMethod: method,
-                trxId: trxId,
-                proofUrl: localPreviewUrl
-            });
-
-            autoAdjustMemberMonthlyRecords(member);
-            saveSnapshotInstantly();
-
-            fetch(API_URL, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    adminPass: sessionStorage.getItem('ppg_admin_pass'),
-                    actionType: "installment",
-                    folderName: monthVal,
-                    fileName: `MEM_${member.id}_${monthVal}.jpg`,
-                    imageBase64: imageBase64,
-                    sheetData: {
-                        memberId: member.id,
-                        memberName: member.name,
-                        month: monthVal,
-                        monthBn: monthBn,
-                        amount: amount,
-                        penalty: penalty,
-                        paymentMethod: method,
-                        trxId: trxId,
-                        customTimestamp: customDateInput ? customDateInput + " 12:00:00" : ""
-                    }
-                })
-            });
-
-            submitBtn.disabled = false;
-            submitBtn.innerHTML = `<i class="fas fa-check-circle"></i> গুগল শীট ও ড্রাইভে সেভ করুন`;
-            closeModal('admin-entry-modal');
-
-            selectedMember = member;
-            selectedReceiptMonth = monthVal;
-            updateAuthUI();
-            openReceiptModal();
-        }
-
-        async function handleDpsSubmit(e) {
-            if (e) e.preventDefault();
-            const submitBtn = document.getElementById('dps-submit-btn');
-            const fileInput = document.getElementById('entry-dps-proof-file');
-
-            submitBtn.disabled = true;
-            submitBtn.innerHTML = `<i class="fas fa-spinner fa-spin mr-2"></i>সংরক্ষণ হচ্ছে...`;
-
-            let imageBase64 = "";
-            let localPreviewUrl = "";
-
-            if (fileInput.files && fileInput.files[0]) {
-                const file = fileInput.files[0];
-                localPreviewUrl = URL.createObjectURL(file);
-                imageBase64 = await compressImage(file);
-            }
-
-            const monthVal = document.getElementById('entry-dps-month').value;
-            const bankTotal = parseFloat(document.getElementById('entry-dps-bank-total').value) || 0;
-            const dpsAmount = parseFloat(document.getElementById('entry-dps-amount').value) || 0;
-            const remaining = parseFloat(document.getElementById('entry-dps-bank-remaining').value) || 0;
-            const bankName = document.getElementById('entry-dps-bank').value.trim() || 'সিটি ব্যাংক';
-            const trxId = document.getElementById('entry-dps-trxid').value.trim();
-
-            dpsData.push({
-                timestamp: new Date().toISOString(),
-                month: monthVal,
-                bankDeposit: bankTotal,
-                dpsAmount: dpsAmount,
-                remainingBank: remaining,
-                bankName: bankName,
-                trxId: trxId,
-                proofUrl: localPreviewUrl
-            });
-
-            saveSnapshotInstantly();
-
-            fetch(API_URL, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    adminPass: sessionStorage.getItem('ppg_admin_pass'),
-                    actionType: "institutional_dps",
-                    folderName: monthVal,
-                    fileName: `DPS_${monthVal}.jpg`,
-                    imageBase64: imageBase64,
-                    dpsData: {
-                        month: monthVal,
-                        bankDeposit: bankTotal,
-                        dpsAmount: dpsAmount,
-                        remainingBank: remaining,
-                        bankName: bankName,
-                        trxId: trxId
-                    }
-                })
-            });
-
-            submitBtn.disabled = false;
-            submitBtn.innerHTML = `<i class="fas fa-check-circle"></i> ডিপিএস ফান্ডে সেভ করুন`;
-            closeModal('dps-entry-modal');
-            updateAuthUI();
-            alert("প্রাতিষ্ঠানিক ডিপিএস ফান্ডে সফলভাবে সেভ হয়েছে!");
-        }
-
-        function openEditReceiptModal() {
-            if (currentUserRole !== 'admin' || !selectedMember) return;
-            const rec = selectedMember.monthlyRecords ? (selectedMember.monthlyRecords[selectedReceiptMonth] || selectedMember.monthlyRecords[normalizeMonthIndex(selectedReceiptMonth)]) : null;
-            
-            document.getElementById('edit-rcp-member-title').innerText = `${selectedMember.name} (${selectedMember.id})`;
-            document.getElementById('edit-rcp-member-id').value = selectedMember.id;
-            document.getElementById('edit-rcp-old-month').value = selectedReceiptMonth;
-            
-            if (rec && rec.timestamp) {
-                document.getElementById('edit-rcp-date').value = convertToInputDateFormat(rec.timestamp);
-            } else {
-                document.getElementById('edit-rcp-date').value = new Date().toISOString().split('T')[0];
-            }
-
-            document.getElementById('edit-rcp-month').value = selectedReceiptMonth;
-            document.getElementById('edit-rcp-amount').value = rec ? (rec.actualDeposit || rec.amount) : (selectedMember.shares * 1000);
-            document.getElementById('edit-rcp-penalty').value = rec && rec.penalty > 0 ? rec.penalty : ''; 
-            document.getElementById('edit-rcp-method').value = rec ? rec.method : "বিকাশ (bKash)";
-            document.getElementById('edit-rcp-trxid').value = rec ? rec.trxId : "";
-            document.getElementById('edit-rcp-proof-file').value = "";
-
-            document.getElementById('receipt-edit-modal').classList.remove('hidden');
-        }
-
-        async function handleReceiptEditSubmit(e) {
-            if (e) e.preventDefault();
-            if (currentUserRole !== 'admin') return;
-
-            const memberId = document.getElementById('edit-rcp-member-id').value;
-            const oldMonth = document.getElementById('edit-rcp-old-month').value;
-            const newDate = document.getElementById('edit-rcp-date').value;
-            const newMonth = document.getElementById('edit-rcp-month').value;
-            const newAmount = parseFloat(document.getElementById('edit-rcp-amount').value) || 0;
-            const newPenalty = parseFloat(document.getElementById('edit-rcp-penalty').value) || 0;
-            const newMethod = document.getElementById('edit-rcp-method').value;
-            const newTrx = document.getElementById('edit-rcp-trxid').value.trim();
-            const proofFileInput = document.getElementById('edit-rcp-proof-file');
-
-            const member = membersData.find(m => m.id === memberId);
-            if (!member) return;
-
-            const oldRec = member.monthlyRecords ? member.monthlyRecords[oldMonth] : null;
-            const newIsoDate = newDate ? new Date(newDate + "T12:00:00").toISOString() : (oldRec ? oldRec.timestamp : new Date().toISOString());
-
-            let newImageBase64 = "";
-            let updatedProofUrl = oldRec ? oldRec.proofUrl : "";
-
-            if (proofFileInput.files && proofFileInput.files[0]) {
-                const file = proofFileInput.files[0];
-                updatedProofUrl = URL.createObjectURL(file);
-                newImageBase64 = await compressImage(file);
-            }
-
-            const accIdx = accountsData.findIndex(a => normalizeMemberId(a.memberId) === normalizeMemberId(memberId) && (a.month === oldMonth || a.monthBn === oldMonth));
-            if(accIdx !== -1) {
-                accountsData[accIdx].month = newMonth;
-                accountsData[accIdx].amount = newAmount;
-                accountsData[accIdx].penalty = newPenalty;
-                accountsData[accIdx].paymentMethod = newMethod;
-                accountsData[accIdx].trxId = newTrx;
-                accountsData[accIdx].timestamp = newIsoDate;
-                if (updatedProofUrl) accountsData[accIdx].proofUrl = updatedProofUrl;
-            }
-
-            autoAdjustMemberMonthlyRecords(member);
-            saveSnapshotInstantly();
-
-            const btn = document.getElementById('btn-save-edit-receipt');
-            btn.disabled = true;
-            btn.innerHTML = `<i class="fas fa-spinner fa-spin mr-1"></i> আপডেট হচ্ছে...`;
-
-            fetch(API_URL, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    adminPass: sessionStorage.getItem('ppg_admin_pass'),
-                    actionType: "edit_receipt",
-                    folderName: newMonth,
-                    fileName: `MEM_${memberId}_${newMonth}_edit.jpg`,
-                    imageBase64: newImageBase64,
-                    receiptData: {
-                        memberId: memberId,
-                        oldMonth: oldMonth,
-                        month: newMonth,
-                        amount: newAmount,
-                        penalty: newPenalty,
-                        paymentMethod: newMethod,
-                        trxId: newTrx,
-                        newTimestamp: newDate ? newDate + " 12:00:00" : ""
-                    }
-                })
-            });
-
-            alert("রশিদ ও ভাউচারের তথ্য সফলভাবে এডিট করা হয়েছে!");
-            btn.disabled = false;
-            btn.innerHTML = `<i class="fas fa-save mr-1"></i> আপডেট`;
-            closeModal('receipt-edit-modal');
-            selectedReceiptMonth = newMonth;
-            updateAuthUI();
-            onReceiptMonthChange(newMonth);
-        }
-
-        function confirmDeleteReceipt() {
-            if (currentUserRole !== 'admin') return;
-            const mId = document.getElementById('edit-rcp-member-id') ? document.getElementById('edit-rcp-member-id').value : (selectedMember ? selectedMember.id : null);
-            const month = document.getElementById('edit-rcp-old-month') ? document.getElementById('edit-rcp-old-month').value : selectedReceiptMonth;
-            
-            if (confirm(`আপনি কি নিশ্চিতভাবে ${mId} আইডির ${month} মাসের রশিদটি ডিলিট করতে চান?`)) {
-                accountsData = accountsData.filter(a => !(normalizeMemberId(a.memberId) === normalizeMemberId(mId) && (a.month === month || a.monthBn === month || normalizeMonthIndex(a.month) === normalizeMonthIndex(month))));
-                
-                const member = membersData.find(m => m.id === mId);
-                if (member) {
-                    autoAdjustMemberMonthlyRecords(member);
+            if (amount > cashierRemainingGlobal) {
+                if (!confirm(`কোষাধ্যক্ষের কাছে অবশিষ্ট ক্যাশ আছে ৳ ${formatBnCurrency(cashierRemainingGlobal)}। আপনি কি অতিরিক্ত ৳ ${formatBnCurrency(amount)} ব্যাংকে জমা হিসেবে রেকর্ড করতে চান?`)) {
+                    return;
                 }
-
-                saveSnapshotInstantly();
-
-                fetch(API_URL, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        adminPass: sessionStorage.getItem('ppg_admin_pass'),
-                        actionType: 'delete_receipt',
-                        memberId: mId,
-                        month: month
-                    })
-                });
-                
-                alert("রশিদ সফলভাবে ডিলিট করা হয়েছে!");
-                closeModal('receipt-edit-modal');
-                closeModal('receipt-modal');
-                updateAuthUI();
-                if (selectedMember) showMemberDetail(selectedMember.id);
             }
-        }
 
-        function openExpenseModal() {
-            if (currentUserRole !== 'admin') return;
-            document.getElementById('exp-head').value = '';
-            document.getElementById('exp-amount').value = '';
-            document.getElementById('exp-desc').value = '';
-            document.getElementById('exp-voucher').value = `VCH-${Math.floor(100 + Math.random() * 900)}`;
-            document.getElementById('expense-modal').classList.remove('hidden');
-        }
-
-        async function handleExpenseSubmit(e) {
-            if (e) e.preventDefault();
-            if (currentUserRole !== 'admin') return;
-
-            const btn = document.getElementById('btn-save-expense');
+            const btn = document.getElementById('btn-save-cash-deposit');
             btn.disabled = true;
-            btn.innerHTML = `<i class="fas fa-spinner fa-spin mr-1"></i> সংরক্ষণ হচ্ছে...`;
-
-            const head = document.getElementById('exp-head').value.trim();
-            const amount = parseFloat(document.getElementById('exp-amount').value) || 0;
-            const desc = document.getElementById('exp-desc').value.trim();
-            const voucher = document.getElementById('exp-voucher').value.trim();
-            const fileInput = document.getElementById('exp-proof-file');
+            btn.innerHTML = `<i class="fas fa-spinner fa-spin mr-1.5"></i> সংরক্ষণ হচ্ছে...`;
 
             let imageBase64 = "";
             let localUrl = "";
-            if (fileInput.files && fileInput.files[0]) {
-                localUrl = URL.createObjectURL(fileInput.files[0]);
-                imageBase64 = await compressImage(fileInput.files[0]);
+            if (proofFile.files && proofFile.files[0]) {
+                localUrl = URL.createObjectURL(proofFile.files[0]);
+                imageBase64 = await compressImage(proofFile.files[0]);
             }
 
-            const currentMonthName = MONTH_NAMES[new Date().getMonth()];
+            const nowIso = depositDate ? new Date(depositDate + "T12:00:00").toISOString() : new Date().toISOString();
 
-            expensesData.push({
-                timestamp: new Date().toISOString(),
-                head: head,
+            cashDepositsData.push({
+                timestamp: nowIso,
+                bankName: bankName,
                 amount: amount,
-                description: desc,
-                voucherTrx: voucher,
+                trxId: trxId,
+                note: note,
                 proofUrl: localUrl
             });
 
-            totalExpenseGlobal += amount;
             saveSnapshotInstantly();
             updateAuthUI();
 
@@ -4209,37 +3148,37 @@
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
                     adminPass: sessionStorage.getItem('ppg_admin_pass'),
-                    actionType: "add_expense",
-                    folderName: currentMonthName,
-                    fileName: `EXP_${voucher}.jpg`,
+                    actionType: "cash_to_bank_deposit",
+                    folderName: "Bank_Deposits",
+                    fileName: `CASH_DEP_${trxId}.jpg`,
                     imageBase64: imageBase64,
-                    expenseData: {
-                        head: head,
+                    depositData: {
+                        timestamp: depositDate ? depositDate + " 12:00:00" : "",
+                        bankName: bankName,
                         amount: amount,
-                        description: desc,
-                        voucherTrx: voucher
+                        trxId: trxId,
+                        note: note
                     }
                 })
             });
 
-            closeModal('expense-modal');
-            alert("অফিসিয়াল খরচ সফলভাবে যুক্ত হয়েছে!");
             btn.disabled = false;
-            btn.innerHTML = `<i class="fas fa-check-circle mr-1"></i> খরচ সংরক্ষণ করুন`;
+            btn.innerHTML = `<i class="fas fa-check-circle"></i> ব্যাংকে জমা সংরক্ষণ করুন`;
+            closeModal('cash-deposit-modal');
+            showCustomAlert('ব্যাংক ডিপোজিট সফলভাবে সংরক্ষিত হয়েছে');
         }
 
-        function renderExpenses() {
-            if (!isLoggedIn) return; 
-            const tbody = document.getElementById('expenses-table-tbody');
+        function renderCashierDepositsTable() {
+            const tbody = document.getElementById('cashier-deposits-tbody');
             if (!tbody) return;
             tbody.innerHTML = '';
 
-            if (expensesData.length === 0) {
-                tbody.innerHTML = `<tr><td colspan="7" class="p-6 text-center text-slate-400">কোনো খরচের রেকর্ড নেই</td></tr>`;
+            if (cashDepositsData.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="7" class="p-4 text-center text-slate-400 font-medium">কোনো ব্যাংক ডিপোজিট রেকর্ড নেই</td></tr>`;
                 return;
             }
 
-            expensesData.forEach(exp => {
+            cashDepositsData.forEach(cd => {
                 const tr = document.createElement('tr');
                 tr.className = "hover:bg-slate-50";
 
@@ -4247,24 +3186,21 @@
                 if (currentUserRole === 'admin') {
                     adminActions = `
                         <td class="p-3 text-center whitespace-nowrap">
-                            <button type="button" onclick="openExpenseEditModal('${exp.voucherTrx}')" class="px-2.5 py-1 bg-amber-100 hover:bg-amber-200 text-amber-900 rounded-lg text-xs font-bold mr-1">
-                                <i class="fas fa-edit"></i>
-                            </button>
-                            <button type="button" onclick="confirmDeleteExpense('${exp.voucherTrx}')" class="px-2.5 py-1 bg-rose-100 hover:bg-rose-200 text-rose-800 rounded-lg text-xs font-bold">
-                                <i class="fas fa-trash-alt"></i>
+                            <button type="button" onclick="confirmDeleteCashDeposit('${cd.trxId}')" class="px-2.5 py-1 bg-rose-100 hover:bg-rose-200 text-rose-800 rounded-lg text-xs font-bold transition">
+                                <i class="fas fa-trash-alt"></i> ডিলিট
                             </button>
                         </td>
                     `;
                 }
 
                 tr.innerHTML = `
-                    <td class="p-3 font-digit text-slate-500">${formatBanglaDate(exp.timestamp)}</td>
-                    <td class="p-3 font-bold text-slate-800">${exp.head}</td>
-                    <td class="p-3 text-slate-600">${exp.description}</td>
-                    <td class="p-3 font-digit font-bold text-rose-600">৳ ${formatBnCurrency(exp.amount)}</td>
-                    <td class="p-3 font-mono text-[11px] text-slate-500">${exp.voucherTrx}</td>
+                    <td class="p-3 font-digit text-slate-600 font-bold">${formatBanglaDate(cd.timestamp)}</td>
+                    <td class="p-3 font-bold text-slate-800">${cd.bankName || 'সিটি ব্যাংক'}</td>
+                    <td class="p-3 font-digit font-bold text-emerald-700">৳ ${formatBnCurrency(cd.amount)}</td>
+                    <td class="p-3 font-mono text-[11.5px] font-bold text-blue-700">${cd.trxId}</td>
+                    <td class="p-3 text-slate-600">${cd.note || '--'}</td>
                     <td class="p-3 text-center">
-                        ${exp.proofUrl ? `<a href="${getDirectImageUrl(exp.proofUrl)}" target="_blank" class="px-2 py-1 bg-rose-50 text-rose-700 hover:bg-rose-100 rounded text-[10px] font-bold"><i class="fas fa-image mr-1"></i>রশিদ</a>` : '<span class="text-slate-400">--</span>'}
+                        ${cd.proofUrl ? `<a href="${getDirectImageUrl(cd.proofUrl)}" target="_blank" class="px-2.5 py-1 bg-blue-50 text-blue-700 hover:bg-blue-100 rounded-lg font-bold text-[10.5px] border border-blue-200"><i class="fas fa-receipt mr-1"></i>স্লিপ দেখুন</a>` : '<span class="text-slate-400">--</span>'}
                     </td>
                     ${adminActions}
                 `;
@@ -4272,98 +3208,13 @@
             });
         }
 
-        function openExpenseEditModal(voucherNo) {
+        function confirmDeleteCashDeposit(trxId) {
             if (currentUserRole !== 'admin') return;
-            const exp = expensesData.find(e => e.voucherTrx === voucherNo);
-            if (!exp) return;
+            if (!confirm(`আপনি কি নিশ্চিতভাবে ডিপোজিট স্লিপ ${trxId} রেকর্ডটি মুছে ফেলতে চান?`)) return;
 
-            document.getElementById('edit-exp-original-voucher').value = exp.voucherTrx;
-            document.getElementById('edit-exp-voucher-display').innerText = exp.voucherTrx;
-            document.getElementById('edit-exp-date').value = convertToInputDateFormat(exp.timestamp);
-            document.getElementById('edit-exp-head').value = exp.head;
-            document.getElementById('edit-exp-amount').value = exp.amount;
-            document.getElementById('edit-exp-desc').value = exp.description;
-            document.getElementById('edit-exp-voucher').value = exp.voucherTrx;
-            document.getElementById('edit-exp-proof-file').value = '';
-
-            document.getElementById('expense-edit-modal').classList.remove('hidden');
-        }
-
-        async function handleExpenseEditSubmit(e) {
-            if (e) e.preventDefault();
-            if (currentUserRole !== 'admin') return;
-
-            const origVoucher = document.getElementById('edit-exp-original-voucher').value;
-            const newDate = document.getElementById('edit-exp-date').value;
-            const newHead = document.getElementById('edit-exp-head').value.trim();
-            const newAmount = parseFloat(document.getElementById('edit-exp-amount').value) || 0;
-            const newDesc = document.getElementById('edit-exp-desc').value.trim();
-            const newVoucher = document.getElementById('edit-exp-voucher').value.trim();
-            const proofFile = document.getElementById('edit-exp-proof-file');
-
-            const exp = expensesData.find(x => x.voucherTrx === origVoucher);
-            if (!exp) return;
-
-            const updatedIso = newDate ? new Date(newDate + "T12:00:00").toISOString() : exp.timestamp;
-
-            let imageBase64 = "";
-            let localUrl = exp.proofUrl;
-            if (proofFile.files && proofFile.files[0]) {
-                localUrl = URL.createObjectURL(proofFile.files[0]);
-                imageBase64 = await compressImage(proofFile.files[0]);
-            }
-
-            exp.timestamp = updatedIso;
-            exp.head = newHead;
-            exp.amount = newAmount;
-            exp.description = newDesc;
-            exp.voucherTrx = newVoucher;
-            exp.proofUrl = localUrl;
-
-            saveSnapshotInstantly();
-            updateAuthUI();
-
-            const btn = document.getElementById('btn-save-edit-expense');
-            btn.disabled = true;
-            btn.innerHTML = `<i class="fas fa-spinner fa-spin mr-1"></i> সেভ হচ্ছে...`;
-
-            fetch(API_URL, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    adminPass: sessionStorage.getItem('ppg_admin_pass'),
-                    actionType: "edit_expense",
-                    originalVoucher: origVoucher,
-                    imageBase64: imageBase64,
-                    expenseData: {
-                        head: newHead,
-                        amount: newAmount,
-                        description: newDesc,
-                        voucherTrx: newVoucher,
-                        customTimestamp: newDate ? newDate + " 12:00:00" : ""
-                    }
-                })
-            });
-
-            alert("অফিসিয়াল খরচ ও ভাউচার তথ্য সফলভাবে আপডেট হয়েছে!");
-            btn.disabled = false;
-            btn.innerHTML = `<i class="fas fa-save mr-1"></i> আপডেট করুন`;
-            closeModal('expense-edit-modal');
-        }
-
-        function confirmDeleteExpenseDirect() {
-            const voucher = document.getElementById('edit-exp-original-voucher').value;
-            confirmDeleteExpense(voucher);
-            closeModal('expense-edit-modal');
-        }
-
-        function confirmDeleteExpense(voucherNo) {
-            if (currentUserRole !== 'admin') return;
-            if (!confirm(`আপনি কি নিশ্চিতভাবে ভাউচার নং ${voucherNo} এর খরচ রেকর্ডটি মুছে ফেলতে চান?`)) return;
-
-            const idx = expensesData.findIndex(e => e.voucherTrx === voucherNo);
+            const idx = cashDepositsData.findIndex(x => x.trxId === trxId);
             if (idx !== -1) {
-                expensesData.splice(idx, 1);
+                cashDepositsData.splice(idx, 1);
             }
 
             saveSnapshotInstantly();
@@ -4374,815 +3225,12 @@
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
                     adminPass: sessionStorage.getItem('ppg_admin_pass'),
-                    actionType: "delete_expense",
-                    voucherTrx: voucherNo
-                })
-            });
-
-            alert("খরচের রেকর্ড মুছে ফেলা হয়েছে!");
-        }
-
-        // ৩ নং নির্দেশনা: প্রাতিষ্ঠানিক ডিপিএস ও ব্যাংক বিবরণী এডিট ও ডিলিট
-        function renderDpsHistory() {
-            if (!isLoggedIn) return; 
-            const tbody = document.getElementById('dps-history-tbody');
-            if (!tbody) return;
-            tbody.innerHTML = '';
-
-            if (dpsData.length === 0) {
-                tbody.innerHTML = `<tr><td colspan="7" class="p-6 text-center text-slate-400">কোনো প্রাতিষ্ঠানিক ডিপিএস এন্ট্রি নেই</td></tr>`;
-                return;
-            }
-
-            dpsData.forEach(d => {
-                const tr = document.createElement('tr');
-                tr.className = "hover:bg-amber-50/50";
-                
-                let displayMonth = d.month;
-                if (displayMonth.includes('-') && displayMonth.length > 8) {
-                    displayMonth = formatBanglaDate(displayMonth);
-                }
-
-                let adminActions = '';
-                if (currentUserRole === 'admin') {
-                    adminActions = `
-                        <td class="p-3 text-center whitespace-nowrap">
-                            <button type="button" onclick="openDpsEditModal('${d.trxId}')" class="px-2.5 py-1 bg-amber-100 hover:bg-amber-200 text-amber-900 rounded-lg text-xs font-bold mr-1">
-                                <i class="fas fa-edit"></i>
-                            </button>
-                            <button type="button" onclick="confirmDeleteDps('${d.trxId}')" class="px-2.5 py-1 bg-rose-100 hover:bg-rose-200 text-rose-800 rounded-lg text-xs font-bold">
-                                <i class="fas fa-trash-alt"></i>
-                            </button>
-                        </td>
-                    `;
-                }
-
-                tr.innerHTML = `
-                    <td class="p-3 font-bold text-slate-800">${displayMonth}</td>
-                    <td class="p-3 font-digit text-indigo-700 font-bold">৳ ${formatBnCurrency(d.bankDeposit || 0)}</td>
-                    <td class="p-3 font-digit text-amber-700 font-black">৳ ${formatBnCurrency(d.dpsAmount || 0)}</td>
-                    <td class="p-3 font-digit text-emerald-700 font-bold">৳ ${formatBnCurrency(d.remainingBank || 0)}</td>
-                    <td class="p-3 text-slate-600 font-mono text-[11px]">${d.bankName || 'সিটি ব্যাংক'} (${d.trxId || '--'})</td>
-                    <td class="p-3 text-center">
-                        ${d.proofUrl ? `<a href="${getDirectImageUrl(d.proofUrl)}" target="_blank" class="px-2.5 py-1 bg-amber-100 text-amber-800 hover:bg-amber-200 rounded-lg font-bold text-[10px]"><i class="fas fa-image mr-1"></i>ভাউচার</a>` : '<span class="text-slate-400">--</span>'}
-                    </td>
-                    ${adminActions}
-                `;
-                tbody.appendChild(tr);
-            });
-        }
-
-        function openDpsEditModal(trxId) {
-            if (currentUserRole !== 'admin') return;
-            const d = dpsData.find(x => x.trxId === trxId);
-            if (!d) return;
-
-            document.getElementById('edit-dps-original-trxid').value = d.trxId;
-            document.getElementById('edit-dps-trxid-display').innerText = d.trxId;
-            document.getElementById('edit-dps-month').value = d.month;
-            document.getElementById('edit-dps-bank').value = d.bankName || 'সিটি ব্যাংক';
-            document.getElementById('edit-dps-bank-total').value = d.bankDeposit;
-            document.getElementById('edit-dps-amount').value = d.dpsAmount;
-            document.getElementById('edit-dps-bank-remaining').value = d.remainingBank;
-            document.getElementById('edit-dps-trxid').value = d.trxId;
-            document.getElementById('edit-dps-proof-file').value = '';
-
-            document.getElementById('dps-edit-modal').classList.remove('hidden');
-        }
-
-        async function handleDpsEditSubmit(e) {
-            if (e) e.preventDefault();
-            if (currentUserRole !== 'admin') return;
-
-            const origTrx = document.getElementById('edit-dps-original-trxid').value;
-            const month = document.getElementById('edit-dps-month').value;
-            const bankName = document.getElementById('edit-dps-bank').value.trim() || 'সিটি ব্যাংক';
-            const bankTotal = parseFloat(document.getElementById('edit-dps-bank-total').value) || 0;
-            const dpsAmount = parseFloat(document.getElementById('edit-dps-amount').value) || 0;
-            const remaining = parseFloat(document.getElementById('edit-dps-bank-remaining').value) || 0;
-            const newTrx = document.getElementById('edit-dps-trxid').value.trim();
-            const proofFile = document.getElementById('edit-dps-proof-file');
-
-            const d = dpsData.find(x => x.trxId === origTrx);
-            if (!d) return;
-
-            let imageBase64 = "";
-            let localUrl = d.proofUrl;
-            if (proofFile.files && proofFile.files[0]) {
-                localUrl = URL.createObjectURL(proofFile.files[0]);
-                imageBase64 = await compressImage(proofFile.files[0]);
-            }
-
-            d.month = month;
-            d.bankName = bankName;
-            d.bankDeposit = bankTotal;
-            d.dpsAmount = dpsAmount;
-            d.remainingBank = remaining;
-            d.trxId = newTrx;
-            d.proofUrl = localUrl;
-
-            saveSnapshotInstantly();
-            updateAuthUI();
-
-            const btn = document.getElementById('btn-save-edit-dps');
-            btn.disabled = true;
-            btn.innerHTML = `<i class="fas fa-spinner fa-spin mr-1"></i> সেভ হচ্ছে...`;
-
-            fetch(API_URL, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    adminPass: sessionStorage.getItem('ppg_admin_pass'),
-                    actionType: "edit_dps",
-                    originalTrxId: origTrx,
-                    folderName: month,
-                    fileName: `DPS_${month}_edit.jpg`,
-                    imageBase64: imageBase64,
-                    dpsData: {
-                        month: month,
-                        bankName: bankName,
-                        bankDeposit: bankTotal,
-                        dpsAmount: dpsAmount,
-                        remainingBank: remaining,
-                        trxId: newTrx
-                    }
-                })
-            });
-
-            alert("ব্যাংক ও ডিপিএস তথ্য সফলভাবে আপডেট হয়েছে!");
-            btn.disabled = false;
-            btn.innerHTML = `<i class="fas fa-save mr-1"></i> আপডেট করুন`;
-            closeModal('dps-edit-modal');
-        }
-
-        function confirmDeleteDpsDirect() {
-            const trxId = document.getElementById('edit-dps-original-trxid').value;
-            confirmDeleteDps(trxId);
-            closeModal('dps-edit-modal');
-        }
-
-        function confirmDeleteDps(trxId) {
-            if (currentUserRole !== 'admin') return;
-            if (!confirm(`আপনি কি নিশ্চিতভাবে ট্রানজেকশন ${trxId} এর ডিপিএস রেকর্ডটি মুছে ফেলতে চান?`)) return;
-
-            const idx = dpsData.findIndex(x => x.trxId === trxId);
-            if (idx !== -1) {
-                dpsData.splice(idx, 1);
-            }
-
-            saveSnapshotInstantly();
-            updateAuthUI();
-
-            fetch(API_URL, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    adminPass: sessionStorage.getItem('ppg_admin_pass'),
-                    actionType: "delete_dps",
+                    actionType: "delete_cash_deposit",
                     trxId: trxId
                 })
             });
 
-            alert("ডিপিএস রেকর্ড মুছে ফেলা হয়েছে!");
-        }
-
-        function parseMemberRowData(row) {
-            if (!row) return null;
-            let id = "", name = "", phone = "", shares = 1, joinDate = "", joinMonth = "", membershipFee = 200, password = "1234", status = "Active", fatherName = "", startMonth = "September", nomineeName = "", nomineeRelation = "", photoUrl = "", bloodGroup = "", lastBloodDonation = "";
-
-            if (Array.isArray(row)) {
-                const firstCol = (row[0] || "").toString().trim().toLowerCase();
-                if (firstCol === 'id' || firstCol === 'member id' || firstCol === 'memberid' || firstCol === 'আইডি') {
-                    return null;
-                }
-                id = (row[0] || "").toString().trim();
-                name = row[1] ? row[1].toString().trim() : id;
-                phone = row[2] ? row[2].toString().trim() : "";
-                shares = parseAnyNumber(row[3]) || 1;
-                joinDate = row[4] ? row[4].toString().trim() : "";
-                joinMonth = row[5] ? row[5].toString().trim() : "সেপ্টেম্বর ২০২৬";
-                membershipFee = parseAnyNumber(row[6]) > 0 ? parseAnyNumber(row[6]) : 200;
-                password = row[7] ? row[7].toString().trim() : "1234";
-                status = row[8] ? row[8].toString().trim() : "Active";
-                fatherName = row[9] ? row[9].toString().trim() : "";
-                startMonth = row[10] ? row[10].toString().trim() : "September";
-                nomineeName = row[11] ? row[11].toString().trim() : "";
-                nomineeRelation = row[12] ? row[12].toString().trim() : "";
-                photoUrl = row[13] ? getDirectImageUrl(row[13].toString().trim()) : "";
-                bloodGroup = row[14] ? row[14].toString().trim() : "";
-                lastBloodDonation = row[15] ? row[15].toString().trim() : "";
-            } else if (typeof row === 'object') {
-                id = (row.id || row.memberId || row['ID'] || row['Member ID'] || row['আইডি'] || "").toString().trim();
-                name = (row.memberName || row.name || row['Name'] || row['নাম'] || id).toString().trim();
-                phone = (row.phone || row['Phone'] || row['মোবাইল'] || "").toString().trim();
-                shares = parseAnyNumber(row.shares || row['Shares'] || row['শেয়ার']) || 1;
-                joinDate = (row.joinDate || row['Join Date'] || "").toString().trim();
-                joinMonth = row.joinMonth || row['Join Month'] || "সেপ্টেম্বর ২০২৬";
-                membershipFee = parseAnyNumber(row.membershipFee || row['Fee']) || 200;
-                password = (row.password || row['Password'] || "1234").toString().trim();
-                status = (row.status || row['Status'] || "Active").toString().trim();
-                fatherName = (row.fatherName || row['Father'] || "").toString().trim();
-                startMonth = (row.startMonth || row['Start Month'] || "September").toString().trim();
-                nomineeName = (row.nomineeName || row['Nominee'] || "").toString().trim();
-                nomineeRelation = (row.nomineeRelation || row['Relation'] || "").toString().trim();
-                photoUrl = getDirectImageUrl(row.photoUrl || row['Photo'] || "");
-                bloodGroup = (row.bloodGroup || row['BloodGroup'] || row['Blood'] || "").toString().trim();
-                lastBloodDonation = (row.lastBloodDonation || row['LastBloodDonation'] || "").toString().trim();
-            }
-
-            if (!id) return null;
-            return { id, name, phone, shares, joinDate, joinMonth, membershipFee, password, status, fatherName, startMonth, nomineeName, nomineeRelation, photoUrl, bloodGroup, lastBloodDonation };
-        }
-
-        function parseAccountRowData(row) {
-            if (!row) return null;
-            let memberId = "", name = "", month = "", monthBn = "", amount = 0, penalty = 0, paymentMethod = "", trxId = "", proofUrl = "", timestamp = "";
-
-            if (Array.isArray(row)) {
-                const firstCol = (row[0] || "").toString().trim().toLowerCase();
-                if (firstCol === 'timestamp' || firstCol === 'id' || firstCol === 'member id' || firstCol === 'memberid' || firstCol === 'আইডি') {
-                    return null;
-                }
-                timestamp = row[0] || "";
-                memberId = (row[1] || "").toString().trim();
-                name = (row[2] || "").toString().trim();
-                month = (row[3] || "").toString().trim();
-                monthBn = (row[4] || "").toString().trim();
-                amount = parseAnyNumber(row[5]);
-                penalty = parseAnyNumber(row[6] || 0);
-                paymentMethod = (row[7] || "").toString().trim();
-                trxId = (row[8] || "").toString().trim();
-
-                for (let c = 0; c < row.length; c++) {
-                    let val = (row[c] || "").toString().trim();
-                    if (val.includes("http") || val.includes("drive.google.com") || val.startsWith("data:image")) {
-                        proofUrl = val;
-                        break;
-                    }
-                }
-            } else if (typeof row === 'object') {
-                timestamp = (row.timestamp || row['Timestamp'] || "").toString().trim();
-                memberId = (row.memberId || row['Member ID'] || row.id || "").toString().trim();
-                name = (row.memberName || row.name || "").toString().trim();
-                month = (row.month || row['Month'] || "").toString().trim();
-                monthBn = (row.monthBn || row['Month Bn'] || "").toString().trim();
-                amount = parseAnyNumber(row.amount || row['Amount']);
-                penalty = parseAnyNumber(row.penalty || row['Penalty'] || 0);
-                paymentMethod = (row.paymentMethod || row.method || "").toString().trim();
-                trxId = (row.trxId || row['TrxID'] || "").toString().trim();
-                proofUrl = (row.proofUrl || row.fileUrl || "").toString().trim();
-            }
-
-            if (!memberId && !name) return null;
-            return { memberId, name, month, monthBn, amount, penalty, paymentMethod, trxId, proofUrl, timestamp };
-        }
-
-        function processSheetData(data) {
-            if (!data) return;
-
-            const rawMembers = data.members || [];
-            const rawAccounts = data.accounts || [];
-            const rawExpenses = data.expenses || [];
-            const rawDps = data.dps || [];
-            const rawProofs = data.proofs || [];
-            const rawSettings = data.settings || [];
-            const rawPolicy = data.policy || [];
-
-            if (rawMembers && rawMembers.length > 0) {
-                membersData = [];
-                for (let i = 0; i < rawMembers.length; i++) {
-                    const parsedM = parseMemberRowData(rawMembers[i]);
-                    if (parsedM) {
-                        membersData.push({
-                            ...parsedM,
-                            totalDeposit: 0,
-                            missedCount: 0,
-                            monthlyRecords: {},
-                            lastPaymentMethod: "--",
-                            lastTrxId: "--",
-                            lastPaymentTimestamp: ""
-                        });
-                    }
-                }
-            }
-
-            if (rawAccounts && rawAccounts.length > 0) {
-                accountsData = [];
-                const startIdx = Array.isArray(rawAccounts[0]) && (rawAccounts[0][0] || '').toString().toLowerCase().includes('time') ? 1 : 0;
-                for (let j = startIdx; j < rawAccounts.length; j++) {
-                    const parsedA = parseAccountRowData(rawAccounts[j]);
-                    if (parsedA) accountsData.push(parsedA);
-                }
-
-                // সদস্যদের অটো-অ্যাডজাস্টমেন্ট রান করানো
-                membersData.forEach(m => {
-                    autoAdjustMemberMonthlyRecords(m);
-                });
-            }
-
-            if (rawExpenses && rawExpenses.length > 0) {
-                expensesData = [];
-                totalExpenseGlobal = 0;
-                const startE = Array.isArray(rawExpenses[0]) ? 1 : 0;
-                for (let e = startE; e < rawExpenses.length; e++) {
-                    const eRow = rawExpenses[e];
-                    if (!eRow) continue;
-                    let head = "", amount = 0, desc = "", voucher = "", proof = "", timestamp = "";
-
-                    if (Array.isArray(eRow)) {
-                        if ((eRow[0] || '').toString().toLowerCase().includes('head')) continue;
-                        timestamp = eRow[0] || "";
-                        head = (eRow[1] || "").toString().trim();
-                        amount = parseAnyNumber(eRow[2]);
-                        desc = (eRow[3] || "").toString().trim();
-                        voucher = (eRow[4] || "").toString().trim();
-                        proof = eRow[5] ? eRow[5].toString().trim() : "";
-                    } else if (typeof eRow === 'object') {
-                        head = (eRow.head || "").toString().trim();
-                        amount = parseAnyNumber(eRow.amount);
-                        desc = (eRow.description || "").toString().trim();
-                        voucher = (eRow.voucherTrx || "").toString().trim();
-                        proof = (eRow.proofUrl || "").toString().trim();
-                        timestamp = eRow.timestamp || "";
-                    }
-
-                    if (!head && amount === 0) continue;
-                    totalExpenseGlobal += amount;
-                    expensesData.push({
-                        timestamp: timestamp || new Date().toISOString(),
-                        head: head,
-                        amount: amount,
-                        description: desc,
-                        voucherTrx: voucher,
-                        proofUrl: proof
-                    });
-                }
-            }
-
-            if (rawDps && rawDps.length > 0) {
-                dpsData = [];
-                totalDpsGlobal = 0;
-                const startD = Array.isArray(rawDps[0]) ? 1 : 0;
-                for (let k = startD; k < rawDps.length; k++) {
-                    const dRow = rawDps[k];
-                    if (!dRow) continue;
-                    let month = "", bankDeposit = 0, dpsAmount = 0, remaining = 0, bankName = "সিটি ব্যাংক", trxId = "", proof = "", timestamp = "";
-
-                    if (Array.isArray(dRow)) {
-                        if ((dRow[1] || '').toString().toLowerCase().includes('month')) continue;
-                        timestamp = dRow[0] || "";
-                        month = (dRow[1] || "").toString().trim();
-                        bankDeposit = parseAnyNumber(dRow[2]);
-                        dpsAmount = parseAnyNumber(dRow[3]);
-                        remaining = parseAnyNumber(dRow[4]);
-                        bankName = (dRow[5] || "সিটি ব্যাংক").toString().trim();
-                        trxId = (dRow[6] || "").toString().trim();
-                        proof = dRow[7] ? dRow[7].toString().trim() : "";
-                    } else if (typeof dRow === 'object') {
-                        month = (dRow.month || "").toString().trim();
-                        bankDeposit = parseAnyNumber(dRow.bankDeposit);
-                        dpsAmount = parseAnyNumber(dRow.dpsAmount);
-                        remaining = parseAnyNumber(dRow.remainingBank);
-                        bankName = (dRow.bankName || "সিটি ব্যাংক").toString().trim();
-                        trxId = (dRow.trxId || "").toString().trim();
-                        proof = (dRow.proofUrl || "").toString().trim();
-                        timestamp = dRow.timestamp || "";
-                    }
-
-                    if (dpsAmount === 0 && !month) continue;
-                    totalDpsGlobal += dpsAmount;
-                    totalRemainingBankGlobal = remaining;
-
-                    dpsData.push({
-                        timestamp: timestamp || new Date().toISOString(),
-                        month: month,
-                        bankDeposit: bankDeposit,
-                        dpsAmount: dpsAmount,
-                        remainingBank: remaining,
-                        bankName: bankName,
-                        trxId: trxId,
-                        proofUrl: proof
-                    });
-                }
-            }
-
-            if (rawProofs && rawProofs.length > 0) {
-                proofsData = [];
-                const startP = Array.isArray(rawProofs[0]) ? 1 : 0;
-                for (let p = startP; p < rawProofs.length; p++) {
-                    const pRow = rawProofs[p];
-                    if (!pRow) continue;
-                    if (Array.isArray(pRow)) {
-                        proofsData.push({
-                            timestamp: pRow[0],
-                            type: pRow[1],
-                            memberId: pRow[2] ? pRow[2].toString().trim().toUpperCase() : "",
-                            name: pRow[3],
-                            month: pRow[4] ? pRow[4].toString() : "",
-                            trxId: pRow[5] ? pRow[5].toString().trim() : "",
-                            folderName: pRow[6],
-                            fileName: pRow[7],
-                            fileUrl: pRow[8] ? pRow[8].toString().trim() : ""
-                        });
-                    }
-                }
-            }
-
-            if (rawPolicy && rawPolicy.length > 0) {
-                policyData = [];
-                const pStart = Array.isArray(rawPolicy[0]) ? 1 : 0;
-                for (let p = pStart; p < rawPolicy.length; p++) {
-                    const row = rawPolicy[p];
-                    if (!row) continue;
-                    if (Array.isArray(row)) {
-                        policyData.push({
-                            id: row[0] || ("POL_" + p),
-                            clauseNo: row[1] || `ধারা ${toBanglaNum(p)}`,
-                            title: row[2] || "সংবিধিবদ্ধ বিধান",
-                            content: row[3] || ""
-                        });
-                    }
-                }
-                renderPolicyContent();
-            }
-
-            membersData.forEach(m => {
-                let missed = 0;
-                for (let idx = START_MONTH_IDX; idx <= new Date().getMonth(); idx++) {
-                    const mKey = MONTH_NAMES[idx];
-                    const bnKey = MONTH_NAMES_BN[idx];
-                    if (!m.monthlyRecords || (!m.monthlyRecords[mKey] && !m.monthlyRecords[idx] && !m.monthlyRecords[bnKey])) {
-                        missed++;
-                    }
-                }
-                m.missedCount = missed;
-            });
-
-            updateAuthUI();
-
-            if (selectedMember) {
-                const refreshed = membersData.find(x => x.id === selectedMember.id);
-                if (refreshed) {
-                    selectedMember = refreshed;
-                    if (document.getElementById('receipt-modal') && !document.getElementById('receipt-modal').classList.contains('hidden')) {
-                        onReceiptMonthChange(selectedReceiptMonth);
-                    }
-                }
-            }
-        }
-
-        // ২ নং নির্দেশনা: ০.০০১ সেকেন্ডে সুপারফাস্ট ডাটা লোডিং আর্কিটেকচার
-        async function syncDataFromGoogleSheet() {
-            if (!API_URL) return;
-
-            try {
-                const cached = localStorage.getItem('ppg_cached_data_v3');
-                if (cached) {
-                    const parsedCache = JSON.parse(cached);
-                    if (parsedCache.policyOverview) policyOverview = parsedCache.policyOverview;
-                    processSheetData(parsedCache);
-                    setTimeout(enterSite, 800);
-                }
-            } catch (e) {}
-
-            let liveData = null;
-            try {
-                const controller = new AbortController();
-                const timeoutId = setTimeout(() => controller.abort(), 6000);
-                const response = await fetch(API_URL + '?_t=' + Date.now(), {
-                    method: 'GET',
-                    headers: { 'Cache-Control': 'no-cache' },
-                    signal: controller.signal
-                });
-                clearTimeout(timeoutId);
-                if (response.ok) {
-                    liveData = await response.json();
-                }
-            } catch (fetchErr) {
-                console.warn("Using offline-first cached database");
-            }
-
-            if (liveData && (liveData.members || liveData.accounts)) {
-                try {
-                    localStorage.setItem('ppg_cached_data_v3', JSON.stringify(liveData));
-                } catch (e) {}
-                processSheetData(liveData);
-            }
-            
-            enterSite();
-        }
-
-        document.addEventListener('visibilitychange', () => {
-            if (!document.hidden) syncDataFromGoogleSheet();
-        });
-        window.addEventListener('focus', () => {
-            syncDataFromGoogleSheet();
-        });
-
-        function renderMembers(dataToRender = membersData) {
-            const tbody = document.getElementById('member-table-body');
-            tbody.innerHTML = '';
-
-            if (dataToRender.length === 0) {
-                tbody.innerHTML = `<tr><td colspan="5" class="p-6 text-center text-slate-400">কোনো সদস্য পাওয়া যায়নি।</td></tr>`;
-                return;
-            }
-
-            dataToRender.forEach(m => {
-                const statusInfo = getMemberStatusInfo(m);
-                const tr = document.createElement('tr');
-                tr.className = "hover:bg-slate-50 transition border-b border-slate-100";
-
-                let actionButtons = `
-                    <button type="button" onclick="openMemberProfileModal('${m.id}')" class="bg-emerald-50 hover:bg-emerald-100 text-emerald-800 text-[11px] px-2.5 py-1 rounded-lg font-bold transition">প্রোফাইল দেখুন</button>
-                `;
-
-                if (currentUserRole === 'admin') {
-                    actionButtons += `
-                        <button type="button" onclick="openEditMemberModal('${m.id}')" class="bg-amber-100 hover:bg-amber-200 text-amber-900 text-[11px] px-2.5 py-1 rounded-lg font-bold transition ml-1">
-                            <i class="fas fa-edit"></i>
-                        </button>
-                    `;
-                }
-
-                tr.innerHTML = `
-                    <td class="p-3 font-semibold text-indigo-600 font-digit cursor-pointer" onclick="openMemberProfileModal('${m.id}')">${m.id}</td>
-                    <td class="p-3 font-bold text-slate-800 cursor-pointer hover:text-emerald-700" onclick="openMemberProfileModal('${m.id}')">${m.name}</td>
-                    <td class="p-3 font-bold text-slate-700 font-digit">${toBanglaNum(m.shares)} টি</td>
-                    <td class="p-3">
-                        <span class="px-2.5 py-1 rounded-full text-[10px] font-bold inline-block shadow-sm ${statusInfo.badge}">
-                            ${statusInfo.label}
-                        </span>
-                    </td>
-                    <td class="p-3 text-center whitespace-nowrap">
-                        ${actionButtons}
-                    </td>
-                `;
-                tbody.appendChild(tr);
-            });
-
-            const badge = document.getElementById('members-count-badge');
-            if (badge) badge.innerText = toBanglaNum(dataToRender.length);
-        }
-
-        function filterMembers() {
-            const query = document.getElementById('search-input').value.toLowerCase();
-            const filtered = membersData.filter(m => m.name.toLowerCase().includes(query) || m.id.toLowerCase().includes(query));
-            renderMembers(filtered);
-        }
-
-        function openAddMemberModal() {
-            if (currentUserRole !== 'admin') return;
-            document.getElementById('new-m-id').value = `PPG-${membersData.length + 1 < 10 ? '0' + (membersData.length + 1) : membersData.length + 1}`;
-            document.getElementById('new-m-name').value = '';
-            document.getElementById('new-m-father').value = '';
-            document.getElementById('new-m-phone').value = '';
-            document.getElementById('new-m-shares').value = '1';
-            document.getElementById('new-m-join-date').value = `০৯.০৯.২০২৬`;
-            
-            document.getElementById('new-m-blood').value = '';
-            document.getElementById('new-m-blood-date').value = '';
-
-            document.getElementById('new-m-nominee').value = '';
-            document.getElementById('new-m-nominee-rel').value = '';
-            document.getElementById('new-m-fee').value = '200';
-            document.getElementById('new-m-photo-file').value = '';
-            document.getElementById('member-add-modal').classList.remove('hidden');
-        }
-        
-        function sendWelcomeSms(member) {
-            const loginUrl = window.location.origin + window.location.pathname;
-            const msg = encodeURIComponent(
-                `🎉 *স্বাগতম! পহরডাঙ্গা পার্টনারশিপ গ্রুপে*\n` +
-                `"এক সুতোয় বাঁধা তারুণ্য, বাণিজ্যে অনন্য!"\n` +
-                `------------------------------------\n` +
-                `প্রিয় ${member.name},\n` +
-                `আপনাকে *${member.joinMonth}* হতে আমাদের প্রতিষ্ঠানে অংশীদার হিসেবে যুক্ত করা হয়েছে।\n\n` +
-                `🔐 *আপনার লগইন তথ্য:*\n` +
-                `👤 *আইডি:* ${member.id}\n` +
-                `🔑 *পাসওয়ার্ড:* ${member.password}\n\n` +
-                `🌐 *ওয়েবসাইটে লগইন করুন:*\n${loginUrl}\n\n` +
-                `_ধন্যবাদান্তে: পরিচালনা পর্ষদ_`
-            );
-            openWhatsAppUrl(formatWhatsAppLink(member.phone, msg));
-        }
-        
-        function triggerWelcomeSmsFromEdit() {
-            const mId = document.getElementById('edit-m-id').value;
-            const m = membersData.find(x => x.id === mId);
-            if (m) {
-                sendWelcomeSms(m);
-            }
-        }
-
-        async function handleNewMemberSubmit(e) {
-            if (e) e.preventDefault();
-            if (currentUserRole !== 'admin') return;
-
-            const newId = document.getElementById('new-m-id').value.trim().toUpperCase();
-            const existingMember = membersData.find(m => m.id.toUpperCase() === newId);
-            if (existingMember) {
-                alert("এই সদস্য আইডিটি আগেই ব্যবহার করা হয়েছে! দয়া করে ভিন্ন আইডি দিন।");
-                return;
-            }
-
-            const shares = parseInt(document.getElementById('new-m-shares').value) || 1;
-            const photoFileInput = document.getElementById('new-m-photo-file');
-            let photoBase64 = "";
-
-            if (photoFileInput.files && photoFileInput.files[0]) {
-                photoBase64 = await compressImage(photoFileInput.files[0]);
-            }
-
-            const rawJoinDate = document.getElementById('new-m-join-date').value.trim();
-            const cleanJoinDate = formatBanglaDate(rawJoinDate);
-
-            const newMember = {
-                id: newId,
-                name: document.getElementById('new-m-name').value.trim(),
-                fatherName: document.getElementById('new-m-father').value.trim(),
-                phone: document.getElementById('new-m-phone').value.trim(),
-                shares: shares,
-                joinDate: cleanJoinDate,
-                joinMonth: document.getElementById('new-m-join-month').value,
-                membershipFee: 200,
-                startMonth: document.getElementById('new-m-start-month').value,
-                bloodGroup: document.getElementById('new-m-blood').value,
-                lastBloodDonation: document.getElementById('new-m-blood-date').value,
-                nomineeName: document.getElementById('new-m-nominee').value.trim(),
-                nomineeRelation: document.getElementById('new-m-nominee-rel').value.trim(),
-                photoBase64: photoBase64,
-                photoUrl: photoBase64 ? "data:image/jpeg;base64," + photoBase64 : "",
-                password: document.getElementById('new-m-pass').value.trim() || "1234",
-                status: document.getElementById('new-m-status').value
-            };
-
-            newMember.totalDeposit = 0;
-            newMember.missedCount = 0;
-            newMember.monthlyRecords = {};
-            membersData.push(newMember);
-
-            saveSnapshotInstantly();
-            updateAuthUI();
-
-            const btn = document.getElementById('btn-save-new-member');
-            btn.disabled = true;
-            btn.innerHTML = `<i class="fas fa-spinner fa-spin mr-1"></i> সেভ হচ্ছে...`;
-
-            fetch(API_URL, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    adminPass: sessionStorage.getItem('ppg_admin_pass'),
-                    actionType: "add_member",
-                    memberData: newMember
-                })
-            });
-
-            alert("নতুন সদস্য সফলভাবে নিবন্ধিত হয়েছে!");
-            closeModal('member-add-modal');
-            
-            if (confirm("সদস্য যুক্ত হয়েছে! এখন কি হোয়াটসঅ্যাপে স্বাগতম ও লগিন মেসেজ পাঠাতে চান?")) {
-                sendWelcomeSms(newMember);
-            }
-            
-            btn.disabled = false;
-            btn.innerHTML = `<i class="fas fa-check-circle mr-1"></i> সদস্য যুক্ত করুন`;
-        }
-
-        // ৩ নং নির্দেশনা: এডিটের সময় যোগদানের প্রকৃত তারিখ অক্ষুন্ন রাখা
-        function openEditMemberModal(memberId) {
-            if (currentUserRole !== 'admin') return;
-            const member = membersData.find(m => m.id === memberId);
-            if (!member) return;
-
-            document.getElementById('edit-m-id').value = member.id;
-            document.getElementById('edit-m-id-display').innerText = member.id;
-            document.getElementById('edit-m-name').value = member.name;
-            document.getElementById('edit-m-father').value = member.fatherName || '';
-            document.getElementById('edit-m-phone').value = member.phone || '';
-            document.getElementById('edit-m-shares').value = member.shares || 1;
-            
-            // আসল তারিখ বজায় রেখে প্রদর্শন
-            document.getElementById('edit-m-join-date').value = formatBanglaDate(member.joinDate);
-            document.getElementById('edit-m-nominee').value = member.nomineeName || '';
-            document.getElementById('edit-m-nominee-rel').value = member.nomineeRelation || '';
-            document.getElementById('edit-m-join-month').value = member.joinMonth || 'October';
-            document.getElementById('edit-m-start-month').value = member.startMonth || 'September';
-            
-            document.getElementById('edit-m-blood').value = member.bloodGroup || '';
-            document.getElementById('edit-m-blood-date').value = convertToInputDateFormat(member.lastBloodDonation);
-            
-            document.getElementById('edit-m-status').value = member.status || 'Active';
-            document.getElementById('edit-m-photo-file').value = '';
-            document.getElementById('edit-m-pass').value = member.password || '';
-
-            document.getElementById('member-edit-modal').classList.remove('hidden');
-        }
-
-        async function handleEditMemberSubmit(e) {
-            if (e) e.preventDefault();
-            if (currentUserRole !== 'admin') return;
-
-            const mId = document.getElementById('edit-m-id').value;
-            const photoFileInput = document.getElementById('edit-m-photo-file');
-            let photoBase64 = "";
-
-            if (photoFileInput.files && photoFileInput.files[0]) {
-                photoBase64 = await compressImage(photoFileInput.files[0]);
-            }
-
-            const rawJoinDate = document.getElementById('edit-m-join-date').value.trim();
-            const cleanJoinDate = formatBanglaDate(rawJoinDate);
-
-            const updatedData = {
-                id: mId,
-                name: document.getElementById('edit-m-name').value.trim(),
-                fatherName: document.getElementById('edit-m-father').value.trim(),
-                phone: document.getElementById('edit-m-phone').value.trim(),
-                shares: parseInt(document.getElementById('edit-m-shares').value) || 1,
-                joinDate: cleanJoinDate,
-                bloodGroup: document.getElementById('edit-m-blood').value,
-                lastBloodDonation: document.getElementById('edit-m-blood-date').value,
-                nomineeName: document.getElementById('edit-m-nominee').value.trim(),
-                nomineeRelation: document.getElementById('edit-m-nominee-rel').value.trim(),
-                joinMonth: document.getElementById('edit-m-join-month').value,
-                startMonth: document.getElementById('edit-m-start-month').value,
-                status: document.getElementById('edit-m-status').value,
-                photoBase64: photoBase64,
-                password: document.getElementById('edit-m-pass').value.trim()
-            };
-
-            const m = membersData.find(x => x.id === mId);
-            if (m) {
-                m.name = updatedData.name;
-                m.fatherName = updatedData.fatherName;
-                m.phone = updatedData.phone;
-                m.shares = updatedData.shares;
-                m.joinDate = updatedData.joinDate;
-                m.bloodGroup = updatedData.bloodGroup;
-                m.lastBloodDonation = updatedData.lastBloodDonation;
-                m.nomineeName = updatedData.nomineeName;
-                m.nomineeRelation = updatedData.nomineeRelation;
-                m.joinMonth = updatedData.joinMonth;
-                m.startMonth = updatedData.startMonth;
-                m.status = updatedData.status;
-                if (photoBase64) m.photoUrl = "data:image/jpeg;base64," + photoBase64;
-                if (updatedData.password) m.password = updatedData.password;
-                autoAdjustMemberMonthlyRecords(m);
-            }
-
-            saveSnapshotInstantly();
-            updateAuthUI();
-
-            const btn = document.getElementById('btn-update-member');
-            btn.disabled = true;
-            btn.innerHTML = `<i class="fas fa-spinner fa-spin mr-1"></i> ড্রাইভে সেভ হচ্ছে...`;
-
-            fetch(API_URL, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    adminPass: sessionStorage.getItem('ppg_admin_pass'),
-                    actionType: "edit_member",
-                    memberData: updatedData
-                })
-            });
-
-            alert("সদস্য তথ্য ও যোগদানের তারিখ সফলভাবে আপডেট হয়েছে!");
-            closeModal('member-edit-modal');
-            btn.disabled = false;
-            btn.innerHTML = `<i class="fas fa-save mr-1"></i> সংরক্ষণ`;
-        }
-
-        function confirmDeleteMember() {
-            const mId = document.getElementById('edit-m-id').value;
-            deleteMemberDirect(mId);
-        }
-
-        async function deleteMemberDirect(memberId) {
-            if (currentUserRole !== 'admin') return;
-            if (!confirm(`আপনি কি নিশ্চিতভাবে ${memberId} সদস্যকে ডিলিট করতে চান?`)) return;
-
-            const idx = membersData.findIndex(x => x.id === memberId);
-            if (idx !== -1) {
-                membersData.splice(idx, 1);
-            }
-            saveSnapshotInstantly();
-            updateAuthUI();
-
-            fetch(API_URL, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    adminPass: sessionStorage.getItem('ppg_admin_pass'),
-                    actionType: "delete_member",
-                    memberId: memberId
-                })
-            });
-
-            alert(`${memberId} সদস্য মুছে ফেলা হয়েছে!`);
-            closeModal('member-edit-modal');
+            showCustomAlert('ডিপোজিট রেকর্ড মুছে ফেলা হয়েছে');
         }
 
         function openMembersModal() { document.getElementById('members-modal').classList.remove('hidden'); }
