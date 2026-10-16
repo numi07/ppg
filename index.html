@@ -23,8 +23,8 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <!-- ১ এবং ৯ স্পষ্ট বোঝার জন্য Anek Bangla এবং Noto Sans Bengali ফন্ট লোড করা হলো -->
-    <link href="https://fonts.googleapis.com/css2?family=Anek+Bangla:wght@400;500;600;700;800&family=Hind+Siliguri:wght@400;500;600;700&family=Noto+Sans+Bengali:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- ১ এবং ৯ স্পষ্ট দেখার জন্য Tiro Bangla, Anek Bangla ও Noto Sans Bengali ফন্ট -->
+    <link href="https://fonts.googleapis.com/css2?family=Anek+Bangla:wght@400;500;600;700;800&family=Hind+Siliguri:wght@400;500;600;700&family=Noto+Sans+Bengali:wght@400;500;600;700;800&family=Tiro+Bangla:ital@0;1&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 
     <style>
@@ -43,11 +43,11 @@
             -webkit-overflow-scrolling: touch;
             color: #0f172a;
         }
-        /* বাংলা ডিজিট ১ ও ৯ স্পষ্ট দেখার জন্য Anek Bangla ও বিশেষ গ্লিফ সিলেকশন */
+        /* ১ ও ৯ স্পষ্টভাবে পড়ার জন্য Tiro Bangla ও Anek Bangla ফন্ট প্রোভাইড করা হলো */
         .font-digit, .bn-number {
-            font-family: 'Anek Bangla', 'Noto Sans Bengali', 'Hind Siliguri', Arial, sans-serif !important;
+            font-family: 'Tiro Bangla', 'Anek Bangla', 'Noto Sans Bengali', Arial, sans-serif !important;
             font-weight: 700 !important;
-            letter-spacing: 0.5px;
+            letter-spacing: 0.8px;
             -webkit-font-smoothing: antialiased;
         }
         #welcome-screen {
@@ -60,12 +60,6 @@
             border: 1px solid rgba(226, 232, 240, 0.85);
             box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.04), 0 8px 10px -6px rgba(15, 23, 42, 0.02);
         }
-        .glass-card-dark {
-            background: rgba(15, 23, 42, 0.85);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
         .pdf-container, #printable-receipt {
             width: 100%;
             max-width: 680px;
@@ -76,23 +70,23 @@
             box-sizing: border-box;
             border: 2px solid #0f766e;
             border-radius: 18px;
-            font-family: 'Anek Bangla', 'Noto Sans Bengali', Arial, sans-serif !important;
+            font-family: 'Tiro Bangla', 'Noto Sans Bengali', Arial, sans-serif !important;
             overflow: visible !important;
             text-rendering: optimizeLegibility;
             -webkit-font-smoothing: antialiased;
             box-shadow: 0 15px 35px -5px rgba(0,0,0,0.1);
         }
         #printable-receipt * {
-            font-family: 'Anek Bangla', 'Noto Sans Bengali', Arial, sans-serif !important;
+            font-family: 'Tiro Bangla', 'Noto Sans Bengali', Arial, sans-serif !important;
             box-sizing: border-box;
         }
         #printable-receipt .font-digit, #printable-receipt .bn-number {
-            font-family: 'Anek Bangla', 'Noto Sans Bengali', Arial, sans-serif !important;
+            font-family: 'Tiro Bangla', Arial, sans-serif !important;
             font-weight: 600 !important;
-            letter-spacing: 0.3px;
+            letter-spacing: 0.6px;
         }
         .card-bn-text {
-            font-family: 'Anek Bangla', 'Noto Sans Bengali', Arial, sans-serif !important;
+            font-family: 'Tiro Bangla', 'Noto Sans Bengali', Arial, sans-serif !important;
         }
         @keyframes fadeInOut {
             0% { opacity: 0; transform: scale(0.92) translateY(8px); }
@@ -104,7 +98,6 @@
             animation: fadeInOut 1.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
 
-        /* প্রাতিষ্ঠানিক নীতিমালার কার্ড স্টাইল */
         .policy-article {
             background: #ffffff;
             border: 1px solid #e2e8f0;
@@ -137,11 +130,6 @@
             line-height: 1.85;
             text-align: justify;
         }
-        .policy-subclause strong {
-            color: #0f172a;
-        }
-
-        /* কাস্টম স্ক্রলবার ও স্টিকি কলাম */
         .sticky-col {
             position: sticky;
             left: 0;
@@ -164,27 +152,12 @@
             max-width: 380px;
             width: 100%;
         }
-        ::-webkit-scrollbar {
-            width: 7px;
-            height: 7px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #f1f5f9;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #cbd5e1;
-            border-radius: 9999px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #94a3b8;
-        }
     </style>
 </head>
 <body class="text-slate-800 antialiased min-h-screen flex flex-col justify-between selection:bg-emerald-500 selection:text-white">
 
-    <!-- স্বাগতম স্ক্রিন (Opening Video সহ) -->
+    <!-- স্বাগতম স্ক্রিন -->
     <div id="welcome-screen" class="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-gradient-to-br from-[#06101e] via-[#0b1c36] to-[#12284c] text-white p-4">
-        
         <div class="opening-video-box mb-6 ring-4 ring-emerald-500/20">
             <video id="opening-video" autoplay muted loop playsinline class="w-full h-auto object-cover max-h-[260px] md:max-h-[300px]">
                 <source src="videos/opening.mp4" type="video/mp4">
@@ -213,7 +186,6 @@
     <header class="sticky top-0 z-40 bg-gradient-to-r from-[#091527] via-[#0f2444] to-[#16355f] text-white shadow-xl border-b border-indigo-500/20 backdrop-blur-md">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-20">
-                <!-- লোগো ও টাইটেল -->
                 <div class="flex items-center gap-3.5 cursor-pointer py-1 group" onclick="location.href='#home'">
                     <img src="images/logo.png" alt="PPG Logo" class="h-12 w-12 object-contain rounded-full border-2 border-emerald-400 bg-white shrink-0 shadow-md transform group-hover:scale-105 transition duration-300" onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'50\' height=\'50\' viewBox=\'0 0 100 100\'><circle cx=\'50\' cy=\'50\' r=\'48\' fill=\'%23064e3b\' stroke=\'%2334d399\' stroke-width=\'4\'/><text x=\'50%\' y=\'55%\' font-size=\'24\' font-weight=\'bold\' fill=\'%23ffffff\' text-anchor=\'middle\' dominant-baseline=\'middle\' font-family=\'sans-serif\'>PPG</text></svg>';">
                     <div class="flex flex-col justify-center">
@@ -415,7 +387,7 @@
                 </div>
             </div>
 
-            <!-- প্রাতিষ্ঠানিক ডিপিএস বিবরণী -->
+            <!-- প্রাতিষ্ঠানিক ডিপিএস ও ব্যাংক বিবরণী (এডিট ও ডিলিট সুবিধাসহ) -->
             <div class="glass-card p-6 rounded-3xl space-y-4">
                 <h4 class="font-bold text-slate-800 text-sm border-b border-slate-100 pb-3 flex items-center justify-between">
                     <span><i class="fas fa-vault text-amber-600 mr-2"></i> প্রাতিষ্ঠানিক ডিপিএস ও ব্যাংক তহবিল বিবরণী</span>
@@ -431,11 +403,12 @@
                                 <th class="p-3.5">ব্যাংকে অবশিষ্ট স্থিতি</th>
                                 <th class="p-3.5">ব্যাংক ও TrxID</th>
                                 <th class="p-3.5 text-center">ভাউচার রশিদ</th>
+                                <th class="p-3.5 text-center admin-only hidden">একশন</th>
                             </tr>
                         </thead>
                         <tbody id="dps-history-tbody" class="divide-y divide-slate-100">
                             <tr>
-                                <td colspan="6" class="p-6 text-center text-slate-400 font-medium">কোনো প্রাতিষ্ঠানিক ডিপিএস এন্ট্রি নেই</td>
+                                <td colspan="7" class="p-6 text-center text-slate-400 font-medium">কোনো প্রাতিষ্ঠানিক ডিপিএস এন্ট্রি নেই</td>
                             </tr>
                         </tbody>
                     </table>
@@ -770,7 +743,7 @@
                         <strong class="text-amber-600 font-digit text-sm">৳ ২০০ (পরিশোধিত)</strong>
                     </div>
                     <div class="bg-slate-50 p-3.5 rounded-2xl border border-slate-200">
-                        <span class="text-slate-400 block mb-1">মোট কিস্তি সঞ্চয়</span>
+                        <span class="text-slate-400 block mb-1">মোট সঞ্চয় ও অগ্রিম জমা</span>
                         <strong class="text-emerald-600 font-digit text-sm" id="md-total-deposit">৳ ০</strong>
                     </div>
                 </div>
@@ -788,7 +761,7 @@
                             <thead class="bg-slate-100 text-slate-700 sticky top-0 font-bold">
                                 <tr>
                                     <th class="p-3">মাস</th>
-                                    <th class="p-3">কিস্তি পরিমাণ</th>
+                                    <th class="p-3">কিস্তি ও অগ্রিম</th>
                                     <th class="p-3">পদ্ধতি ও TrxID</th>
                                     <th class="p-3">অবস্থা</th>
                                     <th class="p-3 text-center">রশিদ ও প্রমাণ</th>
@@ -906,7 +879,7 @@
                                 <td style="border: 1px solid #cbd5e1; padding: 6px 10px; text-align: right; font-weight: bold; color: #0284c7;" id="rcp-current-total-amount">৳ ০</td>
                             </tr>
                             <tr style="background-color: #f8fafc;">
-                                <td style="border: 1px solid #cbd5e1; padding: 7px 10px; font-weight: 800; color: #1e3a8a;">সদস্যের সর্বমোট সঞ্চয় জমা</td>
+                                <td style="border: 1px solid #cbd5e1; padding: 7px 10px; font-weight: 800; color: #1e3a8a;">সদস্যের সর্বমোট সঞ্চয় ও অগ্রিম জমা</td>
                                 <td style="border: 1px solid #cbd5e1; padding: 7px 10px; text-align: right; font-weight: 800; color: #1e1b4b; font-size: 12px;" id="rcp-total">৳ ০</td>
                             </tr>
                         </tbody>
@@ -1114,7 +1087,7 @@
                 <button type="button" onclick="downloadPolicyPDF()" class="px-5 py-2.5 bg-rose-600 hover:bg-rose-700 text-white text-xs font-bold rounded-2xl flex items-center gap-2 shadow-md transition">
                     <i class="fas fa-file-pdf"></i> নীতিমালা PDF সেভ
                 </button>
-                <button type="button" onclick="closeModal('policy-modal')" class="px-5 py-2.5 bg-slate-200 hover:bg-slate-300 text-slate-700 text-xs font-bold rounded-2xl transition">বন্ধ করুন</button>
+                <button type="button" onclick="closeModal('policy-modal')" class="px-5 py-2.5 bg-slate-200 hover:bg-slate-300 text-slate-700 font-bold rounded-2xl transition">বন্ধ করুন</button>
             </div>
         </div>
     </div>
@@ -1239,7 +1212,7 @@
             <div class="p-5 bg-gradient-to-r from-emerald-800 to-teal-800 text-white flex items-center justify-between">
                 <div>
                     <h3 class="text-lg font-bold"><i class="fas fa-cloud-upload-alt mr-2"></i>সদস্যের কিস্তি ও অগ্রিম জমা এন্ট্রি</h3>
-                    <p class="text-xs text-emerald-200 mt-0.5">অতিরিক্ত টাকা প্রদান করলে পরবর্তী মাসগুলোতে স্বয়ংক্রিয় সমন্বিত হবে</p>
+                    <p class="text-xs text-emerald-200 mt-0.5">সরাসরি অগ্রিম জমা দিলে পরবর্তী মাসগুলোতে স্বয়ংক্রিয় সমন্বিত হবে</p>
                 </div>
                 <button type="button" onclick="closeModal('admin-entry-modal')" class="h-8 w-8 bg-white/10 hover:bg-white/20 rounded-full text-white text-xs transition">✕</button>
             </div>
@@ -1267,13 +1240,13 @@
 
                     <div class="grid grid-cols-2 gap-3">
                         <div>
-                            <label class="block font-bold text-slate-700 mb-1">প্রারম্ভিক মাস (যে মাস থেকে শুরু)</label>
+                            <label class="block font-bold text-slate-700 mb-1">পরিশোধের মাস / যে মাস থেকে শুরু</label>
                             <select id="entry-month" onchange="onEntryMonthOrAmountChange()" class="w-full border border-slate-300 p-2.5 rounded-2xl focus:ring-2 focus:ring-emerald-500 font-bold bg-white outline-none shadow-sm">
                             </select>
                         </div>
                         <div>
-                            <label class="block font-bold text-slate-700 mb-1">প্রদত্ত মোট কিস্তি জমা (৳)</label>
-                            <input type="number" id="entry-amount" oninput="onEntryMonthOrAmountChange()" placeholder="যেমন: ১০০০ বা একাধিক মাসের জন্য ৩০০০" class="w-full border border-slate-300 p-2.5 rounded-2xl focus:ring-2 focus:ring-emerald-500 font-bold outline-none shadow-sm text-emerald-700">
+                            <label class="block font-bold text-slate-700 mb-1">জমার পরিমাণ (টাকা)</label>
+                            <input type="number" id="entry-amount" oninput="onEntryMonthOrAmountChange()" placeholder="যেমন: ১০০০ বা অগ্রিমের জন্য ১০০০০" class="w-full border border-slate-300 p-2.5 rounded-2xl focus:ring-2 focus:ring-emerald-500 font-bold outline-none shadow-sm text-emerald-700">
                         </div>
                     </div>
                     
@@ -1283,7 +1256,7 @@
                         <span id="advance-preview-text">--</span>
                     </div>
 
-                    <div class="grid grid-cols-1 gap-3">
+                    <div id="box-penalty-container" class="grid grid-cols-1 gap-3">
                         <div>
                             <label class="block font-bold text-rose-600 mb-1">বিলম্ব জরিমানা (যদি থাকে)</label>
                             <input type="number" id="entry-penalty" placeholder="জরিমানা না থাকলে ফাঁকা রাখুন বা ০ দিন" class="w-full border border-rose-300 p-2.5 rounded-2xl focus:ring-2 focus:ring-rose-500 font-bold text-rose-600 bg-rose-50/50 outline-none">
@@ -1323,7 +1296,7 @@
         </div>
     </div>
 
-    <!-- ৮. প্রাতিষ্ঠানিক ডিপিএস ফান্ড এন্ট্রি মোডাল -->
+    <!-- ৮. প্রাতিষ্ঠানিক ডিপিএস ফান্ড এন্ট্রি মোডাল (ডিফল্ট: সিটি ব্যাংক) -->
     <div id="dps-entry-modal" class="fixed inset-0 bg-slate-900/80 backdrop-blur-sm hidden z-50 flex items-center justify-center p-3 md:p-6">
         <div class="bg-white rounded-3xl max-w-xl w-full max-h-[92vh] flex flex-col shadow-2xl border border-slate-200 overflow-hidden">
             <div class="p-5 bg-gradient-to-r from-amber-700 to-orange-800 text-white flex items-center justify-between">
@@ -1342,8 +1315,8 @@
                         </select>
                     </div>
                     <div>
-                        <label class="block font-bold text-slate-700 mb-1">ব্যাংক একাউন্ট নাম</label>
-                        <input type="text" id="entry-dps-bank" value="সিটি ব্যাংক পিএলসি" class="w-full border border-slate-300 p-2.5 rounded-2xl font-bold outline-none">
+                        <label class="block font-bold text-slate-700 mb-1">ব্যাংক নাম</label>
+                        <input type="text" id="entry-dps-bank" value="সিটি ব্যাংক" class="w-full border border-slate-300 p-2.5 rounded-2xl font-bold outline-none">
                     </div>
                 </div>
 
@@ -1363,7 +1336,7 @@
                 </div>
 
                 <div>
-                    <label class="block font-bold text-slate-700 mb-1">ট্রানজেকশন ID / ব্যাংক ডিপোজিট স্লিপ নং</label>
+                    <label class="block font-bold text-slate-700 mb-1">ট্রানজেকশন ID / ডিপোজিট স্লিপ নং</label>
                     <input type="text" id="entry-dps-trxid" required placeholder="DPS-TRX-XXXXXX" class="w-full border border-slate-300 p-2.5 rounded-2xl focus:ring-2 focus:ring-amber-500 font-mono outline-none">
                 </div>
 
@@ -1382,7 +1355,70 @@
         </div>
     </div>
 
-    <!-- ৯. রশিদ এডিট মোডাল (পূর্বের মূল তারিখ বজায় রেখে) -->
+    <!-- ৯. প্রাতিষ্ঠানিক ডিপিএস ও ব্যাংক তথ্য সম্পাদনা মোডাল (নতুন) -->
+    <div id="dps-edit-modal" class="fixed inset-0 bg-slate-900/80 backdrop-blur-sm hidden z-50 flex items-center justify-center p-3 md:p-6">
+        <div class="bg-white rounded-3xl max-w-xl w-full max-h-[92vh] flex flex-col shadow-2xl border border-slate-200 overflow-hidden">
+            <div class="p-5 bg-gradient-to-r from-amber-700 to-orange-800 text-white flex items-center justify-between">
+                <div>
+                    <h3 class="text-lg font-bold"><i class="fas fa-edit mr-2"></i>ব্যাংক ও ডিপিএস তথ্য সম্পাদনা</h3>
+                    <p class="text-xs text-amber-100 mt-0.5">ট্রানজেকশন: <span id="edit-dps-trxid-display" class="font-bold">--</span></p>
+                </div>
+                <button type="button" onclick="closeModal('dps-edit-modal')" class="h-8 w-8 bg-white/10 hover:bg-white/20 rounded-full text-white text-xs transition">✕</button>
+            </div>
+
+            <form onsubmit="handleDpsEditSubmit(event)" class="p-6 overflow-y-auto space-y-4 text-xs">
+                <input type="hidden" id="edit-dps-original-trxid">
+                <div class="grid grid-cols-2 gap-3">
+                    <div>
+                        <label class="block font-bold text-slate-700 mb-1">মাস</label>
+                        <select id="edit-dps-month" class="w-full border border-slate-300 p-2.5 rounded-2xl font-bold bg-white outline-none">
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block font-bold text-slate-700 mb-1">ব্যাংক নাম</label>
+                        <input type="text" id="edit-dps-bank" required value="সিটি ব্যাংক" class="w-full border border-slate-300 p-2.5 rounded-2xl font-bold outline-none">
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-3 gap-2.5">
+                    <div>
+                        <label class="block font-bold text-slate-700 mb-1">ব্যাংকে মোট জমা (৳)</label>
+                        <input type="number" id="edit-dps-bank-total" oninput="calculateEditRemainingBank()" required class="w-full border border-slate-300 p-2.5 rounded-2xl font-bold text-indigo-700 outline-none">
+                    </div>
+                    <div>
+                        <label class="block font-bold text-slate-700 mb-1">ডিপিএসে স্থানান্তর (৳)</label>
+                        <input type="number" id="edit-dps-amount" oninput="calculateEditRemainingBank()" required class="w-full border border-slate-300 p-2.5 rounded-2xl font-bold text-amber-700 outline-none">
+                    </div>
+                    <div>
+                        <label class="block font-bold text-slate-700 mb-1">ব্যাংকে অবশিষ্ট (৳)</label>
+                        <input type="number" id="edit-dps-bank-remaining" readonly class="w-full border border-slate-300 p-2.5 rounded-2xl font-bold bg-slate-100 text-emerald-700 outline-none">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block font-bold text-slate-700 mb-1">ট্রানজেকশন ID / ডিপোজিট স্লিপ নং</label>
+                    <input type="text" id="edit-dps-trxid" required class="w-full border border-slate-300 p-2.5 rounded-2xl font-mono outline-none">
+                </div>
+
+                <div class="bg-amber-50/80 border border-amber-200 p-3 rounded-2xl">
+                    <label class="block font-bold text-slate-800 mb-1">ভাউচার বা স্লিপের ছবি পরিবর্তন (ঐচ্ছিক)</label>
+                    <input type="file" id="edit-dps-proof-file" accept="image/*" class="w-full border border-slate-300 p-2 rounded-2xl text-xs bg-white text-slate-600">
+                </div>
+
+                <div class="pt-2 flex gap-2">
+                    <button type="submit" id="btn-save-edit-dps" class="flex-[2] bg-amber-600 hover:bg-amber-700 text-white font-bold py-2.5 rounded-2xl shadow transition">
+                        <i class="fas fa-save mr-1"></i> আপডেট করুন
+                    </button>
+                    <button type="button" onclick="confirmDeleteDpsDirect()" class="flex-1 bg-rose-600 hover:bg-rose-700 text-white font-bold py-2.5 rounded-2xl shadow transition flex items-center justify-center">
+                        <i class="fas fa-trash-alt mr-1"></i> ডিলিট
+                    </button>
+                    <button type="button" onclick="closeModal('dps-edit-modal')" class="px-4 bg-slate-200 hover:bg-slate-300 text-slate-700 font-bold rounded-2xl transition">বাতিল</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- ১০. রশিদ এডিট মোডাল (পূর্বের মূল তারিখ বজায় রেখে) -->
     <div id="receipt-edit-modal" class="fixed inset-0 bg-slate-900/80 backdrop-blur-sm hidden z-50 flex items-center justify-center p-3 md:p-6">
         <div class="bg-white rounded-3xl max-w-md w-full max-h-[92vh] flex flex-col shadow-2xl border border-slate-200 overflow-hidden">
             <div class="p-5 bg-gradient-to-r from-amber-600 to-orange-700 text-white flex items-center justify-between">
@@ -1445,7 +1481,7 @@
         </div>
     </div>
     
-    <!-- ১০. অফিসিয়াল খরচ এন্ট্রি মোডাল -->
+    <!-- ১১. অফিসিয়াল খরচ এন্ট্রি মোডাল -->
     <div id="expense-modal" class="fixed inset-0 bg-slate-900/80 backdrop-blur-sm hidden z-50 flex items-center justify-center p-3 md:p-6">
         <div class="bg-white rounded-3xl max-w-md w-full max-h-[92vh] flex flex-col shadow-2xl border border-slate-200 overflow-hidden">
             <div class="p-5 bg-gradient-to-r from-rose-800 to-red-900 text-white flex items-center justify-between">
@@ -1486,7 +1522,7 @@
         </div>
     </div>
 
-    <!-- ১১. খরচ ও ভাউচার এডিট মোডাল (Admin) -->
+    <!-- ১২. খরচ ও ভাউচার এডিট মোডাল (Admin) -->
     <div id="expense-edit-modal" class="fixed inset-0 bg-slate-900/80 backdrop-blur-sm hidden z-50 flex items-center justify-center p-3 md:p-6">
         <div class="bg-white rounded-3xl max-w-md w-full max-h-[92vh] flex flex-col shadow-2xl border border-slate-200 overflow-hidden">
             <div class="p-5 bg-gradient-to-r from-rose-800 to-red-900 text-white flex items-center justify-between">
@@ -1536,7 +1572,7 @@
         </div>
     </div>
 
-    <!-- ১২. নতুন সদস্য যোগ করার মোডাল -->
+    <!-- ১৩. নতুন সদস্য যোগ করার মোডাল -->
     <div id="member-add-modal" class="fixed inset-0 bg-slate-900/80 backdrop-blur-sm hidden z-50 flex items-center justify-center p-3 md:p-6">
         <div class="bg-white rounded-3xl max-w-lg w-full max-h-[92vh] flex flex-col shadow-2xl border border-slate-200 overflow-hidden">
             <div class="p-5 bg-gradient-to-r from-emerald-800 to-teal-800 text-white flex items-center justify-between">
@@ -1656,7 +1692,7 @@
         </div>
     </div>
 
-    <!-- ১৩. সদস্য তথ্য এডিট মোডাল (পূর্বের মূল তারিখ বজায় রেখে) -->
+    <!-- ১৪. সদস্য তথ্য এডিট মোডাল (পূর্বের মূল তারিখ বজায় রেখে) -->
     <div id="member-edit-modal" class="fixed inset-0 bg-slate-900/80 backdrop-blur-sm hidden z-50 flex items-center justify-center p-3 md:p-6">
         <div class="bg-white rounded-3xl max-w-lg w-full max-h-[92vh] flex flex-col shadow-2xl border border-slate-200 overflow-hidden">
             <div class="p-5 bg-gradient-to-r from-amber-600 to-orange-700 text-white flex items-center justify-between">
@@ -1775,7 +1811,7 @@
         </div>
     </div>
 
-    <!-- ১৪. WhatsApp নোটিশ মোডাল -->
+    <!-- ১৫. WhatsApp নোটিশ মোডাল -->
     <div id="broadcast-modal" class="fixed inset-0 bg-slate-900/80 backdrop-blur-sm hidden z-50 flex items-center justify-center p-3 md:p-6">
         <div class="bg-white rounded-3xl max-w-2xl w-full max-h-[92vh] flex flex-col shadow-2xl border border-slate-200 overflow-hidden">
             <div class="p-5 bg-gradient-to-r from-emerald-700 to-green-800 text-white flex items-center justify-between">
@@ -2159,13 +2195,13 @@
             return -1;
         }
 
-        // ================= ৫ ও ৬ নং নির্দেশনা: এডভান্স ও স্বয়ংক্রিয় ধারাবাহিক সমন্বয় ইঞ্জিন =================
+        // ================= ১, ৫ ও ৬ নং নির্দেশনা: এডভান্স ও মূল কিস্তির পৃথক সমন্বয় ইঞ্জিন =================
         function autoAdjustMemberMonthlyRecords(member) {
             if (!member) return;
             const shares = parseAnyNumber(member.shares) || 1;
             const requiredPerMonth = shares * 1000;
 
-            if (!member.monthlyRecords) member.monthlyRecords = {};
+            member.monthlyRecords = {};
 
             const normMId = normalizeMemberId(member.id);
             const memberAccounts = accountsData.filter(a => 
@@ -2176,26 +2212,13 @@
             // ট্রানজেকশন ক্রমানুসারে সাজানো
             memberAccounts.sort((a, b) => new Date(a.timestamp || 0) - new Date(b.timestamp || 0));
 
-            let currentMonthIdx = new Date().getMonth();
-            let maxTimelineMonth = Math.max(currentMonthIdx, 11);
-
-            // পূর্ববর্তী সমন্বয় ক্লিয়ার করা
-            for (let i = 0; i < 12; i++) {
-                const mName = MONTH_NAMES[i];
-                if (member.monthlyRecords[mName] && member.monthlyRecords[mName].isAutoAdjusted) {
-                    delete member.monthlyRecords[mName];
-                    delete member.monthlyRecords[i];
-                    delete member.monthlyRecords[String(i)];
-                    delete member.monthlyRecords[MONTH_NAMES_BN[i]];
-                }
-            }
-
+            let totalActualDeposit = 0;
             let advancePool = 0;
             let lastPaymentTimestamp = "";
             let lastPaymentMethod = "";
             let lastTrxId = "";
-            let totalActualDeposit = 0;
 
+            // ১ম ধাপ: নিয়মিত ট্রানজেকশনসমূহ মূল মাসে পোস্টিং
             memberAccounts.forEach(acc => {
                 const sIdx = normalizeMonthIndex(acc.month, acc.monthBn);
                 if (sIdx === -1) return;
@@ -2206,58 +2229,73 @@
                 lastPaymentMethod = acc.paymentMethod || lastPaymentMethod;
                 lastTrxId = acc.trxId || lastTrxId;
 
-                const baseCoverage = Math.min(paidAmount, requiredPerMonth);
-                const extraPaid = Math.max(0, paidAmount - requiredPerMonth);
+                const stdMonth = MONTH_NAMES[sIdx];
+                const existing = member.monthlyRecords[stdMonth];
 
-                member.monthlyRecords[MONTH_NAMES[sIdx]] = {
-                    paid: true,
-                    amount: baseCoverage,
-                    actualDeposit: paidAmount,
-                    advanceAmount: extraPaid,
-                    penalty: parseAnyNumber(acc.penalty || 0),
-                    method: acc.paymentMethod || '--',
-                    trxId: acc.trxId || '--',
-                    proofUrl: acc.proofUrl || '',
-                    timestamp: acc.timestamp,
-                    isOriginalEntry: true
-                };
+                // যদি ঐ মাসের জন্য সাধারণ কিস্তি পূর্বে না থাকে
+                if (!existing) {
+                    const baseCoverage = Math.min(paidAmount, requiredPerMonth);
+                    const extra = Math.max(0, paidAmount - requiredPerMonth);
 
-                member.monthlyRecords[sIdx] = member.monthlyRecords[MONTH_NAMES[sIdx]];
-                member.monthlyRecords[String(sIdx)] = member.monthlyRecords[MONTH_NAMES[sIdx]];
-                member.monthlyRecords[MONTH_NAMES_BN[sIdx]] = member.monthlyRecords[MONTH_NAMES[sIdx]];
+                    const recObj = {
+                        paid: true,
+                        amount: baseCoverage,
+                        actualDeposit: paidAmount,
+                        advanceAmount: extra,
+                        penalty: parseAnyNumber(acc.penalty || 0),
+                        method: acc.paymentMethod || '--',
+                        trxId: acc.trxId || '--',
+                        proofUrl: acc.proofUrl || '',
+                        timestamp: acc.timestamp,
+                        isOriginalEntry: true
+                    };
 
-                // পরবর্তী মাসগুলোতে অতিরিক্ত অর্থ স্বয়ংক্রিয় ধারাবাহিক সমন্বয়
-                advancePool += extraPaid;
-                let targetIdx = sIdx + 1;
+                    member.monthlyRecords[stdMonth] = recObj;
+                    member.monthlyRecords[sIdx] = recObj;
+                    member.monthlyRecords[String(sIdx)] = recObj;
+                    member.monthlyRecords[MONTH_NAMES_BN[sIdx]] = recObj;
 
-                while (advancePool >= requiredPerMonth && targetIdx <= maxTimelineMonth) {
-                    const targetMonthName = MONTH_NAMES[targetIdx];
-                    
-                    if (!member.monthlyRecords[targetMonthName] || !member.monthlyRecords[targetMonthName].paid) {
-                        const adjRec = {
-                            paid: true,
-                            amount: requiredPerMonth,
-                            actualDeposit: 0,
-                            advanceAmount: 0,
-                            penalty: 0,
-                            method: `${acc.paymentMethod} (অগ্রিম)`,
-                            trxId: `${acc.trxId}-ADV`,
-                            proofUrl: acc.proofUrl || '',
-                            timestamp: acc.timestamp,
-                            isAutoAdjusted: true,
-                            adjustedFromMonth: MONTH_NAMES[sIdx]
-                        };
-
-                        member.monthlyRecords[targetMonthName] = adjRec;
-                        member.monthlyRecords[targetIdx] = adjRec;
-                        member.monthlyRecords[String(targetIdx)] = adjRec;
-                        member.monthlyRecords[MONTH_NAMES_BN[targetIdx]] = adjRec;
-
-                        advancePool -= requiredPerMonth;
-                    }
-                    targetIdx++;
+                    advancePool += extra;
+                } else {
+                    // একই মাসে যদি দ্বিতীয়বার জমা দেওয়া হয় (যেমন: অক্টোবর এ ১০০০ কিস্তি দেওয়ার পর আবার ১০০০০ অগ্রিম দেওয়া হয়েছে)
+                    existing.actualDeposit = (existing.actualDeposit || existing.amount) + paidAmount;
+                    existing.advanceAmount = (existing.advanceAmount || 0) + paidAmount;
+                    advancePool += paidAmount;
                 }
             });
+
+            // ২য় ধাপ: পুলের অগ্রিম অর্থ পরবর্তী মাসগুলোতে স্বয়ংক্রিয় বিতরণ (১০,০০০ হলে পরবর্তী ১০ মাস কভার হবে)
+            let currentMonthIdx = new Date().getMonth();
+            let maxTimelineMonth = Math.max(currentMonthIdx, 11) + 12; // ভবিষ্যৎ ১২ মাস পর্যন্ত এক্সটেন্ডেবল
+
+            for (let targetIdx = START_MONTH_IDX; targetIdx <= maxTimelineMonth; targetIdx++) {
+                if (advancePool < requiredPerMonth) break;
+
+                const modIdx = targetIdx % 12;
+                const targetMonthName = MONTH_NAMES[modIdx];
+
+                if (!member.monthlyRecords[targetMonthName] || !member.monthlyRecords[targetMonthName].paid) {
+                    const adjRec = {
+                        paid: true,
+                        amount: requiredPerMonth,
+                        actualDeposit: 0,
+                        advanceAmount: 0,
+                        penalty: 0,
+                        method: `${lastPaymentMethod || 'জমা'} (অগ্রিম সমন্বিত)`,
+                        trxId: `${lastTrxId || 'ADV'}-AUTO`,
+                        proofUrl: '',
+                        timestamp: lastPaymentTimestamp,
+                        isAutoAdjusted: true
+                    };
+
+                    member.monthlyRecords[targetMonthName] = adjRec;
+                    member.monthlyRecords[modIdx] = adjRec;
+                    member.monthlyRecords[String(modIdx)] = adjRec;
+                    member.monthlyRecords[MONTH_NAMES_BN[modIdx]] = adjRec;
+
+                    advancePool -= requiredPerMonth;
+                }
+            }
 
             member.totalDeposit = totalActualDeposit;
             member.remainingAdvance = advancePool;
@@ -2269,12 +2307,12 @@
         // সরাসরি অগ্রিম সিলেকশন পরিবর্তন হ্যান্ডলার
         function onEntryTypeChange() {
             const type = document.getElementById('entry-action-type').value;
-            const penaltyBox = document.getElementById('entry-penalty').parentElement.parentElement;
+            const penaltyBox = document.getElementById('box-penalty-container');
             if (type === 'advance') {
-                penaltyBox.style.display = 'none';
+                if (penaltyBox) penaltyBox.style.display = 'none';
                 document.getElementById('entry-penalty').value = '';
             } else {
-                penaltyBox.style.display = 'block';
+                if (penaltyBox) penaltyBox.style.display = 'block';
             }
             onEntryMonthOrAmountChange();
         }
@@ -2390,7 +2428,7 @@
             sessionStorage.removeItem('ppg_admin_pass');
             localStorage.removeItem('ppg_auth');
 
-            ['member-profile-modal', 'member-detail-modal', 'receipt-modal', 'members-modal', 'policy-modal', 'policy-overview-modal', 'policy-clause-modal', 'login-modal', 'admin-entry-modal', 'dps-entry-modal', 'expense-modal', 'expense-edit-modal', 'member-add-modal', 'member-edit-modal', 'receipt-edit-modal', 'broadcast-modal', 'ios-install-modal'].forEach(closeModal);
+            ['member-profile-modal', 'member-detail-modal', 'receipt-modal', 'members-modal', 'policy-modal', 'policy-overview-modal', 'policy-clause-modal', 'login-modal', 'admin-entry-modal', 'dps-entry-modal', 'dps-edit-modal', 'expense-modal', 'expense-edit-modal', 'member-add-modal', 'member-edit-modal', 'receipt-edit-modal', 'broadcast-modal', 'ios-install-modal'].forEach(closeModal);
 
             updateAuthUI();
         }
@@ -2506,7 +2544,7 @@
                         subText += ` + জরিমানা: ৳${formatBnCurrency(fin.totalPenalty)}`;
                     }
                     if (fin.totalAdvance > 0) {
-                        subText += ` + অগ্রিম জমা অবশিষ্ট: ৳${formatBnCurrency(fin.totalAdvance)}`;
+                        subText += ` + অগ্রিম স্থিতি: ৳${formatBnCurrency(fin.totalAdvance)}`;
                     }
                     subText += `)`;
                     subFundElem.innerText = subText;
@@ -2544,7 +2582,7 @@
 
                 const dpsTbody = document.getElementById('dps-history-tbody');
                 if (dpsTbody) {
-                    dpsTbody.innerHTML = `<tr><td colspan="6" class="p-6 text-center text-slate-500 font-bold bg-slate-50/50"><i class="fas fa-lock text-amber-500 mr-2"></i>প্রাতিষ্ঠানিক ডিপিএস ও ব্যাংক বিবরণী দেখতে <button type="button" onclick="openLoginModal()" class="text-indigo-600 underline font-bold ml-1 hover:text-indigo-800">লগইন করুন</button>।</td></tr>`;
+                    dpsTbody.innerHTML = `<tr><td colspan="7" class="p-6 text-center text-slate-500 font-bold bg-slate-50/50"><i class="fas fa-lock text-amber-500 mr-2"></i>প্রাতিষ্ঠানিক ডিপিএস ও ব্যাংক বিবরণী দেখতে <button type="button" onclick="openLoginModal()" class="text-indigo-600 underline font-bold ml-1 hover:text-indigo-800">লগইন করুন</button>।</td></tr>`;
                 }
             }
 
@@ -2719,7 +2757,7 @@
                                 <td class="p-2 text-center ${isAdvance ? 'bg-blue-50/70 border-l border-blue-200' : 'bg-emerald-50/70 border-l border-emerald-100'}">
                                     <span class="font-digit font-bold ${isAdvance ? 'text-blue-800' : 'text-emerald-800'} block">৳ ${formatBnCurrency(cellAmount)}</span>
                                     <span class="text-[9px] ${isAdvance ? 'text-blue-600 font-bold' : 'text-slate-500 font-digit'} leading-none">
-                                        ${isAdvance ? '(অগ্রিম সমন্বয়)' : pDate}
+                                        ${isAdvance ? '(অগ্রিম সমন্বিত)' : pDate}
                                     </span>
                                 </td>
                             `;
@@ -2802,9 +2840,9 @@
                 <html>
                 <head>
                     <title>পহরডাঙ্গা পার্টনারশিপ গ্রুপ - জমা স্টেটমেন্ট</title>
-                    <link href="https://fonts.googleapis.com/css2?family=Anek+Bangla:wght@400;600;700;800&family=Noto+Sans+Bengali:wght@400;600;700;800&display=swap" rel="stylesheet">
+                    <link href="https://fonts.googleapis.com/css2?family=Tiro+Bangla&family=Anek+Bangla:wght@400;600;700;800&family=Noto+Sans+Bengali:wght@400;600;700;800&display=swap" rel="stylesheet">
                     <style>
-                        body { font-family: 'Anek Bangla', 'Noto Sans Bengali', Arial, sans-serif; padding: 20px; font-size: 11px; }
+                        body { font-family: 'Tiro Bangla', 'Noto Sans Bengali', Arial, sans-serif; padding: 20px; font-size: 11px; }
                         h2, p { text-align: center; margin: 2px; }
                         table { width: 100%; border-collapse: collapse; margin-top: 15px; }
                         th, td { border: 1px solid #94a3b8; padding: 6px; text-align: left; }
@@ -3281,7 +3319,7 @@
                     <td class="p-2.5 font-digit font-bold ${isPaid ? (isAdvance ? 'text-blue-700' : 'text-emerald-700') : 'text-slate-400'}">
                         ${isPaid ? '৳ ' + formatBnCurrency(rec.amount) : '৳ ০'}
                         ${rec && rec.penalty > 0 ? `<br><span class="text-[10px] text-rose-600">(জরিমানা: ৳${formatBnCurrency(rec.penalty)})</span>` : ''}
-                        ${rec && rec.advanceAmount > 0 ? `<br><span class="text-[10px] text-blue-600">(অগ্রিম পরিশোধ: ৳${formatBnCurrency(rec.advanceAmount)})</span>` : ''}
+                        ${rec && rec.advanceAmount > 0 ? `<br><span class="text-[10px] text-blue-600 font-bold">(অগ্রিম জমা: ৳${formatBnCurrency(rec.advanceAmount)})</span>` : ''}
                     </td>
                     <td class="p-2.5 text-slate-600 font-digit">
                         ${isPaid ? `${rec.method} <br><span class="font-mono text-[10px] text-indigo-600">${rec.trxId}</span>` : '--'}
@@ -3326,6 +3364,7 @@
         function initMonthSelectors() {
             const entryMonth = document.getElementById('entry-month');
             const entryDpsMonth = document.getElementById('entry-dps-month');
+            const editDpsMonth = document.getElementById('edit-dps-month');
             const editRcpMonth = document.getElementById('edit-rcp-month');
             
             const newMemberJoinMonth = document.getElementById('new-m-join-month');
@@ -3336,7 +3375,7 @@
 
             const currentMonthIdx = new Date().getMonth();
             
-            const elements = [entryMonth, entryDpsMonth, editRcpMonth, newMemberJoinMonth, newMemberStartMonth, editMemberJoinMonth, editMemberStartMonth, cardSelectMonth];
+            const elements = [entryMonth, entryDpsMonth, editDpsMonth, editRcpMonth, newMemberJoinMonth, newMemberStartMonth, editMemberJoinMonth, editMemberStartMonth, cardSelectMonth];
             elements.forEach(el => { if (el) el.innerHTML = ''; });
 
             for (let idx = 0; idx < 12; idx++) {
@@ -3344,7 +3383,6 @@
                 const bn = MONTH_NAMES_BN[idx];
                 const opt = document.createElement('option');
                 opt.value = m;
-                // ৪ নং নির্দেশনা: ক্রমিক সংখ্যা বাদ দিয়ে শুধুমাত্র মাসের প্রমিত নাম
                 opt.innerText = `${bn} ২০২৬ (${m})`;
                 
                 if (idx === currentMonthIdx) opt.selected = true;
@@ -3551,7 +3589,7 @@
                 `🕒 *পরিশোধের তারিখ:* ${paymentDateStr}\n` +
                 `📊 *শেয়ার সংখ্যা:* ${toBanglaNum(selectedMember.shares)} টি\n` +
                 `💵 *পরিশোধের পরিমাণ:* ৳ ${formatBnCurrency(rec ? rec.amount : (selectedMember.shares * 1000))}\n` +
-                `💰 *সর্বমোট সঞ্চয় জমা:* ৳ ${formatBnCurrency(selectedMember.totalDeposit)}\n` +
+                `💰 *সর্বমোট সঞ্চয় ও অগ্রিম জমা:* ৳ ${formatBnCurrency(selectedMember.totalDeposit)}\n` +
                 `------------------------------------\n` +
                 `_ধন্যবাদ সাথে থাকার জন্য!_`
             );
@@ -3579,7 +3617,7 @@
                 `আপনার *${monthWithYear}* মাসের কিস্তি সফলভাবে গৃহীত হয়েছে।\n\n` +
                 `🕒 *পরিশোধের তারিখ:* ${paymentDateStr}\n` +
                 `💵 *পরিশোধের পরিমাণ:* ৳ ${formatBnCurrency(rec ? rec.amount : (member.shares * 1000))}\n` +
-                `💰 *সর্বমোট সঞ্চয় জমা:* ৳ ${formatBnCurrency(member.totalDeposit || 0)}\n` +
+                `💰 *সর্বমোট সঞ্চয় ও অগ্রিম জমা:* ৳ ${formatBnCurrency(member.totalDeposit || 0)}\n` +
                 `------------------------------------\n`
             );
 
@@ -3789,7 +3827,7 @@
             }
             const form = document.getElementById('admin-dps-form');
             if (form) form.reset();
-            document.getElementById('entry-dps-bank').value = 'সিটি ব্যাংক পিএলসি';
+            document.getElementById('entry-dps-bank').value = 'সিটি ব্যাংক';
             document.getElementById('entry-dps-trxid').value = '';
             document.getElementById('entry-dps-proof-file').value = '';
             calculateRemainingBank();
@@ -3806,6 +3844,13 @@
             const dps = parseFloat(document.getElementById('entry-dps-amount').value) || 0;
             const remaining = Math.max(0, total - dps);
             document.getElementById('entry-dps-bank-remaining').value = remaining;
+        }
+
+        function calculateEditRemainingBank() {
+            const total = parseFloat(document.getElementById('edit-dps-bank-total').value) || 0;
+            const dps = parseFloat(document.getElementById('edit-dps-amount').value) || 0;
+            const remaining = Math.max(0, total - dps);
+            document.getElementById('edit-dps-bank-remaining').value = remaining;
         }
 
         function compressImage(file) {
@@ -3935,7 +3980,7 @@
             const bankTotal = parseFloat(document.getElementById('entry-dps-bank-total').value) || 0;
             const dpsAmount = parseFloat(document.getElementById('entry-dps-amount').value) || 0;
             const remaining = parseFloat(document.getElementById('entry-dps-bank-remaining').value) || 0;
-            const bankName = document.getElementById('entry-dps-bank').value.trim();
+            const bankName = document.getElementById('entry-dps-bank').value.trim() || 'সিটি ব্যাংক';
             const trxId = document.getElementById('entry-dps-trxid').value.trim();
 
             dpsData.push({
@@ -3978,7 +4023,6 @@
             alert("প্রাতিষ্ঠানিক ডিপিএস ফান্ডে সফলভাবে সেভ হয়েছে!");
         }
 
-        // ৩ নং নির্দেশনা: এডিট করতে গেলে আসল সেভ করা তারিখ অক্ষুন্ন রাখা
         function openEditReceiptModal() {
             if (currentUserRole !== 'admin' || !selectedMember) return;
             const rec = selectedMember.monthlyRecords ? (selectedMember.monthlyRecords[selectedReceiptMonth] || selectedMember.monthlyRecords[normalizeMonthIndex(selectedReceiptMonth)]) : null;
@@ -4021,7 +4065,6 @@
             if (!member) return;
 
             const oldRec = member.monthlyRecords ? member.monthlyRecords[oldMonth] : null;
-            // মূল তারিখ বজায় রাখা
             const newIsoDate = newDate ? new Date(newDate + "T12:00:00").toISOString() : (oldRec ? oldRec.timestamp : new Date().toISOString());
 
             let newImageBase64 = "";
@@ -4185,7 +4228,6 @@
             btn.innerHTML = `<i class="fas fa-check-circle mr-1"></i> খরচ সংরক্ষণ করুন`;
         }
 
-        // ২ নং নির্দেশনা: অফিসিয়াল খরচ এডিট ও ডিলিট
         function renderExpenses() {
             if (!isLoggedIn) return; 
             const tbody = document.getElementById('expenses-table-tbody');
@@ -4340,6 +4382,7 @@
             alert("খরচের রেকর্ড মুছে ফেলা হয়েছে!");
         }
 
+        // ৩ নং নির্দেশনা: প্রাতিষ্ঠানিক ডিপিএস ও ব্যাংক বিবরণী এডিট ও ডিলিট
         function renderDpsHistory() {
             if (!isLoggedIn) return; 
             const tbody = document.getElementById('dps-history-tbody');
@@ -4347,7 +4390,7 @@
             tbody.innerHTML = '';
 
             if (dpsData.length === 0) {
-                tbody.innerHTML = `<tr><td colspan="6" class="p-4 text-center text-slate-400">কোনো প্রাতিষ্ঠানিক ডিপিএস এন্ট্রি নেই</td></tr>`;
+                tbody.innerHTML = `<tr><td colspan="7" class="p-6 text-center text-slate-400">কোনো প্রাতিষ্ঠানিক ডিপিএস এন্ট্রি নেই</td></tr>`;
                 return;
             }
 
@@ -4360,18 +4403,147 @@
                     displayMonth = formatBanglaDate(displayMonth);
                 }
 
+                let adminActions = '';
+                if (currentUserRole === 'admin') {
+                    adminActions = `
+                        <td class="p-3 text-center whitespace-nowrap">
+                            <button type="button" onclick="openDpsEditModal('${d.trxId}')" class="px-2.5 py-1 bg-amber-100 hover:bg-amber-200 text-amber-900 rounded-lg text-xs font-bold mr-1">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                            <button type="button" onclick="confirmDeleteDps('${d.trxId}')" class="px-2.5 py-1 bg-rose-100 hover:bg-rose-200 text-rose-800 rounded-lg text-xs font-bold">
+                                <i class="fas fa-trash-alt"></i>
+                            </button>
+                        </td>
+                    `;
+                }
+
                 tr.innerHTML = `
                     <td class="p-3 font-bold text-slate-800">${displayMonth}</td>
                     <td class="p-3 font-digit text-indigo-700 font-bold">৳ ${formatBnCurrency(d.bankDeposit || 0)}</td>
                     <td class="p-3 font-digit text-amber-700 font-black">৳ ${formatBnCurrency(d.dpsAmount || 0)}</td>
                     <td class="p-3 font-digit text-emerald-700 font-bold">৳ ${formatBnCurrency(d.remainingBank || 0)}</td>
-                    <td class="p-3 text-slate-600 font-mono text-[11px]">${d.bankName || 'ব্যাংক'} (${d.trxId || '--'})</td>
+                    <td class="p-3 text-slate-600 font-mono text-[11px]">${d.bankName || 'সিটি ব্যাংক'} (${d.trxId || '--'})</td>
                     <td class="p-3 text-center">
                         ${d.proofUrl ? `<a href="${getDirectImageUrl(d.proofUrl)}" target="_blank" class="px-2.5 py-1 bg-amber-100 text-amber-800 hover:bg-amber-200 rounded-lg font-bold text-[10px]"><i class="fas fa-image mr-1"></i>ভাউচার</a>` : '<span class="text-slate-400">--</span>'}
                     </td>
+                    ${adminActions}
                 `;
                 tbody.appendChild(tr);
             });
+        }
+
+        function openDpsEditModal(trxId) {
+            if (currentUserRole !== 'admin') return;
+            const d = dpsData.find(x => x.trxId === trxId);
+            if (!d) return;
+
+            document.getElementById('edit-dps-original-trxid').value = d.trxId;
+            document.getElementById('edit-dps-trxid-display').innerText = d.trxId;
+            document.getElementById('edit-dps-month').value = d.month;
+            document.getElementById('edit-dps-bank').value = d.bankName || 'সিটি ব্যাংক';
+            document.getElementById('edit-dps-bank-total').value = d.bankDeposit;
+            document.getElementById('edit-dps-amount').value = d.dpsAmount;
+            document.getElementById('edit-dps-bank-remaining').value = d.remainingBank;
+            document.getElementById('edit-dps-trxid').value = d.trxId;
+            document.getElementById('edit-dps-proof-file').value = '';
+
+            document.getElementById('dps-edit-modal').classList.remove('hidden');
+        }
+
+        async function handleDpsEditSubmit(e) {
+            if (e) e.preventDefault();
+            if (currentUserRole !== 'admin') return;
+
+            const origTrx = document.getElementById('edit-dps-original-trxid').value;
+            const month = document.getElementById('edit-dps-month').value;
+            const bankName = document.getElementById('edit-dps-bank').value.trim() || 'সিটি ব্যাংক';
+            const bankTotal = parseFloat(document.getElementById('edit-dps-bank-total').value) || 0;
+            const dpsAmount = parseFloat(document.getElementById('edit-dps-amount').value) || 0;
+            const remaining = parseFloat(document.getElementById('edit-dps-bank-remaining').value) || 0;
+            const newTrx = document.getElementById('edit-dps-trxid').value.trim();
+            const proofFile = document.getElementById('edit-dps-proof-file');
+
+            const d = dpsData.find(x => x.trxId === origTrx);
+            if (!d) return;
+
+            let imageBase64 = "";
+            let localUrl = d.proofUrl;
+            if (proofFile.files && proofFile.files[0]) {
+                localUrl = URL.createObjectURL(proofFile.files[0]);
+                imageBase64 = await compressImage(proofFile.files[0]);
+            }
+
+            d.month = month;
+            d.bankName = bankName;
+            d.bankDeposit = bankTotal;
+            d.dpsAmount = dpsAmount;
+            d.remainingBank = remaining;
+            d.trxId = newTrx;
+            d.proofUrl = localUrl;
+
+            saveSnapshotInstantly();
+            updateAuthUI();
+
+            const btn = document.getElementById('btn-save-edit-dps');
+            btn.disabled = true;
+            btn.innerHTML = `<i class="fas fa-spinner fa-spin mr-1"></i> সেভ হচ্ছে...`;
+
+            fetch(API_URL, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    adminPass: sessionStorage.getItem('ppg_admin_pass'),
+                    actionType: "edit_dps",
+                    originalTrxId: origTrx,
+                    folderName: month,
+                    fileName: `DPS_${month}_edit.jpg`,
+                    imageBase64: imageBase64,
+                    dpsData: {
+                        month: month,
+                        bankName: bankName,
+                        bankDeposit: bankTotal,
+                        dpsAmount: dpsAmount,
+                        remainingBank: remaining,
+                        trxId: newTrx
+                    }
+                })
+            });
+
+            alert("ব্যাংক ও ডিপিএস তথ্য সফলভাবে আপডেট হয়েছে!");
+            btn.disabled = false;
+            btn.innerHTML = `<i class="fas fa-save mr-1"></i> আপডেট করুন`;
+            closeModal('dps-edit-modal');
+        }
+
+        function confirmDeleteDpsDirect() {
+            const trxId = document.getElementById('edit-dps-original-trxid').value;
+            confirmDeleteDps(trxId);
+            closeModal('dps-edit-modal');
+        }
+
+        function confirmDeleteDps(trxId) {
+            if (currentUserRole !== 'admin') return;
+            if (!confirm(`আপনি কি নিশ্চিতভাবে ট্রানজেকশন ${trxId} এর ডিপিএস রেকর্ডটি মুছে ফেলতে চান?`)) return;
+
+            const idx = dpsData.findIndex(x => x.trxId === trxId);
+            if (idx !== -1) {
+                dpsData.splice(idx, 1);
+            }
+
+            saveSnapshotInstantly();
+            updateAuthUI();
+
+            fetch(API_URL, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    adminPass: sessionStorage.getItem('ppg_admin_pass'),
+                    actionType: "delete_dps",
+                    trxId: trxId
+                })
+            });
+
+            alert("ডিপিএস রেকর্ড মুছে ফেলা হয়েছে!");
         }
 
         function parseMemberRowData(row) {
@@ -4554,7 +4726,7 @@
                 for (let k = startD; k < rawDps.length; k++) {
                     const dRow = rawDps[k];
                     if (!dRow) continue;
-                    let month = "", bankDeposit = 0, dpsAmount = 0, remaining = 0, bankName = "", trxId = "", proof = "", timestamp = "";
+                    let month = "", bankDeposit = 0, dpsAmount = 0, remaining = 0, bankName = "সিটি ব্যাংক", trxId = "", proof = "", timestamp = "";
 
                     if (Array.isArray(dRow)) {
                         if ((dRow[1] || '').toString().toLowerCase().includes('month')) continue;
@@ -4563,7 +4735,7 @@
                         bankDeposit = parseAnyNumber(dRow[2]);
                         dpsAmount = parseAnyNumber(dRow[3]);
                         remaining = parseAnyNumber(dRow[4]);
-                        bankName = (dRow[5] || "").toString().trim();
+                        bankName = (dRow[5] || "সিটি ব্যাংক").toString().trim();
                         trxId = (dRow[6] || "").toString().trim();
                         proof = dRow[7] ? dRow[7].toString().trim() : "";
                     } else if (typeof dRow === 'object') {
@@ -4571,7 +4743,7 @@
                         bankDeposit = parseAnyNumber(dRow.bankDeposit);
                         dpsAmount = parseAnyNumber(dRow.dpsAmount);
                         remaining = parseAnyNumber(dRow.remainingBank);
-                        bankName = (dRow.bankName || "").toString().trim();
+                        bankName = (dRow.bankName || "সিটি ব্যাংক").toString().trim();
                         trxId = (dRow.trxId || "").toString().trim();
                         proof = (dRow.proofUrl || "").toString().trim();
                         timestamp = dRow.timestamp || "";
