@@ -22,7 +22,9 @@
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Noto+Sans+Bengali:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Cinzel:wght@600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- ১ এবং ৯ স্পষ্ট বোঝার জন্য Anek Bangla এবং Noto Sans Bengali ফন্ট লোড করা হলো -->
+    <link href="https://fonts.googleapis.com/css2?family=Anek+Bangla:wght@400;500;600;700;800&family=Hind+Siliguri:wght@400;500;600;700&family=Noto+Sans+Bengali:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 
     <style>
@@ -41,9 +43,12 @@
             -webkit-overflow-scrolling: touch;
             color: #0f172a;
         }
+        /* বাংলা ডিজিট ১ ও ৯ স্পষ্ট দেখার জন্য Anek Bangla ও বিশেষ গ্লিফ সিলেকশন */
         .font-digit, .bn-number {
-            font-family: 'Noto Sans Bengali', Arial, sans-serif !important;
-            font-weight: 700;
+            font-family: 'Anek Bangla', 'Noto Sans Bengali', 'Hind Siliguri', Arial, sans-serif !important;
+            font-weight: 700 !important;
+            letter-spacing: 0.5px;
+            -webkit-font-smoothing: antialiased;
         }
         #welcome-screen {
             transition: opacity 0.35s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.35s;
@@ -71,23 +76,23 @@
             box-sizing: border-box;
             border: 2px solid #0f766e;
             border-radius: 18px;
-            font-family: 'Noto Sans Bengali', Arial, sans-serif !important;
+            font-family: 'Anek Bangla', 'Noto Sans Bengali', Arial, sans-serif !important;
             overflow: visible !important;
             text-rendering: optimizeLegibility;
             -webkit-font-smoothing: antialiased;
             box-shadow: 0 15px 35px -5px rgba(0,0,0,0.1);
         }
         #printable-receipt * {
-            font-family: 'Noto Sans Bengali', Arial, sans-serif !important;
+            font-family: 'Anek Bangla', 'Noto Sans Bengali', Arial, sans-serif !important;
             box-sizing: border-box;
         }
         #printable-receipt .font-digit, #printable-receipt .bn-number {
-            font-family: 'Noto Sans Bengali', Arial, sans-serif !important;
+            font-family: 'Anek Bangla', 'Noto Sans Bengali', Arial, sans-serif !important;
             font-weight: 600 !important;
             letter-spacing: 0.3px;
         }
         .card-bn-text {
-            font-family: 'Noto Sans Bengali', Arial, sans-serif !important;
+            font-family: 'Anek Bangla', 'Noto Sans Bengali', Arial, sans-serif !important;
         }
         @keyframes fadeInOut {
             0% { opacity: 0; transform: scale(0.92) translateY(8px); }
@@ -159,7 +164,6 @@
             max-width: 380px;
             width: 100%;
         }
-        /* Custom Modern Scrollbar */
         ::-webkit-scrollbar {
             width: 7px;
             height: 7px;
@@ -181,7 +185,6 @@
     <!-- স্বাগতম স্ক্রিন (Opening Video সহ) -->
     <div id="welcome-screen" class="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-gradient-to-br from-[#06101e] via-[#0b1c36] to-[#12284c] text-white p-4">
         
-        <!-- opening.mp4 ভিডিও প্লেয়ার কনটেইনার -->
         <div class="opening-video-box mb-6 ring-4 ring-emerald-500/20">
             <video id="opening-video" autoplay muted loop playsinline class="w-full h-auto object-cover max-h-[260px] md:max-h-[300px]">
                 <source src="videos/opening.mp4" type="video/mp4">
@@ -189,7 +192,6 @@
             </video>
         </div>
 
-        <!-- ভিডিওর নিচের টেক্সট -->
         <h1 class="text-2xl md:text-4xl font-extrabold text-center text-emerald-300 mb-2 tracking-wide drop-shadow-md">
             পহরডাঙ্গা পার্টনারশিপ গ্রুপ
         </h1>
@@ -228,7 +230,7 @@
                     <a href="#home" class="hover:text-emerald-400 transition-colors">হোম</a>
                     <a href="#accounting-panel" class="hover:text-emerald-300 transition-colors text-emerald-400 flex items-center gap-1.5"><i class="fas fa-chart-pie text-xs"></i>হিসাব প্যানেল</a>
                     <a href="#statement-section" class="auth-only hidden hover:text-sky-300 transition-colors text-sky-400 flex items-center gap-1.5"><i class="fas fa-table-columns text-xs"></i>জমা স্টেটমেন্ট</a>
-                    <button type="button" onclick="openAdminEntryModal()" class="admin-only hidden hover:text-amber-300 transition-colors text-amber-400 flex items-center gap-1.5"><i class="fas fa-file-invoice-dollar text-xs"></i>কিস্তি এন্ট্রি</button>
+                    <button type="button" onclick="openAdminEntryModal()" class="admin-only hidden hover:text-amber-300 transition-colors text-amber-400 flex items-center gap-1.5"><i class="fas fa-file-invoice-dollar text-xs"></i>কিস্তি ও অগ্রিম এন্ট্রি</button>
                     <button type="button" onclick="openDpsEntryModal()" class="admin-only hidden hover:text-amber-200 transition-colors text-amber-300 flex items-center gap-1.5"><i class="fas fa-piggy-bank text-xs"></i>ডিপিএস ফান্ড</button>
                     <button type="button" onclick="openExpenseModal()" class="admin-only hidden hover:text-rose-300 transition-colors text-rose-400 flex items-center gap-1.5"><i class="fas fa-receipt text-xs"></i>খরচ এন্ট্রি</button>
                     <button type="button" onclick="openAddMemberModal()" class="admin-only hidden hover:text-emerald-300 transition-colors text-emerald-400 flex items-center gap-1.5"><i class="fas fa-user-plus text-xs"></i>সদস্য যোগ</button>
@@ -263,7 +265,7 @@
             <a href="#home" onclick="toggleMobileMenu()" class="block text-slate-200 font-semibold py-1.5 px-2 rounded-lg hover:bg-white/5">হোম</a>
             <a href="#accounting-panel" onclick="toggleMobileMenu()" class="block text-emerald-300 font-semibold py-1.5 px-2 rounded-lg hover:bg-white/5"><i class="fas fa-chart-pie mr-2"></i>হিসাব প্যানেল</a>
             <a href="#statement-section" onclick="toggleMobileMenu()" class="auth-only hidden block text-sky-300 font-semibold py-1.5 px-2 rounded-lg hover:bg-white/5"><i class="fas fa-table-columns mr-2"></i>জমা স্টেটমেন্ট</a>
-            <button type="button" onclick="openAdminEntryModal(); toggleMobileMenu();" class="admin-only hidden block text-amber-300 font-semibold py-1.5 px-2 rounded-lg hover:bg-white/5 text-left w-full"><i class="fas fa-file-invoice-dollar mr-2"></i>কিস্তি এন্ট্রি</button>
+            <button type="button" onclick="openAdminEntryModal(); toggleMobileMenu();" class="admin-only hidden block text-amber-300 font-semibold py-1.5 px-2 rounded-lg hover:bg-white/5 text-left w-full"><i class="fas fa-file-invoice-dollar mr-2"></i>কিস্তি ও অগ্রিম এন্ট্রি</button>
             <button type="button" onclick="openDpsEntryModal(); toggleMobileMenu();" class="admin-only hidden block text-amber-200 font-semibold py-1.5 px-2 rounded-lg hover:bg-white/5 text-left w-full"><i class="fas fa-piggy-bank mr-2"></i>ডিপিএস ফান্ড এন্ট্রি</button>
             <button type="button" onclick="openExpenseModal(); toggleMobileMenu();" class="admin-only hidden block text-rose-300 font-semibold py-1.5 px-2 rounded-lg hover:bg-white/5 text-left w-full"><i class="fas fa-receipt mr-2"></i>খরচ এন্ট্রি</button>
             <button type="button" onclick="openAddMemberModal(); toggleMobileMenu();" class="admin-only hidden block text-emerald-300 font-semibold py-1.5 px-2 rounded-lg hover:bg-white/5 text-left w-full"><i class="fas fa-user-plus mr-2"></i>নতুন সদস্য যোগ</button>
@@ -305,7 +307,7 @@
                         <i class="fas fa-table-list"></i> জমা স্টেটমেন্ট
                     </a>
                     <button type="button" onclick="openAdminEntryModal()" class="admin-only hidden bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold px-6 py-3 rounded-2xl transition shadow-lg flex items-center gap-2">
-                        <i class="fas fa-file-invoice-dollar"></i> কিস্তি এন্ট্রি
+                        <i class="fas fa-file-invoice-dollar"></i> কিস্তি ও অগ্রিম এন্ট্রি
                     </button>
                     <button type="button" onclick="openDpsEntryModal()" class="admin-only hidden bg-amber-600 hover:bg-amber-500 text-white font-bold px-6 py-3 rounded-2xl transition shadow-lg flex items-center gap-2">
                         <i class="fas fa-piggy-bank"></i> ডিপিএস ফান্ড
@@ -340,7 +342,7 @@
                 </div>
                 <div class="flex flex-wrap gap-2">
                     <button type="button" onclick="openAdminEntryModal()" class="admin-only hidden px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-xs font-bold shadow flex items-center gap-1.5 transition">
-                        <i class="fas fa-plus"></i> জমা রসিদ এন্ট্রি
+                        <i class="fas fa-plus"></i> জমা রসিদ ও অগ্রিম এন্ট্রি
                     </button>
                     <button type="button" onclick="openDpsEntryModal()" class="admin-only hidden px-4 py-2 bg-amber-600 hover:bg-amber-700 text-white rounded-xl text-xs font-bold shadow flex items-center gap-1.5 transition">
                         <i class="fas fa-piggy-bank"></i> ডিপিএস ফান্ড
@@ -354,7 +356,7 @@
                 </div>
             </div>
 
-            <!-- সামগ্রিক কার্ডসমূহ (আল্ট্রা-মডার্ন ডিজাইন) -->
+            <!-- সামগ্রিক কার্ডসমূহ -->
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
                 <div class="bg-gradient-to-br from-[#0c2340] to-[#1d4ed8] text-white p-5 rounded-3xl shadow-lg border border-blue-400/20 relative overflow-hidden">
                     <span class="text-xs text-blue-200 block mb-1 font-semibold"><i class="fas fa-layer-group mr-1.5"></i> মোট বিক্রিত শেয়ার</span>
@@ -383,7 +385,7 @@
                 </div>
             </div>
 
-            <!-- অফিসিয়াল খরচের বিবরণী -->
+            <!-- অফিসিয়াল খরচের বিবরণী (এডিট ও ডিলিট কলাম সহ) -->
             <div class="glass-card p-6 rounded-3xl space-y-4">
                 <div class="flex items-center justify-between border-b border-slate-100 pb-3">
                     <h4 class="font-bold text-slate-800 text-sm flex items-center gap-2">
@@ -401,11 +403,12 @@
                                 <th class="p-3.5">পরিমাণ (টাকা)</th>
                                 <th class="p-3.5">ভাউচার নং</th>
                                 <th class="p-3.5 text-center">রশিদ/প্রমাণ</th>
+                                <th class="p-3.5 text-center admin-only hidden">একশন</th>
                             </tr>
                         </thead>
                         <tbody id="expenses-table-tbody" class="divide-y divide-slate-100">
                             <tr>
-                                <td colspan="6" class="p-6 text-center text-slate-400 font-medium">কোনো খরচের রেকর্ড নেই</td>
+                                <td colspan="7" class="p-6 text-center text-slate-400 font-medium">কোনো খরচের রেকর্ড নেই</td>
                             </tr>
                         </tbody>
                     </table>
@@ -440,7 +443,7 @@
             </div>
         </section>
 
-        <!-- ================= সার্বজনীন জমা স্টেটমেন্ট সেকশন ================= -->
+        <!-- ================= সার্বজনীন জমা ও এডভান্স স্টেটমেন্ট সেকশন ================= -->
         <section id="statement-section" class="auth-only hidden space-y-6 pt-2">
             <div class="glass-card p-6 md:p-8 rounded-3xl space-y-5">
                 <div class="flex flex-wrap items-center justify-between gap-3 border-b border-slate-200 pb-4">
@@ -519,8 +522,6 @@
     <footer class="bg-[#091527] text-slate-400 py-6 text-center text-xs border-t border-slate-800 mt-12 w-full relative z-10">
         <p>© <span class="font-digit">২০২৬</span> পহরডাঙ্গা পার্টনারশিপ গ্রুপ। যাত্রা শুরু “সেপ্টেম্বর ২০২৬” থেকে। সর্বস্বত্ব সংরক্ষিত।</p>
     </footer>
-    <!-- ================= মোডালসমূহ ================= -->
-
     <!-- কাস্টম স্বয়ংক্রিয় এলার্ট / টোস্ট মোডাল -->
     <div id="custom-alert-modal" class="fixed inset-0 bg-slate-900/40 backdrop-blur-xs hidden z-[110] flex items-center justify-center p-4 transition-all duration-300">
         <div id="custom-alert-box" class="bg-white rounded-3xl max-w-xs w-full p-6 text-center shadow-2xl relative border border-emerald-500/20 toast-animate">
@@ -1246,8 +1247,9 @@
             <form id="admin-payment-form" onsubmit="handleAdminPaymentSubmit(event)" class="p-6 overflow-y-auto space-y-4 text-xs">
                 <div>
                     <label class="block font-bold text-slate-700 mb-1">এন্ট্রির ধরণ</label>
-                    <select id="entry-action-type" class="w-full border border-slate-300 p-2.5 rounded-2xl focus:ring-2 focus:ring-emerald-500 font-bold bg-slate-50 text-emerald-800 outline-none" readonly>
-                        <option value="installment" selected>সদস্যের নিয়মিত ও অগ্রিম কিস্তি জমা</option>
+                    <select id="entry-action-type" onchange="onEntryTypeChange()" class="w-full border border-slate-300 p-2.5 rounded-2xl focus:ring-2 focus:ring-emerald-500 font-bold bg-white text-emerald-800 outline-none shadow-sm">
+                        <option value="installment" selected>সদস্যের সাধারণ মাসিক কিস্তি</option>
+                        <option value="advance">সরাসরি অগ্রিম জমা (Advance Deposit)</option>
                     </select>
                 </div>
 
@@ -1484,7 +1486,57 @@
         </div>
     </div>
 
-    <!-- ১১. নতুন সদস্য যোগ করার মোডাল -->
+    <!-- ১১. খরচ ও ভাউচার এডিট মোডাল (Admin) -->
+    <div id="expense-edit-modal" class="fixed inset-0 bg-slate-900/80 backdrop-blur-sm hidden z-50 flex items-center justify-center p-3 md:p-6">
+        <div class="bg-white rounded-3xl max-w-md w-full max-h-[92vh] flex flex-col shadow-2xl border border-slate-200 overflow-hidden">
+            <div class="p-5 bg-gradient-to-r from-rose-800 to-red-900 text-white flex items-center justify-between">
+                <div>
+                    <h3 class="text-lg font-bold"><i class="fas fa-edit mr-2"></i>অফিসিয়াল খরচ ও ভাউচার সম্পাদনা</h3>
+                    <p class="text-xs text-rose-200 mt-0.5">ভাউচার নম্বর: <span id="edit-exp-voucher-display" class="font-bold">--</span></p>
+                </div>
+                <button type="button" onclick="closeModal('expense-edit-modal')" class="h-8 w-8 bg-white/10 hover:bg-white/20 rounded-full text-white text-xs transition">✕</button>
+            </div>
+            <form onsubmit="handleExpenseEditSubmit(event)" class="p-6 overflow-y-auto space-y-3.5 text-xs">
+                <input type="hidden" id="edit-exp-original-voucher">
+                <div>
+                    <label class="block font-bold text-slate-700 mb-1">তারিখ (অপরিবর্তিত থাকবে, প্রয়োজন হলে বদলান)</label>
+                    <input type="date" id="edit-exp-date" class="w-full border border-slate-300 p-2.5 rounded-2xl font-bold bg-white text-rose-800 outline-none">
+                </div>
+                <div>
+                    <label class="block font-bold text-slate-700 mb-1">খরচের খাত / নাম</label>
+                    <input type="text" id="edit-exp-head" required class="w-full border border-slate-300 p-2.5 rounded-2xl font-bold outline-none">
+                </div>
+                <div>
+                    <label class="block font-bold text-slate-700 mb-1">পরিমাণ (টাকা)</label>
+                    <input type="number" id="edit-exp-amount" required class="w-full border border-slate-300 p-2.5 rounded-2xl font-bold text-rose-600 outline-none">
+                </div>
+                <div>
+                    <label class="block font-bold text-slate-700 mb-1">খরচের বিস্তারিত বিবরণ</label>
+                    <textarea id="edit-exp-desc" rows="3" required class="w-full border border-slate-300 p-2.5 rounded-2xl text-slate-700 outline-none"></textarea>
+                </div>
+                <div>
+                    <label class="block font-bold text-slate-700 mb-1">ভাউচার নং / বিল মেমো</label>
+                    <input type="text" id="edit-exp-voucher" required class="w-full border border-slate-300 p-2.5 rounded-2xl font-mono outline-none">
+                </div>
+                <div class="bg-rose-50/80 border border-rose-200 p-3 rounded-2xl">
+                    <label class="block font-bold text-slate-800 mb-1">রশিদ বা ভাউচারের ছবি পরিবর্তন (ঐচ্ছিক)</label>
+                    <input type="file" id="edit-exp-proof-file" accept="image/*" class="w-full border border-slate-300 p-2 rounded-2xl text-xs bg-white text-slate-600">
+                    <p class="text-[10px] text-rose-800 mt-1">* নতুন ছবি না দিলে পূর্বের রসিদের ছবি বহাল থাকবে।</p>
+                </div>
+                <div class="pt-2 flex gap-2">
+                    <button type="submit" id="btn-save-edit-expense" class="flex-[2] bg-rose-600 hover:bg-rose-700 text-white font-bold py-2.5 rounded-2xl shadow transition">
+                        <i class="fas fa-save mr-1"></i> আপডেট করুন
+                    </button>
+                    <button type="button" onclick="confirmDeleteExpenseDirect()" class="flex-1 bg-slate-800 hover:bg-slate-900 text-white font-bold py-2.5 rounded-2xl shadow transition flex items-center justify-center">
+                        <i class="fas fa-trash-alt mr-1"></i> ডিলিট
+                    </button>
+                    <button type="button" onclick="closeModal('expense-edit-modal')" class="px-4 bg-slate-200 hover:bg-slate-300 text-slate-700 font-bold rounded-2xl transition">বাতিল</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- ১২. নতুন সদস্য যোগ করার মোডাল -->
     <div id="member-add-modal" class="fixed inset-0 bg-slate-900/80 backdrop-blur-sm hidden z-50 flex items-center justify-center p-3 md:p-6">
         <div class="bg-white rounded-3xl max-w-lg w-full max-h-[92vh] flex flex-col shadow-2xl border border-slate-200 overflow-hidden">
             <div class="p-5 bg-gradient-to-r from-emerald-800 to-teal-800 text-white flex items-center justify-between">
@@ -1604,7 +1656,7 @@
         </div>
     </div>
 
-    <!-- ১২. সদস্য তথ্য এডিট মোডাল (পূর্বের মূল তারিখ বজায় রেখে) -->
+    <!-- ১৩. সদস্য তথ্য এডিট মোডাল (পূর্বের মূল তারিখ বজায় রেখে) -->
     <div id="member-edit-modal" class="fixed inset-0 bg-slate-900/80 backdrop-blur-sm hidden z-50 flex items-center justify-center p-3 md:p-6">
         <div class="bg-white rounded-3xl max-w-lg w-full max-h-[92vh] flex flex-col shadow-2xl border border-slate-200 overflow-hidden">
             <div class="p-5 bg-gradient-to-r from-amber-600 to-orange-700 text-white flex items-center justify-between">
@@ -1723,7 +1775,7 @@
         </div>
     </div>
 
-    <!-- ১৩. WhatsApp নোটিশ মোডাল -->
+    <!-- ১৪. WhatsApp নোটিশ মোডাল -->
     <div id="broadcast-modal" class="fixed inset-0 bg-slate-900/80 backdrop-blur-sm hidden z-50 flex items-center justify-center p-3 md:p-6">
         <div class="bg-white rounded-3xl max-w-2xl w-full max-h-[92vh] flex flex-col shadow-2xl border border-slate-200 overflow-hidden">
             <div class="p-5 bg-gradient-to-r from-emerald-700 to-green-800 text-white flex items-center justify-between">
@@ -1890,6 +1942,7 @@
             }
         }
 
+        // বাংলা সংখ্যা ১ ও ৯ স্পষ্ট দেখার জন্য ফাংশন
         function toBanglaNum(num) {
             if (num === undefined || num === null || num === '') return '০';
             const banglaDigits = {'0':'০', '1':'১', '2':'২', '3':'৩', '4':'৪', '5':'৫', '6':'৬', '7':'৭', '8':'৮', '9':'৯'};
@@ -1937,7 +1990,7 @@
             return s;
         }
 
-        // তারিখ পার্সিং ও ডিসপ্লে ফরম্যাটার
+        // তারিখ পার্সিং ও ইনপুট ফিল্ড হ্যান্ডলিং (৩ নং নির্দেশনা: আসল তারিখ ঠিক রাখা)
         function formatBanglaDate(dateStr) {
             if (!dateStr || dateStr === '--') return '--';
             let str = dateStr.toString().trim();
@@ -2004,7 +2057,7 @@
         const START_YEAR = 2026;
         const START_MONTH_IDX = 8; // September (0-indexed: 8)
 
-        // ৪ নং নির্দেশনা মোতাবেক: মাসের আগের ক্রমিক সংখ্যা সম্পূর্ণ বাদ দেওয়া হলো
+        // ৪ নং নির্দেশনা: মাসের নামের আগে থেকে ক্রমিক সংখ্যা বাদ দেওয়া হলো
         const MONTH_NAMES = [
             "January", "February", "March", "April",
             "May", "June", "July", "August",
@@ -2076,7 +2129,6 @@
             document.getElementById('mobile-menu').classList.toggle('hidden');
         }
 
-        // মাসের নাম থেকে ইনডেক্স শনাক্তকারী স্মার্ট ফাংশন
         function normalizeMonthIndex(str, strBn) {
             const combined = ((str || '') + ' ' + (strBn || '')).toString().toLowerCase().trim();
             if (combined.includes("সেপ্টেম্বর") || combined.includes("september") || combined.includes("sep")) return 8;
@@ -2107,7 +2159,7 @@
             return -1;
         }
 
-        // ================= ৫ ও ৬ নং নির্দেশনা: এডভান্স ও স্বয়ংক্রিয় ধারাবাহিক সমন্বয় ইঞ্জিন =================
+        // ================= ৫ ও ৬ নং নির্দেশনা: এডভান্স ও স্বয়ংক্রিয় ধারাবাহিক সমন্বয় ইঞ্জিন =================
         function autoAdjustMemberMonthlyRecords(member) {
             if (!member) return;
             const shares = parseAnyNumber(member.shares) || 1;
@@ -2144,7 +2196,6 @@
             let lastTrxId = "";
             let totalActualDeposit = 0;
 
-            // সদস্যদের প্রতিটি ডিপোজিট ট্র্যাক করা ও অতিরিক্ত অর্থ পরবর্তী মাসে বণ্টন
             memberAccounts.forEach(acc => {
                 const sIdx = normalizeMonthIndex(acc.month, acc.monthBn);
                 if (sIdx === -1) return;
@@ -2171,12 +2222,11 @@
                     isOriginalEntry: true
                 };
 
-                // সূচকগুলো সিঙ্ক
                 member.monthlyRecords[sIdx] = member.monthlyRecords[MONTH_NAMES[sIdx]];
                 member.monthlyRecords[String(sIdx)] = member.monthlyRecords[MONTH_NAMES[sIdx]];
                 member.monthlyRecords[MONTH_NAMES_BN[sIdx]] = member.monthlyRecords[MONTH_NAMES[sIdx]];
 
-                // পরবর্তী মাসগুলোতে অতিরিক্ত অর্থ সমন্বয় (Auto Roll-over Engine)
+                // পরবর্তী মাসগুলোতে অতিরিক্ত অর্থ স্বয়ংক্রিয় ধারাবাহিক সমন্বয়
                 advancePool += extraPaid;
                 let targetIdx = sIdx + 1;
 
@@ -2214,6 +2264,19 @@
             if (lastPaymentTimestamp) member.lastPaymentTimestamp = lastPaymentTimestamp;
             if (lastPaymentMethod) member.lastPaymentMethod = lastPaymentMethod;
             if (lastTrxId) member.lastTrxId = lastTrxId;
+        }
+
+        // সরাসরি অগ্রিম সিলেকশন পরিবর্তন হ্যান্ডলার
+        function onEntryTypeChange() {
+            const type = document.getElementById('entry-action-type').value;
+            const penaltyBox = document.getElementById('entry-penalty').parentElement.parentElement;
+            if (type === 'advance') {
+                penaltyBox.style.display = 'none';
+                document.getElementById('entry-penalty').value = '';
+            } else {
+                penaltyBox.style.display = 'block';
+            }
+            onEntryMonthOrAmountChange();
         }
 
         function getMemberStatusInfo(member) {
@@ -2327,7 +2390,7 @@
             sessionStorage.removeItem('ppg_admin_pass');
             localStorage.removeItem('ppg_auth');
 
-            ['member-profile-modal', 'member-detail-modal', 'receipt-modal', 'members-modal', 'policy-modal', 'policy-overview-modal', 'policy-clause-modal', 'login-modal', 'admin-entry-modal', 'dps-entry-modal', 'expense-modal', 'member-add-modal', 'member-edit-modal', 'receipt-edit-modal', 'broadcast-modal', 'ios-install-modal'].forEach(closeModal);
+            ['member-profile-modal', 'member-detail-modal', 'receipt-modal', 'members-modal', 'policy-modal', 'policy-overview-modal', 'policy-clause-modal', 'login-modal', 'admin-entry-modal', 'dps-entry-modal', 'expense-modal', 'expense-edit-modal', 'member-add-modal', 'member-edit-modal', 'receipt-edit-modal', 'broadcast-modal', 'ios-install-modal'].forEach(closeModal);
 
             updateAuthUI();
         }
@@ -2397,7 +2460,7 @@
             };
         }
 
-        // লোকাল ইনস্ট্যান্ট ক্যাশিং সিস্টেম (০.০০১ সেকেন্ডে সিঙ্ক)
+        // লোকাল ইনস্ট্যান্ট ক্যাশিং সিস্টেম (০.০০১ সেকেন্ডে লোড)
         function saveSnapshotInstantly() {
             const snapshot = {
                 members: membersData,
@@ -2476,7 +2539,7 @@
 
                 const expTbody = document.getElementById('expenses-table-tbody');
                 if (expTbody) {
-                    expTbody.innerHTML = `<tr><td colspan="6" class="p-6 text-center text-slate-500 font-bold bg-slate-50/50"><i class="fas fa-lock text-amber-500 mr-2"></i>প্রতিষ্ঠানের অফিসিয়াল খরচের পূর্ণাঙ্গ বিবরণী দেখতে <button type="button" onclick="openLoginModal()" class="text-indigo-600 underline font-bold ml-1 hover:text-indigo-800">লগইন করুন</button>।</td></tr>`;
+                    expTbody.innerHTML = `<tr><td colspan="7" class="p-6 text-center text-slate-500 font-bold bg-slate-50/50"><i class="fas fa-lock text-amber-500 mr-2"></i>প্রতিষ্ঠানের অফিসিয়াল খরচের পূর্ণাঙ্গ বিবরণী দেখতে <button type="button" onclick="openLoginModal()" class="text-indigo-600 underline font-bold ml-1 hover:text-indigo-800">লগইন করুন</button>।</td></tr>`;
                 }
 
                 const dpsTbody = document.getElementById('dps-history-tbody');
@@ -2739,9 +2802,9 @@
                 <html>
                 <head>
                     <title>পহরডাঙ্গা পার্টনারশিপ গ্রুপ - জমা স্টেটমেন্ট</title>
-                    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;600;700;800&display=swap" rel="stylesheet">
+                    <link href="https://fonts.googleapis.com/css2?family=Anek+Bangla:wght@400;600;700;800&family=Noto+Sans+Bengali:wght@400;600;700;800&display=swap" rel="stylesheet">
                     <style>
-                        body { font-family: 'Noto Sans Bengali', Arial, sans-serif; padding: 20px; font-size: 11px; }
+                        body { font-family: 'Anek Bangla', 'Noto Sans Bengali', Arial, sans-serif; padding: 20px; font-size: 11px; }
                         h2, p { text-align: center; margin: 2px; }
                         table { width: 100%; border-collapse: collapse; margin-top: 15px; }
                         th, td { border: 1px solid #94a3b8; padding: 6px; text-align: left; }
@@ -3307,7 +3370,6 @@
             document.getElementById('rcp-inst-month').innerText = monthWithYear;
 
             if (selectedMember) {
-                const normMemberId = normalizeMemberId(selectedMember.id);
                 let rec = null;
 
                 if (selectedMember.monthlyRecords) {
@@ -4123,6 +4185,7 @@
             btn.innerHTML = `<i class="fas fa-check-circle mr-1"></i> খরচ সংরক্ষণ করুন`;
         }
 
+        // ২ নং নির্দেশনা: অফিসিয়াল খরচ এডিট ও ডিলিট
         function renderExpenses() {
             if (!isLoggedIn) return; 
             const tbody = document.getElementById('expenses-table-tbody');
@@ -4130,13 +4193,28 @@
             tbody.innerHTML = '';
 
             if (expensesData.length === 0) {
-                tbody.innerHTML = `<tr><td colspan="6" class="p-4 text-center text-slate-400">কোনো খরচের রেকর্ড নেই</td></tr>`;
+                tbody.innerHTML = `<tr><td colspan="7" class="p-6 text-center text-slate-400">কোনো খরচের রেকর্ড নেই</td></tr>`;
                 return;
             }
 
             expensesData.forEach(exp => {
                 const tr = document.createElement('tr');
                 tr.className = "hover:bg-slate-50";
+
+                let adminActions = '';
+                if (currentUserRole === 'admin') {
+                    adminActions = `
+                        <td class="p-3 text-center whitespace-nowrap">
+                            <button type="button" onclick="openExpenseEditModal('${exp.voucherTrx}')" class="px-2.5 py-1 bg-amber-100 hover:bg-amber-200 text-amber-900 rounded-lg text-xs font-bold mr-1">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                            <button type="button" onclick="confirmDeleteExpense('${exp.voucherTrx}')" class="px-2.5 py-1 bg-rose-100 hover:bg-rose-200 text-rose-800 rounded-lg text-xs font-bold">
+                                <i class="fas fa-trash-alt"></i>
+                            </button>
+                        </td>
+                    `;
+                }
+
                 tr.innerHTML = `
                     <td class="p-3 font-digit text-slate-500">${formatBanglaDate(exp.timestamp)}</td>
                     <td class="p-3 font-bold text-slate-800">${exp.head}</td>
@@ -4146,9 +4224,120 @@
                     <td class="p-3 text-center">
                         ${exp.proofUrl ? `<a href="${getDirectImageUrl(exp.proofUrl)}" target="_blank" class="px-2 py-1 bg-rose-50 text-rose-700 hover:bg-rose-100 rounded text-[10px] font-bold"><i class="fas fa-image mr-1"></i>রশিদ</a>` : '<span class="text-slate-400">--</span>'}
                     </td>
+                    ${adminActions}
                 `;
                 tbody.appendChild(tr);
             });
+        }
+
+        function openExpenseEditModal(voucherNo) {
+            if (currentUserRole !== 'admin') return;
+            const exp = expensesData.find(e => e.voucherTrx === voucherNo);
+            if (!exp) return;
+
+            document.getElementById('edit-exp-original-voucher').value = exp.voucherTrx;
+            document.getElementById('edit-exp-voucher-display').innerText = exp.voucherTrx;
+            document.getElementById('edit-exp-date').value = convertToInputDateFormat(exp.timestamp);
+            document.getElementById('edit-exp-head').value = exp.head;
+            document.getElementById('edit-exp-amount').value = exp.amount;
+            document.getElementById('edit-exp-desc').value = exp.description;
+            document.getElementById('edit-exp-voucher').value = exp.voucherTrx;
+            document.getElementById('edit-exp-proof-file').value = '';
+
+            document.getElementById('expense-edit-modal').classList.remove('hidden');
+        }
+
+        async function handleExpenseEditSubmit(e) {
+            if (e) e.preventDefault();
+            if (currentUserRole !== 'admin') return;
+
+            const origVoucher = document.getElementById('edit-exp-original-voucher').value;
+            const newDate = document.getElementById('edit-exp-date').value;
+            const newHead = document.getElementById('edit-exp-head').value.trim();
+            const newAmount = parseFloat(document.getElementById('edit-exp-amount').value) || 0;
+            const newDesc = document.getElementById('edit-exp-desc').value.trim();
+            const newVoucher = document.getElementById('edit-exp-voucher').value.trim();
+            const proofFile = document.getElementById('edit-exp-proof-file');
+
+            const exp = expensesData.find(x => x.voucherTrx === origVoucher);
+            if (!exp) return;
+
+            const updatedIso = newDate ? new Date(newDate + "T12:00:00").toISOString() : exp.timestamp;
+
+            let imageBase64 = "";
+            let localUrl = exp.proofUrl;
+            if (proofFile.files && proofFile.files[0]) {
+                localUrl = URL.createObjectURL(proofFile.files[0]);
+                imageBase64 = await compressImage(proofFile.files[0]);
+            }
+
+            exp.timestamp = updatedIso;
+            exp.head = newHead;
+            exp.amount = newAmount;
+            exp.description = newDesc;
+            exp.voucherTrx = newVoucher;
+            exp.proofUrl = localUrl;
+
+            saveSnapshotInstantly();
+            updateAuthUI();
+
+            const btn = document.getElementById('btn-save-edit-expense');
+            btn.disabled = true;
+            btn.innerHTML = `<i class="fas fa-spinner fa-spin mr-1"></i> সেভ হচ্ছে...`;
+
+            fetch(API_URL, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    adminPass: sessionStorage.getItem('ppg_admin_pass'),
+                    actionType: "edit_expense",
+                    originalVoucher: origVoucher,
+                    imageBase64: imageBase64,
+                    expenseData: {
+                        head: newHead,
+                        amount: newAmount,
+                        description: newDesc,
+                        voucherTrx: newVoucher,
+                        customTimestamp: newDate ? newDate + " 12:00:00" : ""
+                    }
+                })
+            });
+
+            alert("অফিসিয়াল খরচ ও ভাউচার তথ্য সফলভাবে আপডেট হয়েছে!");
+            btn.disabled = false;
+            btn.innerHTML = `<i class="fas fa-save mr-1"></i> আপডেট করুন`;
+            closeModal('expense-edit-modal');
+        }
+
+        function confirmDeleteExpenseDirect() {
+            const voucher = document.getElementById('edit-exp-original-voucher').value;
+            confirmDeleteExpense(voucher);
+            closeModal('expense-edit-modal');
+        }
+
+        function confirmDeleteExpense(voucherNo) {
+            if (currentUserRole !== 'admin') return;
+            if (!confirm(`আপনি কি নিশ্চিতভাবে ভাউচার নং ${voucherNo} এর খরচ রেকর্ডটি মুছে ফেলতে চান?`)) return;
+
+            const idx = expensesData.findIndex(e => e.voucherTrx === voucherNo);
+            if (idx !== -1) {
+                expensesData.splice(idx, 1);
+            }
+
+            saveSnapshotInstantly();
+            updateAuthUI();
+
+            fetch(API_URL, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    adminPass: sessionStorage.getItem('ppg_admin_pass'),
+                    actionType: "delete_expense",
+                    voucherTrx: voucherNo
+                })
+            });
+
+            alert("খরচের রেকর্ড মুছে ফেলা হয়েছে!");
         }
 
         function renderDpsHistory() {
@@ -4474,7 +4663,6 @@
         async function syncDataFromGoogleSheet() {
             if (!API_URL) return;
 
-            // মেমোরি / লোকালস্টোরেজ থেকে ০.০০১ সেকেন্ডে ইনস্ট্যান্ট রেন্ডার
             try {
                 const cached = localStorage.getItem('ppg_cached_data_v3');
                 if (cached) {
@@ -4485,7 +4673,6 @@
                 }
             } catch (e) {}
 
-            // ব্যাকগ্রাউন্ডে নন-ব্লকিং প্যারালাল ফেচ
             let liveData = null;
             try {
                 const controller = new AbortController();
