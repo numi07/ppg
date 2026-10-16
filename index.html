@@ -43,7 +43,7 @@
             -webkit-overflow-scrolling: touch;
             color: #0f172a;
         }
-        /* ৩ নং নির্দেশনা: ১ ও ৯ স্পষ্টভাবে পড়ার জন্য Tiro Bangla ও Anek Bangla ফন্ট টিউনিং */
+        /* ১ ও ৯ স্পষ্টভাবে পড়ার জন্য Tiro Bangla ও Anek Bangla ফন্ট টিউনিং */
         .font-digit, .bn-number, .digit-clear {
             font-family: 'Tiro Bangla', 'Anek Bangla', 'Noto Sans Bengali', Arial, sans-serif !important;
             font-weight: 700 !important;
@@ -253,9 +253,7 @@
             <button type="button" onclick="openMembersModal(); toggleMobileMenu();" class="block text-slate-200 font-semibold py-1.5 px-2 rounded-lg hover:bg-white/5 text-left w-full">সদস্য তালিকা</button>
             <button type="button" onclick="openPolicyModal(); toggleMobileMenu();" class="block text-slate-200 font-semibold py-1.5 px-2 rounded-lg hover:bg-white/5 text-left w-full">নীতিমালা</button>
             <div id="mobile-auth-btn" class="pt-2">
-                <button type="button" onclick="openLoginModal(); toggleMobileMenu();" class="w-full bg-emerald-500 text-slate-950 py-2.5 rounded-xl font-bold flex items-center justify-center gap-2 shadow">
-                    <i class="fas fa-lock"></i> লগইন
-                </button>
+                <button type="button" onclick="openLoginModal(); toggleMobileMenu();" class="w-full bg-emerald-500 text-slate-950 py-2.5 rounded-xl font-bold transition"><i class="fas fa-lock"></i> লগইন</button>
             </div>
         </div>
     </header>
@@ -341,8 +339,8 @@
                 </div>
             </div>
 
-            <!-- ৩ ও ৫ নং নির্দেশনা: ১ ও ৯ স্পষ্ট ফন্ট এবং কোষাধ্যক্ষ ক্যাশ সহ ৬টি সামগ্রিক কার্ড -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-4">
+            <!-- ২ ও ৩ নং নির্দেশনা: ১ ও ৯ স্পষ্ট ফন্ট এবং ব্যাংক + কোষাধ্যক্ষ ক্যাশ যোগফল সহ কার্ডসমূহ -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-7 gap-4">
                 <!-- ১. বিক্রিত শেয়ার -->
                 <div class="bg-gradient-to-br from-[#0c2340] to-[#1d4ed8] text-white p-5 rounded-3xl shadow-lg border border-blue-400/20 relative overflow-hidden">
                     <span class="text-xs text-blue-200 block mb-1 font-semibold"><i class="fas fa-layer-group mr-1.5"></i> মোট বিক্রিত শেয়ার</span>
@@ -378,11 +376,18 @@
                     <span class="text-[11px] text-amber-200 block mt-2 font-medium card-subtext" id="total-dps-sub">(ব্যাংক থেকে স্থানান্তরিত সঞ্চয়)</span>
                 </div>
 
-                <!-- ৬. কোষাধ্যক্ষের কাছে ক্যাশ (নতুন ৫ নং নির্দেশনা) -->
+                <!-- ৬. কোষাধ্যক্ষের কাছে ক্যাশ -->
                 <div class="bg-gradient-to-br from-[#581c87] to-[#7e22ce] text-white p-5 rounded-3xl shadow-lg border border-purple-400/20 relative overflow-hidden">
                     <span class="text-xs text-purple-200 block mb-1 font-semibold"><i class="fas fa-wallet mr-1.5"></i> কোষাধ্যক্ষের কাছে ক্যাশ</span>
                     <h4 class="text-2xl font-black font-digit" id="total-cash-in-hand">৳ ০</h4>
                     <span class="text-[11px] text-purple-200 block mt-2 font-medium card-subtext" id="total-cash-sub">(ব্যাংকে জমার পূর্বে নগদ স্থিতি)</span>
+                </div>
+
+                <!-- ৭. নতুন ২ নং নির্দেশনা: ব্যাংক ও কোষাধ্যক্ষের ক্যাশের মোট যোগফল কার্ড -->
+                <div class="bg-gradient-to-br from-[#0f172a] via-[#1e293b] to-[#334155] text-white p-5 rounded-3xl shadow-xl border-2 border-emerald-400/50 relative overflow-hidden ring-2 ring-emerald-400/20">
+                    <span class="text-xs text-emerald-300 block mb-1 font-bold"><i class="fas fa-coins mr-1.5 text-amber-400"></i> মোট নগদ ও ব্যাংক স্থিতি</span>
+                    <h4 class="text-2xl font-black font-digit text-emerald-300" id="total-liquid-balance">৳ ০</h4>
+                    <span class="text-[11px] text-slate-300 block mt-2 font-medium card-subtext" id="total-liquid-sub">(ব্যাংক স্থিতি + কোষাধ্যক্ষের ক্যাশ)</span>
                 </div>
             </div>
 
@@ -416,7 +421,7 @@
                 </div>
             </div>
 
-            <!-- ২ নং নির্দেশনা: প্রাতিষ্ঠানিক ডিপিএস ও ব্যাংক বিবরণী (সিটি ব্যাংক ও TrxID স্পষ্ট প্রদর্শন) -->
+            <!-- প্রাতিষ্ঠানিক ডিপিএস ও ব্যাংক বিবরণী (সিটি ব্যাংক ও TrxID স্পষ্ট প্রদর্শন) -->
             <div class="glass-card p-6 rounded-3xl space-y-4">
                 <h4 class="font-bold text-slate-800 text-sm border-b border-slate-100 pb-3 flex items-center justify-between">
                     <span><i class="fas fa-vault text-amber-600 mr-2"></i> প্রাতিষ্ঠানিক ডিপিএস ও ব্যাংক তহবিল বিবরণী</span>
@@ -444,7 +449,7 @@
                 </div>
             </div>
 
-            <!-- ৫ নং নির্দেশনা: কোষাধ্যক্ষ / ক্যাশ-ইন-হ্যান্ড রেজিস্টার ও ব্যাংক ডিপোজিট টেবিল -->
+            <!-- কোষাধ্যক্ষ / ক্যাশ-ইন-হ্যান্ড রেজিস্টার ও ব্যাংক ডিপোজিট টেবিল -->
             <div class="glass-card p-6 rounded-3xl space-y-4">
                 <div class="flex items-center justify-between border-b border-slate-100 pb-3">
                     <h4 class="font-bold text-slate-800 text-sm flex items-center gap-2">
@@ -562,7 +567,7 @@
     <footer class="bg-[#091527] text-slate-400 py-6 text-center text-xs border-t border-slate-800 mt-12 w-full relative z-10">
         <p>© <span class="font-digit">২০২৬</span> পহরডাঙ্গা পার্টনারশিপ গ্রুপ। যাত্রা শুরু “সেপ্টেম্বর ২০২৬” থেকে। সর্বস্বত্ব সংরক্ষিত।</p>
     </footer>
-     <!-- কাস্টম স্বয়ংক্রিয় এলার্ট / টোস্ট মোডাল -->
+    <!-- কাস্টম স্বয়ংক্রিয় এলার্ট / টোস্ট মোডাল -->
     <div id="custom-alert-modal" class="fixed inset-0 bg-slate-900/40 backdrop-blur-xs hidden z-[110] flex items-center justify-center p-4 transition-all duration-300">
         <div id="custom-alert-box" class="bg-white rounded-3xl max-w-xs w-full p-6 text-center shadow-2xl relative border border-emerald-500/20 toast-animate">
             <div class="w-14 h-14 bg-emerald-100 rounded-full flex items-center justify-center mx-auto mb-3 text-emerald-600 text-2xl shadow-inner">
@@ -738,7 +743,7 @@
                         </div>
                     </div>
 
-                    <!-- ৩ নং নির্দেশনা: ১ ও ৯ স্পষ্ট ফন্টে শেয়ার সংখ্যা ও মূল্য -->
+                    <!-- ১ ও ৯ স্পষ্ট ফন্টে শেয়ার সংখ্যা ও মূল্য -->
                     <div class="grid grid-cols-2 gap-3 mb-5">
                         <div class="bg-[#112238]/90 backdrop-blur-sm border border-[#1e3a5f] rounded-2xl p-3 flex items-center space-x-3">
                             <div class="w-10 h-10 rounded-xl bg-emerald-900/50 flex items-center justify-center border border-emerald-500/30 text-emerald-400">
@@ -796,7 +801,7 @@
                     <span id="md-status-subtext" class="text-[11px] font-normal">--</span>
                 </div>
 
-                <!-- ৩ নং নির্দেশনা: ১ ও ৯ স্পষ্ট ফন্ট -->
+                <!-- ১ ও ৯ স্পষ্ট ফন্ট -->
                 <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs">
                     <div class="bg-slate-50 p-3.5 rounded-2xl border border-slate-200">
                         <span class="text-slate-400 block mb-1">যোগদানের তারিখ</span>
@@ -1268,7 +1273,7 @@
         </div>
     </div>
 
-    <!-- ৭. এডমিন ট্রানজেকশন এন্ট্রি মোডাল (৪ নং নির্দেশনা: ফটো আপলোডে মাস রিসেট হবে না) -->
+    <!-- ৭. এডমিন ট্রানজেকশন এন্ট্রি মোডাল (ফটো আপলোডে মাস রিসেট হবে না) -->
     <div id="admin-entry-modal" class="fixed inset-0 bg-slate-900/80 backdrop-blur-sm hidden z-50 flex items-center justify-center p-3 md:p-6">
         <div class="bg-white rounded-3xl max-w-xl w-full max-h-[92vh] flex flex-col shadow-2xl border border-slate-200 overflow-hidden">
             <div class="p-5 bg-gradient-to-r from-emerald-800 to-teal-800 text-white flex items-center justify-between">
@@ -1480,7 +1485,7 @@
         </div>
     </div>
 
-    <!-- ১০. কোষাধ্যক্ষ / ব্যক্তির কাছে ক্যাশ ও ব্যাংক জমা এন্ট্রি মোডাল (নতুন ৫ নং নির্দেশনা) -->
+    <!-- ১০. কোষাধ্যক্ষ / ব্যক্তির কাছে ক্যাশ ও ব্যাংক জমা এন্ট্রি মোডাল -->
     <div id="cash-entry-modal" class="fixed inset-0 bg-slate-900/80 backdrop-blur-sm hidden z-50 flex items-center justify-center p-3 md:p-6">
         <div class="bg-white rounded-3xl max-w-xl w-full max-h-[92vh] flex flex-col shadow-2xl border border-slate-200 overflow-hidden">
             <div class="p-5 bg-gradient-to-r from-purple-800 to-indigo-900 text-white flex items-center justify-between">
@@ -1549,7 +1554,7 @@
         </div>
     </div>
 
-    <!-- ১১. ক্যাশ ও ব্যাংক জমা এডিট মোডাল (নতুন ৫ নং নির্দেশনা) -->
+    <!-- ১১. ক্যাশ ও ব্যাংক জমা এডিট মোডাল -->
     <div id="cash-edit-modal" class="fixed inset-0 bg-slate-900/80 backdrop-blur-sm hidden z-50 flex items-center justify-center p-3 md:p-6">
         <div class="bg-white rounded-3xl max-w-xl w-full max-h-[92vh] flex flex-col shadow-2xl border border-slate-200 overflow-hidden">
             <div class="p-5 bg-gradient-to-r from-purple-800 to-indigo-900 text-white flex items-center justify-between">
@@ -1776,7 +1781,7 @@
         </div>
     </div>
 
-    <!-- ১৫. নতুন সদস্য যোগ করার মোডাল (৪ নং নির্দেশনা: ফটো সিলেকশনে মাস অপরিবর্তিত রাখা) -->
+    <!-- ১৫. নতুন সদস্য যোগ করার মোডাল (ফটো সিলেকশনে মাস অপরিবর্তিত রাখা) -->
     <div id="member-add-modal" class="fixed inset-0 bg-slate-900/80 backdrop-blur-sm hidden z-50 flex items-center justify-center p-3 md:p-6">
         <div class="bg-white rounded-3xl max-w-lg w-full max-h-[92vh] flex flex-col shadow-2xl border border-slate-200 overflow-hidden">
             <div class="p-5 bg-gradient-to-r from-emerald-800 to-teal-800 text-white flex items-center justify-between">
@@ -2090,7 +2095,7 @@
             </div>
         </div>
     </div>
-    <!-- জাভাস্ক্রিপ্ট কোড (সুপার ফাস্ট রিয়েল-টাইম ০.০০১ সেকেন্ড সিঙ্ক, সার্বজনীন স্টেটমেন্ট, অটো অ্যাডজাস্টমেন্ট ও পলিসি ইঞ্জিন) -->
+     <!-- জাভাস্ক্রিপ্ট কোড (সুপার ফাস্ট রিয়েল-টাইম ০.০০১ সেকেন্ড সিঙ্ক, সার্বজনীন স্টেটমেন্ট, অটো অ্যাডজাস্টমেন্ট ও পলিসি ইঞ্জিন) -->
     <script>
         // Vercel API Link বা Google Apps Script Link
         const API_URL = "/api/Accounts";
@@ -2182,7 +2187,7 @@
             }
         }
 
-        // ৩ নং নির্দেশনা: বাংলা সংখ্যা ১ ও ৯ স্পষ্ট দেখার জন্য নির্ভুল ম্যাপিং
+        // বাংলা সংখ্যা ১ ও ৯ স্পষ্ট দেখার জন্য নির্ভুল ম্যাপিং
         function toBanglaNum(num) {
             if (num === undefined || num === null || num === '') return '০';
             const banglaDigits = {'0':'০', '1':'১', '2':'২', '3':'৩', '4':'৪', '5':'৫', '6':'৬', '7':'৭', '8':'৮', '9':'৯'};
@@ -2312,7 +2317,7 @@
         let accountsData = [];
         let dpsData = [];
         let expensesData = [];
-        let cashData = []; // ৫ নং নির্দেশনা: কোষাধ্যক্ষ ক্যাশ ইন-হ্যান্ড
+        let cashData = []; // কোষাধ্যক্ষ ক্যাশ ইন-হ্যান্ড
         let proofsData = [];
         let policyData = [];
 
@@ -2326,13 +2331,13 @@
         let totalDpsGlobal = 0;
         let totalRemainingBankGlobal = 0;
         let totalCashInHandGlobal = 0;
+        let totalLiquidBalanceGlobal = 0; // ২ নং নির্দেশনা: ব্যাংক + ক্যাশের মোট যোগফল
 
         let isLoggedIn = false;
         let currentUserRole = null;
         let loggedInMemberId = null;
         let selectedMember = null;
         let selectedReceiptMonth = MONTH_NAMES[new Date().getMonth()]; 
-        let selectorsInitialized = false;
 
         let inactivityTime = function () {
             let time;
@@ -2400,7 +2405,7 @@
             return -1;
         }
 
-        // ================= ১ নং নির্দেশনা: অগ্রিম টাকা এবং ধারাবাহিক অটো সমন্বয় অ্যালগরিদম =================
+        // ================= ১ নং নির্দেশনা: অগ্রিম টাকা এবং বর্তমান মাস সাপেক্ষে ধারাবাহিক অটো সমন্বয় অ্যালগরিদম =================
         function autoAdjustMemberMonthlyRecords(member) {
             if (!member) return;
             const shares = parseAnyNumber(member.shares) || 1;
@@ -2418,12 +2423,11 @@
             memberAccounts.sort((a, b) => new Date(a.timestamp || 0) - new Date(b.timestamp || 0));
 
             let totalActualDeposit = 0;
-            let advancePool = 0;
             let lastPaymentTimestamp = "";
             let lastPaymentMethod = "";
             let lastTrxId = "";
 
-            // ১ম ধাপ: প্রত্যক্ষ ট্রানজেকশন পোস্টিং ও অগ্রিম সনাক্তকরণ
+            // ১ম ধাপ: প্রত্যক্ষ ট্রানজেকশন পোস্টিং
             memberAccounts.forEach(acc => {
                 const sIdx = normalizeMonthIndex(acc.month, acc.monthBn);
                 if (sIdx === -1) return;
@@ -2458,21 +2462,33 @@
                     member.monthlyRecords[sIdx] = recObj;
                     member.monthlyRecords[String(sIdx)] = recObj;
                     member.monthlyRecords[MONTH_NAMES_BN[sIdx]] = recObj;
-
-                    advancePool += extra;
                 } else {
                     existing.actualDeposit = (existing.actualDeposit || existing.amount) + paidAmount;
                     existing.advanceAmount = (existing.advanceAmount || 0) + paidAmount;
-                    advancePool += paidAmount;
                 }
             });
 
-            // ২য় ধাপ: অগ্রিম পুল থেকে ভবিষ্যৎ মাসসমূহে স্বয়ংক্রিয় ধারাবাহিক সমন্বয় (১০,০০০ টাকা দিলে পরবর্তী ১০ মাস কভার হবে)
-            let currentMonthIdx = new Date().getMonth();
-            let maxTimelineMonth = Math.max(currentMonthIdx, 11) + 24; // পরবর্তী ২ বছর পর্যন্ত
+            // ২য় ধাপ: বর্তমান মাস পর্যন্ত কিস্তি সমন্বয় এবং অবশিষ্ট অগ্রিম হিসাব
+            // এখন অক্টোবর মাস (Index: 9) হলে শুধুমাত্র অক্টোবর পর্যন্ত কিস্তি কাটা হবে, ভবিষ্যৎ মাসের কিস্তি এখনও অগ্রিমেই বহাল থাকবে
+            const currentMonthIdx = new Date().getMonth();
 
-            for (let targetIdx = START_MONTH_IDX; targetIdx <= maxTimelineMonth; targetIdx++) {
-                if (advancePool < requiredPerMonth) break;
+            let totalConsumedUpToCurrentMonth = 0;
+            for (let m = START_MONTH_IDX; m <= currentMonthIdx; m++) {
+                const stdMonth = MONTH_NAMES[m];
+                if (member.monthlyRecords[stdMonth] && member.monthlyRecords[stdMonth].paid) {
+                    totalConsumedUpToCurrentMonth += member.monthlyRecords[stdMonth].amount;
+                }
+            }
+
+            // বর্তমান মাসের অগ্রিম জমা স্থিতি (যেমন: ১০০০০ টাকা জমা থাকলে এবং অক্টোবর কভার হলে পুরো বাকিটাই থাকবে)
+            const currentAdvanceBalance = Math.max(0, totalActualDeposit - totalConsumedUpToCurrentMonth);
+
+            // ভবিষ্যৎ মাসসমূহে অগ্রিম প্রি-অ্যালোকেশন (নভেম্বর আসলে স্বয়ংক্রিয় ১০০০ কেটে ৯০০০ দেখাবে)
+            let futurePool = currentAdvanceBalance;
+            let maxTimelineMonth = Math.max(currentMonthIdx, 11) + 24;
+
+            for (let targetIdx = currentMonthIdx + 1; targetIdx <= maxTimelineMonth; targetIdx++) {
+                if (futurePool < requiredPerMonth) break;
 
                 const modIdx = targetIdx % 12;
                 const targetMonthName = MONTH_NAMES[modIdx];
@@ -2488,7 +2504,8 @@
                         trxId: `${lastTrxId || 'ADV'}-AUTO`,
                         proofUrl: '',
                         timestamp: lastPaymentTimestamp,
-                        isAutoAdjusted: true
+                        isAutoAdjusted: true,
+                        isFutureAllocated: true
                     };
 
                     member.monthlyRecords[targetMonthName] = adjRec;
@@ -2496,12 +2513,12 @@
                     member.monthlyRecords[String(modIdx)] = adjRec;
                     member.monthlyRecords[MONTH_NAMES_BN[modIdx]] = adjRec;
 
-                    advancePool -= requiredPerMonth;
+                    futurePool -= requiredPerMonth;
                 }
             }
 
             member.totalDeposit = totalActualDeposit;
-            member.remainingAdvance = advancePool;
+            member.remainingAdvance = currentAdvanceBalance; // বর্তমান মাসে দৃশ্যমান অগ্রিম স্থিতি
             if (lastPaymentTimestamp) member.lastPaymentTimestamp = lastPaymentTimestamp;
             if (lastPaymentMethod) member.lastPaymentMethod = lastPaymentMethod;
             if (lastTrxId) member.lastTrxId = lastTrxId;
@@ -2646,7 +2663,7 @@
             } catch (e) {}
         }
 
-        // ৩ ও ৫ নং নির্দেশনা: ১ ও ৯ স্পষ্ট ফন্ট এবং ক্যাশ-ইন-হ্যান্ড সহ সম্পূর্ণ আর্থিক পুনর্গণনা
+        // ২ নং নির্দেশনা: ব্যাংক ও কোষাধ্যক্ষ ক্যাশের মোট যোগফল সহ সম্পূর্ণ আর্থিক পুনর্গণনা
         function recalculateAllFinancials() {
             totalSharesGlobal = 0;
             totalMemberFeeGlobal = 0;
@@ -2656,6 +2673,7 @@
             totalExpenseGlobal = 0;
             totalDpsGlobal = 0;
             totalCashInHandGlobal = 0;
+            totalLiquidBalanceGlobal = 0;
 
             membersData.forEach(m => {
                 totalSharesGlobal += (parseAnyNumber(m.shares) || 1);
@@ -2684,7 +2702,7 @@
                 totalDpsGlobal += parseAnyNumber(d.dpsAmount);
             });
 
-            // ৫ নং নির্দেশনা: কোষাধ্যক্ষের কাছে অবশিষ্ট ক্যাশ হিসাব
+            // কোষাধ্যক্ষের কাছে অবশিষ্ট ক্যাশ হিসাব
             cashData.forEach(c => {
                 totalCashInHandGlobal += parseAnyNumber(c.remainingCash || 0);
             });
@@ -2692,6 +2710,9 @@
             totalFundGlobal = totalInstallmentsGlobal + totalMemberFeeGlobal + totalPenaltyGlobal;
             const netBalance = Math.max(0, totalFundGlobal - totalExpenseGlobal);
             totalRemainingBankGlobal = Math.max(0, netBalance - totalDpsGlobal);
+
+            // ২ নং নির্দেশনা: ব্যাংক স্থিতি + কোষাধ্যক্ষের ক্যাশের মোট যোগফল
+            totalLiquidBalanceGlobal = totalRemainingBankGlobal + totalCashInHandGlobal;
 
             return {
                 netBalance: netBalance,
@@ -2704,7 +2725,8 @@
                 totalExpense: totalExpenseGlobal,
                 totalDps: totalDpsGlobal,
                 remainingBank: totalRemainingBankGlobal,
-                totalCashInHand: totalCashInHandGlobal
+                totalCashInHand: totalCashInHandGlobal,
+                totalLiquidBalance: totalLiquidBalanceGlobal
             };
         }
 
@@ -2734,7 +2756,7 @@
             }
         });
 
-        // ৩ নং নির্দেশনা: ড্যাশবোর্ডে ১ ও ৯ সংখ্যা স্পষ্ট ফন্ট প্রদর্শন
+        // ২ ও ৩ নং নির্দেশনা: ড্যাশবোর্ডে ব্যাংক + ক্যাশের মোট যোগফল ও ১ ও ৯ সংখ্যা স্পষ্ট প্রদর্শন
         function updateAuthUI() {
             const authElements = document.querySelectorAll('.auth-only');
             const adminElements = document.querySelectorAll('.admin-only');
@@ -2775,6 +2797,13 @@
                 const cashSub = document.getElementById('total-cash-sub');
                 if (cashSub) cashSub.innerText = `(ব্যাংকে জমার পূর্বে নগদ স্থিতি)`;
 
+                // ২ নং নির্দেশনা: ব্যাংক ও ক্যাশের মোট যোগফল ডিসপ্লে
+                const liquidCard = document.getElementById('total-liquid-balance');
+                if (liquidCard) liquidCard.innerText = `৳ ${formatBnCurrency(fin.totalLiquidBalance)}`;
+                
+                const liquidSub = document.getElementById('total-liquid-sub');
+                if (liquidSub) liquidSub.innerText = `(ব্যাংক: ৳ ${formatBnCurrency(fin.remainingBank)} + ক্যাশ: ৳ ${formatBnCurrency(fin.totalCashInHand)})`;
+
                 renderDpsHistory();
                 renderCashHistory();
                 renderExpenses();
@@ -2795,6 +2824,9 @@
 
                 const cashCard = document.getElementById('total-cash-in-hand');
                 if (cashCard) cashCard.innerHTML = `<span class="text-sm text-purple-200 cursor-pointer hover:underline" onclick="openLoginModal()"><i class="fas fa-lock mr-1.5"></i>লগইন প্রয়োজন</span>`;
+
+                const liquidCard = document.getElementById('total-liquid-balance');
+                if (liquidCard) liquidCard.innerHTML = `<span class="text-sm text-emerald-300 cursor-pointer hover:underline" onclick="openLoginModal()"><i class="fas fa-lock mr-1.5"></i>লগইন প্রয়োজন</span>`;
 
                 const expTbody = document.getElementById('expenses-table-tbody');
                 if (expTbody) {
@@ -2868,7 +2900,7 @@
             return timeline;
         }
 
-        // ১ নং নির্দেশনা: সার্বজনীন জমা ও অগ্রিম সমন্বয় স্টেটমেন্ট রেন্ডারিং
+        // ১ নং নির্দেশনা: এডভান্স স্টেটমেন্টে অগ্রিম জমার স্থিতি ও সমন্বয় নিখুঁত প্রদর্শন
         function renderUniversalStatement() {
             if (!isLoggedIn) return;
 
@@ -2902,7 +2934,7 @@
 
             headHtml += `
                     <th class="p-3.5 text-right bg-emerald-100 text-emerald-900">মোট সঞ্চয়</th>
-                    <th class="p-3.5 text-right bg-blue-100 text-blue-900">অগ্রিম জমা স্থিতি</th>
+                    <th class="p-3.5 text-right bg-blue-100 text-blue-900 font-black">অগ্রিম জমা স্থিতি</th>
                     <th class="p-3.5 text-right bg-rose-100 text-rose-900">মোট বকেয়া</th>
                     <th class="p-3.5 text-center bg-slate-100">স্ট্যাটাস</th>
                 </tr>
@@ -3009,9 +3041,10 @@
 
                 const statusInfo = getMemberStatusInfo(m);
 
+                // ১ নং নির্দেশনা: অগ্রিম জমা স্থিতি কলামে অবশিষ্ট ব্যালেন্স স্পষ্ট দেখানো
                 rowHtml += `
                         <td class="p-2.5 text-right font-digit font-bold text-emerald-700 bg-emerald-50/40">৳ ${formatBnCurrency(memberTotalPaid)}</td>
-                        <td class="p-2.5 text-right font-digit font-bold text-blue-700 bg-blue-50/40">৳ ${formatBnCurrency(m.remainingAdvance || 0)}</td>
+                        <td class="p-2.5 text-right font-digit font-black text-blue-700 bg-blue-100/50">৳ ${formatBnCurrency(m.remainingAdvance || 0)}</td>
                         <td class="p-2.5 text-right font-digit font-bold text-rose-600 bg-rose-50/40">৳ ${formatBnCurrency(memberTotalDue)}</td>
                         <td class="p-2.5 text-center">
                             <span class="px-2.5 py-0.5 rounded-full text-[10px] font-bold ${statusInfo.badge}">${statusInfo.label}</span>
@@ -3545,11 +3578,11 @@
                     <td class="p-2.5 font-bold text-slate-800">${bnName} ২০২৬</td>
                     <td class="p-2.5 font-digit font-bold ${isPaid ? (isAdvance ? 'text-blue-700' : 'text-emerald-700') : 'text-slate-400'}">
                         ${isPaid ? '৳ ' + formatBnCurrency(rec.amount) : '৳ ০'}
-                        ${rec && rec.penalty > 0 ? `<br><span class="text-[10px] text-rose-600">(জরিমানা: ৳${formatBnCurrency(rec.penalty)})</span>` : ''}
-                        ${rec && rec.advanceAmount > 0 ? `<br><span class="text-[10px] text-blue-600 font-bold">(অগ্রিম জমা: ৳${formatBnCurrency(rec.advanceAmount)})</span>` : ''}
+                        ${rec && rec.penalty > 0 ? `<br><span class="text-[10px] text-rose-600 font-bold">(জরিমানা: ৳${formatBnCurrency(rec.penalty)})</span>` : ''}
+                        ${rec && rec.advanceAmount > 0 ? `<br><span class="text-[10px] text-blue-600 font-black">(অগ্রিম জমা: ৳${formatBnCurrency(rec.advanceAmount)})</span>` : ''}
                     </td>
                     <td class="p-2.5 text-slate-600 font-digit">
-                        ${isPaid ? `${rec.method} <br><span class="font-mono text-[10px] text-indigo-600">${rec.trxId}</span>` : '--'}
+                        ${isPaid ? `${rec.method} <br><span class="font-mono text-[10px] text-indigo-600 font-bold">${rec.trxId}</span>` : '--'}
                     </td>
                     <td class="p-2.5">
                         <span class="${isPaid ? (isAdvance ? 'bg-blue-100 text-blue-800 border border-blue-300' : 'bg-emerald-100 text-emerald-800') : 'bg-rose-100 text-rose-800'} px-2 py-0.5 rounded text-[10px] font-bold">
@@ -3588,7 +3621,7 @@
             openReceiptModal();
         }
 
-        // ৪ নং নির্দেশনা: মাস সিলেক্টর পপুলেট ও পূর্বনির্বাচিত ভ্যালু অক্ষুণ্ন রাখা
+        // মাস সিলেক্টর পপুলেট ও পূর্বনির্বাচিত ভ্যালু অক্ষুণ্ন রাখা (ফটো আপলোডে জানুয়ারীতে রিসেট হবে না)
         function initMonthSelectors() {
             const entryMonth = document.getElementById('entry-month');
             const entryDpsMonth = document.getElementById('entry-dps-month');
@@ -3879,11 +3912,11 @@
                 tr.innerHTML = `
                     <td class="p-2.5">
                         <div class="font-bold text-slate-800">${m.name}</div>
-                        <div class="text-[10px] text-indigo-600 font-digit">${m.id}</div>
+                        <div class="text-[10px] text-indigo-600 font-digit font-bold">${m.id}</div>
                     </td>
                     <td class="p-2.5 font-digit font-bold">${toBanglaNum(m.shares)} টি</td>
-                    <td class="p-2.5 font-digit">৳ ${formatBnCurrency(baseInst)}</td>
-                    <td class="p-2.5 font-digit text-rose-600 font-bold">৳ ${formatBnCurrency(penalty)}</td>
+                    <td class="p-2.5 font-digit font-bold">৳ ${formatBnCurrency(baseInst)}</td>
+                    <td class="p-2.5 font-digit text-rose-600 font-black">৳ ${formatBnCurrency(penalty)}</td>
                     <td class="p-2.5 font-digit text-emerald-700 font-black">৳ ${formatBnCurrency(totalDue)}</td>
                     <td class="p-2.5 text-center">
                         <button type="button" onclick="sendDueSmsSingle('${m.id}')" class="bg-emerald-500 hover:bg-emerald-600 text-slate-950 font-bold px-2.5 py-1 rounded-lg text-[10px] flex items-center justify-center gap-1 mx-auto shadow">
@@ -4084,7 +4117,7 @@
             document.getElementById('edit-dps-bank-remaining').value = remaining;
         }
 
-        // ================= ৫ নং নির্দেশনা: কোষাধ্যক্ষ ক্যাশ ইন-হ্যান্ড ফাংশনস =================
+        // কোষাধ্যক্ষ ক্যাশ ইন-হ্যান্ড ফাংশনস
         function openCashEntryModal() {
             if (!isLoggedIn || currentUserRole !== 'admin') {
                 alert('অনুগ্রহ করে এডমিন হিসেবে লগইন করুন!');
@@ -4215,8 +4248,8 @@
                     <td class="p-3 font-digit text-emerald-700 font-bold">৳ ${formatBnCurrency(c.depositedToBank || 0)}</td>
                     <td class="p-3 font-digit text-rose-600 font-black">৳ ${formatBnCurrency(c.remainingCash || 0)}</td>
                     <td class="p-3 font-bold text-indigo-950 font-mono text-[11px] whitespace-nowrap">
-                        <span class="bg-indigo-50 border border-indigo-200 text-indigo-800 px-2 py-0.5 rounded">${c.bankName || 'সিটি ব্যাংক'}</span><br>
-                        <span class="text-slate-600 text-[10px]">${c.trxId || '--'}</span>
+                        <span class="bg-indigo-50 border border-indigo-200 text-indigo-800 px-2 py-0.5 rounded font-bold">${c.bankName || 'সিটি ব্যাংক'}</span><br>
+                        <span class="text-slate-600 text-[10px] font-bold font-mono">${c.trxId || '--'}</span>
                     </td>
                     <td class="p-3 text-slate-600 text-[11px]">${c.description || '--'}</td>
                     <td class="p-3 text-center">
@@ -4375,7 +4408,6 @@
             });
         }
 
-        // ৪ নং নির্দেশনা: পেমেন্ট বা ফাইল সিলেকশনের সময় মাস কখনোই জানুয়ারি হবে না
         async function handleAdminPaymentSubmit(e) {
             if (e) e.preventDefault();
             const submitBtn = document.getElementById('entry-submit-btn');
@@ -4880,7 +4912,6 @@
             alert("খরচের রেকর্ড মুছে ফেলা হয়েছে!");
         }
 
-        // ২ নং নির্দেশনা: সিটি ব্যাংক ও ট্রানজেকশন আইডি স্পষ্ট ও বোল্ড প্রদর্শন
         function renderDpsHistory() {
             if (!isLoggedIn) return; 
             const tbody = document.getElementById('dps-history-tbody');
@@ -5176,7 +5207,7 @@
                     if (parsedA) accountsData.push(parsedA);
                 }
 
-                // ১ নং নির্দেশনা: সদস্যদের ধারাবাহিক অটো-অগ্রিম সমন্বয়
+                // সদস্যদের ধারাবাহিক অটো-অগ্রিম সমন্বয়
                 membersData.forEach(m => {
                     autoAdjustMemberMonthlyRecords(m);
                 });
@@ -5268,7 +5299,7 @@
                 }
             }
 
-            // ৫ নং নির্দেশনা: কোষাধ্যক্ষ ক্যাশ ইন-হ্যান্ড পার্সিং
+            // কোষাধ্যক্ষ ক্যাশ ইন-হ্যান্ড পার্সিং
             if (rawCash && rawCash.length > 0) {
                 cashData = [];
                 const startC = Array.isArray(rawCash[0]) ? 1 : 0;
@@ -5454,7 +5485,7 @@
                 }
 
                 tr.innerHTML = `
-                    <td class="p-3 font-semibold text-indigo-600 font-digit cursor-pointer" onclick="openMemberProfileModal('${m.id}')">${m.id}</td>
+                    <td class="p-3 font-semibold text-indigo-600 font-digit cursor-pointer font-bold" onclick="openMemberProfileModal('${m.id}')">${m.id}</td>
                     <td class="p-3 font-bold text-slate-800 cursor-pointer hover:text-emerald-700" onclick="openMemberProfileModal('${m.id}')">${m.name}</td>
                     <td class="p-3 font-bold text-slate-700 font-digit">${toBanglaNum(m.shares)} টি</td>
                     <td class="p-3">
