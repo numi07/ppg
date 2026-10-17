@@ -383,7 +383,7 @@
                     <span class="text-[11px] text-purple-200 block mt-2 font-medium card-subtext" id="total-cash-sub">(ব্যাংকে জমার পূর্বে নগদ স্থিতি)</span>
                 </div>
 
-                <!-- ৭. নতুন ২ নং নির্দেশনা: ব্যাংক ও কোষাধ্যক্ষের ক্যাশের মোট যোগফল কার্ড -->
+                <!-- ৭. ২ নং নির্দেশনা: ব্যাংক ও কোষাধ্যক্ষের ক্যাশের মোট যোগফল কার্ড -->
                 <div class="bg-gradient-to-br from-[#0f172a] via-[#1e293b] to-[#334155] text-white p-5 rounded-3xl shadow-xl border-2 border-emerald-400/50 relative overflow-hidden ring-2 ring-emerald-400/20">
                     <span class="text-xs text-emerald-300 block mb-1 font-bold"><i class="fas fa-coins mr-1.5 text-amber-400"></i> মোট নগদ ও ব্যাংক স্থিতি</span>
                     <h4 class="text-2xl font-black font-digit text-emerald-300" id="total-liquid-balance">৳ ০</h4>
@@ -527,7 +527,7 @@
                     </div>
                 </div>
 
-                <!-- স্টেটমেন্ট প্রিন্ট কন্টেইনার -->
+                <!-- স্টেটমেন্ট প্রিন্ট কন্টেইনার (২ নং নির্দেশনা: কিস্তি + অগ্রিম সমন্বিত সর্বমোট সঞ্চয় কলাম সহ) -->
                 <div id="statement-print-area" class="overflow-x-auto rounded-2xl border border-slate-200 shadow-inner bg-white max-h-[600px] overflow-y-auto">
                     <table class="w-full text-left text-[11px] whitespace-nowrap border-collapse">
                         <thead id="stmt-table-head" class="bg-slate-100 text-slate-700 font-bold sticky top-0 z-20 shadow-sm">
@@ -858,7 +858,7 @@
         </div>
     </div>
 
-    <!-- ৩. ডিজিটাল রশিদ মোডাল -->
+    <!-- ৩. ডিজিটাল রশিদ মোডাল (১ নং নির্দেশনা: অগ্রিম টাকা এবং কথায় মোট টাকার ঘর সহ) -->
     <div id="receipt-modal" class="fixed inset-0 bg-slate-900/80 backdrop-blur-sm hidden z-50 flex items-center justify-center p-3 md:p-6">
         <div class="bg-white rounded-3xl max-w-lg w-full max-h-[94vh] flex flex-col shadow-2xl overflow-hidden border border-slate-200">
             <div class="p-4 bg-slate-900 text-white flex justify-between items-center">
@@ -943,12 +943,13 @@
                                 <td style="border: 1px solid #cbd5e1; padding: 6px 10px; color: #e11d48; font-weight: bold;">বিলম্ব জরিমানা (Penalty)</td>
                                 <td style="border: 1px solid #cbd5e1; padding: 6px 10px; text-align: right; font-weight: bold; color: #e11d48;" class="font-digit" id="rcp-penalty-amount">৳ ০</td>
                             </tr>
+                            <!-- ১ নং নির্দেশনা: রশিদে অগ্রিম জমা রো -->
                             <tr id="rcp-advance-row" style="display: none; background-color: #eff6ff;">
-                                <td style="border: 1px solid #cbd5e1; padding: 6px 10px; color: #2563eb; font-weight: bold;">অগ্রিম জমা (পরবর্তী মাসসমূহে সমন্বিত)</td>
+                                <td style="border: 1px solid #cbd5e1; padding: 6px 10px; color: #2563eb; font-weight: bold;">অগ্রিম জমা (ভবিষ্যতের মাসসমূহে সমন্বিত)</td>
                                 <td style="border: 1px solid #cbd5e1; padding: 6px 10px; text-align: right; font-weight: bold; color: #2563eb;" class="font-digit" id="rcp-advance-amount">৳ ০</td>
                             </tr>
                             <tr id="rcp-current-total-row" style="display: none; background-color: #e0f2fe;">
-                                <td style="border: 1px solid #cbd5e1; padding: 6px 10px; color: #0284c7; font-weight: bold;">মোট পরিশোধিত (কিস্তি + জরিমানা + অগ্রিম)</td>
+                                <td style="border: 1px solid #cbd5e1; padding: 6px 10px; color: #0284c7; font-weight: bold;">চলতি ভাউচারে মোট পরিশোধ (কিস্তি + জরিমানা + অগ্রিম)</td>
                                 <td style="border: 1px solid #cbd5e1; padding: 6px 10px; text-align: right; font-weight: bold; color: #0284c7;" class="font-digit" id="rcp-current-total-amount">৳ ০</td>
                             </tr>
                             <tr style="background-color: #f8fafc;">
@@ -957,6 +958,11 @@
                             </tr>
                         </tbody>
                     </table>
+
+                    <!-- ১ নং নির্দেশনা: রশিদে নিচে বাংলায় কথায় টাকার পরিমাণের ঘর -->
+                    <div id="rcp-words-box" style="margin-top: 6px; background-color: #f0fdf4; border: 1px dashed #10b981; border-radius: 8px; padding: 6px 10px; font-size: 11px; color: #065f46;">
+                        <strong>কথায় (In Words):</strong> <span id="rcp-words-text" style="font-weight: 800; color: #047857;">--</span>
+                    </div>
 
                     <div id="rcp-proof-inside-pdf" style="margin-top: 12px; border: 1px dashed #cbd5e1; border-radius: 8px; padding: 8px; text-align: center; background: #fafafa;">
                         <span style="font-size: 10px; font-weight: bold; color: #475569; display: block; margin-bottom: 5px;">সংযুক্ত প্রামাণ্য ভাউচার / পেমেন্ট প্রমাণপত্র:</span>
@@ -2095,7 +2101,7 @@
             </div>
         </div>
     </div>
-     <!-- জাভাস্ক্রিপ্ট কোড (সুপার ফাস্ট রিয়েল-টাইম ০.০০১ সেকেন্ড সিঙ্ক, সার্বজনীন স্টেটমেন্ট, অটো অ্যাডজাস্টমেন্ট ও পলিসি ইঞ্জিন) -->
+    <!-- জাভাস্ক্রিপ্ট কোড (সুপার ফাস্ট রিয়েল-টাইম ০.০০১ সেকেন্ড সিঙ্ক, সার্বজনীন স্টেটমেন্ট, অটো সমন্বয় ও পলিসি ইঞ্জিন) -->
     <script>
         // Vercel API Link বা Google Apps Script Link
         const API_URL = "/api/Accounts";
@@ -2209,6 +2215,62 @@
         function formatBnCurrency(amount) {
             const val = Math.round(parseAnyNumber(amount));
             return toBanglaNum(val.toLocaleString('en-US'));
+        }
+
+        // ================= ১ নং নির্দেশনা: সংখ্যাকে বাংলায় "কথায়" রূপান্তরের স্বয়ংক্রিয় ফাংশন =================
+        function numberToWordsBengali(num) {
+            num = Math.round(parseAnyNumber(num));
+            if (num <= 0) return 'শূন্য টাকা মাত্র';
+
+            const units = [
+                '', 'এক', 'দুই', 'তিন', 'চার', 'পাঁচ', 'ছয়', 'সাত', 'আট', 'নয়', 'দশ',
+                'এগারো', 'বারো', 'তেরো', 'চৌদ্দ', 'পনেরো', 'ষোলো', 'সতেরো', 'আঠারো', 'উনিশ', 'বিশ',
+                'একুশ', 'বাইশ', 'তেইশ', 'চব্বিশ', 'পঁচিশ', 'ছাব্বিশ', 'সাতাশ', 'আটাশ', 'ঊনত্রিশ', 'ত্রিশ',
+                'একত্রিশ', 'বত্রিশ', 'তেত্রিশ', 'চৌত্রিশ', 'পঁয়ত্রিশ', 'ছত্রিশ', 'সাইত্রিশ', 'আটত্রিশ', 'ঊনচল্লিশ', 'চল্লিশ',
+                'একচল্লিশ', 'বিয়াল্লিশ', 'তেতাল্লিশ', 'চুয়াল্লিশ', 'পঁয়তাল্লিশ', 'ছেচল্লিশ', 'সাতচল্লিশ', 'আটচল্লিশ', 'ঊনপঞ্চাশ', 'পঞ্চাশ',
+                'একান্ন', 'বায়ান্ন', 'তিপ্পান্ন', 'চুয়ান্ন', 'পঞ্চান্ন', 'ছাপ্পান্ন', 'সাতান্ন', 'আটান্ন', 'ঊনষাট', 'ষাট',
+                'একষট্টি', 'বাষট্টি', 'তেষট্টি', 'চৌষট্টি', 'পঁয়ষট্টি', 'ছেষট্টি', 'সাতষট্টি', 'আটষট্টি', 'ঊনসত্তর', 'সত্তর',
+                'একাত্তর', 'বাহাত্তর', 'তিয়াত্তর', 'চুয়াত্তর', 'পঁচাত্তর', 'ছিয়াত্তর', 'সাতাত্তর', 'আটাত্তর', 'ঊনআশি', 'আশি',
+                'একাশি', 'বিরাশি', 'তিরাশি', 'চুরাশি', 'পঁচাশি', 'ছিয়াশি', 'সাতাশি', 'আটাশি', 'ঊননব্বই', 'নব্বই',
+                'একানব্বই', 'বিরানব্বই', 'তিরানব্বই', 'চুরানব্বই', 'পঁচানব্বই', 'ছিয়ানব্বই', 'সাতানব্বই', 'আটানব্বই', 'নিরানব্বই'
+            ];
+
+            let words = '';
+
+            // কোটি
+            if (num >= 10000000) {
+                let crore = Math.floor(num / 10000000);
+                words += numberToWordsBengali(crore).replace(' টাকা মাত্র', '') + ' কোটি ';
+                num %= 10000000;
+            }
+
+            // লক্ষ
+            if (num >= 100000) {
+                let lakh = Math.floor(num / 100000);
+                words += units[lakh] + ' লক্ষ ';
+                num %= 100000;
+            }
+
+            // হাজার
+            if (num >= 1000) {
+                let thousand = Math.floor(num / 1000);
+                words += units[thousand] + ' হাজার ';
+                num %= 1000;
+            }
+
+            // শত
+            if (num >= 100) {
+                let hundred = Math.floor(num / 100);
+                words += units[hundred] + ' শত ';
+                num %= 100;
+            }
+
+            // দশক ও একক
+            if (num > 0) {
+                words += units[num] + ' ';
+            }
+
+            return words.trim() + ' টাকা মাত্র';
         }
 
         function getDirectImageUrl(url) {
@@ -2331,7 +2393,7 @@
         let totalDpsGlobal = 0;
         let totalRemainingBankGlobal = 0;
         let totalCashInHandGlobal = 0;
-        let totalLiquidBalanceGlobal = 0; // ২ নং নির্দেশনা: ব্যাংক + ক্যাশের মোট যোগফল
+        let totalLiquidBalanceGlobal = 0;
 
         let isLoggedIn = false;
         let currentUserRole = null;
@@ -2405,7 +2467,7 @@
             return -1;
         }
 
-        // ================= ১ নং নির্দেশনা: অগ্রিম টাকা এবং বর্তমান মাস সাপেক্ষে ধারাবাহিক অটো সমন্বয় অ্যালগরিদম =================
+        // ================= ১ নং নির্দেশনা: অগ্রিম টাকা এবং বর্তমান মাস সাপেক্ষে ধারাবাহিক সমন্বয় =================
         function autoAdjustMemberMonthlyRecords(member) {
             if (!member) return;
             const shares = parseAnyNumber(member.shares) || 1;
@@ -2469,7 +2531,6 @@
             });
 
             // ২য় ধাপ: বর্তমান মাস পর্যন্ত কিস্তি সমন্বয় এবং অবশিষ্ট অগ্রিম হিসাব
-            // এখন অক্টোবর মাস (Index: 9) হলে শুধুমাত্র অক্টোবর পর্যন্ত কিস্তি কাটা হবে, ভবিষ্যৎ মাসের কিস্তি এখনও অগ্রিমেই বহাল থাকবে
             const currentMonthIdx = new Date().getMonth();
 
             let totalConsumedUpToCurrentMonth = 0;
@@ -2480,10 +2541,10 @@
                 }
             }
 
-            // বর্তমান মাসের অগ্রিম জমা স্থিতি (যেমন: ১০০০০ টাকা জমা থাকলে এবং অক্টোবর কভার হলে পুরো বাকিটাই থাকবে)
+            // বর্তমান মাসে দৃশ্যমান অগ্রিম স্থিতি (অক্টোবর পর্যন্ত কিস্তি সমন্বয় হলে বাকিটা অগ্রিম হিসেবে সংরক্ষিত থাকবে)
             const currentAdvanceBalance = Math.max(0, totalActualDeposit - totalConsumedUpToCurrentMonth);
 
-            // ভবিষ্যৎ মাসসমূহে অগ্রিম প্রি-অ্যালোকেশন (নভেম্বর আসলে স্বয়ংক্রিয় ১০০০ কেটে ৯০০০ দেখাবে)
+            // ভবিষ্যৎ মাসসমূহে অগ্রিম প্রাক-বরাদ্দ (নভেম্বর মাস এলে স্বয়ংক্রিয় ১০০০ কেটে ৯০০০ দেখাবে)
             let futurePool = currentAdvanceBalance;
             let maxTimelineMonth = Math.max(currentMonthIdx, 11) + 24;
 
@@ -2518,7 +2579,7 @@
             }
 
             member.totalDeposit = totalActualDeposit;
-            member.remainingAdvance = currentAdvanceBalance; // বর্তমান মাসে দৃশ্যমান অগ্রিম স্থিতি
+            member.remainingAdvance = currentAdvanceBalance;
             if (lastPaymentTimestamp) member.lastPaymentTimestamp = lastPaymentTimestamp;
             if (lastPaymentMethod) member.lastPaymentMethod = lastPaymentMethod;
             if (lastTrxId) member.lastTrxId = lastTrxId;
@@ -2663,7 +2724,7 @@
             } catch (e) {}
         }
 
-        // ২ নং নির্দেশনা: ব্যাংক ও কোষাধ্যক্ষ ক্যাশের মোট যোগফল সহ সম্পূর্ণ আর্থিক পুনর্গণনা
+        // ================= ২ ও ৩ নং নির্দেশনা: কোষাধ্যক্ষের ব্যাংকে জমাকৃত ক্যাশ সরাসরি ব্যাংকে যুক্ত হওয়া ও যোগফল হিসাব =================
         function recalculateAllFinancials() {
             totalSharesGlobal = 0;
             totalMemberFeeGlobal = 0;
@@ -2702,16 +2763,23 @@
                 totalDpsGlobal += parseAnyNumber(d.dpsAmount);
             });
 
-            // কোষাধ্যক্ষের কাছে অবশিষ্ট ক্যাশ হিসাব
+            // ৩ নং নির্দেশনা: কোষাধ্যক্ষ থেকে ব্যাংকে জমাকৃত ক্যাশ ও অবশিষ্ট ক্যাশ
+            let totalCashDepositedToBank = 0;
             cashData.forEach(c => {
                 totalCashInHandGlobal += parseAnyNumber(c.remainingCash || 0);
+                totalCashDepositedToBank += parseAnyNumber(c.depositedToBank || 0);
             });
 
+            // মোট সংগৃহীত তহবিল (কিস্তি + ভর্তি ফি + জরিমানা)
             totalFundGlobal = totalInstallmentsGlobal + totalMemberFeeGlobal + totalPenaltyGlobal;
+            
+            // নেট ব্যালেন্স (অফিস খরচ বাদ দিয়ে)
             const netBalance = Math.max(0, totalFundGlobal - totalExpenseGlobal);
-            totalRemainingBankGlobal = Math.max(0, netBalance - totalDpsGlobal);
 
-            // ২ নং নির্দেশনা: ব্যাংক স্থিতি + কোষাধ্যক্ষের ক্যাশের মোট যোগফল
+            // ৩ নং নির্দেশনা: কোষাধ্যক্ষ যে টাকা ব্যাংকে জমা করেছেন (যেমন ২০০০ টাকা) তা ব্যাংকে সরাসরি যুক্ত হবে
+            totalRemainingBankGlobal = Math.max(0, (netBalance - totalDpsGlobal) + totalCashDepositedToBank);
+
+            // ২ নং নির্দেশনা: ব্যাংক স্থিতি + কোষাধ্যক্ষের ক্যাশের সমন্বিত মোট যোগফল
             totalLiquidBalanceGlobal = totalRemainingBankGlobal + totalCashInHandGlobal;
 
             return {
@@ -2756,7 +2824,6 @@
             }
         });
 
-        // ২ ও ৩ নং নির্দেশনা: ড্যাশবোর্ডে ব্যাংক + ক্যাশের মোট যোগফল ও ১ ও ৯ সংখ্যা স্পষ্ট প্রদর্শন
         function updateAuthUI() {
             const authElements = document.querySelectorAll('.auth-only');
             const adminElements = document.querySelectorAll('.admin-only');
@@ -2784,7 +2851,7 @@
                 }
 
                 document.getElementById('total-expense-amount').innerText = `৳ ${formatBnCurrency(fin.totalExpense)}`;
-                document.getElementById('total-net-balance').innerText = `৳ ${formatBnCurrency(fin.netBalance)}`;
+                document.getElementById('total-net-balance').innerText = `৳ ${formatBnCurrency(fin.remainingBank)}`;
                 document.getElementById('total-dps-amount').innerText = `৳ ${formatBnCurrency(fin.totalDps)}`;
                 document.getElementById('total-bank-remaining-sub').innerText = `(ডিপিএস বাদে ব্যাংকে অবশিষ্ট: ৳ ${formatBnCurrency(fin.remainingBank)})`;
                 
@@ -2900,7 +2967,7 @@
             return timeline;
         }
 
-        // ১ নং নির্দেশনা: এডভান্স স্টেটমেন্টে অগ্রিম জমার স্থিতি ও সমন্বয় নিখুঁত প্রদর্শন
+        // ================= ২ নং নির্দেশনা: স্টেটমেন্টে কিস্তি + অগ্রিম সমন্বিত সর্বমোট সঞ্চয় কলাম =================
         function renderUniversalStatement() {
             if (!isLoggedIn) return;
 
@@ -2932,9 +2999,11 @@
                 }
             });
 
+            // ২ নং নির্দেশনা: কিস্তি সঞ্চয়, অগ্রিম জমা স্থিতি এবং কিস্তি + অগ্রিম সর্বমোট সঞ্চয় কলাম
             headHtml += `
-                    <th class="p-3.5 text-right bg-emerald-100 text-emerald-900">মোট সঞ্চয়</th>
-                    <th class="p-3.5 text-right bg-blue-100 text-blue-900 font-black">অগ্রিম জমা স্থিতি</th>
+                    <th class="p-3.5 text-right bg-emerald-100 text-emerald-900">মোট কিস্তি সঞ্চয়</th>
+                    <th class="p-3.5 text-right bg-blue-100 text-blue-900 font-bold">অগ্রিম জমা স্থিতি</th>
+                    <th class="p-3.5 text-right bg-teal-200 text-teal-950 font-black border-x-2 border-teal-400">সর্বমোট সঞ্চয় (কিস্তি+অগ্রিম)</th>
                     <th class="p-3.5 text-right bg-rose-100 text-rose-900">মোট বকেয়া</th>
                     <th class="p-3.5 text-center bg-slate-100">স্ট্যাটাস</th>
                 </tr>
@@ -2949,7 +3018,7 @@
             });
 
             if (filteredMembers.length === 0) {
-                tbody.innerHTML = `<tr><td colspan="${timeline.length + 7}" class="p-6 text-center text-slate-400">কোনো তথ্য পাওয়া যায়নি</td></tr>`;
+                tbody.innerHTML = `<tr><td colspan="${timeline.length + 8}" class="p-6 text-center text-slate-400">কোনো তথ্য পাওয়া যায়নি</td></tr>`;
                 tfoot.innerHTML = '';
                 if (countBadge) countBadge.innerText = `মোট সদস্য: ০ জন`;
                 return;
@@ -2959,6 +3028,7 @@
             let grandTotalShares = 0;
             let grandTotalPaid = 0;
             let grandTotalAdvance = 0;
+            let grandTotalCombinedSavings = 0;
             let grandTotalDue = 0;
             const colTotals = new Array(timeline.length).fill(0);
 
@@ -3035,16 +3105,21 @@
                     }
                 });
 
+                const memberRemainingAdvance = m.remainingAdvance || 0;
+                const memberCombinedTotal = memberTotalPaid + memberRemainingAdvance;
+
                 grandTotalPaid += memberTotalPaid;
+                grandTotalAdvance += memberRemainingAdvance;
+                grandTotalCombinedSavings += memberCombinedTotal;
                 grandTotalDue += memberTotalDue;
-                grandTotalAdvance += (m.remainingAdvance || 0);
 
                 const statusInfo = getMemberStatusInfo(m);
 
-                // ১ নং নির্দেশনা: অগ্রিম জমা স্থিতি কলামে অবশিষ্ট ব্যালেন্স স্পষ্ট দেখানো
+                // ২ নং নির্দেশনা: কিস্তি + অগ্রিম সমন্বিত সর্বমোট সঞ্চয় স্পষ্ট প্রদর্শন
                 rowHtml += `
                         <td class="p-2.5 text-right font-digit font-bold text-emerald-700 bg-emerald-50/40">৳ ${formatBnCurrency(memberTotalPaid)}</td>
-                        <td class="p-2.5 text-right font-digit font-black text-blue-700 bg-blue-100/50">৳ ${formatBnCurrency(m.remainingAdvance || 0)}</td>
+                        <td class="p-2.5 text-right font-digit font-bold text-blue-700 bg-blue-100/40">৳ ${formatBnCurrency(memberRemainingAdvance)}</td>
+                        <td class="p-2.5 text-right font-digit font-black text-teal-900 bg-teal-100/60 border-x-2 border-teal-300">৳ ${formatBnCurrency(memberCombinedTotal)}</td>
                         <td class="p-2.5 text-right font-digit font-bold text-rose-600 bg-rose-50/40">৳ ${formatBnCurrency(memberTotalDue)}</td>
                         <td class="p-2.5 text-center">
                             <span class="px-2.5 py-0.5 rounded-full text-[10px] font-bold ${statusInfo.badge}">${statusInfo.label}</span>
@@ -3070,9 +3145,11 @@
                 }
             });
 
+            // ফুটারে কিস্তি, অগ্রিম ও সর্বমোট সমন্বিত যোগফল
             footHtml += `
                     <td class="p-3.5 text-right bg-emerald-200 text-emerald-950 font-digit font-black">৳ ${formatBnCurrency(grandTotalPaid)}</td>
                     <td class="p-3.5 text-right bg-blue-200 text-blue-950 font-digit font-black">৳ ${formatBnCurrency(grandTotalAdvance)}</td>
+                    <td class="p-3.5 text-right bg-teal-300 text-teal-950 font-digit font-black border-x-2 border-teal-500 text-xs">৳ ${formatBnCurrency(grandTotalCombinedSavings)}</td>
                     <td class="p-3.5 text-right bg-rose-200 text-rose-950 font-digit font-black">৳ ${formatBnCurrency(grandTotalDue)}</td>
                     <td class="p-3.5 text-center bg-slate-100">--</td>
                 </tr>
@@ -3639,7 +3716,7 @@
 
             elements.forEach(el => {
                 if (!el) return;
-                const prevVal = el.value; // আগের সিলেক্ট করা মাস ধরে রাখা
+                const prevVal = el.value;
                 if (el.children.length === 0) {
                     for (let idx = 0; idx < 12; idx++) {
                         const m = MONTH_NAMES[idx];
@@ -3652,7 +3729,7 @@
                     }
                 }
                 if (prevVal) {
-                    el.value = prevVal; // ফটো বা ফাইলে হাত দিলে কখনোই জানুয়ারীতে রিসেট হবে না
+                    el.value = prevVal;
                 }
             });
 
@@ -3661,6 +3738,7 @@
             }
         }
 
+        // ================= ১ নং নির্দেশনা: রশিদে অগ্রিম টাকা, চলতি মোট টাকা এবং বাংলায় "কথায় টাকা" প্রদর্শন =================
         function onReceiptMonthChange(val) {
             selectedReceiptMonth = val;
             const targetIdx = normalizeMonthIndex(val);
@@ -3720,6 +3798,7 @@
                     penaltyRow.style.display = 'none';
                 }
 
+                // ১ নং নির্দেশনা: রশিদে অগ্রিম জমা রো
                 if (advanceAmount > 0) {
                     advanceRow.style.display = 'table-row';
                     document.getElementById('rcp-advance-amount').innerText = `৳ ${formatBnCurrency(advanceAmount)}`;
@@ -3727,9 +3806,11 @@
                     advanceRow.style.display = 'none';
                 }
 
+                const currentVoucherTotal = instAmount + penaltyAmount + advanceAmount;
+
                 if (penaltyAmount > 0 || advanceAmount > 0) {
                     currentTotalRow.style.display = 'table-row';
-                    document.getElementById('rcp-current-total-amount').innerText = `৳ ${formatBnCurrency(instAmount + penaltyAmount + advanceAmount)}`;
+                    document.getElementById('rcp-current-total-amount').innerText = `৳ ${formatBnCurrency(currentVoucherTotal)}`;
                 } else {
                     currentTotalRow.style.display = 'none';
                 }
@@ -3748,6 +3829,13 @@
                 document.getElementById('rcp-prev-amount').innerText = `৳ ${formatBnCurrency(priorDeposit)}`;
                 document.getElementById('rcp-total').innerText = `৳ ${formatBnCurrency(totalUpToMonth)}`;
                 
+                // ১ নং নির্দেশনা: রশিদে বাংলায় "কথায় টাকা" সেট করা
+                const wordsBox = document.getElementById('rcp-words-text');
+                if (wordsBox) {
+                    const amountInWords = currentVoucherTotal > 0 ? currentVoucherTotal : instAmount;
+                    wordsBox.innerText = numberToWordsBengali(amountInWords);
+                }
+
                 const statusBadge = document.getElementById('rcp-status-badge');
                 if (isPaid) {
                     statusBadge.innerText = rec && rec.isAutoAdjusted ? "অগ্রিম সমন্বয়" : "পরিশোধিত";
@@ -3833,6 +3921,7 @@
             html2pdf().set(opt).from(element).save();
         }
 
+        // ================= ১ নং নির্দেশনা: WhatsApp-এ রশিদ লিংক পাঠানো যাতে ক্লিক করলেই ডিজিটাল রশিদ ওপেন হয় =================
         function shareWhatsApp() {
             if (currentUserRole !== 'admin' || !selectedMember) return;
             const idx = normalizeMonthIndex(selectedReceiptMonth);
@@ -3843,7 +3932,15 @@
             const specialId = generateSpecialReceiptId(selectedMember.id, selectedReceiptMonth, rec ? rec.trxId : "");
             const paymentDateStr = (rec && rec.timestamp) ? formatBanglaDate(rec.timestamp) : formatBanglaDate(new Date().toISOString());
 
-            const message = encodeURIComponent(
+            const instAmount = rec ? parseAnyNumber(rec.amount) : (selectedMember.shares * 1000);
+            const advanceAmount = rec ? parseAnyNumber(rec.advanceAmount || 0) : 0;
+            const penaltyAmount = rec ? parseAnyNumber(rec.penalty || 0) : 0;
+            const currentTotal = instAmount + advanceAmount + penaltyAmount;
+
+            // ওয়েবসাইটের ডিরেক্ট রশিদ দেখার স্মার্ট লিংক
+            const receiptDirectUrl = `${window.location.origin}${window.location.pathname}?view_receipt=1&memberId=${selectedMember.id}&month=${selectedReceiptMonth}`;
+
+            let msgText = 
                 `📄 *পহরডাঙ্গা পার্টনারশিপ গ্রুপ - অফিসিয়াল জমা রশিদ*\n` +
                 `------------------------------------\n` +
                 `🆔 *রশিদ নং (ID):* ${specialId}\n` +
@@ -3852,13 +3949,24 @@
                 `📅 *পরিশোধিত মাস:* ${monthWithYear}\n` +
                 `🕒 *পরিশোধের তারিখ:* ${paymentDateStr}\n` +
                 `📊 *শেয়ার সংখ্যা:* ${toBanglaNum(selectedMember.shares)} টি\n` +
-                `💵 *পরিশোধের পরিমাণ:* ৳ ${formatBnCurrency(rec ? rec.amount : (selectedMember.shares * 1000))}\n` +
+                `💵 *মাসিক কিস্তি:* ৳ ${formatBnCurrency(instAmount)}\n`;
+
+            if (advanceAmount > 0) {
+                msgText += `🌟 *অগ্রিম জমা:* ৳ ${formatBnCurrency(advanceAmount)}\n`;
+            }
+            if (penaltyAmount > 0) {
+                msgText += `⚠️ *বিলম্ব জরিমানা:* ৳ ${formatBnCurrency(penaltyAmount)}\n`;
+            }
+
+            msgText += 
+                `💳 *চলতি জমার মোট:* ৳ ${formatBnCurrency(currentTotal)}\n` +
+                `📝 *কথায়:* ${numberToWordsBengali(currentTotal)}\n` +
                 `💰 *সর্বমোট সঞ্চয় ও অগ্রিম জমা:* ৳ ${formatBnCurrency(selectedMember.totalDeposit)}\n` +
                 `------------------------------------\n` +
-                `_ধন্যবাদ সাথে থাকার জন্য!_`
-            );
-            
-            openWhatsAppUrl(formatWhatsAppLink(selectedMember.phone, message));
+                `🔗 *ডিজিটাল রশিদ দেখতে নিচের লিংকে ক্লিক করুন:*\n${receiptDirectUrl}\n\n` +
+                `_ধন্যবাদ সাথে থাকার জন্য!_`;
+
+            openWhatsAppUrl(formatWhatsAppLink(selectedMember.phone, encodeURIComponent(msgText)));
         }
 
         function sendSuccessPaymentSMS(member = selectedMember) {
@@ -3872,7 +3980,13 @@
             const specialId = generateSpecialReceiptId(member.id, targetMonth, rec ? rec.trxId : "");
             const paymentDateStr = (rec && rec.timestamp) ? formatBanglaDate(rec.timestamp) : formatBanglaDate(new Date().toISOString());
 
-            const msg = encodeURIComponent(
+            const instAmount = rec ? parseAnyNumber(rec.amount) : (member.shares * 1000);
+            const advanceAmount = rec ? parseAnyNumber(rec.advanceAmount || 0) : 0;
+            const currentTotal = instAmount + advanceAmount;
+
+            const receiptDirectUrl = `${window.location.origin}${window.location.pathname}?view_receipt=1&memberId=${member.id}&month=${targetMonth}`;
+
+            let msg = 
                 `🎉 *অভিনন্দন! আপনার কিস্তি সফলভাবে জমা হয়েছে*\n` +
                 `*পহরডাঙ্গা পার্টনারশিপ গ্রুপ*\n` +
                 `------------------------------------\n` +
@@ -3880,12 +3994,41 @@
                 `প্রিয় ${member.name} (আইডি: ${member.id}),\n` +
                 `আপনার *${monthWithYear}* মাসের কিস্তি সফলভাবে গৃহীত হয়েছে।\n\n` +
                 `🕒 *পরিশোধের তারিখ:* ${paymentDateStr}\n` +
-                `💵 *পরিশোধের পরিমাণ:* ৳ ${formatBnCurrency(rec ? rec.amount : (member.shares * 1000))}\n` +
-                `💰 *সর্বমোট সঞ্চয় ও অগ্রিম জমা:* ৳ ${formatBnCurrency(member.totalDeposit || 0)}\n` +
-                `------------------------------------\n`
-            );
+                `💵 *পরিশোধের পরিমাণ:* ৳ ${formatBnCurrency(instAmount)}\n`;
 
-            openWhatsAppUrl(formatWhatsAppLink(member.phone, msg));
+            if (advanceAmount > 0) {
+                msg += `🌟 *অগ্রিম জমা:* ৳ ${formatBnCurrency(advanceAmount)}\n`;
+            }
+
+            msg += 
+                `💳 *মোট জমা:* ৳ ${formatBnCurrency(currentTotal)}\n` +
+                `📝 *কথায়:* ${numberToWordsBengali(currentTotal)}\n` +
+                `💰 *সর্বমোট সঞ্চয় ও অগ্রিম জমা:* ৳ ${formatBnCurrency(member.totalDeposit || 0)}\n` +
+                `------------------------------------\n` +
+                `🔗 *ডিজিটাল রশিদ দেখুন:* ${receiptDirectUrl}\n`;
+
+            openWhatsAppUrl(formatWhatsAppLink(member.phone, encodeURIComponent(msg)));
+        }
+
+        // ================= ১ নং নির্দেশনা: WhatsApp লিংক থেকে সরাসরি রশিদ ওপেনিং চেকার =================
+        function checkUrlForDirectReceipt() {
+            try {
+                const urlParams = new URLSearchParams(window.location.search);
+                if (urlParams.get('view_receipt') === '1') {
+                    const mId = urlParams.get('memberId');
+                    const month = urlParams.get('month');
+                    if (mId && membersData.length > 0) {
+                        const targetMem = membersData.find(x => normalizeMemberId(x.id) === normalizeMemberId(mId));
+                        if (targetMem) {
+                            selectedMember = targetMem;
+                            if (month) selectedReceiptMonth = month;
+                            setTimeout(() => {
+                                openReceiptModal();
+                            }, 500);
+                        }
+                    }
+                }
+            } catch (e) {}
         }
 
         function calculatePenalty(dayOfMonth) {
@@ -4117,7 +4260,6 @@
             document.getElementById('edit-dps-bank-remaining').value = remaining;
         }
 
-        // কোষাধ্যক্ষ ক্যাশ ইন-হ্যান্ড ফাংশনস
         function openCashEntryModal() {
             if (!isLoggedIn || currentUserRole !== 'admin') {
                 alert('অনুগ্রহ করে এডমিন হিসেবে লগইন করুন!');
@@ -4426,7 +4568,7 @@
             }
 
             const memberId = document.getElementById('entry-member-id').value;
-            const monthVal = document.getElementById('entry-month').value; // নির্বাচিত মাস অপরিবর্তিত
+            const monthVal = document.getElementById('entry-month').value;
             const customDateInput = document.getElementById('entry-payment-date').value;
             const nowIso = customDateInput ? new Date(customDateInput + "T12:00:00").toISOString() : new Date().toISOString();
             
@@ -5399,6 +5541,9 @@
             });
 
             updateAuthUI();
+
+            // WhatsApp লিংক থেকে সরাসরি রশিদ ওপেনিং চেকার
+            checkUrlForDirectReceipt();
 
             if (selectedMember) {
                 const refreshed = membersData.find(x => x.id === selectedMember.id);
